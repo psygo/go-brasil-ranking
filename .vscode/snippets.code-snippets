@@ -1,0 +1,53 @@
+{
+    "shebang": {
+        "prefix": "shebang",
+        "body": [
+            "#!/bin/sh",
+            "",
+            "${1}"
+        ]
+    },
+    "console.log": {
+        "prefix": "csl",
+        "body": "console.log($1);"
+    },
+    "HTML Component": {
+        "prefix": "html_component",
+        "body": [
+            "// TODO: Add this to Setup's Custom Elements Register",
+            "export default class $1 extends HTMLElement {",
+            "  static readonly tag: string = \"$2\";",
+            "",
+            "  private static readonly html: string = `",
+            "    $3",
+            "  `;",
+            "",
+            "  constructor() {",
+            "    super();",
+            "  }",
+            "",
+            "  connectedCallback() {",
+            "    this.innerHTML = $1.html;",
+            "  }",
+            "}"
+        ]
+    },
+    "Jest's Describe": {
+        "prefix": "test_desc",
+        "body": [
+            "describe(\"$1\", () => {",
+            "  it(\"$2\", () => {",
+            "    $3",
+            "  });",
+            "});"
+        ]
+    },
+    "Add Private Function": {
+        "prefix": "pfunc",
+        "body": [
+            "private $1 = ($2): ${3:void} => {",
+            "  $4",
+            "};"
+        ]
+    }
+}
