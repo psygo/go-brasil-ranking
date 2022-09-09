@@ -3,23 +3,19 @@ import * as functions from "firebase-functions";
 
 import express from "express";
 
+import { getPlayer, getPlayers, postPlayer } from "./api/players";
+import { home } from "./api/others";
+
 admin.initializeApp();
 
 export const db = admin.firestore();
 
 const goBrasilRankingApp = express();
 
-goBrasilRankingApp.get("/", (_, res) => {
-  try {
-    res.status(200).send({
-      status: "success",
-      message: "Hello there",
-    });
-  } catch (e) {
-    const error = e as Error;
+goBrasilRankingApp.get("/", home);
 
-    res.status(500).json(error.message);
-  }
-});
+goBrasilRankingApp.get("/players", getPlayers);
+goBrasilRankingApp.get("/players/:playerId", getPlayer);
+goBrasilRankingApp.post("/players/new", postPlayer);
 
 export const goBrasilRanking = functions.https.onRequest(goBrasilRankingApp);
