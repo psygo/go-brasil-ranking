@@ -1,4 +1,4 @@
-import { ExpressApiRoute } from "../infra";
+import { ExpressApiRoute, howMany } from "../infra";
 
 import { db } from "..";
 
@@ -6,11 +6,7 @@ import SerializedGameRecord from "../../../go_brasil_ranking/src/models/game_rec
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
-    const maxLimit = 100;
-    const askedLimit = req.query.limit
-      ? parseInt(req.query.limit as string)
-      : maxLimit;
-    const limit = askedLimit <= maxLimit ? askedLimit : maxLimit;
+    const limit = howMany(req.query.limit as string);
 
     const gameRecordsQuery = db.collection("game_records").limit(limit);
 
