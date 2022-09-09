@@ -1,3 +1,5 @@
+import Elo from "./elo";
+
 export interface SerializedCountry {
   name: string;
   state?: string;
@@ -14,20 +16,20 @@ export class Player {
   constructor(
     public readonly name: string,
     public readonly countries: readonly SerializedCountry[],
-    public readonly elo: number
+    public readonly elo: Elo
   ) {}
 
   serialize = (): SerializedPlayer => ({
     name: this.name,
     countries: this.countries as SerializedCountry[],
-    elo: this.elo,
+    elo: this.elo.num,
   });
 
   static deserialize = (json: any): Player =>
     new Player(
       json.name as string,
       json.countries as SerializedCountry[],
-      json.elo as number
+      new Elo(json.elo)
     );
 }
 

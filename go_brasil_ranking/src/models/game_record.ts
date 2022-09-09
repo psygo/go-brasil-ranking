@@ -1,9 +1,13 @@
+import { Timestamp } from "firebase/firestore";
+import Serializable, { CustomJson } from "../infra/serializable";
+
+import Elo from "./elo";
 import { FirebaseRef } from "./firebase_ref";
 
 export enum GameResult {
   Win,
   Loss,
-  Voided
+  Voided,
 }
 
 enum Color {
@@ -16,8 +20,8 @@ interface Result {
   difference: number;
 }
 
-export default interface SerializedGameRecord {
-  date: Date;
+export default interface SerializedGameRecord extends CustomJson {
+  date: Timestamp;
   blackPlayerRef: FirebaseRef;
   currentBlackElo?: number;
   eloDeltaBlack?: number;
@@ -27,17 +31,40 @@ export default interface SerializedGameRecord {
   result: Result;
 }
 
-export class GameRecord {
+export class GameRecord implements Serializable {
   private constructor(
     public readonly date: Date,
     public readonly blackPlayerRef: FirebaseRef,
     public readonly whitePlayerRef: FirebaseRef,
     public readonly result: Result,
-    public readonly currentBlackElo?: number,
+    public readonly currentBlackElo?: Elo,
     public readonly eloDeltaBlack?: number,
-    public readonly currentWhiteElo?: number,
+    public readonly currentWhiteElo?: Elo,
     public readonly eloDeltaWhite?: number
   ) {}
+
+  serialize = (): SerializedGameRecord => ({
+    date: Serializable.dateToTimestamp(this.date),
+    blackPlayerRef: this.blackPlayerRef,
+    currentBlackElo: this.currentBlackElo?.num,
+    eloDeltaBlack: this.eloDeltaBlack,
+    whitePlayerRef: this.whitePlayerRef,
+    currentWhiteElo: this.currentWhiteElo?.num,
+    eloDeltaWhite: this.eloDeltaWhite,
+    result: this.result,
+  });
+
+  static deserialize = (json: CustomJson): GameRecord =>
+    new GameRecord(
+      Serializable.jsonToTimestampToDate(json.date),
+      json.blackPlayerRef as string,
+      json.whitePlayerRef as string,
+      json.result as Result,
+      new Elo(json.currentBlackElo as number),
+      json.eloDeltaBlack as number,
+      new Elo(json.currentWhiteElo as number),
+      json.eloDeltaWhite as number
+    );
 
   static new = (
     date: Date,
@@ -47,9 +74,9 @@ export class GameRecord {
   ): GameRecord => new GameRecord(date, blackPlayerRef, whitePlayerRef, result);
 
   addCalculatedElos = (
-    currentBlackElo: number,
+    currentBlackElo: Elo,
     eloDeltaBlack: number,
-    currentWhiteElo: number,
+    currentWhiteElo: Elo,
     eloDeltaWhite: number
   ): GameRecord =>
     new GameRecord(
