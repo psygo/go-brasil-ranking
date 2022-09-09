@@ -1,3 +1,19 @@
+# Functions
+functions/node_modules/
+functions/dist
+functions/index.js
+
+functions/lib/**/*.js
+functions/lib/**/*.js.map
+
+functions/typings/
+
+# Public
+public/index.js
+
+# Go Brasil Ranking
+go_brasil_ranking/index.js
+
 # Logs
 logs
 *.log

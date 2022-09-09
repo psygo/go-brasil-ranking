@@ -1,9 +1,12 @@
 {
   "name": "functions",
+  "version": "1.0.0",
+  "author": "Philippe Fanaro",
   "private": true,
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "everything": "sh ./scripts/everything.sh",
+    "webpack": "npx webpack",
+    "tsc": "npx tsc -w",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
