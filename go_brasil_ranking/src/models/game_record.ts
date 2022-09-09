@@ -1,13 +1,18 @@
 import { FirebaseRef } from "./firebase_ref";
 
-enum WhoWhins {
-  BlackWins = "B+",
-  WhiteWins = "W+",
-  Voided = "V",
+export enum GameResult {
+  Win,
+  Loss,
+  Voided
+}
+
+enum Color {
+  Black,
+  White,
 }
 
 interface Result {
-  whoWins: WhoWhins;
+  whoWins: Color;
   difference: number;
 }
 

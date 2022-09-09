@@ -13,6 +13,7 @@ public/index.js
 
 # Go Brasil Ranking
 go_brasil_ranking/index.js
+go_brasil_ranking/dist/
 
 # Logs
 logs

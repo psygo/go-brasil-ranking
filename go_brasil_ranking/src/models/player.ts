@@ -23,13 +23,12 @@ export class Player {
     elo: this.elo,
   });
 
-  static deserialize = (json: any): Player => {
-    return new Player(
+  static deserialize = (json: any): Player =>
+    new Player(
       json.name as string,
       json.countries as SerializedCountry[],
       json.elo as number
     );
-  };
 }
 
 export const dummyPlayers: SerializedPlayer[] = [
@@ -42,6 +41,28 @@ export const dummyPlayers: SerializedPlayer[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2100,
+    elo: 2150,
+  },
+  {
+    name: "Fabrício Caluza Machado",
+    countries: [
+      {
+        name: "Brazil",
+        state: "DF",
+        city: "Brasília",
+      },
+    ],
+    elo: 1750,
+  },
+  {
+    name: "Ariel Oliveira",
+    countries: [
+      {
+        name: "Brazil",
+        state: "SP",
+        city: "São Paulo",
+      },
+    ],
+    elo: 1050,
   },
 ];
