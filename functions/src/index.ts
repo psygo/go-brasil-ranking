@@ -18,4 +18,8 @@ goBrasilRankingApp.get("/players", getPlayers);
 goBrasilRankingApp.get("/players/:playerId", getPlayer);
 goBrasilRankingApp.post("/players/new", postPlayer);
 
+goBrasilRankingApp.get("/gameRecords", getPlayers);
+goBrasilRankingApp.get("/gameRecords/:gameRecordId", getPlayer);
+goBrasilRankingApp.post("/gameRecords/new", postPlayer);
+
 export const goBrasilRanking = functions.https.onRequest(goBrasilRankingApp);

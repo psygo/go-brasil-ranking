@@ -19,7 +19,7 @@ export class Player {
 
   serialize = (): SerializedPlayer => ({
     name: this.name,
-    countries: [...this.countries],
+    countries: this.countries as SerializedCountry[],
     elo: this.elo,
   });
 
