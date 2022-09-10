@@ -46,10 +46,10 @@ export class GameRecord implements Serializable {
   serialize = (): SerializedGameRecord => ({
     date: Serializable.dateToTimestamp(this.date),
     blackPlayerRef: this.blackPlayerRef,
-    currentBlackElo: this.currentBlackElo?.num,
+    currentBlackElo: this.currentBlackElo?.serialize(),
     eloDeltaBlack: this.eloDeltaBlack,
     whitePlayerRef: this.whitePlayerRef,
-    currentWhiteElo: this.currentWhiteElo?.num,
+    currentWhiteElo: this.currentWhiteElo?.serialize(),
     eloDeltaWhite: this.eloDeltaWhite,
     result: this.result,
   });
@@ -60,9 +60,9 @@ export class GameRecord implements Serializable {
       json.blackPlayerRef as string,
       json.whitePlayerRef as string,
       json.result as Result,
-      new Elo(json.currentBlackElo as number),
+      Elo.deserialize(json.currentBlackElo as number),
       json.eloDeltaBlack as number,
-      new Elo(json.currentWhiteElo as number),
+      Elo.deserialize(json.currentWhiteElo as number),
       json.eloDeltaWhite as number
     );
 
