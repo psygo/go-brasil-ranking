@@ -4,7 +4,7 @@
         "index.js": false,
         "./node_modules/": true,
         "package-lock.json": true,
-        "tsconfig.tsbuildinfo": false,
+        "**/tsconfig.tsbuildinfo": true,
         "functions/tsconfig.tsbuildinfo": true,
         // Firebase
         "firebase-debug.log": true,

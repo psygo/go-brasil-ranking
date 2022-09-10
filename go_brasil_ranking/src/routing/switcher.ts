@@ -16,21 +16,18 @@ export default class Multiplexer {
     return document.body.querySelector("main")!;
   }
 
-  mult = (): Promise<void> =>
-    new Promise<void>((resolve, _) => {
-      switch (this.prefixRoute) {
-        case RouteEnum.home:
-          new HomeMultiplexer().mult();
-          break;
-        case RouteEnum.user:
-          new UserMultiplexer(this.splitPrefixRoute).mult();
-          break;
-        default:
-          new UnknownMultiplexer().mult();
-      }
-
-      resolve();
-    });
+  mult = (): void => {
+    switch (this.prefixRoute) {
+      case RouteEnum.home:
+        new HomeMultiplexer().mult();
+        break;
+      case RouteEnum.user:
+        new UserMultiplexer(this.splitPrefixRoute).mult();
+        break;
+      default:
+        new UnknownMultiplexer().mult();
+    }
+  };
 
   private get prefixRoute(): string {
     return "/" + this.currentRoute.split("/")[1];
@@ -46,26 +43,20 @@ class HomeMultiplexer extends Multiplexer {
     super("");
   }
 
-  mult = (): Promise<void> =>
-    new Promise((resolve, _) => {
-      this.mainElement.replaceChildren(new HomeView());
-
-      resolve();
-    });
+  mult = (): void => {
+    this.mainElement.replaceChildren(new HomeView());
+  };
 }
 
 class UserMultiplexer extends Multiplexer {
-  mult = (): Promise<void> =>
-    new Promise<void>(async (resolve, _) => {
-      if (this.currentRoute === "") {
-        this.mainElement.replaceChildren(
-          new PlayerView(Player.deserialize(dummyPlayers[0]))
-        );
-      } else {
-      }
-
-      resolve();
-    });
+  mult = (): void => {
+    if (this.currentRoute === "") {
+      this.mainElement.replaceChildren(
+        new PlayerView(Player.deserialize(dummyPlayers[0]))
+      );
+    } else {
+    }
+  };
 }
 
 class UnknownMultiplexer extends Multiplexer {
@@ -73,10 +64,7 @@ class UnknownMultiplexer extends Multiplexer {
     super("");
   }
 
-  mult = (): Promise<void> =>
-    new Promise<void>((resolve, _) => {
-      this.mainElement.innerHTML = "<p>at unknown</p>";
-
-      resolve();
-    });
+  mult = (): void => {
+    this.mainElement.innerHTML = "<p>at unknown</p>";
+  };
 }
