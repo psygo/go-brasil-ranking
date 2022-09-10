@@ -3,7 +3,8 @@ import Elo from "./elo";
 
 export interface Country {
   name: string;
-  state?: string;
+  flag: CountryFlag;
+  state?: BrazilianState;
   city?: string;
 }
 
@@ -32,4 +33,47 @@ export class Player implements Serializable {
       json.countries as Country[],
       Elo.deserialize(json.elo as number)
     );
+}
+
+export enum CountryFlag {
+  angola = "🇦🇴",
+  argentina = "🇦🇷",
+  brazil = "🇧🇷",
+  colombia = "🇨🇴",
+  france = "🇫🇷",
+  israel = "🇮🇱",
+  italy = "🇮🇹",
+  mexico = "🇲🇽",
+  portugal = "🇵🇹",
+  romania = "🇷🇴",
+  taiwan = "🇹🇼",
+}
+
+export enum BrazilianState {
+  ac,
+  al,
+  ap,
+  am,
+  ba,
+  ce,
+  df,
+  es,
+  go,
+  ma,
+  mt,
+  ms,
+  mg,
+  pa,
+  pb,
+  pr,
+  pe,
+  pi,
+  rj,
+  rn,
+  rs,
+  ro,
+  rr,
+  sp,
+  se,
+  to,
 }

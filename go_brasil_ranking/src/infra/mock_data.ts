@@ -1,4 +1,7 @@
-import SerializedPlayer from "../models/player";
+import SerializedPlayer, {
+  BrazilianState,
+  CountryFlag,
+} from "../models/player";
 
 export const dummyPlayers: SerializedPlayer[] = [
   {
@@ -6,7 +9,8 @@ export const dummyPlayers: SerializedPlayer[] = [
     countries: [
       {
         name: "Brazil",
-        state: "SP",
+        flag: CountryFlag.brazil,
+        state: BrazilianState.sp,
         city: "São Paulo",
       },
     ],
@@ -17,7 +21,8 @@ export const dummyPlayers: SerializedPlayer[] = [
     countries: [
       {
         name: "Brazil",
-        state: "DF",
+        flag: CountryFlag.brazil,
+        state: BrazilianState.df,
         city: "Brasília",
       },
     ],
@@ -28,7 +33,8 @@ export const dummyPlayers: SerializedPlayer[] = [
     countries: [
       {
         name: "Brazil",
-        state: "SP",
+        flag: CountryFlag.brazil,
+        state: BrazilianState.df,
         city: "São Paulo",
       },
     ],
