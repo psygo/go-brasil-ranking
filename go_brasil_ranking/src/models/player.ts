@@ -1,4 +1,4 @@
-import { CustomJson } from "../infra/serializable";
+import Serializable, { CustomJson } from "../infra/serializable";
 import Elo from "./elo";
 
 export interface Country {
@@ -13,7 +13,7 @@ export default interface SerializedPlayer {
   elo: number;
 }
 
-export class Player {
+export class Player implements Serializable {
   constructor(
     public readonly name: string,
     public readonly countries: readonly Country[],
