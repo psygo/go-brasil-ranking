@@ -1,20 +1,24 @@
 import Serializable, { JsonInterface } from "../infra/serializable";
-import Elo from "./elo";
+import Elo, { SerializedElo } from "./elo";
 
-export interface Country {
+interface _Country {
   name: string;
   flag: CountryFlag;
   state?: BrazilianState;
   city?: string;
 }
 
-export default interface SerializedPlayer {
+export type Country = Readonly<_Country>;
+
+interface _SerializedPlayer extends JsonInterface {
   name: string;
-  countries: Country[];
-  elo: number;
+  countries: readonly Country[];
+  elo: SerializedElo;
 }
 
-export class Player implements Serializable {
+export type SerializedPlayer = Readonly<_SerializedPlayer>;
+
+export default class Player implements Serializable {
   constructor(
     public readonly name: string,
     public readonly countries: readonly Country[],

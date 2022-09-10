@@ -1,12 +1,13 @@
 import Serializable, { JsonDatum } from "../infra/serializable";
 import { GameResult } from "./game_record";
 
-type SerializedElo = number;
+export type SerializedElo = number;
+export type SerializedEloDelta = number;
 
 export default class Elo implements Serializable {
-  static readonly kBelow1500: number = 50;
-  static readonly kBelow2000: number = 40;
-  static readonly kAboveOrEqual2000: number = 30;
+  private static readonly kBelow1500: number = 50;
+  private static readonly kBelow2000: number = 40;
+  private static readonly kAboveOrEqual2000: number = 30;
 
   constructor(public readonly num: number) {}
 

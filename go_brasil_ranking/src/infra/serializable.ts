@@ -6,7 +6,7 @@ export type JsonDatum =
   | boolean
   | number
   | Timestamp
-  | []
+  | Json[]
   | Object
   | null
   | undefined;

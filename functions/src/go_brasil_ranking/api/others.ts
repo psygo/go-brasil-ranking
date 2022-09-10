@@ -1,4 +1,4 @@
-import { ExpressApiRoute } from "../infra";
+import { ExpressApiRoute } from "../../infra";
 
 export const home: ExpressApiRoute = async (_, res) => {
   try {

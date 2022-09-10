@@ -1,9 +1,10 @@
-import SerializedPlayer, {
+import {
+  SerializedPlayer,
   BrazilianState,
   CountryFlag,
 } from "../models/player";
 
-export const dummyPlayers: SerializedPlayer[] = [
+export const dummyPlayers: readonly SerializedPlayer[] = [
   {
     name: "Philippe Fanaro",
     countries: [
