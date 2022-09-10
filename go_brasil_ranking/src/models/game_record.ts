@@ -1,5 +1,5 @@
 import { Timestamp } from "firebase/firestore";
-import Serializable, { CustomJson } from "../infra/serializable";
+import Serializable, { JsonInterface } from "../infra/serializable";
 
 import Elo from "./elo";
 import { FirebaseRef } from "./firebase_ref";
@@ -20,7 +20,7 @@ interface Result {
   difference: number;
 }
 
-export default interface SerializedGameRecord extends CustomJson {
+export default interface SerializedGameRecord extends JsonInterface {
   date: Timestamp;
   blackPlayerRef: FirebaseRef;
   currentBlackElo?: number;
@@ -54,7 +54,7 @@ export class GameRecord implements Serializable {
     result: this.result,
   });
 
-  static deserialize = (json: CustomJson): GameRecord =>
+  static deserialize = (json: JsonInterface): GameRecord =>
     new GameRecord(
       Serializable.jsonToTimestampToDate(json.date),
       json.blackPlayerRef as string,

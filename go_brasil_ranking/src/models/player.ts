@@ -1,4 +1,4 @@
-import Serializable, { CustomJson } from "../infra/serializable";
+import Serializable, { JsonInterface } from "../infra/serializable";
 import Elo from "./elo";
 
 export interface Country {
@@ -26,7 +26,7 @@ export class Player implements Serializable {
     elo: this.elo.serialize(),
   });
 
-  static deserialize = (json: CustomJson): Player =>
+  static deserialize = (json: JsonInterface): Player =>
     new Player(
       json.name as string,
       json.countries as Country[],

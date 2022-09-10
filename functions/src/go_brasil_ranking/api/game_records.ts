@@ -1,8 +1,8 @@
-import { ExpressApiRoute, howMany } from "../infra";
+import { ExpressApiRoute, howMany } from "../../infra";
 
-import { db } from "..";
+import { db } from "../..";
 
-import SerializedGameRecord from "../../../go_brasil_ranking/src/models/game_record";
+import SerializedGameRecord from "../../../../go_brasil_ranking/src/models/game_record";
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {

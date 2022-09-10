@@ -11,11 +11,11 @@ export type JsonDatum =
   | null
   | undefined;
 
-export interface CustomJson {
-  [key: string]: JsonDatum;
+export interface JsonInterface {
+  [key: string]: Json;
 }
 
-export type Json = JsonDatum | CustomJson;
+export type Json = JsonDatum | JsonInterface;
 
 export default abstract class Serializable {
   abstract serialize(): Json;
@@ -23,5 +23,5 @@ export default abstract class Serializable {
   static dateToTimestamp = (date: Date): Timestamp => Timestamp.fromDate(date);
 
   static jsonToTimestampToDate = (jsonDatum: JsonDatum): Date =>
-    jsonDatum ? (jsonDatum as Timestamp).toDate() : new Date();
+    (jsonDatum as Timestamp).toDate();
 }

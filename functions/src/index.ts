@@ -3,8 +3,12 @@ import * as functions from "firebase-functions";
 
 import express from "express";
 
-import { getPlayer, getPlayers, postPlayer } from "./api/players";
-import { home } from "./api/others";
+import {
+  getPlayer,
+  getPlayers,
+  postPlayer,
+} from "./go_brasil_ranking/api/players";
+import { home } from "./go_brasil_ranking/api/others";
 
 admin.initializeApp();
 
