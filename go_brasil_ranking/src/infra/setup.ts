@@ -1,4 +1,5 @@
 import { getRouter, Router } from "../routing/router";
+import RouteLink from "../ui/components/route-link";
 
 export default class Setup {
   private static instance: Setup;
@@ -13,7 +14,9 @@ export default class Setup {
     return this._router;
   }
 
-  private define = (): void => {};
+  private define = (): void => {
+    customElements.define(RouteLink.tag, RouteLink);
+  };
 
   static singleInstance = (): Setup => {
     if (!Setup.instance) Setup.instance = new Setup();

@@ -21,6 +21,7 @@ cd go_brasil_ranking || exit
 npm run tsc &
 npm run webpack &
 npm run test &
+npm run liveserver &
 
 # Functions
 

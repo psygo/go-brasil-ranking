@@ -9,7 +9,7 @@ functions/lib/**/*.js.map
 functions/typings/
 
 # Public
-public/index.js
+**/public/index.js
 
 # Go Brasil Ranking
 go_brasil_ranking/index.js

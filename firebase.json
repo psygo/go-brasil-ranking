@@ -23,7 +23,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "public/index.html"
+        "destination": "go_brasil_ranking/public/index.html"
       }
     ]
   },

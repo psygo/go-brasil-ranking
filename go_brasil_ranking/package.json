@@ -7,9 +7,11 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "tsc": "npx tsc -w",
-    "webpack": "npx webpack",
-    "test": "npx jest --watch ./dist/"
+    "everything": "sh ./scripts/everything.sh",
+    "tsc": "sh ./scripts/tsc.sh",
+    "webpack": "sh ./scripts/webpack.sh",
+    "test": "sh ./scripts/test.sh",
+    "liveserver": "sh ./scripts/liveserver.sh"
   },
   "devDependencies": {
     "@types/chai": "^4.3.3",

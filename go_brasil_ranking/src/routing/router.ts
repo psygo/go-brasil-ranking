@@ -7,9 +7,7 @@ export type Route = string;
 
 export enum RouteEnum {
   home = "/",
-  indexed = "/indexed",
   user = "/user",
-  addNew = "/new",
   unknown = "/unknown",
 }
 
@@ -17,7 +15,7 @@ export const getRouter = (): Router => {
   switch (envState) {
     case EnvState.dev:
       const router = DevRouter.singleInstance();
-      router.manualRouting("/new");
+      router.manualRouting("/");
       return router;
     case EnvState.prod:
       return ProdRouter.singleInstance();
