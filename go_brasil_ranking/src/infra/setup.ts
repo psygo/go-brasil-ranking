@@ -1,5 +1,4 @@
-import { Router } from "../routing/prodRouter";
-import { getRouter } from "../routing/router";
+import { getRouter, Router } from "../routing/router";
 
 export default class Setup {
   private static instance: Setup;

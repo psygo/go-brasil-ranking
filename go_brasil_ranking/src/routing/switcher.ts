@@ -1,15 +1,16 @@
-import { Route } from "./router";
-import { Router } from "./prodRouter";
+import { Route, RouteEnum, Router } from "./router";
 import { router } from "../infra/setup";
-import HomeView from "../ui/views/home-view";
 import { dummyPlayers } from "../infra/mock_data";
+
 import Player from "../models/player";
+
+import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/user-view";
 
 export default class Multiplexer {
   protected readonly router: Router = router;
 
-  constructor(public readonly currentRoute: string) {}
+  constructor(public readonly currentRoute: Route) {}
 
   protected get mainElement(): HTMLElement {
     return document.body.querySelector("main")!;
@@ -18,10 +19,10 @@ export default class Multiplexer {
   mult = (): Promise<void> =>
     new Promise<void>((resolve, _) => {
       switch (this.prefixRoute) {
-        case Route.home:
+        case RouteEnum.home:
           new HomeMultiplexer().mult();
           break;
-        case Route.user:
+        case RouteEnum.user:
           new UserMultiplexer(this.splitPrefixRoute).mult();
           break;
         default:
