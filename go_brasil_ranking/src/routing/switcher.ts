@@ -50,12 +50,9 @@ class HomeMultiplexer extends Multiplexer {
 
 class UserMultiplexer extends Multiplexer {
   mult = (): void => {
-    if (this.currentRoute === "") {
-      this.mainElement.replaceChildren(
-        new PlayerView(Player.deserialize(dummyPlayers[0]))
-      );
-    } else {
-    }
+    this.mainElement.replaceChildren(
+      new PlayerView(Player.deserialize(dummyPlayers[0]))
+    );
   };
 }
 
