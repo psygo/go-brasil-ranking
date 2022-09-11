@@ -1,5 +1,6 @@
 import Serializable, { JsonInterface } from "../infra/serializable";
 import Elo, { SerializedElo } from "./elo";
+import { FirebaseRef } from "./firebase_ref";
 
 interface _Country {
   name: string;
@@ -11,6 +12,7 @@ interface _Country {
 export type Country = Readonly<_Country>;
 
 interface _SerializedPlayer extends JsonInterface {
+  firebaseRef?: FirebaseRef;
   name: string;
   countries: readonly Country[];
   elo: SerializedElo;
@@ -22,20 +24,23 @@ export default class Player implements Serializable {
   constructor(
     public readonly name: string,
     public readonly countries: readonly Country[],
-    public readonly elo: Elo
+    public readonly elo: Elo,
+    public readonly firebaseRef?: FirebaseRef
   ) {}
 
   serialize = (): SerializedPlayer => ({
     name: this.name,
     countries: this.countries as Country[],
     elo: this.elo.serialize(),
+    firebaseRef: this.firebaseRef,
   });
 
   static deserialize = (json: JsonInterface): Player =>
     new Player(
       json.name as string,
       json.countries as Country[],
-      Elo.deserialize(json.elo as number)
+      Elo.deserialize(json.elo as number),
+      json.firebaseRef as FirebaseRef
     );
 }
 

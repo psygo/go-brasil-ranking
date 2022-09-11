@@ -1,5 +1,4 @@
 import { db } from "../..";
-import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 import {
   SerializedPlayer,
   BrazilianState,
@@ -46,28 +45,28 @@ export const dummyPlayers: readonly SerializedPlayer[] = [
   },
 ];
 
-export const mockPopulatePlayers = async (): Promise<FirebaseRef[]> => {
+export const mockPopulatePlayers = async (): Promise<SerializedPlayer[]> => {
   const playersColl = db.collection("players");
-  const playersRefs: FirebaseRef[] = [];
+  const playersWithRefs: SerializedPlayer[] = [];
 
   const length: Length = dummyPlayers.length;
   for (let id: Index = 0; id < length; id++) {
     const player = dummyPlayers[id];
     await playersColl.doc(id.toString()).set(player);
-    playersRefs.push(id.toString());
+    playersWithRefs.push({ ...player, firebaseRef: id.toString() });
   }
 
-  return playersRefs;
+  return playersWithRefs;
 };
 
 export const mockPopulatePlayersApi: ExpressApiRoute = async (_, res) => {
   try {
-    const playersRefs = await mockPopulatePlayers();
+    const playersWithIds = await mockPopulatePlayers();
 
     res.status(200).send({
       status: "success",
       message: "Player added successfully",
-      data: { playersRefs: playersRefs },
+      data: { players: playersWithIds },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);
