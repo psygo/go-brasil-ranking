@@ -1,8 +1,7 @@
 import { ExpressApiRoute, howMany } from "../../infra";
 
 import { db } from "../..";
-
-import SerializedPlayer from "../../../../go_brasil_ranking/src/models/player";
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
@@ -12,9 +11,9 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
 
     const playersDocs = await playersQuery.get();
 
-    const players: SerializedPlayer[] = [];
+    const players: Player[] = [];
     playersDocs.forEach((playerDoc) => {
-      players.push(playerDoc.data() as SerializedPlayer);
+      players.push(playerDoc.data() as Player);
     });
 
     res.status(200).send({

@@ -39,8 +39,8 @@ export default class Elo implements Serializable {
       : Elo.kAboveOrEqual2000;
   }
 
-  eloFromGame = (opponentElo: Elo, gameResult: GameResult): number => {
-    if (gameResult === GameResult.Voided) return 0;
+  eloFromGame = (opponentElo: Elo, gameResult: GameResult): Elo => {
+    if (gameResult === GameResult.Voided) return this;
 
     const levelDiff = opponentElo.num - this.num;
 
@@ -48,7 +48,7 @@ export default class Elo implements Serializable {
 
     const expectedValue = 1 / (1 + 10 ** (levelDiff / 400));
 
-    return Math.round((gameResultAsNumber - expectedValue) * this.k);
+    return new Elo(Math.round((gameResultAsNumber - expectedValue) * this.k));
   };
 
   add = (delta: number): Elo => new Elo(this.num + delta);

@@ -1,12 +1,12 @@
 import { db } from "../..";
 import {
-  SerializedPlayer,
+  Player,
   BrazilianState,
   CountryFlag,
 } from "../../../../go_brasil_ranking/src/models/player";
 import { ExpressApiRoute } from "../../infra";
 
-export const dummyPlayers: readonly SerializedPlayer[] = [
+export const dummyPlayers: readonly Player[] = [
   {
     firebaseRef: "0",
     name: "Philippe Fanaro",

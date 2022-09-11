@@ -11,14 +11,14 @@ interface _Country {
 
 export type Country = Readonly<_Country>;
 
-interface _SerializedPlayer extends JsonInterface {
+interface _Player extends JsonInterface {
   firebaseRef: FirebaseRef;
   name: string;
   countries: readonly Country[];
   elo: SerializedElo;
 }
 
-export type SerializedPlayer = Readonly<_SerializedPlayer>;
+export type Player = Readonly<_Player>;
 
 export enum CountryFlag {
   angola = "🇦🇴",

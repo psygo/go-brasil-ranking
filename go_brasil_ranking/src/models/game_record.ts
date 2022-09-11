@@ -1,10 +1,8 @@
-import { Timestamp } from "firebase/firestore";
 import { JsonInterface } from "../infra/serializable";
 
 import { SerializedElo, SerializedEloDelta } from "./elo";
-import { GameEvent } from "./event";
+import { GameEvent } from "./game_event";
 import { FirebaseRef } from "./firebase_ref";
-import { SerializedPlayer } from "./player";
 
 export enum GameResult {
   Win,
@@ -12,14 +10,15 @@ export enum GameResult {
   Voided,
 }
 
-enum Color {
+export enum Color {
   Black,
   White,
 }
 
 interface _Result {
   whoWins: Color;
-  difference: number;
+  resignation?: boolean;
+  difference?: number;
 }
 
 type Result = Readonly<_Result>;
@@ -33,14 +32,21 @@ interface _EloData {
 
 type EloData = Readonly<_EloData>;
 
-interface _SerializedGameRecord extends JsonInterface {
-  firebaseRef: FirebaseRef;
-  date: Timestamp;
-  blackPlayer: SerializedPlayer;
-  whitePlayer: SerializedPlayer;
-  eloData: EloData;
+interface _GameRecordPost extends JsonInterface {
+  blackRef: FirebaseRef;
+  whiteRef: FirebaseRef;
   result: Result;
   gameEvent: GameEvent;
 }
 
-export type SerializedGameRecord = Readonly<_SerializedGameRecord>;
+export type GameRecordPost = Readonly<_GameRecordPost>;
+
+interface _GameRecord extends GameRecordPost {
+  firebaseRef: FirebaseRef;
+  date: Date;
+  blackName: string;
+  whiteName: string;
+  eloData: EloData;
+}
+
+export type GameRecord = Readonly<_GameRecord>;

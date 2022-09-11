@@ -2,19 +2,19 @@ export type _GameEvent = _EventOnline | _EventLive | _EventTournament;
 export type GameEvent = Readonly<_GameEvent>;
 
 interface _EventOnline {
-  type: "Online";
+  type: "online";
 }
 
 export type EventOnline = Readonly<_EventOnline>;
 
 interface _EventLive {
-  type: "Live";
+  type: "live";
 }
 
 export type EventLive = Readonly<_EventLive>;
 
 interface _EventTournament {
-  type: "Tournament";
+  type: "tournament";
   name: string;
   dates: readonly Date[];
 }
