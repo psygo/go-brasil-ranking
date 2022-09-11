@@ -8,6 +8,7 @@ import {
   getPlayers,
   postPlayer,
 } from "./go_brasil_ranking/api/players";
+import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
 import { home } from "./go_brasil_ranking/api/others";
 
 admin.initializeApp();
@@ -21,6 +22,7 @@ goBrasilRankingApp.get("/", home);
 goBrasilRankingApp.get("/players", getPlayers);
 goBrasilRankingApp.get("/players/:playerId", getPlayer);
 goBrasilRankingApp.post("/players/new", postPlayer);
+goBrasilRankingApp.post("/players/mock-populate", mockPopulatePlayersApi);
 
 goBrasilRankingApp.get("/gameRecords", getPlayers);
 goBrasilRankingApp.get("/gameRecords/:gameRecordId", getPlayer);

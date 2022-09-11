@@ -1,8 +1,5 @@
 import { Route, RouteEnum, Router } from "./router";
 import { router } from "../infra/setup";
-import { dummyPlayers } from "../infra/mock_data";
-
-import Player from "../models/player";
 
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
@@ -50,9 +47,7 @@ class HomeMultiplexer extends Multiplexer {
 
 class UserMultiplexer extends Multiplexer {
   mult = (): void => {
-    this.mainElement.replaceChildren(
-      new PlayerView(Player.deserialize(dummyPlayers[0]))
-    );
+    this.mainElement.replaceChildren(new PlayerView());
   };
 }
 

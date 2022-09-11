@@ -6,6 +6,8 @@
 
 ################################################################################
 
+# Players
+
 ## GET
 
 ### Players Max
@@ -42,5 +44,9 @@ content-type: application/json
     ],
     "elo": 2100
 }
+
+### Mock Populate Players
+
+POST {{address}}/players/mock-populate
 
 ################################################################################
