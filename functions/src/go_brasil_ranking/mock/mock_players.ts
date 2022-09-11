@@ -4,10 +4,11 @@ import {
   BrazilianState,
   CountryFlag,
 } from "../../../../go_brasil_ranking/src/models/player";
-import { ExpressApiRoute, Index, Length } from "../../infra";
+import { ExpressApiRoute } from "../../infra";
 
 export const dummyPlayers: readonly SerializedPlayer[] = [
   {
+    firebaseRef: "0",
     name: "Philippe Fanaro",
     countries: [
       {
@@ -20,6 +21,7 @@ export const dummyPlayers: readonly SerializedPlayer[] = [
     elo: 2150,
   },
   {
+    firebaseRef: "1",
     name: "Fabrício Caluza Machado",
     countries: [
       {
@@ -32,6 +34,7 @@ export const dummyPlayers: readonly SerializedPlayer[] = [
     elo: 1750,
   },
   {
+    firebaseRef: "2",
     name: "Ariel Oliveira",
     countries: [
       {
@@ -45,28 +48,22 @@ export const dummyPlayers: readonly SerializedPlayer[] = [
   },
 ];
 
-export const mockPopulatePlayers = async (): Promise<SerializedPlayer[]> => {
+export const mockPopulatePlayers = async (): Promise<void> => {
   const playersColl = db.collection("players");
-  const playersWithRefs: SerializedPlayer[] = [];
 
-  const length: Length = dummyPlayers.length;
-  for (let id: Index = 0; id < length; id++) {
-    const player = dummyPlayers[id];
-    await playersColl.doc(id.toString()).set(player);
-    playersWithRefs.push({ ...player, firebaseRef: id.toString() });
+  for (const player of dummyPlayers) {
+    await playersColl.doc(player.firebaseRef).set(player);
   }
-
-  return playersWithRefs;
 };
 
 export const mockPopulatePlayersApi: ExpressApiRoute = async (_, res) => {
   try {
-    const playersWithIds = await mockPopulatePlayers();
+    await mockPopulatePlayers();
 
     res.status(200).send({
       status: "success",
       message: "Player added successfully",
-      data: { players: playersWithIds },
+      data: { players: dummyPlayers },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);
