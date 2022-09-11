@@ -2,6 +2,7 @@ import { Timestamp } from "firebase/firestore";
 import Serializable, { JsonInterface } from "../infra/serializable";
 
 import Elo, { SerializedElo, SerializedEloDelta } from "./elo";
+import { GameEvent } from "./event";
 import { FirebaseRef } from "./firebase_ref";
 
 export enum GameResult {
@@ -31,6 +32,7 @@ export default interface _SerializedGameRecord extends JsonInterface {
   currentWhiteElo?: SerializedElo;
   eloDeltaWhite?: SerializedEloDelta;
   result: Result;
+  gameEvent: GameEvent;
 }
 
 type SerializedGameRecord = Readonly<_SerializedGameRecord>;
@@ -41,6 +43,7 @@ export class GameRecord implements Serializable {
     public readonly blackPlayerRef: FirebaseRef,
     public readonly whitePlayerRef: FirebaseRef,
     public readonly result: Result,
+    public readonly gameEvent: GameEvent = { type: "Online" },
     public readonly currentBlackElo?: Elo,
     public readonly eloDeltaBlack?: SerializedEloDelta,
     public readonly currentWhiteElo?: Elo,
@@ -56,6 +59,7 @@ export class GameRecord implements Serializable {
     currentWhiteElo: this.currentWhiteElo?.serialize(),
     eloDeltaWhite: this.eloDeltaWhite,
     result: this.result,
+    gameEvent: this.gameEvent,
   });
 
   static deserialize = (json: JsonInterface): GameRecord =>
@@ -64,6 +68,7 @@ export class GameRecord implements Serializable {
       json.blackPlayerRef as FirebaseRef,
       json.whitePlayerRef as FirebaseRef,
       json.result as Result,
+      json.event as GameEvent,
       Elo.deserialize(json.currentBlackElo as SerializedElo),
       json.eloDeltaBlack as SerializedEloDelta,
       Elo.deserialize(json.currentWhiteElo as SerializedElo),
@@ -72,10 +77,12 @@ export class GameRecord implements Serializable {
 
   static new = (
     date: Date,
+    gameEvent: GameEvent,
     blackPlayerRef: FirebaseRef,
     whitePlayerRef: FirebaseRef,
     result: Result
-  ): GameRecord => new GameRecord(date, blackPlayerRef, whitePlayerRef, result);
+  ): GameRecord =>
+    new GameRecord(date, blackPlayerRef, whitePlayerRef, result, gameEvent);
 
   addCalculatedElos = (
     currentBlackElo: Elo,
@@ -88,6 +95,7 @@ export class GameRecord implements Serializable {
       this.blackPlayerRef,
       this.whitePlayerRef,
       this.result,
+      this.gameEvent,
       currentBlackElo,
       eloDeltaBlack,
       currentWhiteElo,

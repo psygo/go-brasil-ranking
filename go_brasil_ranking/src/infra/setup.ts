@@ -1,4 +1,5 @@
 import { getRouter, Router } from "../routing/router";
+import Navbar from "../ui/components/navbar";
 import RouteLink from "../ui/components/route-link";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
@@ -17,6 +18,7 @@ export default class Setup {
   }
 
   private define = (): void => {
+    customElements.define(Navbar.tag, Navbar);
     customElements.define(RouteLink.tag, RouteLink);
 
     customElements.define(HomeView.tag, HomeView);
