@@ -9,6 +9,7 @@
   "scripts": {
     "everything": "sh ./scripts/everything.sh",
     "tsc": "sh ./scripts/tsc.sh",
+    "sass": "sh ./scripts/sass.sh",
     "webpack": "sh ./scripts/webpack.sh",
     "test": "sh ./scripts/test.sh",
     "liveserver": "sh ./scripts/liveserver.sh"
