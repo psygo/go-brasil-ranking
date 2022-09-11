@@ -5,7 +5,7 @@ import {
   BrazilianState,
   CountryFlag,
 } from "../../../../go_brasil_ranking/src/models/player";
-import { ExpressApiRoute } from "../../infra";
+import { ExpressApiRoute, Index, Length } from "../../infra";
 
 export const dummyPlayers: readonly SerializedPlayer[] = [
   {
@@ -50,9 +50,11 @@ export const mockPopulatePlayers = async (): Promise<FirebaseRef[]> => {
   const playersColl = db.collection("players");
   const playersRefs: FirebaseRef[] = [];
 
-  for (const player of dummyPlayers) {
-    const playerRef = await playersColl.add(player);
-    playersRefs.push(playerRef.id);
+  const length: Length = dummyPlayers.length;
+  for (let id: Index = 0; id < length; id++) {
+    const player = dummyPlayers[id];
+    await playersColl.doc(id.toString()).set(player);
+    playersRefs.push(id.toString());
   }
 
   return playersRefs;
