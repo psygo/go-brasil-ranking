@@ -5,8 +5,9 @@
   "private": true,
   "scripts": {
     "everything": "sh ./scripts/everything.sh",
-    "webpack": "npx webpack",
-    "tsc": "npx tsc -w",
+    "tsc": "sh ./scripts/tsc.sh",
+    "webpack": "sh ./scripts/webpack.sh",
+    "test": "sh ./scripts/test.sh",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",

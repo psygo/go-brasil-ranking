@@ -1,5 +1,7 @@
 import { getRouter, Router } from "../routing/router";
 import RouteLink from "../ui/components/route-link";
+import HomeView from "../ui/views/home-view";
+import PlayerView from "../ui/views/player-view";
 
 export default class Setup {
   private static instance: Setup;
@@ -16,6 +18,10 @@ export default class Setup {
 
   private define = (): void => {
     customElements.define(RouteLink.tag, RouteLink);
+
+    customElements.define(HomeView.tag, HomeView);
+
+    customElements.define(PlayerView.tag, PlayerView);
   };
 
   static singleInstance = (): Setup => {

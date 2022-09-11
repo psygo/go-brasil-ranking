@@ -5,7 +5,7 @@ import { dummyPlayers } from "../infra/mock_data";
 import Player from "../models/player";
 
 import HomeView from "../ui/views/home-view";
-import PlayerView from "../ui/views/user-view";
+import PlayerView from "../ui/views/player-view";
 
 export default class Multiplexer {
   protected readonly router: Router = router;
