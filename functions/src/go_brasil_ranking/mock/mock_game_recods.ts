@@ -20,7 +20,7 @@ export const dummyGameRecords: readonly GameRecordPost[] = [
       whoWins: Color.Black,
       resignation: true,
     },
-    gameEvent: { type: "online" },
+    gameEvent: { type: "online", date: new Date() },
   },
 ];
 
@@ -45,7 +45,7 @@ export const mockPopulateGameRecordsApi: ExpressApiRoute = async (_, res) => {
       const completeGameRecord: GameRecord = {
         ...gameRecord,
         firebaseRef: i.toString(),
-        date: admin.firestore.Timestamp.now().toDate(),
+        dateAdded: admin.firestore.Timestamp.now().toDate(),
         blackName: black!.name,
         whiteName: white!.name,
         eloData: {

@@ -43,7 +43,7 @@ export type GameRecordPost = Readonly<_GameRecordPost>;
 
 interface _GameRecord extends GameRecordPost {
   firebaseRef: FirebaseRef;
-  date: Date;
+  dateAdded: Date;
   blackName: string;
   whiteName: string;
   eloData: EloData;

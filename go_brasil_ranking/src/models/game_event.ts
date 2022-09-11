@@ -1,22 +1,20 @@
-export type _GameEvent = _EventOnline | _EventLive | _EventTournament;
 export type GameEvent = Readonly<_GameEvent>;
 
-interface _EventOnline {
-  type: "online";
+interface _GameEvent {}
+
+interface _GameEventOnline extends _GameEvent {
+  date: Date;
 }
 
-export type EventOnline = Readonly<_EventOnline>;
+export type GameEventOnline = Readonly<_GameEventOnline>;
 
-interface _EventLive {
-  type: "live";
-}
+interface _GameEventLive extends _GameEventOnline {}
 
-export type EventLive = Readonly<_EventLive>;
+export type EventLive = Readonly<_GameEventLive>;
 
-interface _EventTournament {
-  type: "tournament";
+interface _GameEventTournament extends _GameEvent {
   name: string;
   dates: readonly Date[];
 }
 
-export type EventTournament = Readonly<_EventTournament>;
+export type EventTournament = Readonly<_GameEventTournament>;
