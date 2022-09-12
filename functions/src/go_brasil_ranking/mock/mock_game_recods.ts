@@ -12,6 +12,11 @@ import {
   colorResult,
   GameRecordRef,
 } from "../../../../go_brasil_ranking/src/models/game_record";
+import {
+  GameEventOnline,
+  GameEventTournament,
+} from "../../../../go_brasil_ranking/src/models/game_event";
+import { dummyGameEvents } from "./mock_game_events";
 
 export const dummySgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
@@ -25,7 +30,7 @@ export const dummyGameRecords: readonly GameRecordPost[] = [
       resignation: true,
     },
     sgf: dummySgf,
-    gameEvent: { type: "online", date: new Date() },
+    gameEvent: <GameEventOnline>{ date: new Date() },
   },
   {
     blackRef: "0",
@@ -35,7 +40,17 @@ export const dummyGameRecords: readonly GameRecordPost[] = [
       resignation: true,
     },
     sgf: dummySgf,
-    gameEvent: { type: "online", date: new Date() },
+    gameEvent: <GameEventOnline>{ date: new Date() },
+  },
+  {
+    blackRef: "1",
+    whiteRef: "2",
+    result: {
+      whoWins: Color.Black,
+      difference: 20,
+    },
+    sgf: dummySgf,
+    gameEvent: dummyGameEvents[0],
   },
 ];
 
@@ -103,6 +118,11 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
       .doc(gameRecord.whiteRef)
       .collection("gamesRefs")
       .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });
+
+    // Update Game References on Tournament
+    if ( gameRecord.gameEvent.type === "tournament" ) {
+      
+    }
   }
 
   return completeGameRecords;

@@ -2,11 +2,13 @@ import { db } from "../..";
 import {
   GameEvent,
   GameEventRef,
+  GameEventTournament,
 } from "../../../../go_brasil_ranking/src/models/game_event";
 import { ExpressApiRoute } from "../../infra";
 
 export const dummyGameEvents: readonly GameEvent[] = [
-  {
+  <GameEventTournament>{
+    type: "tournament",
     name: "Copa do Brasil 2022",
     dates: [new Date(2022, 9, 10), new Date(2022, 9, 11)],
   },
