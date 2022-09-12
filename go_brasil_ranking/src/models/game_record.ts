@@ -4,7 +4,7 @@ import { SerializedElo, SerializedEloDelta } from "./elo";
 import { GameEvent } from "./game_event";
 import { FirebaseRef } from "./firebase_ref";
 
-export enum GameResult {
+export enum GameResultStatus {
   Win,
   Loss,
   Voided,
@@ -50,3 +50,12 @@ interface _GameRecord extends GameRecordPost {
 }
 
 export type GameRecord = Readonly<_GameRecord>;
+
+export const colorResult = (result: Result, color: Color): GameResultStatus =>
+  color === Color.Black
+    ? result.whoWins === Color.Black
+      ? GameResultStatus.Win
+      : GameResultStatus.Loss
+    : result.whoWins === Color.White
+    ? GameResultStatus.Win
+    : GameResultStatus.Loss;

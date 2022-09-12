@@ -11,7 +11,15 @@ interface _Country {
 
 export type Country = Readonly<_Country>;
 
-interface _Player extends JsonInterface {
+interface _PlayerPost extends JsonInterface {
+  name: string;
+  countries: readonly Country[];
+  elo: SerializedElo;
+}
+
+export type PlayerPost = Readonly<_PlayerPost>;
+
+interface _Player extends _PlayerPost {
   firebaseRef: FirebaseRef;
   name: string;
   countries: readonly Country[];

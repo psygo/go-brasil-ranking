@@ -1,5 +1,5 @@
 import Serializable, { JsonDatum } from "../infra/serializable";
-import { GameResult } from "./game_record";
+import { GameResultStatus } from "./game_record";
 
 export type SerializedElo = number;
 export type SerializedEloDelta = number;
@@ -39,12 +39,13 @@ export default class Elo implements Serializable {
       : Elo.kAboveOrEqual2000;
   }
 
-  eloFromGame = (opponentElo: Elo, gameResult: GameResult): Elo => {
-    if (gameResult === GameResult.Voided) return this;
+  eloFromGame = (opponentElo: Elo, gameResult: GameResultStatus): Elo => {
+    if (gameResult === GameResultStatus.Voided) return this;
 
     const levelDiff = opponentElo.num - this.num;
 
-    const gameResultAsNumber: number = gameResult === GameResult.Win ? 1 : 0;
+    const gameResultAsNumber: number =
+      gameResult === GameResultStatus.Win ? 1 : 0;
 
     const expectedValue = 1 / (1 + 10 ** (levelDiff / 400));
 
