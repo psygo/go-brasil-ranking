@@ -24,6 +24,7 @@ interface _Player extends _PlayerPost {
   name: string;
   countries: readonly Country[];
   elo: SerializedElo;
+  gamesTotal: number;
 }
 
 export type Player = Readonly<_Player>;

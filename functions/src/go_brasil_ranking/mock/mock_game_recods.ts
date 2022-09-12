@@ -61,10 +61,12 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
       colorResult(gameRecord.result, Color.White)
     );
 
+    const now = admin.firestore.Timestamp.now().toDate();
+
     const completeGameRecord: GameRecord = {
       ...gameRecord,
       firebaseRef: i.toString(),
-      dateAdded: admin.firestore.Timestamp.now().toDate(),
+      dateAdded: now,
       blackName: black.name,
       whiteName: white.name,
       eloData: {
@@ -81,12 +83,25 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
 
     await gameRecordsColl.doc(i.toString()).set(noFirebaseRef);
 
+    // Update Players' Elos and Total Games
+    await playersColl.doc(gameRecord.blackRef).update({
+      elo: blackElo.add(blackEloDelta.num).num,
+      gamesTotal: black.gamesTotal + 1,
+    });
+    await playersColl.doc(gameRecord.whiteRef).update({
+      elo: blackElo.add(blackEloDelta.num).num,
+      gamesTotal: white.gamesTotal + 1,
+    });
+
+    // Update Game References for Each Player
     await playersColl
       .doc(gameRecord.blackRef)
-      .update({ elo: blackElo.add(blackEloDelta.num).num });
+      .collection("gamesRefs")
+      .add({ gameRef: i.toString(), dateAdded: now });
     await playersColl
       .doc(gameRecord.whiteRef)
-      .update({ elo: blackElo.add(blackEloDelta.num).num });
+      .collection("gamesRefs")
+      .add({ gameRef: i.toString(), dateAdded: now });
   }
 
   return completeGameRecords;

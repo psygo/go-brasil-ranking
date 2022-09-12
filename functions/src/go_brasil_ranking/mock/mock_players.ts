@@ -53,9 +53,13 @@ export const mockPopulatePlayers = async (): Promise<Player[]> => {
   for (let i = 0; i < dummyPlayers.length; i++) {
     const player = dummyPlayers[i];
 
-    await playersColl.doc(i.toString()).set(player);
+    await playersColl.doc(i.toString()).set({ ...player, gamesTotal: 0 });
 
-    mockPlayersWithFirebaseRef.push({ firebaseRef: i.toString(), ...player });
+    mockPlayersWithFirebaseRef.push({
+      firebaseRef: i.toString(),
+      gamesTotal: 0,
+      ...player,
+    });
   }
 
   return mockPlayersWithFirebaseRef;
