@@ -23,28 +23,31 @@ const goBrasilRankingApp = express();
 
 goBrasilRankingApp.get("/", home);
 
+// 1. Players
 goBrasilRankingApp.get("/players", getPlayers);
 goBrasilRankingApp.get("/players/:playerId", getPlayer);
 goBrasilRankingApp.post("/players/new", postPlayer);
-goBrasilRankingApp.post(
-  "/players/mock-populate-players",
-  ifDev,
-  mockPopulatePlayersApi
-);
 
+// 2. Game Events
+
+// 3. Game Records
 goBrasilRankingApp.get("/gameRecords", getPlayers);
 goBrasilRankingApp.get("/gameRecords/:gameRecordId", getPlayer);
 goBrasilRankingApp.post("/gameRecords/new", postPlayer);
-goBrasilRankingApp.post(
-  "/players/mock-populate-game-records",
-  ifDev,
-  mockPopulateGameRecordsApi
-);
 
+// 4. Mocking
+goBrasilRankingApp.use(ifDev);
+goBrasilRankingApp.post(
+  "/players/mock-populate-players",
+  mockPopulatePlayersApi
+);
 goBrasilRankingApp.post(
   "/players/mock-populate-game-events",
-  ifDev,
   mockPopulateGameEventsApi
+);
+goBrasilRankingApp.post(
+  "/players/mock-populate-game-records",
+  mockPopulateGameRecordsApi
 );
 
 export const goBrasilRanking = functions.https.onRequest(goBrasilRankingApp);
