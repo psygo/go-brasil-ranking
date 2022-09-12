@@ -45,6 +45,10 @@ content-type: application/json
     "elo": 2100
 }
 
+################################################################################
+
+## Mock
+
 ### Mock Populate Players
 
 POST {{address}}/players/mock-populate-players
@@ -52,5 +56,9 @@ POST {{address}}/players/mock-populate-players
 ### Mock Populate Game Records
 
 POST {{address}}/players/mock-populate-game-records
+
+### Mock Populate Game Events
+
+POST {{address}}/players/mock-populate-game-events
 
 ################################################################################

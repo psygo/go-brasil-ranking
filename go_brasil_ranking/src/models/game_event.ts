@@ -1,3 +1,5 @@
+import { FirebaseRef } from "./firebase_ref";
+
 export type GameEvent = Readonly<_GameEvent>;
 
 interface _GameEvent {}
@@ -18,3 +20,9 @@ interface _GameEventTournament extends _GameEvent {
 }
 
 export type EventTournament = Readonly<_GameEventTournament>;
+
+interface _GameEventWithRef extends _GameEvent {
+  firebaseRef: FirebaseRef;
+}
+
+export type GameEventWithRef = Readonly<_GameEventWithRef>;

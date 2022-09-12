@@ -32,10 +32,13 @@ interface _EloData {
 
 type EloData = Readonly<_EloData>;
 
+export type Sgf = string;
+
 interface _GameRecordPost extends JsonInterface {
   blackRef: FirebaseRef;
   whiteRef: FirebaseRef;
   result: Result;
+  sgf: Sgf;
   gameEvent: GameEvent;
 }
 

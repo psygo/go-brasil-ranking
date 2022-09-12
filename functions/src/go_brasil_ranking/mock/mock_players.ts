@@ -5,7 +5,7 @@ import {
   Player,
   PlayerPost,
 } from "../../../../go_brasil_ranking/src/models/player";
-import { ExpressApiRoute, Index } from "../../infra";
+import { ExpressApiRoute } from "../../infra";
 
 export const dummyPlayers: readonly PlayerPost[] = [
   {
@@ -52,7 +52,9 @@ export const mockPopulatePlayers = async (): Promise<Player[]> => {
 
   for (let i = 0; i < dummyPlayers.length; i++) {
     const player = dummyPlayers[i];
+
     await playersColl.doc(i.toString()).set(player);
+
     mockPlayersWithFirebaseRef.push({ firebaseRef: i.toString(), ...player });
   }
 

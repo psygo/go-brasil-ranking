@@ -8,9 +8,11 @@ import {
   getPlayers,
   postPlayer,
 } from "./go_brasil_ranking/api/players";
-import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
 import { home } from "./go_brasil_ranking/api/others";
+
+import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
 import { mockPopulateGameRecordsApi } from "./go_brasil_ranking/mock/mock_game_recods";
+import { mockPopulateGameEventsApi } from "./go_brasil_ranking/mock/mock_game_events";
 
 admin.initializeApp();
 
@@ -34,6 +36,11 @@ goBrasilRankingApp.post("/gameRecords/new", postPlayer);
 goBrasilRankingApp.post(
   "/players/mock-populate-game-records",
   mockPopulateGameRecordsApi
+);
+
+goBrasilRankingApp.post(
+  "/players/mock-populate-game-events",
+  mockPopulateGameEventsApi
 );
 
 export const goBrasilRanking = functions.https.onRequest(goBrasilRankingApp);

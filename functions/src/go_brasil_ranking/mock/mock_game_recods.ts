@@ -12,6 +12,9 @@ import {
   colorResult,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 
+export const dummySgf =
+  "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
+
 export const dummyGameRecords: readonly GameRecordPost[] = [
   {
     blackRef: "0",
@@ -20,6 +23,17 @@ export const dummyGameRecords: readonly GameRecordPost[] = [
       whoWins: Color.Black,
       resignation: true,
     },
+    sgf: dummySgf,
+    gameEvent: { type: "online", date: new Date() },
+  },
+  {
+    blackRef: "0",
+    whiteRef: "1",
+    result: {
+      whoWins: Color.White,
+      resignation: true,
+    },
+    sgf: dummySgf,
     gameEvent: { type: "online", date: new Date() },
   },
 ];
@@ -69,10 +83,10 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
 
     await playersColl
       .doc(gameRecord.blackRef)
-      .update({ elo: blackElo.num + blackEloDelta.num });
+      .update({ elo: blackElo.add(blackEloDelta.num).num });
     await playersColl
       .doc(gameRecord.whiteRef)
-      .update({ elo: whiteElo.num + whiteEloDelta.num });
+      .update({ elo: blackElo.add(blackEloDelta.num).num });
   }
 
   return completeGameRecords;
