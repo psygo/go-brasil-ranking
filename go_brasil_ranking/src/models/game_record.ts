@@ -54,6 +54,13 @@ interface _GameRecord extends GameRecordPost {
 
 export type GameRecord = Readonly<_GameRecord>;
 
+interface _GameRecordRef {
+  gameRef: FirebaseRef;
+  gameDate: Date;
+}
+
+export type GameRecordRef = Readonly<_GameRecordRef>;
+
 export const colorResult = (result: Result, color: Color): GameResultStatus =>
   color === Color.Black
     ? result.whoWins === Color.Black

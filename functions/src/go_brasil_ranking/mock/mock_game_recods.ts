@@ -10,6 +10,7 @@ import {
   GameRecord,
   GameRecordPost,
   colorResult,
+  GameRecordRef,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 
 export const dummySgf =
@@ -97,11 +98,11 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
     await playersColl
       .doc(gameRecord.blackRef)
       .collection("gamesRefs")
-      .add({ gameRef: i.toString(), dateAdded: now });
+      .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });
     await playersColl
       .doc(gameRecord.whiteRef)
       .collection("gamesRefs")
-      .add({ gameRef: i.toString(), dateAdded: now });
+      .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });
   }
 
   return completeGameRecords;
