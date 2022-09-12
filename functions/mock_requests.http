@@ -49,16 +49,16 @@ content-type: application/json
 
 ## Mock
 
-### Mock Populate Players
+### 1. Mock Populate Players
 
 POST {{address}}/players/mock-populate-players
 
-### Mock Populate Game Records
-
-POST {{address}}/players/mock-populate-game-records
-
-### Mock Populate Game Events
+### 2. Mock Populate Game Events
 
 POST {{address}}/players/mock-populate-game-events
+
+### 3. Mock Populate Game Records
+
+POST {{address}}/players/mock-populate-game-records
 
 ################################################################################

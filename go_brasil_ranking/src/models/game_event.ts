@@ -1,8 +1,7 @@
 import { FirebaseRef } from "./firebase_ref";
 
-
 interface _GameEventBase {
-  type: "online" | "live" | "tournament"
+  type: "online" | "live" | "tournament";
 }
 
 interface _GameEventOnline extends _GameEventBase {
@@ -21,14 +20,23 @@ interface _GameEventTournament extends _GameEventBase {
   type: "tournament";
   name: string;
   dates: readonly Date[];
+  gamesTotal: number;
 }
 export type GameEventTournament = Readonly<_GameEventTournament>;
 
-interface _GameEventRef extends _GameEventBase {
+interface _GameEventWithRef extends _GameEventBase {
   firebaseRef: FirebaseRef;
+}
+export type GameEventWithRef = Readonly<_GameEventWithRef>;
+
+interface _GameEventRef {
+  gameEventRef: FirebaseRef;
 }
 export type GameEventRef = Readonly<_GameEventRef>;
 
 type _GameEvent = GameEventOnline | GameEventLive | GameEventTournament;
 export type GameEvent = Readonly<_GameEvent>;
 
+export type GameEventOrRef = Readonly<
+  GameEventOnline | GameEventLive | GameEventRef
+>;

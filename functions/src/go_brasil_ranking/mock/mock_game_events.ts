@@ -1,7 +1,7 @@
 import { db } from "../..";
 import {
   GameEvent,
-  GameEventRef,
+  GameEventWithRef,
   GameEventTournament,
 } from "../../../../go_brasil_ranking/src/models/game_event";
 import { ExpressApiRoute } from "../../infra";
@@ -11,13 +11,14 @@ export const dummyGameEvents: readonly GameEvent[] = [
     type: "tournament",
     name: "Copa do Brasil 2022",
     dates: [new Date(2022, 9, 10), new Date(2022, 9, 11)],
+    gamesTotal: 0,
   },
 ];
 
 export const mockPopulateGameEventsApi: ExpressApiRoute = async (_, res) => {
   try {
     const gameEventsColl = db.collection("game_events");
-    const mockGameEventsWithFirebaseRef: GameEventRef[] = [];
+    const mockGameEventsWithFirebaseRef: GameEventWithRef[] = [];
 
     for (let i = 0; i < dummyGameEvents.length; i++) {
       const gameEvent = dummyGameEvents[i];
