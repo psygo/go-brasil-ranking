@@ -1,5 +1,5 @@
-import { db } from "../..";
+import Col from "./col";
 
-export default class GameRecordsCol {
-  readonly col = db.collection("game_records");
+export default class GameRecordsCol extends Col {
+  readonly colName = "game_records";
 }

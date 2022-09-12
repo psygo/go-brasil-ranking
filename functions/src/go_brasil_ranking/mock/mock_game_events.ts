@@ -15,21 +15,27 @@ export const dummyGameEvents: readonly GameEvent[] = [
   },
 ];
 
+export const mockPopulateGameEvents = async (): Promise<GameEventWithRef[]> => {
+  const gameEventsColl = db.collection("game_events");
+  const mockGameEventsWithFirebaseRef: GameEventWithRef[] = [];
+
+  for (let i = 0; i < dummyGameEvents.length; i++) {
+    const gameEvent = dummyGameEvents[i];
+
+    await gameEventsColl.doc(i.toString()).set(gameEvent);
+
+    mockGameEventsWithFirebaseRef.push({
+      firebaseRef: i.toString(),
+      ...gameEvent,
+    });
+  }
+
+  return mockGameEventsWithFirebaseRef;
+};
+
 export const mockPopulateGameEventsApi: ExpressApiRoute = async (_, res) => {
   try {
-    const gameEventsColl = db.collection("game_events");
-    const mockGameEventsWithFirebaseRef: GameEventWithRef[] = [];
-
-    for (let i = 0; i < dummyGameEvents.length; i++) {
-      const gameEvent = dummyGameEvents[i];
-
-      await gameEventsColl.doc(i.toString()).set(gameEvent);
-
-      mockGameEventsWithFirebaseRef.push({
-        firebaseRef: i.toString(),
-        ...gameEvent,
-      });
-    }
+    const mockGameEventsWithFirebaseRef = await mockPopulateGameEvents();
 
     res.status(200).send({
       status: "success",

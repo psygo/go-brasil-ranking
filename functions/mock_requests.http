@@ -51,14 +51,17 @@ content-type: application/json
 
 ### 1. Mock Populate Players
 
-POST {{address}}/players/mock-populate-players
+POST {{address}}/players/mock-populate
 
 ### 2. Mock Populate Game Events
 
-POST {{address}}/players/mock-populate-game-events
+POST {{address}}/game-events/mock-populate
 
 ### 3. Mock Populate Game Records
 
-POST {{address}}/players/mock-populate-game-records
+POST {{address}}/game-records/mock-populate
+
+### 4. Mock Populate Everything
+POST {{address}}/mock-populate-everything
 
 ################################################################################
