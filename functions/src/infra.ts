@@ -2,9 +2,6 @@ import { Request, Response, NextFunction } from "express";
 
 import { EnvState, envState } from "../../go_brasil_ranking/src/infra/env";
 
-export type Index = number;
-export type Length = number;
-
 export type ExpressApiRoute = (req: Request, res: Response) => Promise<void>;
 export type ExpressNexFunction = (
   req: Request,

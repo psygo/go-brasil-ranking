@@ -13,6 +13,8 @@ import {
   GameRecordRef,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 import { GameEventRef } from "../../../../go_brasil_ranking/src/models/game_event";
+import PlayersCol from "../collections/players_col";
+import GameRecordsCol from "../collections/game_records_col";
 
 export const dummySgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
@@ -51,24 +53,24 @@ export const dummyGameRecords: readonly GameRecordPost[] = [
 ];
 
 export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
-  const gameRecordsColl = db.collection("game_records");
-  const playersColl = db.collection("players");
+  const gameRecordsCol = new GameRecordsCol();
+  const playersCol = new PlayersCol();
 
   let completeGameRecords: GameRecord[] = [];
   for (let i = 0; i < dummyGameRecords.length; i++) {
     const gameRecord = dummyGameRecords[i];
 
-    const black = (await playersColl.doc(gameRecord.blackRef).get()).data()!;
-    const white = (await playersColl.doc(gameRecord.whiteRef).get()).data()!;
+    const black = (await playersCol.getWithRef(gameRecord.blackRef))!;
+    const white = (await playersCol.getWithRef(gameRecord.whiteRef))!;
 
     const blackElo = new Elo(black.elo);
     const whiteElo = new Elo(white.elo);
 
-    const blackEloDelta = blackElo.eloFromGame(
+    const blackEloDelta = blackElo.deltaFromGame(
       whiteElo,
       colorResult(gameRecord.result, Color.Black)
     );
-    const whiteEloDelta = whiteElo.eloFromGame(
+    const whiteEloDelta = whiteElo.deltaFromGame(
       blackElo,
       colorResult(gameRecord.result, Color.White)
     );
@@ -93,24 +95,24 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
 
     const { firebaseRef, ...noFirebaseRef } = { ...completeGameRecord };
 
-    await gameRecordsColl.doc(i.toString()).set(noFirebaseRef);
+    await gameRecordsCol.col.doc(i.toString()).set(noFirebaseRef);
 
     // Update Players' Elos and Total Games
-    await playersColl.doc(gameRecord.blackRef).update({
+    await playersCol.updateWithRef(gameRecord.blackRef, {
       elo: blackElo.add(blackEloDelta.num).num,
       gamesTotal: black.gamesTotal + 1,
     });
-    await playersColl.doc(gameRecord.whiteRef).update({
-      elo: blackElo.add(blackEloDelta.num).num,
+    await playersCol.updateWithRef(gameRecord.whiteRef, {
+      elo: blackElo.add(whiteEloDelta.num).num,
       gamesTotal: white.gamesTotal + 1,
     });
 
     // Update Game References for Each Player
-    await playersColl
+    await playersCol.col
       .doc(gameRecord.blackRef)
       .collection("gamesRefs")
       .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });
-    await playersColl
+    await playersCol.col
       .doc(gameRecord.whiteRef)
       .collection("gamesRefs")
       .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });

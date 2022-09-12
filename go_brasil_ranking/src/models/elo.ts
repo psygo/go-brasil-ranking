@@ -39,7 +39,7 @@ export default class Elo implements Serializable {
       : Elo.kAboveOrEqual2000;
   }
 
-  eloFromGame = (opponentElo: Elo, gameResult: GameResultStatus): Elo => {
+  deltaFromGame = (opponentElo: Elo, gameResult: GameResultStatus): Elo => {
     if (gameResult === GameResultStatus.Voided) return this;
 
     const levelDiff = opponentElo.num - this.num;
