@@ -50,11 +50,10 @@ export const mockPopulatePlayers = async (): Promise<Player[]> => {
   const playersColl = db.collection("players");
   const mockPlayersWithFirebaseRef: Player[] = [];
 
-  let i: Index = 0;
-  for (const player of dummyPlayers) {
+  for (let i = 0; i < dummyPlayers.length; i++) {
+    const player = dummyPlayers[i];
     await playersColl.doc(i.toString()).set(player);
     mockPlayersWithFirebaseRef.push({ firebaseRef: i.toString(), ...player });
-    i++;
   }
 
   return mockPlayersWithFirebaseRef;

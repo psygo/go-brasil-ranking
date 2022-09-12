@@ -2,7 +2,7 @@ import * as admin from "firebase-admin";
 
 import { db } from "../..";
 
-import { ExpressApiRoute, Index } from "../../infra";
+import { ExpressApiRoute } from "../../infra";
 
 import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import {
@@ -29,8 +29,9 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   const playersColl = db.collection("players");
 
   let completeGameRecords: GameRecord[] = [];
-  let i: Index = 0;
-  for (const gameRecord of dummyGameRecords) {
+  for (let i = 0; i < dummyGameRecords.length; i++) {
+    const gameRecord = dummyGameRecords[i];
+
     const black = (await playersColl.doc(gameRecord.blackRef).get()).data()!;
     const white = (await playersColl.doc(gameRecord.whiteRef).get()).data()!;
 
@@ -72,8 +73,6 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
     await playersColl
       .doc(gameRecord.whiteRef)
       .update({ elo: whiteElo.num + whiteEloDelta.num });
-
-    i++;
   }
 
   return completeGameRecords;
