@@ -13,6 +13,7 @@ import { home } from "./go_brasil_ranking/api/others";
 import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
 import { mockPopulateGameRecordsApi } from "./go_brasil_ranking/mock/mock_game_recods";
 import { mockPopulateGameEventsApi } from "./go_brasil_ranking/mock/mock_game_events";
+import { ifDev } from "./infra";
 
 admin.initializeApp();
 
@@ -27,6 +28,7 @@ goBrasilRankingApp.get("/players/:playerId", getPlayer);
 goBrasilRankingApp.post("/players/new", postPlayer);
 goBrasilRankingApp.post(
   "/players/mock-populate-players",
+  ifDev,
   mockPopulatePlayersApi
 );
 
@@ -35,11 +37,13 @@ goBrasilRankingApp.get("/gameRecords/:gameRecordId", getPlayer);
 goBrasilRankingApp.post("/gameRecords/new", postPlayer);
 goBrasilRankingApp.post(
   "/players/mock-populate-game-records",
+  ifDev,
   mockPopulateGameRecordsApi
 );
 
 goBrasilRankingApp.post(
   "/players/mock-populate-game-events",
+  ifDev,
   mockPopulateGameEventsApi
 );
 
