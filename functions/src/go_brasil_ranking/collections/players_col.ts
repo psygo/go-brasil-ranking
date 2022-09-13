@@ -2,7 +2,7 @@ import { JsonInterface } from "../../../../go_brasil_ranking/src/infra/serializa
 import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 import Col from "./col";
 
-export default class PlayersCol extends Col {
+class PlayersCol extends Col {
   readonly colName = "players";
 
   getWithRef = async (ref: FirebaseRef) => {
@@ -13,3 +13,5 @@ export default class PlayersCol extends Col {
     await this.col.doc(ref).update(updateData);
   };
 }
+
+export const playersCol = new PlayersCol();

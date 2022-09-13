@@ -1,5 +1,7 @@
 import Col from "./col";
 
-export default class GameRecordsCol extends Col {
+class GameRecordsCol extends Col {
   readonly colName = "game_records";
 }
+
+export const gameRecordsCol = new GameRecordsCol();

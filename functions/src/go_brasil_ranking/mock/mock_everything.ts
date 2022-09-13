@@ -1,16 +1,14 @@
 import { ExpressApiRoute } from "../../infra";
-import GameEventsCol from "../collections/game_events_col";
-import GameRecordsCol from "../collections/game_records_col";
-import PlayersCol from "../collections/players_col";
+
+import { gameEventsCol } from "../collections/game_events_col";
+import { gameRecordsCol } from "../collections/game_records_col";
+import { playersCol } from "../collections/players_col";
+
 import { mockPopulateGameEvents } from "./mock_game_events";
 import { mockPopulateGameRecords } from "./mock_game_recods";
 import { mockPopulatePlayers } from "./mock_players";
 
 const deleteEverything = async (): Promise<void> => {
-  const playersCol = new PlayersCol();
-  const gameEventsCol = new GameEventsCol();
-  const gameRecordsCol = new GameRecordsCol();
-
   await playersCol.deleteEverything();
   await gameEventsCol.deleteEverything();
   await gameRecordsCol.deleteEverything();

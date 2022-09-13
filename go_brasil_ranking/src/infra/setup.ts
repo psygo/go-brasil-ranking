@@ -26,11 +26,11 @@ export default class Setup {
     customElements.define(PlayerView.tag, PlayerView);
   };
 
-  static singleInstance = (): Setup => {
+  static getInstance = (): Setup => {
     if (!Setup.instance) Setup.instance = new Setup();
 
     return Setup.instance;
   };
 }
 
-export const router: Router = Setup.singleInstance().router;
+export const router: Router = Setup.getInstance().router;
