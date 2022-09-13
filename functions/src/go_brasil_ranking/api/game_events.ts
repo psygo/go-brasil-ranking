@@ -49,3 +49,23 @@ export const getGameEvent: ExpressApiRoute = async (req, res) => {
     res.status(500).json((e as Error).message);
   }
 };
+
+export const postGameEvent: ExpressApiRoute = async (req, res) => {
+  try {
+    const gameRecord =
+      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+
+    // TODO1: Add a check if the received conforms to the interface.
+    // See https://github.com/gristlabs/ts-interface-checker
+
+    const gameEventRef = await gameEventsCol.col.add(gameRecord);
+
+    res.status(200).send({
+      status: "success",
+      message: "Game Record added successfully",
+      data: { id: gameEventRef.id },
+    });
+  } catch (e) {
+    res.status(500).json((e as Error).message);
+  }
+};
