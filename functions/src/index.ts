@@ -17,6 +17,15 @@ import { ifDev } from "./infra";
 import { mockPopulateEverythingApi } from "./go_brasil_ranking/mock/mock_everything";
 
 import cors from "cors";
+import {
+  getGameRecord,
+  getGameRecords,
+  postGameRecord,
+} from "./go_brasil_ranking/api/game_records";
+import {
+  getGameEvent,
+  getGameEvents,
+} from "./go_brasil_ranking/api/game_events";
 
 admin.initializeApp();
 
@@ -39,11 +48,14 @@ goBrasilRankingApp.get("/players/:playerId", getPlayer);
 goBrasilRankingApp.post("/players/new", postPlayer);
 
 // 2. Game Events
+goBrasilRankingApp.get("/game-events", getGameEvents);
+goBrasilRankingApp.get("/game-events/:gameEventId", getGameEvent);
+goBrasilRankingApp.post("/game-events/new", postPlayer);
 
 // 3. Game Records
-goBrasilRankingApp.get("/game-records", getPlayers);
-goBrasilRankingApp.get("/game-records/:gameRecordId", getPlayer);
-goBrasilRankingApp.post("/game-records/new", postPlayer);
+goBrasilRankingApp.get("/game-records", getGameRecords);
+goBrasilRankingApp.get("/game-records/:gameRecordId", getGameRecord);
+goBrasilRankingApp.post("/game-records/new", postGameRecord);
 
 // 4. Mocking
 goBrasilRankingApp.use(ifDev);

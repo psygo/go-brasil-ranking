@@ -44,6 +44,42 @@ content-type: application/json
     ],
     "elo": 2100
 }
+################################################################################
+
+## Game Events
+
+### 1. GET All
+
+GET {{address}}/game-events
+
+### 2. GET
+
+GET {{address}}/game-events/0
+
+### 3. POST
+
+POST {{address}}/game-events/new
+
+################################################################################
+
+## Game Records
+
+### 1. GET All
+
+GET {{address}}/game-records
+
+### 2. GET
+
+GET {{address}}/game-records/0
+
+### 3. POST
+
+GET {{address}}/game-records/new
+content-type: application/json
+
+{
+    
+}
 
 ################################################################################
 
