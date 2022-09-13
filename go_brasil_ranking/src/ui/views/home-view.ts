@@ -1,9 +1,6 @@
 import { apiUrl } from "../../infra/setup";
 import Elo from "../../models/elo";
-import {
-  GameRecord,
-  resultString,
-} from "../../models/game_record";
+import { GameRecord, resultString } from "../../models/game_record";
 import { Player } from "../../models/player";
 
 export default class HomeView extends HTMLElement {
@@ -34,10 +31,10 @@ export default class HomeView extends HTMLElement {
   private setGameRecordsTable = (gameRecords: GameRecord[]): void => {
     this.innerHTML += `
       <table id="game-records">
-        <caption>Partidas</caption>
+        <caption><h3>Partidas</h3></caption>
         <thead>
           <tr>
-            <th>#</th>
+            <th></th>
             <th>Preto</th>
             <th>Branco</th>
             <th>Resultado</th>
@@ -68,10 +65,10 @@ export default class HomeView extends HTMLElement {
   private setPlayersTable = (players: Player[]): void => {
     this.innerHTML += `
       <table id="players">
-        <caption>Jogadores</caption>
+        <caption><h3>Jogadores</h3></caption>
         <thead>
           <tr>
-            <th>#</th>
+            <th></th>
             <th>Nome</th>
             <th>Elo</th>
             <th>Dan/Kyu</th>

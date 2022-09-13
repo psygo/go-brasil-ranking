@@ -55,8 +55,16 @@ home-view {
   table {
     margin-bottom: 20px;
 
+    border-collapse: separate;
+    border-spacing: 10px;
+
     caption {
       margin-bottom: 15px;
+
+      h3 {
+        font-size: 1.2rem;
+        padding-left: 22px;
+      }
     }
 
     th,
@@ -70,11 +78,31 @@ home-view {
 
     td,
     th {
-      padding-right: 15px;
+      padding-right: 20px;
     }
 
     td {
-      padding-bottom: 7.5px;
+      padding-bottom: 15px;
+      padding-top: 15px;
+    }
+
+    tbody {
+      tr {
+        td:first-child {
+          padding-left: 15px;
+        }
+
+        outline: thin solid;
+        border-width: 5px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+        transition: all 0.15s ease-in-out;
+
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+          transform: translate3d(0px, -0.5px, 0px);
+        }
+      }
     }
   }
 }
