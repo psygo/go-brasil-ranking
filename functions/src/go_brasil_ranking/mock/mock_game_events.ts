@@ -1,5 +1,3 @@
-import { db } from "../..";
-
 import { ExpressApiRoute } from "../../infra";
 
 import {
@@ -7,6 +5,7 @@ import {
   GameEventWithRef,
   GameEventTournament,
 } from "../../../../go_brasil_ranking/src/models/game_event";
+import { gameEventsCol } from "../collections/game_events_col";
 
 export const dummyGameEvents: readonly GameEvent[] = [
   <GameEventTournament>{
@@ -18,13 +17,12 @@ export const dummyGameEvents: readonly GameEvent[] = [
 ];
 
 export const mockPopulateGameEvents = async (): Promise<GameEventWithRef[]> => {
-  const gameEventsColl = db.collection("game_events");
   const mockGameEventsWithFirebaseRef: GameEventWithRef[] = [];
 
   for (let i = 0; i < dummyGameEvents.length; i++) {
     const gameEvent = dummyGameEvents[i];
 
-    await gameEventsColl.doc(i.toString()).set(gameEvent);
+    await gameEventsCol.col.doc(i.toString()).set(gameEvent);
 
     mockGameEventsWithFirebaseRef.push({
       firebaseRef: i.toString(),
