@@ -52,7 +52,9 @@ main {
 }
 
 home-view {
-  table#jogadores {
+  table {
+    margin-bottom: 20px;
+
     caption {
       margin-bottom: 15px;
     }
@@ -61,7 +63,7 @@ home-view {
     caption {
       text-align: left;
     }
-    
+
     th {
       padding-bottom: 10px;
     }
@@ -70,7 +72,7 @@ home-view {
     th {
       padding-right: 15px;
     }
-    
+
     td {
       padding-bottom: 7.5px;
     }

@@ -43,21 +43,24 @@ main {
   padding-left: 15px;
 }
 
-home-view table#jogadores caption {
+home-view table {
+  margin-bottom: 20px;
+}
+home-view table caption {
   margin-bottom: 15px;
 }
-home-view table#jogadores th,
-home-view table#jogadores caption {
+home-view table th,
+home-view table caption {
   text-align: left;
 }
-home-view table#jogadores th {
+home-view table th {
   padding-bottom: 10px;
 }
-home-view table#jogadores td,
-home-view table#jogadores th {
+home-view table td,
+home-view table th {
   padding-right: 15px;
 }
-home-view table#jogadores td {
+home-view table td {
   padding-bottom: 7.5px;
 }
 

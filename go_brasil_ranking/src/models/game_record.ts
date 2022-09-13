@@ -11,17 +11,40 @@ export enum GameResultStatus {
 }
 
 export enum Color {
-  Black,
-  White,
+  Black = "Preto",
+  White = "Branco",
 }
+
+export const colorFromInt = (cInt: number): Color => Object.values(Color)[cInt];
 
 interface _Result {
   whoWins: Color;
   resignation?: boolean;
   difference?: number;
 }
-
 type Result = Readonly<_Result>;
+
+interface _Result__FromServer {
+  whoWins: number;
+  resignation?: boolean;
+  difference?: number;
+}
+export type Result__FromServer = Readonly<_Result__FromServer>;
+
+export const resultString = (result: Result__FromServer): string => {
+  const whoWins = colorFromInt(result.whoWins);
+
+  const resultDict = {
+    Preto: "B+",
+    Branco: "W+",
+  };
+
+  const shortenedWhoWins = resultDict[whoWins];
+
+  return result.resignation
+    ? `${shortenedWhoWins}R`
+    : `${shortenedWhoWins}${result.difference}`;
+};
 
 interface _EloData {
   atTheTimeBlackElo: SerializedElo;
@@ -29,7 +52,6 @@ interface _EloData {
   atTheTimeWhiteElo: SerializedElo;
   eloDeltaWhite: SerializedEloDelta;
 }
-
 type EloData = Readonly<_EloData>;
 
 export type Sgf = string;
@@ -41,7 +63,6 @@ interface _GameRecordPost extends JsonInterface {
   sgf: Sgf;
   gameEvent: GameEventOrRef;
 }
-
 export type GameRecordPost = Readonly<_GameRecordPost>;
 
 interface _GameRecord extends GameRecordPost {
@@ -51,14 +72,20 @@ interface _GameRecord extends GameRecordPost {
   whiteName: string;
   eloData: EloData;
 }
-
 export type GameRecord = Readonly<_GameRecord>;
+
+interface _GameRecordNoRef extends GameRecordPost {
+  dateAdded: Date;
+  blackName: string;
+  whiteName: string;
+  eloData: EloData;
+}
+export type GameRecordNoRef = Readonly<_GameRecordNoRef>;
 
 interface _GameRecordRef {
   gameRef: FirebaseRef;
   gameDate: Date;
 }
-
 export type GameRecordRef = Readonly<_GameRecordRef>;
 
 export const colorResult = (result: Result, color: Color): GameResultStatus =>

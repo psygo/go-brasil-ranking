@@ -1,6 +1,9 @@
 import { ExpressApiRoute, howMany } from "../../infra";
 
-import { GameRecord } from "../../../../go_brasil_ranking/src/models/game_record";
+import {
+  GameRecord,
+  GameRecordNoRef,
+} from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
@@ -12,14 +15,15 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
     const gameRecordsDocs = await gameRecordsQuery.get();
 
     const gameRecords: GameRecord[] = [];
-    gameRecordsDocs.forEach((playerDoc) => {
-      gameRecords.push(playerDoc.data() as GameRecord);
+    gameRecordsDocs.forEach((gameRecordDoc) => {
+      const gameRecordNoRef = gameRecordDoc.data() as GameRecordNoRef;
+      gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
     });
 
     res.status(200).send({
       status: "success",
       message: `Game Records found (total: ${gameRecords.length}`,
-      data: { players: gameRecords },
+      data: { gameRecords: gameRecords },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);
@@ -44,7 +48,7 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
       res.status(200).send({
         status: "success",
         message: "Game Record found.",
-        data: { players: gameRecordDoc.data() },
+        data: { gameRecord: gameRecordDoc.data() },
       });
   } catch (e) {
     res.status(500).json((e as Error).message);
