@@ -96,11 +96,11 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
 
     // Update Players' Elos and Total Games
     await playersCol.updateWithRef(gameRecord.blackRef, {
-      elo: blackElo.add(blackEloDelta.num).num,
+      elo: blackElo.add(blackEloDelta).num,
       gamesTotal: black.gamesTotal + 1,
     });
     await playersCol.updateWithRef(gameRecord.whiteRef, {
-      elo: blackElo.add(whiteEloDelta.num).num,
+      elo: whiteElo.add(whiteEloDelta).num,
       gamesTotal: white.gamesTotal + 1,
     });
 

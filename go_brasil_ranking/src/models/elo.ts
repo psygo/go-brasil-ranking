@@ -52,5 +52,5 @@ export default class Elo implements Serializable {
     return new Elo(Math.round((gameResultAsNumber - expectedValue) * this.k));
   };
 
-  add = (delta: number): Elo => new Elo(this.num + delta);
+  add = (delta: Elo): Elo => new Elo(this.num + delta.num);
 }
