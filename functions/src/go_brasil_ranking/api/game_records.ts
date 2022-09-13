@@ -1,13 +1,13 @@
 import { ExpressApiRoute, howMany } from "../../infra";
 
-import { db } from "../..";
 import { GameRecord } from "../../../../go_brasil_ranking/src/models/game_record";
+import { gameRecordsCol } from "../collections/game_records_col";
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limit as string);
 
-    const gameRecordsQuery = db.collection("game_records").limit(limit);
+    const gameRecordsQuery = gameRecordsCol.col.limit(limit);
 
     const gameRecordsDocs = await gameRecordsQuery.get();
 
@@ -30,7 +30,7 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
   try {
     const id = req.params.gameRecordId;
 
-    const gameRecordRef = db.collection("game_record").doc(id);
+    const gameRecordRef = gameRecordsCol.col.doc(id);
 
     const gameRecordDoc = await gameRecordRef.get();
 
@@ -51,7 +51,7 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
   }
 };
 
-export const postPlayer: ExpressApiRoute = async (req, res) => {
+export const postGameRecord: ExpressApiRoute = async (req, res) => {
   try {
     const gameRecord =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
@@ -59,7 +59,7 @@ export const postPlayer: ExpressApiRoute = async (req, res) => {
     // TODO1: Add a check if the received conforms to the interface.
     // See https://github.com/gristlabs/ts-interface-checker
 
-    const gameRecordRef = await db.collection("game_record").add(gameRecord);
+    const gameRecordRef = await gameRecordsCol.col.add(gameRecord);
 
     res.status(200).send({
       status: "success",
