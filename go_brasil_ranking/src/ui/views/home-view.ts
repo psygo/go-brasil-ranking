@@ -3,7 +3,6 @@ import Elo from "../../models/elo";
 import {
   GameRecord,
   resultString,
-  Result__FromServer,
 } from "../../models/game_record";
 import { Player } from "../../models/player";
 
@@ -54,14 +53,13 @@ export default class HomeView extends HTMLElement {
 
     for (let i = gameRecords.length - 1; i >= 0; i--) {
       const gameRecord = gameRecords[i];
-      const result = gameRecord.result as unknown as Result__FromServer;
 
       gameRecordsTableBody.innerHTML += `
         <tr id="${gameRecord.firebaseRef}">
           <td>${gameRecord.firebaseRef}</td>
           <td>${gameRecord.blackName}</td>
           <td>${gameRecord.whiteName}</td>
-          <td>${resultString(result)}</td>
+          <td>${resultString(gameRecord.result)}</td>
         </tr>
       `;
     }

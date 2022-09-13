@@ -8,7 +8,6 @@ interface _Country {
   state?: BrazilianState;
   city?: string;
 }
-
 export type Country = Readonly<_Country>;
 
 interface _PlayerPost extends JsonInterface {

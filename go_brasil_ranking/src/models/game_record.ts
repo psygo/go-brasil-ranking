@@ -15,7 +15,16 @@ export enum Color {
   White = "Branco",
 }
 
-export const colorFromInt = (cInt: number): Color => Object.values(Color)[cInt];
+export const colorFromString = (cString: string): Color =>
+  Object.values(Color).find((c) => c === cString)!;
+
+export const shortenedWhoWins = (c: Color): string => {
+  const dict = {
+    Preto: "B+",
+    Branco: "W+",
+  };
+  return dict[c];
+};
 
 interface _Result {
   whoWins: Color;
@@ -24,26 +33,12 @@ interface _Result {
 }
 type Result = Readonly<_Result>;
 
-interface _Result__FromServer {
-  whoWins: number;
-  resignation?: boolean;
-  difference?: number;
-}
-export type Result__FromServer = Readonly<_Result__FromServer>;
+export const resultString = (result: Result): string => {
+  const whoWins = colorFromString(result.whoWins);
 
-export const resultString = (result: Result__FromServer): string => {
-  const whoWins = colorFromInt(result.whoWins);
+  const short = shortenedWhoWins(whoWins);
 
-  const resultDict = {
-    Preto: "B+",
-    Branco: "W+",
-  };
-
-  const shortenedWhoWins = resultDict[whoWins];
-
-  return result.resignation
-    ? `${shortenedWhoWins}R`
-    : `${shortenedWhoWins}${result.difference}`;
+  return result.resignation ? `${short}R` : `${short}${result.difference}`;
 };
 
 interface _EloData {
@@ -56,16 +51,16 @@ type EloData = Readonly<_EloData>;
 
 export type Sgf = string;
 
-interface _GameRecordPost extends JsonInterface {
+interface _GameRecord__Post extends JsonInterface {
   blackRef: FirebaseRef;
   whiteRef: FirebaseRef;
   result: Result;
   sgf: Sgf;
   gameEvent: GameEventOrRef;
 }
-export type GameRecordPost = Readonly<_GameRecordPost>;
+export type GameRecord__Post = Readonly<_GameRecord__Post>;
 
-interface _GameRecord extends GameRecordPost {
+interface _GameRecord extends GameRecord__Post {
   firebaseRef: FirebaseRef;
   dateAdded: Date;
   blackName: string;
@@ -74,19 +69,19 @@ interface _GameRecord extends GameRecordPost {
 }
 export type GameRecord = Readonly<_GameRecord>;
 
-interface _GameRecordNoRef extends GameRecordPost {
+interface _GameRecord__NoRef extends GameRecord__Post {
   dateAdded: Date;
   blackName: string;
   whiteName: string;
   eloData: EloData;
 }
-export type GameRecordNoRef = Readonly<_GameRecordNoRef>;
+export type GameRecord__NoRef = Readonly<_GameRecord__NoRef>;
 
-interface _GameRecordRef {
+interface _GameRecord__Ref {
   gameRef: FirebaseRef;
   gameDate: Date;
 }
-export type GameRecordRef = Readonly<_GameRecordRef>;
+export type GameRecord__Ref = Readonly<_GameRecord__Ref>;
 
 export const colorResult = (result: Result, color: Color): GameResultStatus =>
   color === Color.Black

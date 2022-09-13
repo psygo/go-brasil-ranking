@@ -8,9 +8,9 @@ import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import {
   Color,
   GameRecord,
-  GameRecordPost,
+  GameRecord__Post,
   colorResult,
-  GameRecordRef,
+  GameRecord__Ref,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 import { GameEventRef } from "../../../../go_brasil_ranking/src/models/game_event";
 import { playersCol } from "../collections/players_col";
@@ -19,7 +19,7 @@ import { gameRecordsCol } from "../collections/game_records_col";
 export const dummySgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
 
-export const dummyGameRecords: readonly GameRecordPost[] = [
+export const dummyGameRecords: readonly GameRecord__Post[] = [
   {
     blackRef: "0",
     whiteRef: "1",
@@ -108,11 +108,11 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
     await playersCol.col
       .doc(gameRecord.blackRef)
       .collection("gamesRefs")
-      .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });
+      .add(<GameRecord__Ref>{ gameRef: i.toString(), gameDate: now });
     await playersCol.col
       .doc(gameRecord.whiteRef)
       .collection("gamesRefs")
-      .add(<GameRecordRef>{ gameRef: i.toString(), gameDate: now });
+      .add(<GameRecord__Ref>{ gameRef: i.toString(), gameDate: now });
 
     // Update Game References on Tournament
     if ((gameRecord.gameEvent as GameEventRef).gameEventRef) {

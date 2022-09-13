@@ -2,7 +2,7 @@ import { ExpressApiRoute, howMany } from "../../infra";
 
 import {
   GameRecord,
-  GameRecordNoRef,
+  GameRecord__NoRef,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
 
@@ -16,7 +16,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 
     const gameRecords: GameRecord[] = [];
     gameRecordsDocs.forEach((gameRecordDoc) => {
-      const gameRecordNoRef = gameRecordDoc.data() as GameRecordNoRef;
+      const gameRecordNoRef = gameRecordDoc.data() as GameRecord__NoRef;
       gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
     });
 
