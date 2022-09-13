@@ -24,19 +24,19 @@ interface _GameEventTournament extends _GameEventBase {
 }
 export type GameEventTournament = Readonly<_GameEventTournament>;
 
-interface _GameEventWithRef extends _GameEventBase {
+interface _GameEvent__WithRef extends _GameEventBase {
   firebaseRef: FirebaseRef;
 }
-export type GameEventWithRef = Readonly<_GameEventWithRef>;
+export type GameEvent__WithRef = Readonly<_GameEvent__WithRef>;
 
-interface _GameEventRef {
+interface _GameEvent__Ref {
   gameEventRef: FirebaseRef;
 }
-export type GameEventRef = Readonly<_GameEventRef>;
+export type GameEventRef = Readonly<_GameEvent__Ref>;
 
 type _GameEvent = GameEventOnline | GameEventLive | GameEventTournament;
 export type GameEvent = Readonly<_GameEvent>;
 
-export type GameEventOrRef = Readonly<
+export type GameEvent__OrRef = Readonly<
   GameEventOnline | GameEventLive | GameEventRef
 >;

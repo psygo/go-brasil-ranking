@@ -1,7 +1,7 @@
 import { JsonInterface } from "../infra/serializable";
 
 import { SerializedElo, SerializedEloDelta } from "./elo";
-import { GameEventOrRef } from "./game_event";
+import { GameEvent__OrRef } from "./game_event";
 import { FirebaseRef } from "./firebase_ref";
 
 export enum GameResultStatus {
@@ -56,7 +56,7 @@ interface _GameRecord__Post extends JsonInterface {
   whiteRef: FirebaseRef;
   result: Result;
   sgf: Sgf;
-  gameEvent: GameEventOrRef;
+  gameEvent: GameEvent__OrRef;
 }
 export type GameRecord__Post = Readonly<_GameRecord__Post>;
 

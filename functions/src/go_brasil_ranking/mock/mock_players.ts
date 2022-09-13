@@ -2,12 +2,12 @@ import {
   BrazilianState,
   CountryFlag,
   Player,
-  PlayerPost,
+  Player__Post,
 } from "../../../../go_brasil_ranking/src/models/player";
 import { ExpressApiRoute } from "../../infra";
 import { playersCol } from "../collections/players_col";
 
-export const dummyPlayers: readonly PlayerPost[] = [
+export const dummyPlayers: readonly Player__Post[] = [
   {
     name: "Philippe Fanaro",
     countries: [

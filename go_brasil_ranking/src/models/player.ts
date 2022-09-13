@@ -10,14 +10,14 @@ interface _Country {
 }
 export type Country = Readonly<_Country>;
 
-interface _PlayerPost extends JsonInterface {
+interface _Player__Post extends JsonInterface {
   name: string;
   countries: readonly Country[];
   elo: SerializedElo;
 }
-export type PlayerPost = Readonly<_PlayerPost>;
+export type Player__Post = Readonly<_Player__Post>;
 
-interface _Player extends _PlayerPost {
+interface _Player extends _Player__Post {
   firebaseRef: FirebaseRef;
   name: string;
   countries: readonly Country[];
@@ -26,13 +26,13 @@ interface _Player extends _PlayerPost {
 }
 export type Player = Readonly<_Player>;
 
-interface _PlayerNoRef extends _PlayerPost {
+interface _Player__NoRef extends _Player__Post {
   name: string;
   countries: readonly Country[];
   elo: SerializedElo;
   gamesTotal: number;
 }
-export type PlayerNoRef = Readonly<_PlayerNoRef>;
+export type Player__NoRef = Readonly<_Player__NoRef>;
 
 export enum CountryFlag {
   angola = "🇦🇴",
