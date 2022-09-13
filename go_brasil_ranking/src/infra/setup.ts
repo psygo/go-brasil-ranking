@@ -33,4 +33,6 @@ export default class Setup {
   };
 }
 
-export const router: Router = Setup.getInstance().router;
+export const setup = Setup.getInstance()
+
+export const router: Router = setup.router;

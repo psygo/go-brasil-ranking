@@ -1,3 +1,3 @@
-import Setup from "./infra/setup";
+import { setup } from "./infra/setup";
 
-Setup.getInstance();
+setup;
