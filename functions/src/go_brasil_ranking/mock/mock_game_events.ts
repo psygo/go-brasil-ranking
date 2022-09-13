@@ -1,10 +1,12 @@
 import { db } from "../..";
+
+import { ExpressApiRoute } from "../../infra";
+
 import {
   GameEvent,
   GameEventWithRef,
   GameEventTournament,
 } from "../../../../go_brasil_ranking/src/models/game_event";
-import { ExpressApiRoute } from "../../infra";
 
 export const dummyGameEvents: readonly GameEvent[] = [
   <GameEventTournament>{
