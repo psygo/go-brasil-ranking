@@ -1,4 +1,3 @@
-// TODO: Add this to Setup's Custom Elements Register
 export default class Navbar extends HTMLElement {
   static readonly tag: string = "nav-bar";
 

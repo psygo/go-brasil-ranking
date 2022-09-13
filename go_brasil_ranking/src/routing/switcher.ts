@@ -40,12 +40,8 @@ class HomeMultiplexer extends Multiplexer {
     super("");
   }
 
-  mult = (): Promise<void> => {
-    return new Promise((resolve, _) => {
-      this.mainElement.replaceChildren(new HomeView());
-
-      resolve();
-    });
+  mult = (): void => {
+    this.mainElement.replaceChildren(new HomeView());
   };
 }
 

@@ -50,3 +50,29 @@ main {
   padding-top: 10px;
   padding-left: $mainPaddingLeft;
 }
+
+home-view {
+  table#jogadores {
+    caption {
+      margin-bottom: 15px;
+    }
+
+    th,
+    caption {
+      text-align: left;
+    }
+    
+    th {
+      padding-bottom: 10px;
+    }
+
+    td,
+    th {
+      padding-right: 15px;
+    }
+    
+    td {
+      padding-bottom: 7.5px;
+    }
+  }
+}

@@ -11,7 +11,10 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limit as string);
 
-    const playersDocs = await playersCol.col.limit(limit).get();
+    const playersDocs = await playersCol.col
+      .limit(limit)
+      .orderBy("elo", "desc")
+      .get();
 
     const players: Player[] = [];
     playersDocs.forEach((playerDoc) => {
