@@ -7,6 +7,7 @@ export default class Navbar extends HTMLElement {
       <route-link href="/">Ranking Brasileiro de Go</route-link>
       <route-link href="/partidas">Partidas</route-link>
       <route-link href="/jogadores">Jogadores</route-link>
+      <route-link href="/sobre">Sobre</route-link>
     <nav>
   `;
 

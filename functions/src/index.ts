@@ -16,11 +16,17 @@ import { mockPopulateGameEventsApi } from "./go_brasil_ranking/mock/mock_game_ev
 import { ifDev } from "./infra";
 import { mockPopulateEverythingApi } from "./go_brasil_ranking/mock/mock_everything";
 
+import cors from "cors";
+
 admin.initializeApp();
 
 export const db = admin.firestore();
 
 const goBrasilRankingApp = express();
+
+goBrasilRankingApp.use(
+  cors({ origin: ["http://localhost:8086", "http://127.0.0.1:8086"] })
+);
 
 goBrasilRankingApp.get("/", home);
 

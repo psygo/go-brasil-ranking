@@ -1,19 +1,22 @@
 import { ExpressApiRoute, howMany } from "../../infra";
 
 import { db } from "../..";
-import { Player } from "../../../../go_brasil_ranking/src/models/player";
+import {
+  Player,
+  PlayerNoRef,
+} from "../../../../go_brasil_ranking/src/models/player";
+import { playersCol } from "../collections/players_col";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limit as string);
 
-    const playersQuery = db.collection("players").limit(limit);
-
-    const playersDocs = await playersQuery.get();
+    const playersDocs = await playersCol.col.limit(limit).get();
 
     const players: Player[] = [];
     playersDocs.forEach((playerDoc) => {
-      players.push(playerDoc.data() as Player);
+      const playerNoRef = playerDoc.data() as PlayerNoRef;
+      players.push({ ...playerNoRef, firebaseRef: playerDoc.id });
     });
 
     res.status(200).send({

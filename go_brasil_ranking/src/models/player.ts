@@ -16,7 +16,6 @@ interface _PlayerPost extends JsonInterface {
   countries: readonly Country[];
   elo: SerializedElo;
 }
-
 export type PlayerPost = Readonly<_PlayerPost>;
 
 interface _Player extends _PlayerPost {
@@ -26,8 +25,15 @@ interface _Player extends _PlayerPost {
   elo: SerializedElo;
   gamesTotal: number;
 }
-
 export type Player = Readonly<_Player>;
+
+interface _PlayerNoRef extends _PlayerPost {
+  name: string;
+  countries: readonly Country[];
+  elo: SerializedElo;
+  gamesTotal: number;
+}
+export type PlayerNoRef = Readonly<_PlayerNoRef>;
 
 export enum CountryFlag {
   angola = "🇦🇴",
