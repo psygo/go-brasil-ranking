@@ -1,0 +1,9 @@
+@use "../components/game_records_table" as grt;
+
+players-table {
+  .player-card {
+    > route-link {
+      @include grt.card;
+    }
+  }
+}

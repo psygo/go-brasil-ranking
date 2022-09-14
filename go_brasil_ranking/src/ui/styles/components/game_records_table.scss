@@ -36,22 +36,25 @@ h3 {
   padding-left: 5px;
 }
 
-game-records-table {
-  @include rankingTable;
+@mixin card {
+  display: grid;
+  grid-template-columns:
+    minmax(20px, max-content) minmax(200px, max-content) minmax(
+      200px,
+      max-content
+    )
+    minmax(50px, max-content);
 
+  @include rankingTable;
+  @include cardDecoration;
+  @include cardMarginPadding;
+  @include playerLink;
+}
+
+game-records-table {
   .game-record-card {
     > route-link {
-      display: grid;
-      grid-template-columns:
-        minmax(20px, max-content) minmax(200px, max-content) minmax(
-          200px,
-          max-content
-        )
-        minmax(50px, max-content);
-
-      @include cardDecoration;
-      @include cardMarginPadding;
-      @include playerLink;
+      @include card;
     }
   }
 }
