@@ -2,6 +2,7 @@ import { apiUrl } from "../../infra/setup";
 import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_ref";
 import { brStateUpperCase, Player } from "../../models/player";
+import GameRecordsTable from "../components/game_records_table";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -22,6 +23,8 @@ export default class PlayerView extends HTMLElement {
     document.title = `RBG | ${player.name}`;
 
     this.setPlayersPage(player);
+
+    this.appendChild(new GameRecordsTable());
   }
 
   setPlayersPage = (player: Player): void => {

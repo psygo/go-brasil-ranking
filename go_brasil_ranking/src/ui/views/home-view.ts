@@ -1,7 +1,7 @@
 import { apiUrl } from "../../infra/setup";
 import Elo from "../../models/elo";
-import { GameRecord, resultString } from "../../models/game_record";
 import { Player } from "../../models/player";
+import GameRecordsTable from "../components/game_records_table";
 
 export default class HomeView extends HTMLElement {
   static readonly tag: string = "home-view";
@@ -12,31 +12,20 @@ export default class HomeView extends HTMLElement {
     return json["data"]["players"];
   };
 
-  private getGameRecords = async (): Promise<GameRecord[]> => {
-    const response = await fetch(`${apiUrl}/game-records`);
-    const json = await response.json();
-    return json["data"]["gameRecords"];
-  };
-
   async connectedCallback() {
     document.title = "Ranking Brasileiro de Go";
 
     const players = await this.getPlayers();
 
     this.innerHTML += `
-      <div class="ranking-table" id="players-table">
+      <div id="players-table">
         <h3>Jogadores</h3>
-      </div>
-      <div class="ranking-table" id="game-records-table">
-        <h3>Partidas</h3>
       </div>
     `;
 
     this.setPlayersTable(players);
 
-    const gameRecords = await this.getGameRecords();
-
-    this.setGameRecordsTable(gameRecords);
+    this.appendChild(new GameRecordsTable());
   }
 
   private setPlayersTable = (players: Player[]): void => {
@@ -55,29 +44,6 @@ export default class HomeView extends HTMLElement {
             </route-link>
             <p>${elo.num}</p>
             <p>${elo.danKyuLevel()}</p>
-          </route-link>
-        </div>
-      `;
-    }
-  };
-
-  setGameRecordsTable = (gameRecords: GameRecord[]): void => {
-    const gameRecordsTable = this.querySelector("#game-records-table")!;
-
-    for (let i = gameRecords.length - 1; i >= 0; i--) {
-      const gameRecord = gameRecords[i];
-
-      gameRecordsTable.innerHTML += `
-        <div class="game-record-card" id="${gameRecord.firebaseRef}">
-          <route-link href="/game-records/${gameRecord.firebaseRef}">
-            <p>${gameRecord.firebaseRef}</p>
-            <route-link href="/players/${gameRecord.blackRef}">
-              <p>${gameRecord.blackName}</p>
-            </route-link>
-            <route-link href="/players/${gameRecord.whiteRef}">
-              <p>${gameRecord.whiteName}</p>
-            </route-link>
-            <p>${resultString(gameRecord.result)}</p>
           </route-link>
         </div>
       `;

@@ -28,10 +28,8 @@ a {
   text-decoration: none;
 }
 
-route-link {
-  &:hover {
-    cursor: pointer;
-  }
+route-link:hover {
+  cursor: pointer;
 }
 
 main {
