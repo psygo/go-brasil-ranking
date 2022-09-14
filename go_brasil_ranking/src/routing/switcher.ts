@@ -18,8 +18,8 @@ export default class Multiplexer {
       case RouteEnum.home:
         new HomeMultiplexer().mult();
         break;
-      case RouteEnum.user:
-        new UserMultiplexer(this.splitPrefixRoute).mult();
+      case RouteEnum.player:
+        new PlayerMultiplexer(this.splitPrefixRoute).mult();
         break;
       default:
         new UnknownMultiplexer().mult();
@@ -45,9 +45,11 @@ class HomeMultiplexer extends Multiplexer {
   };
 }
 
-class UserMultiplexer extends Multiplexer {
+class PlayerMultiplexer extends Multiplexer {
   mult = (): void => {
-    this.mainElement.replaceChildren(new PlayerView());
+    if (this.currentRoute === "") this.router.manualRouting(RouteEnum.home);
+
+    this.mainElement.replaceChildren(new PlayerView(this.currentRoute));
   };
 }
 

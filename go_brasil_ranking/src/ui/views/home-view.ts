@@ -46,9 +46,9 @@ export default class HomeView extends HTMLElement {
 
       playersTable.innerHTML += `
         <div class="player-card" id="${player.firebaseRef}">
-          <route-link href="/player/${player.firebaseRef}">
+          <route-link href="/players/${player.firebaseRef}">
             <p>${i + 1}</p>
-            <route-link href="/player/${player.firebaseRef}">
+            <route-link href="/players/${player.firebaseRef}">
               <p>${player.name}</p>
             </route-link>
             <p>${elo.num}</p>
@@ -67,12 +67,12 @@ export default class HomeView extends HTMLElement {
 
       gameRecordsTable.innerHTML += `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
-          <route-link href="/player/${gameRecord.firebaseRef}">
+          <route-link href="/game-records/${gameRecord.firebaseRef}">
             <p>${gameRecord.firebaseRef}</p>
-            <route-link href="/player/${gameRecord.blackRef}">
+            <route-link href="/players/${gameRecord.blackRef}">
               <p>${gameRecord.blackName}</p>
             </route-link>
-            <route-link href="/player/${gameRecord.whiteRef}">
+            <route-link href="/players/${gameRecord.whiteRef}">
               <p>${gameRecord.whiteName}</p>
             </route-link>
             <p>${resultString(gameRecord.result)}</p>

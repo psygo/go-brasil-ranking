@@ -50,7 +50,7 @@ export const getPlayer: ExpressApiRoute = async (req, res) => {
       res.status(200).send({
         status: "success",
         message: "Player found.",
-        data: { players: playerDoc.data() },
+        data: { player: playerDoc.data() },
       });
   } catch (e) {
     res.status(500).json((e as Error).message);

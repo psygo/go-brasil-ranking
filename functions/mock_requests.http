@@ -16,13 +16,13 @@ GET {{address}}/players
 
 ### Player by ID
 
-@dummyId1 = 8fYpdeMGIhB7iXxBVCLC
+@dummyId1 = 0
 
 GET {{address}}/players/{{dummyId1}}
 
 ### Player Exists by ID
 
-@dummyId2 = 8fYpdeMGIhB7iXxBVCLI
+@dummyId2 = 0
 
 GET {{address}}/players/{{dummyId2}}?exists
 
