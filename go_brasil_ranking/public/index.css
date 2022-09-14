@@ -92,4 +92,12 @@ home-view h3 {
   padding-left: 5px;
 }
 
+player-view {
+  display: grid;
+  grid-row-gap: 10px;
+}
+player-view h2 {
+  margin-bottom: 30px;
+}
+
 /*# sourceMappingURL=index.css.map */

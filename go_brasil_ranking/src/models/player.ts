@@ -42,11 +42,15 @@ export enum CountryFlag {
   france = "🇫🇷",
   israel = "🇮🇱",
   italy = "🇮🇹",
+  japan = "🇯🇵",
   mexico = "🇲🇽",
   portugal = "🇵🇹",
   romania = "🇷🇴",
   taiwan = "🇹🇼",
 }
+
+export const brStateUpperCase = (brState: BrazilianState) =>
+  Object.values(BrazilianState)[brState].toString().toUpperCase();
 
 export enum BrazilianState {
   ac,

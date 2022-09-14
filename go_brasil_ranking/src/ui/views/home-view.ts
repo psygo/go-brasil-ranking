@@ -19,6 +19,8 @@ export default class HomeView extends HTMLElement {
   };
 
   async connectedCallback() {
+    document.title = "Ranking Brasileiro de Go";
+
     const players = await this.getPlayers();
 
     this.innerHTML += `
@@ -52,7 +54,7 @@ export default class HomeView extends HTMLElement {
               <p>${player.name}</p>
             </route-link>
             <p>${elo.num}</p>
-            <p>${elo.danKyuLevel}</p>
+            <p>${elo.danKyuLevel()}</p>
           </route-link>
         </div>
       `;

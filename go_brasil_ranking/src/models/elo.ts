@@ -19,17 +19,14 @@ export default class Elo implements Serializable {
     return this.num >= 2000;
   }
 
-  private get danFormatter(): string {
-    return (Math.floor(this.num / 100) - 20 + 1).toString() + "d";
-  }
+  private danFormatter = (long: boolean = false): string =>
+    (Math.floor(this.num / 100) - 20 + 1).toString() + (long ? " dan" : "d");
 
-  private get kyuFormatter(): string {
-    return Math.floor(20 - this.num / 100).toString() + "k";
-  }
+  private kyuFormatter = (long: boolean = false): string =>
+    Math.floor(20 - this.num / 100).toString() + (long ? " kyu" : "k");
 
-  get danKyuLevel(): string {
-    return this.danOrKyu ? this.danFormatter : this.kyuFormatter;
-  }
+  danKyuLevel = (long: boolean = false): string =>
+    this.danOrKyu ? this.danFormatter(long) : this.kyuFormatter(long);
 
   private get k(): number {
     return this.num < 1500
