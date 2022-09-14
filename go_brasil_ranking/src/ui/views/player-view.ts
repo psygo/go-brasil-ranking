@@ -7,12 +7,12 @@ import GameRecordsTable from "../components/game_records_table";
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
 
-  constructor(public readonly ref: FirebaseRef) {
+  constructor(public readonly playerRef: FirebaseRef) {
     super();
   }
 
   private getPlayers = async (): Promise<Player> => {
-    const response = await fetch(`${apiUrl}/players/${this.ref}`);
+    const response = await fetch(`${apiUrl}/players/${this.playerRef}`);
     const json = await response.json();
     return json["data"]["player"];
   };
@@ -20,11 +20,11 @@ export default class PlayerView extends HTMLElement {
   async connectedCallback() {
     const player = await this.getPlayers();
 
-    document.title = `RBG | ${player.name}`;
+    document.title = `Jogador | ${player.name}`;
 
     this.setPlayersPage(player);
 
-    this.appendChild(new GameRecordsTable());
+    this.appendChild(new GameRecordsTable(this.playerRef));
   }
 
   setPlayersPage = (player: Player): void => {

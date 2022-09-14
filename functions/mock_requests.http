@@ -72,6 +72,10 @@ GET {{address}}/game-records
 
 GET {{address}}/game-records/0
 
+### 2.1. GET game records from player
+
+GET {{address}}/game-records?playerRef=0
+
 ### 3. POST
 
 GET {{address}}/game-records/new

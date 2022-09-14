@@ -1,14 +1,23 @@
 import { apiUrl } from "../../infra/setup";
+import { FirebaseRef } from "../../models/firebase_ref";
 import { GameRecord, resultString } from "../../models/game_record";
 
 export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
 
   private getGameRecords = async (): Promise<GameRecord[]> => {
-    const response = await fetch(`${apiUrl}/game-records`);
+    const response = await fetch(
+      `${apiUrl}` +
+        `/game-records` +
+        `${this.playerRef ? "?playerRef=" + this.playerRef : ""}`
+    );
     const json = await response.json();
     return json["data"]["gameRecords"];
   };
+
+  constructor(public readonly playerRef: FirebaseRef = "") {
+    super();
+  }
 
   async connectedCallback() {
     const gameRecords = await this.getGameRecords();

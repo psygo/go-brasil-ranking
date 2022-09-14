@@ -3,16 +3,41 @@ import { ExpressApiRoute, howMany } from "../../infra";
 import {
   GameRecord,
   GameRecord__NoRef,
+  GameRecord__Ref,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
+import { playersCol } from "../collections/players_col";
+import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
+
+export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
+  const gamesWithPlayer = (
+    await playersCol.col
+      .doc(playerRef)
+      .collection("gamesRefs")
+      .orderBy("gameDate", "desc")
+      .get()
+  ).docs;
+
+  let gamesRefs: GameRecord__Ref[] = [];
+  gamesRefs = gamesWithPlayer.map((g) => g.data() as GameRecord__Ref);
+
+  const gameRecordsWithRefsQuery = gamesRefs.map((gRef) =>
+    gameRecordsCol.col.doc(gRef.gameRef).get()
+  );
+
+  return await Promise.all(gameRecordsWithRefsQuery);
+};
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limit as string);
+    let gameRecordsQuery = gameRecordsCol.col.limit(limit);
+    let gameRecordsDocs;
 
-    const gameRecordsQuery = gameRecordsCol.col.limit(limit);
-
-    const gameRecordsDocs = await gameRecordsQuery.get();
+    const playerRef = req.query.playerRef as FirebaseRef;
+    if (playerRef)
+      gameRecordsDocs = await queryForPlayersGameRecords(playerRef);
+    else gameRecordsDocs = await gameRecordsQuery.get();
 
     const gameRecords: GameRecord[] = [];
     gameRecordsDocs.forEach((gameRecordDoc) => {
