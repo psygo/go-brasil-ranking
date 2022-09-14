@@ -28,13 +28,14 @@ a {
   text-decoration: none;
 }
 
-route-link:hover {
-  cursor: pointer;
+route-link {
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 nav-bar {
   background-color: green;
-  color: $lightFontColor;
   font-size: 1.1rem;
 
   padding-left: $mainPaddingLeft;
@@ -43,6 +44,10 @@ nav-bar {
   nav {
     display: flex;
     gap: 20px;
+
+    route-link {
+      color: $lightFontColor;
+    }
   }
 }
 
@@ -52,57 +57,73 @@ main {
 }
 
 home-view {
-  table {
-    margin-bottom: 20px;
+  .ranking-table {
+    margin-bottom: 35px;
 
-    border-collapse: separate;
-    border-spacing: 10px;
+    width: max-content;
+  }
 
-    caption {
-      margin-bottom: 15px;
+  @mixin cardDecoration {
+    background: whitesmoke;
 
-      h3 {
-        font-size: 1.2rem;
-        padding-left: 22px;
-      }
+    border: 3px solid #eee;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+      transform: translate3d(0px, -0.5px, 0px);
     }
+  }
 
-    th,
-    caption {
-      text-align: left;
+  @mixin cardMarginPadding {
+    margin-bottom: 10px;
+
+    padding: 12px 0px;
+    padding-left: 10px;
+  }
+
+  @mixin playerLink {
+    route-link {
+      color: darken(green, 10%);
     }
+  }
 
-    th {
-      padding-bottom: 10px;
+  .player-card {
+    > route-link {
+      display: grid;
+      grid-template-columns:
+        minmax(20px, max-content) minmax(200px, max-content) minmax(
+          60px,
+          max-content
+        )
+        minmax(30px, max-content);
+
+      @include cardDecoration;
+      @include cardMarginPadding;
+      @include playerLink;
     }
+  }
 
-    td,
-    th {
-      padding-right: 20px;
+  .game-record-card {
+    > route-link {
+      display: grid;
+      grid-template-columns:
+        minmax(20px, max-content) minmax(200px, max-content) minmax(
+          200px,
+          max-content
+        )
+        minmax(50px, max-content);
+
+      @include cardDecoration;
+      @include cardMarginPadding;
+      @include playerLink;
     }
+  }
 
-    td {
-      padding-bottom: 15px;
-      padding-top: 15px;
-    }
-
-    tbody {
-      tr {
-        td:first-child {
-          padding-left: 15px;
-        }
-
-        outline: thin solid;
-        border-width: 5px;
-        border-radius: 10px;
-        box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
-        transition: all 0.15s ease-in-out;
-
-        &:hover {
-          box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
-          transform: translate3d(0px, -0.5px, 0px);
-        }
-      }
-    }
+  h3 {
+    margin-bottom: 10px;
+    padding-left: 5px;
   }
 }

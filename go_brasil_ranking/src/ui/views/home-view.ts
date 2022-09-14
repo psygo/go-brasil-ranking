@@ -21,6 +21,15 @@ export default class HomeView extends HTMLElement {
   async connectedCallback() {
     const players = await this.getPlayers();
 
+    this.innerHTML += `
+      <div class="ranking-table" id="players-table">
+        <h3>Jogadores</h3>
+      </div>
+      <div class="ranking-table" id="game-records-table">
+        <h3>Partidas</h3>
+      </div>
+    `;
+
     this.setPlayersTable(players);
 
     const gameRecords = await this.getGameRecords();
@@ -28,69 +37,47 @@ export default class HomeView extends HTMLElement {
     this.setGameRecordsTable(gameRecords);
   }
 
-  private setGameRecordsTable = (gameRecords: GameRecord[]): void => {
-    this.innerHTML += `
-      <table id="game-records">
-        <caption><h3>Partidas</h3></caption>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Preto</th>
-            <th>Branco</th>
-            <th>Resultado</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    `;
-
-    const gameRecordsTableBody = this.querySelector(
-      "table#game-records > tbody"
-    )!;
-
-    for (let i = gameRecords.length - 1; i >= 0; i--) {
-      const gameRecord = gameRecords[i];
-
-      gameRecordsTableBody.innerHTML += `
-        <tr id="${gameRecord.firebaseRef}">
-          <td>${gameRecord.firebaseRef}</td>
-          <td>${gameRecord.blackName}</td>
-          <td>${gameRecord.whiteName}</td>
-          <td>${resultString(gameRecord.result)}</td>
-        </tr>
-      `;
-    }
-  };
-
   private setPlayersTable = (players: Player[]): void => {
-    this.innerHTML += `
-      <table id="players">
-        <caption><h3>Jogadores</h3></caption>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Nome</th>
-            <th>Elo</th>
-            <th>Dan/Kyu</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    `;
-
-    const playersTableBody = this.querySelector("table#players > tbody")!;
+    const playersTable = this.querySelector("#players-table")!;
 
     for (let i = 0; i < players.length; i++) {
       const player = players[i];
       const elo = new Elo(player.elo);
 
-      playersTableBody.innerHTML += `
-        <tr id="${player.firebaseRef}">
-          <td>${i + 1}</td>
-          <td>${player.name}</td>
-          <td>${elo.num}</td>
-          <td>${elo.danKyuLevel}</td>
-        </tr>
+      playersTable.innerHTML += `
+        <div class="player-card" id="${player.firebaseRef}">
+          <route-link href="/player/${player.firebaseRef}">
+            <p>${i + 1}</p>
+            <route-link href="/player/${player.firebaseRef}">
+              <p>${player.name}</p>
+            </route-link>
+            <p>${elo.num}</p>
+            <p>${elo.danKyuLevel}</p>
+          </route-link>
+        </div>
+      `;
+    }
+  };
+
+  setGameRecordsTable = (gameRecords: GameRecord[]): void => {
+    const gameRecordsTable = this.querySelector("#game-records-table")!;
+
+    for (let i = gameRecords.length - 1; i >= 0; i--) {
+      const gameRecord = gameRecords[i];
+
+      gameRecordsTable.innerHTML += `
+        <div class="game-record-card" id="${gameRecord.firebaseRef}">
+          <route-link href="/player/${gameRecord.firebaseRef}">
+            <p>${gameRecord.firebaseRef}</p>
+            <route-link href="/player/${gameRecord.blackRef}">
+              <p>${gameRecord.blackName}</p>
+            </route-link>
+            <route-link href="/player/${gameRecord.whiteRef}">
+              <p>${gameRecord.whiteName}</p>
+            </route-link>
+            <p>${resultString(gameRecord.result)}</p>
+          </route-link>
+        </div>
       `;
     }
   };

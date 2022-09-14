@@ -28,7 +28,6 @@ route-link:hover {
 
 nav-bar {
   background-color: green;
-  color: #f9f9f9;
   font-size: 1.1rem;
   padding-left: 15px;
   padding-top: 10px;
@@ -37,52 +36,60 @@ nav-bar nav {
   display: flex;
   gap: 20px;
 }
+nav-bar nav route-link {
+  color: #f9f9f9;
+}
 
 main {
   padding-top: 10px;
   padding-left: 15px;
 }
 
-home-view table {
-  margin-bottom: 20px;
-  border-collapse: separate;
-  border-spacing: 10px;
+home-view .ranking-table {
+  margin-bottom: 35px;
+  width: max-content;
 }
-home-view table caption {
-  margin-bottom: 15px;
-}
-home-view table caption h3 {
-  font-size: 1.2rem;
-  padding-left: 22px;
-}
-home-view table th,
-home-view table caption {
-  text-align: left;
-}
-home-view table th {
-  padding-bottom: 10px;
-}
-home-view table td,
-home-view table th {
-  padding-right: 20px;
-}
-home-view table td {
-  padding-bottom: 15px;
-  padding-top: 15px;
-}
-home-view table tbody tr {
-  outline: thin solid;
-  border-width: 5px;
+home-view .player-card > route-link {
+  display: grid;
+  grid-template-columns: minmax(20px, max-content) minmax(200px, max-content) minmax(60px, max-content) minmax(30px, max-content);
+  background: whitesmoke;
+  border: 3px solid #eee;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
+  margin-bottom: 10px;
+  padding: 12px 0px;
+  padding-left: 10px;
 }
-home-view table tbody tr td:first-child {
-  padding-left: 15px;
-}
-home-view table tbody tr:hover {
+home-view .player-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
+}
+home-view .player-card > route-link route-link {
+  color: #004d00;
+}
+home-view .game-record-card > route-link {
+  display: grid;
+  grid-template-columns: minmax(20px, max-content) minmax(200px, max-content) minmax(200px, max-content) minmax(50px, max-content);
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  margin-bottom: 10px;
+  padding: 12px 0px;
+  padding-left: 10px;
+}
+home-view .game-record-card > route-link:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+home-view .game-record-card > route-link route-link {
+  color: #004d00;
+}
+home-view h3 {
+  margin-bottom: 10px;
+  padding-left: 5px;
 }
 
 /*# sourceMappingURL=index.css.map */
