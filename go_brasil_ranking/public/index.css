@@ -26,6 +26,11 @@ route-link:hover {
   cursor: pointer;
 }
 
+main {
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
 nav-bar {
   background-color: green;
   font-size: 1.1rem;
@@ -38,11 +43,6 @@ nav-bar nav {
 }
 nav-bar nav route-link {
   color: #f9f9f9;
-}
-
-main {
-  padding-top: 10px;
-  padding-left: 15px;
 }
 
 home-view .ranking-table {

@@ -1,0 +1,40 @@
+$bgColor: #d7d7d7;
+$lightFontColor: #f9f9f9;
+$mainPaddingLeft: 15px;
+
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: sans-serif;
+
+  height: 100%;
+}
+
+body {
+  background-color: $bgColor;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 42px 1fr;
+}
+
+a {
+  text-decoration: none;
+}
+
+route-link {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+main {
+  padding-top: 10px;
+  padding-left: $mainPaddingLeft;
+}

@@ -16,10 +16,16 @@ export default class PlayerView extends HTMLElement {
   };
 
   async connectedCallback() {
-    this.innerHTML += `
-      <h1>Jogador</h1>
-    `;
+    const player = await this.getPlayers();
 
-    await this.getPlayers();
+    this.setPlayersPage(player);
   }
+
+  setPlayersPage = (player: Player): void => {
+    this.innerHTML = `
+      <div>
+        <h2>${player.name}</h2>
+      </div>
+    `
+  };
 }
