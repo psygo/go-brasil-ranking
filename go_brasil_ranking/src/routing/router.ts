@@ -17,7 +17,7 @@ export const getRouter = (): Router => {
   switch (envState) {
     case EnvState.dev:
       const router = DevRouter.singleInstance();
-      router.manualRouting("/game-records/");
+      router.manualRouting("/game-records/0");
       return router;
     case EnvState.prod:
       return ProdRouter.singleInstance();
@@ -29,7 +29,7 @@ export const getRouter = (): Router => {
 export abstract class Router {
   private _currentRoute: Route = RouteEnum.home;
 
-  currentRoute(): Route {
+  get currentRoute(): Route {
     return this._currentRoute;
   }
 

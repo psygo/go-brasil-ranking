@@ -5,6 +5,7 @@ import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import GameRecordsView from "../ui/views/game-records-view";
 import PlayersView from "../ui/views/players-view";
+import GameRecordView from "../ui/views/game-record-view";
 
 export default class Switcher {
   protected readonly router: Router = router;
@@ -55,9 +56,10 @@ class PlayersSwitcher extends Switcher {
 
 class GameRecordsSwitcher extends Switcher {
   switch = (): void => {
-    // if (!this.currentRoute) this.router.manualRouting(RouteEnum.home);
-
-    this.mainElement.replaceChildren(new GameRecordsView());
+    if (!this.currentRoute)
+      this.mainElement.replaceChildren(new GameRecordsView());
+    else
+      this.mainElement.replaceChildren(new GameRecordView(this.currentRoute));
   };
 }
 
