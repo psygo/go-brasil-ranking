@@ -1,7 +1,7 @@
 import { JsonInterface } from "../infra/serializable";
 
 import { SerializedElo, SerializedEloDelta } from "./elo";
-import { GameEvent__OrRef } from "./game_event";
+import { OnServerGameEvents } from "./game_event";
 import { FirebaseRef } from "./firebase_ref";
 
 export enum GameResultStatus {
@@ -66,7 +66,7 @@ export namespace ToServerGameRecord {
     whiteRef: FirebaseRef;
     result: Result;
     sgf: Sgf;
-    gameEvent: GameEvent__OrRef;
+    gameEvent: OnServerGameEvents.GameEvent__OrRef;
   }
   export type GameRecord__Post = Readonly<_GameRecord__Post>;
 }

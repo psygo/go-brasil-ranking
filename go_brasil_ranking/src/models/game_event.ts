@@ -24,6 +24,9 @@ interface _GameEventTournament extends _GameEventBase {
 }
 export type GameEventTournament = Readonly<_GameEventTournament>;
 
+type _GameEvent = GameEventOnline | GameEventLive | GameEventTournament;
+export type GameEvent = Readonly<_GameEvent>;
+
 export namespace OnServerGameEvents {
   interface _GameEvent__WithRef extends _GameEventBase {
     firebaseRef: FirebaseRef;
@@ -34,11 +37,8 @@ export namespace OnServerGameEvents {
     gameEventRef: FirebaseRef;
   }
   export type GameEventRef = Readonly<_GameEvent__Ref>;
+
+  export type GameEvent__OrRef = Readonly<
+    GameEventOnline | GameEventLive | OnServerGameEvents.GameEventRef
+  >;
 }
-
-type _GameEvent = GameEventOnline | GameEventLive | GameEventTournament;
-export type GameEvent = Readonly<_GameEvent>;
-
-export type GameEvent__OrRef = Readonly<
-  GameEventOnline | GameEventLive | OnServerGameEvents.GameEventRef
->;
