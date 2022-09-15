@@ -1,7 +1,7 @@
 import { apiUrl } from "../../infra/setup";
 import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_ref";
-import { brStateUpperCase, Player } from "../../models/player";
+import { Player } from "../../models/player";
 import GameRecordsTable from "../components/game_records_table";
 
 export default class PlayerView extends HTMLElement {
@@ -41,11 +41,10 @@ export default class PlayerView extends HTMLElement {
     const brazil = player.countries.find((c) => c.name === "Brazil");
 
     if (brazil) {
-      const state = brStateUpperCase(brazil.state!);
-
-      this.innerHTML += `
-        <h3>${brazil.city} - ${state}</h3>
-      `;
+      // const state = brStateUpperCase(brazil.state!);
+      // this.innerHTML += `
+      //   <h3>${brazil.city} - ${state}</h3>
+      // `;
     }
   };
 }

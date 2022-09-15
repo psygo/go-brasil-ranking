@@ -2,8 +2,7 @@ import { ExpressApiRoute, howMany } from "../../infra";
 
 import {
   GameRecord,
-  GameRecord__NoRef,
-  GameRecord__Ref,
+  OnServer,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
 import { playersCol } from "../collections/players_col";
@@ -18,8 +17,8 @@ export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
       .get()
   ).docs;
 
-  let gamesRefs: GameRecord__Ref[] = [];
-  gamesRefs = gamesWithPlayer.map((g) => g.data() as GameRecord__Ref);
+  let gamesRefs: OnServer.GameRecord__Ref[] = [];
+  gamesRefs = gamesWithPlayer.map((g) => g.data() as OnServer.GameRecord__Ref);
 
   const gameRecordsWithRefsQuery = gamesRefs.map((gRef) =>
     gameRecordsCol.col.doc(gRef.gameRef).get()
@@ -41,7 +40,8 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 
     const gameRecords: GameRecord[] = [];
     gameRecordsDocs.forEach((gameRecordDoc) => {
-      const gameRecordNoRef = gameRecordDoc.data() as GameRecord__NoRef;
+      const gameRecordNoRef =
+        gameRecordDoc.data() as OnServer.GameRecord__NoRef;
       gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
     });
 

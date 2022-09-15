@@ -5,9 +5,9 @@ import { GameEvent__OrRef } from "./game_event";
 import { FirebaseRef } from "./firebase_ref";
 
 export enum GameResultStatus {
-  Win,
-  Loss,
-  Voided,
+  Win = "Win",
+  Loss = "Loss",
+  Voided = "Voided",
 }
 
 export enum Color {
@@ -51,16 +51,18 @@ type EloData = Readonly<_EloData>;
 
 export type Sgf = string;
 
-interface _GameRecord__Post extends JsonInterface {
-  blackRef: FirebaseRef;
-  whiteRef: FirebaseRef;
-  result: Result;
-  sgf: Sgf;
-  gameEvent: GameEvent__OrRef;
+export namespace ToServer {
+  interface _GameRecord__Post extends JsonInterface {
+    blackRef: FirebaseRef;
+    whiteRef: FirebaseRef;
+    result: Result;
+    sgf: Sgf;
+    gameEvent: GameEvent__OrRef;
+  }
+  export type GameRecord__Post = Readonly<_GameRecord__Post>;
 }
-export type GameRecord__Post = Readonly<_GameRecord__Post>;
 
-interface _GameRecord extends GameRecord__Post {
+interface _GameRecord extends ToServer.GameRecord__Post {
   firebaseRef: FirebaseRef;
   dateAdded: Date;
   blackName: string;
@@ -69,19 +71,21 @@ interface _GameRecord extends GameRecord__Post {
 }
 export type GameRecord = Readonly<_GameRecord>;
 
-interface _GameRecord__NoRef extends GameRecord__Post {
-  dateAdded: Date;
-  blackName: string;
-  whiteName: string;
-  eloData: EloData;
-}
-export type GameRecord__NoRef = Readonly<_GameRecord__NoRef>;
+export namespace OnServer {
+  interface _GameRecord__NoRef extends ToServer.GameRecord__Post {
+    dateAdded: Date;
+    blackName: string;
+    whiteName: string;
+    eloData: EloData;
+  }
+  export type GameRecord__NoRef = Readonly<_GameRecord__NoRef>;
 
-interface _GameRecord__Ref {
-  gameRef: FirebaseRef;
-  gameDate: Date;
+  interface _GameRecord__Ref {
+    gameRef: FirebaseRef;
+    gameDate: Date;
+  }
+  export type GameRecord__Ref = Readonly<_GameRecord__Ref>;
 }
-export type GameRecord__Ref = Readonly<_GameRecord__Ref>;
 
 export const colorResult = (result: Result, color: Color): GameResultStatus =>
   color === Color.Black
