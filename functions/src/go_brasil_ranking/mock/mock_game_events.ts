@@ -7,7 +7,7 @@ import {
 } from "../../../../go_brasil_ranking/src/models/game_event";
 import { gameEventsCol } from "../collections/game_events_col";
 
-export const dummyGameEvents: readonly GameEvent[] = [
+export const fakeGameEvents: readonly GameEvent[] = [
   <GameEventTournament>{
     type: "tournament",
     name: "Copa do Brasil 2022",
@@ -22,8 +22,8 @@ export const mockPopulateGameEvents = async (): Promise<
   const mockGameEventsWithFirebaseRef: OnServerGameEvents.GameEvent__WithRef[] =
     [];
 
-  for (let i = 0; i < dummyGameEvents.length; i++) {
-    const gameEvent = dummyGameEvents[i];
+  for (let i = 0; i < fakeGameEvents.length; i++) {
+    const gameEvent = fakeGameEvents[i];
 
     await gameEventsCol.col.doc(i.toString()).set(gameEvent);
 

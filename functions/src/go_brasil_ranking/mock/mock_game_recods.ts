@@ -16,10 +16,10 @@ import { OnServerGameEvents } from "../../../../go_brasil_ranking/src/models/gam
 import { playersCol } from "../collections/players_col";
 import { gameRecordsCol } from "../collections/game_records_col";
 
-export const dummySgf =
+export const fakeSgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
 
-export const dummyGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = [
+export const fakeGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = [
   {
     blackRef: "0",
     whiteRef: "1",
@@ -27,7 +27,7 @@ export const dummyGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = 
       whoWins: Color.Black,
       resignation: true,
     },
-    sgf: dummySgf,
+    sgf: fakeSgf,
     gameEvent: { type: "online", date: new Date() },
   },
   {
@@ -37,7 +37,7 @@ export const dummyGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = 
       whoWins: Color.White,
       resignation: true,
     },
-    sgf: dummySgf,
+    sgf: fakeSgf,
     gameEvent: { type: "online", date: new Date() },
   },
   {
@@ -47,15 +47,15 @@ export const dummyGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = 
       whoWins: Color.Black,
       difference: 20,
     },
-    sgf: dummySgf,
+    sgf: fakeSgf,
     gameEvent: { gameEventRef: "0" },
   },
 ];
 
 export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   let completeGameRecords: GameRecord[] = [];
-  for (let i = 0; i < dummyGameRecords.length; i++) {
-    const gameRecord = dummyGameRecords[i];
+  for (let i = 0; i < fakeGameRecords.length; i++) {
+    const gameRecord = fakeGameRecords[i];
 
     const black = (await playersCol.getWithRef(gameRecord.blackRef))!;
     const white = (await playersCol.getWithRef(gameRecord.whiteRef))!;

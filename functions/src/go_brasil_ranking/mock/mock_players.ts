@@ -7,7 +7,7 @@ import {
 import { ExpressApiRoute } from "../../infra";
 import { playersCol } from "../collections/players_col";
 
-export const dummyPlayers: readonly ToServerPlayers.Player__Post[] = [
+export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
   {
     name: "Philippe Fanaro",
     countries: [
@@ -49,8 +49,8 @@ export const dummyPlayers: readonly ToServerPlayers.Player__Post[] = [
 export const mockPopulatePlayers = async (): Promise<Player[]> => {
   const mockPlayersWithFirebaseRef: Player[] = [];
 
-  for (let i = 0; i < dummyPlayers.length; i++) {
-    const player = dummyPlayers[i];
+  for (let i = 0; i < fakePlayers.length; i++) {
+    const player = fakePlayers[i];
 
     await playersCol.col.doc(i.toString()).set({ ...player, gamesTotal: 0 });
 
