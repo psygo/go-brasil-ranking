@@ -2,8 +2,8 @@ import { ExpressApiRoute } from "../../infra";
 
 import {
   GameEvent,
-  GameEvent__WithRef,
   GameEventTournament,
+  OnServerGameEvents,
 } from "../../../../go_brasil_ranking/src/models/game_event";
 import { gameEventsCol } from "../collections/game_events_col";
 
@@ -16,8 +16,11 @@ export const dummyGameEvents: readonly GameEvent[] = [
   },
 ];
 
-export const mockPopulateGameEvents = async (): Promise<GameEvent__WithRef[]> => {
-  const mockGameEventsWithFirebaseRef: GameEvent__WithRef[] = [];
+export const mockPopulateGameEvents = async (): Promise<
+  OnServerGameEvents.GameEvent__WithRef[]
+> => {
+  const mockGameEventsWithFirebaseRef: OnServerGameEvents.GameEvent__WithRef[] =
+    [];
 
   for (let i = 0; i < dummyGameEvents.length; i++) {
     const gameEvent = dummyGameEvents[i];

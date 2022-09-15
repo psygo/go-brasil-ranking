@@ -41,6 +41,15 @@ export const resultString = (result: Result): string => {
   return result.resignation ? `${short}R` : `${short}${result.difference}`;
 };
 
+export const colorResult = (result: Result, color: Color): GameResultStatus =>
+  color === Color.Black
+    ? result.whoWins === Color.Black
+      ? GameResultStatus.Win
+      : GameResultStatus.Loss
+    : result.whoWins === Color.White
+    ? GameResultStatus.Win
+    : GameResultStatus.Loss;
+
 interface _EloData {
   atTheTimeBlackElo: SerializedElo;
   eloDeltaBlack: SerializedEloDelta;
@@ -51,7 +60,7 @@ type EloData = Readonly<_EloData>;
 
 export type Sgf = string;
 
-export namespace ToServer {
+export namespace ToServerGameRecord {
   interface _GameRecord__Post extends JsonInterface {
     blackRef: FirebaseRef;
     whiteRef: FirebaseRef;
@@ -62,7 +71,7 @@ export namespace ToServer {
   export type GameRecord__Post = Readonly<_GameRecord__Post>;
 }
 
-interface _GameRecord extends ToServer.GameRecord__Post {
+interface _GameRecord extends ToServerGameRecord.GameRecord__Post {
   firebaseRef: FirebaseRef;
   dateAdded: Date;
   blackName: string;
@@ -71,8 +80,8 @@ interface _GameRecord extends ToServer.GameRecord__Post {
 }
 export type GameRecord = Readonly<_GameRecord>;
 
-export namespace OnServer {
-  interface _GameRecord__NoRef extends ToServer.GameRecord__Post {
+export namespace OnServerGameRecord {
+  interface _GameRecord__NoRef extends ToServerGameRecord.GameRecord__Post {
     dateAdded: Date;
     blackName: string;
     whiteName: string;
@@ -86,12 +95,3 @@ export namespace OnServer {
   }
   export type GameRecord__Ref = Readonly<_GameRecord__Ref>;
 }
-
-export const colorResult = (result: Result, color: Color): GameResultStatus =>
-  color === Color.Black
-    ? result.whoWins === Color.Black
-      ? GameResultStatus.Win
-      : GameResultStatus.Loss
-    : result.whoWins === Color.White
-    ? GameResultStatus.Win
-    : GameResultStatus.Loss;
