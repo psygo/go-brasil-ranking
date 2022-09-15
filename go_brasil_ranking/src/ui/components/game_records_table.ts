@@ -6,16 +6,19 @@ export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
 
   private getGameRecords = async (): Promise<GameRecord[]> => {
-    const response = await fetch(
-      `${apiUrl}` +
-        `/game-records` +
-        `${this.playerRef ? "?playerRef=" + this.playerRef : ""}`
-    );
+    const p = this.playerRef ? this.playerRef : "";
+    const queryString = `?limit=${this.limit}&playerRef=${p}`;
+
+    const response = await fetch(`${apiUrl}/game-records${queryString}`);
+
     const json = await response.json();
     return json["data"]["gameRecords"];
   };
 
-  constructor(public readonly playerRef: FirebaseRef = "") {
+  constructor(
+    public readonly limit: number | "max" = 20,
+    public readonly playerRef: FirebaseRef = ""
+  ) {
     super();
   }
 

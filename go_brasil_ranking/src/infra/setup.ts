@@ -1,8 +1,12 @@
 import { getRouter, Router } from "../routing/router";
+
 import GameRecordsTable from "../ui/components/game_records_table";
 import Navbar from "../ui/components/navbar";
+
 import PlayersTable from "../ui/components/players_table";
 import RouteLink from "../ui/components/route-link";
+
+import GameRecordsView from "../ui/views/game_records_view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 
@@ -27,8 +31,8 @@ export default class Setup {
     customElements.define(PlayersTable.tag, PlayersTable);
 
     customElements.define(HomeView.tag, HomeView);
-
     customElements.define(PlayerView.tag, PlayerView);
+    customElements.define(GameRecordsView.tag, GameRecordsView);
   };
 
   static getInstance = (): Setup => {
@@ -40,7 +44,7 @@ export default class Setup {
 
 export const setup = Setup.getInstance();
 
-export const router: Router = setup.router;
+export const router = setup.router;
 
 export const apiUrl =
   "http://localhost:4096/fanaro-firebase-lab/us-central1/goBrasilRanking";

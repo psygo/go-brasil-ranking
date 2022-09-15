@@ -12,7 +12,12 @@ export type ExpressNexFunction = (
 export const howMany = (askedLimit: string): number => {
   const maxLimit = 100;
 
-  const intendedLimit = askedLimit ? parseInt(askedLimit as string) : maxLimit;
+  const intendedLimit =
+    askedLimit === "max"
+      ? maxLimit
+      : askedLimit
+      ? parseInt(askedLimit as string)
+      : maxLimit;
 
   return intendedLimit <= maxLimit ? intendedLimit : maxLimit;
 };

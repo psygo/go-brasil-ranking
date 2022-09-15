@@ -24,7 +24,7 @@ export default class PlayerView extends HTMLElement {
 
     this.setPlayersPage(player);
 
-    this.appendChild(new GameRecordsTable(this.playerRef));
+    this.appendChild(new GameRecordsTable("max", this.playerRef));
   }
 
   setPlayersPage = (player: Player): void => {

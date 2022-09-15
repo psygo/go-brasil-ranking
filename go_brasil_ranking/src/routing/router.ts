@@ -8,7 +8,8 @@ export type Route = string;
 
 export enum RouteEnum {
   home = "/",
-  player = "/players",
+  players = "/players",
+  gameRecords = "/game-records",
   unknown = "/unknown",
 }
 
@@ -16,7 +17,7 @@ export const getRouter = (): Router => {
   switch (envState) {
     case EnvState.dev:
       const router = DevRouter.singleInstance();
-      router.manualRouting("/players/0");
+      router.manualRouting("/game-records/");
       return router;
     case EnvState.prod:
       return ProdRouter.singleInstance();

@@ -3,6 +3,7 @@ import { router } from "../infra/setup";
 
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
+import GameRecordsView from "../ui/views/game_records_view";
 
 export default class Multiplexer {
   protected readonly router: Router = router;
@@ -18,8 +19,11 @@ export default class Multiplexer {
       case RouteEnum.home:
         new HomeMultiplexer().mult();
         break;
-      case RouteEnum.player:
-        new PlayerMultiplexer(this.splitPrefixRoute).mult();
+      case RouteEnum.players:
+        new PlayersMultiplexer(this.splitPrefixRoute).mult();
+        break;
+      case RouteEnum.gameRecords:
+        new GameRecordsMultiplexer(this.splitPrefixRoute).mult();
         break;
       default:
         new UnknownMultiplexer().mult();
@@ -45,11 +49,19 @@ class HomeMultiplexer extends Multiplexer {
   };
 }
 
-class PlayerMultiplexer extends Multiplexer {
+class PlayersMultiplexer extends Multiplexer {
   mult = (): void => {
     if (this.currentRoute === "") this.router.manualRouting(RouteEnum.home);
 
     this.mainElement.replaceChildren(new PlayerView(this.currentRoute));
+  };
+}
+
+class GameRecordsMultiplexer extends Multiplexer {
+  mult = (): void => {
+    // if (this.currentRoute === "") this.router.manualRouting(RouteEnum.home);
+
+    this.mainElement.replaceChildren(new GameRecordsView());
   };
 }
 
