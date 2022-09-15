@@ -6,9 +6,10 @@ import Navbar from "../ui/components/navbar";
 import PlayersTable from "../ui/components/players_table";
 import RouteLink from "../ui/components/route-link";
 
-import GameRecordsView from "../ui/views/game_records_view";
+import GameRecordsView from "../ui/views/game-records-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
+import PlayersView from "../ui/views/players-view";
 
 export default class Setup {
   private static instance: Setup;
@@ -32,6 +33,7 @@ export default class Setup {
 
     customElements.define(HomeView.tag, HomeView);
     customElements.define(PlayerView.tag, PlayerView);
+    customElements.define(PlayersView.tag, PlayersView);
     customElements.define(GameRecordsView.tag, GameRecordsView);
   };
 

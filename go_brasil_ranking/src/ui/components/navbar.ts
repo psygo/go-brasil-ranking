@@ -4,9 +4,9 @@ export default class Navbar extends HTMLElement {
   private static readonly html: string = `
     <nav>
       <route-link href="/">Ranking Brasileiro de Go</route-link>
-      <route-link href="/partidas">Partidas</route-link>
-      <route-link href="/jogadores">Jogadores</route-link>
-      <route-link href="/sobre">Sobre</route-link>
+      <route-link href="/game-records">Partidas</route-link>
+      <route-link href="/players">Jogadores</route-link>
+      <route-link href="/about">Sobre</route-link>
     <nav>
   `;
 

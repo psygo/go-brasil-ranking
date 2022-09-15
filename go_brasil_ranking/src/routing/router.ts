@@ -1,6 +1,6 @@
 import { EnvState, envState } from "../infra/env";
 
-import Multiplexer from "./switcher";
+import Switcher from "./switcher";
 
 import RouteLink from "../ui/components/route-link";
 
@@ -40,7 +40,7 @@ export abstract class Router {
   }
 
   private routeSwitcth = (): void => {
-    new Multiplexer(this._currentRoute).mult();
+    new Switcher(this._currentRoute).switch();
   };
 
   protected routeDomContentLoadedListener = (): void => {
