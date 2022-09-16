@@ -32,8 +32,11 @@ export default class PlayerView extends HTMLElement {
     const elo = new Elo(player.elo);
 
     this.innerHTML += `
-      <h2>${player.name} ${countryFlags}</h2>
+      <h1>${player.name} ${countryFlags}</h1>
+      <hr/>
+
       <h3>${elo.num} | ${elo.danKyuLevel(true)}</h3>
+      <hr/>
     `;
 
     const brazil = player.countries.find((c) => c.name === "Brazil");

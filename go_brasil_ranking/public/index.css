@@ -168,6 +168,10 @@ home-view {
   margin-bottom: 50px;
 }
 
+player-view hr {
+  margin-bottom: 20px;
+}
+
 player-view {
   display: grid;
   grid-row-gap: 10px;
