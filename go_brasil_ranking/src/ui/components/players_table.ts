@@ -1,6 +1,6 @@
 import { apiUrl } from "../../infra/setup";
 import Elo from "../../models/elo";
-import { Player } from "../../models/player";
+import { getAllFlags, Player } from "../../models/player";
 
 export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
@@ -33,6 +33,7 @@ export default class PlayersTable extends HTMLElement {
             <route-link href="/players/${player.firebaseRef}">
               <p>${player.name}</p>
             </route-link>
+            <p>${getAllFlags(player.countries)}</p>
             <p>${elo.num}</p>
             <p>${elo.danKyuLevel()}</p>
           </route-link>

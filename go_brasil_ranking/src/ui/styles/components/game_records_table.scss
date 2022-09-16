@@ -21,7 +21,15 @@
 
 @mixin playerLink {
   route-link {
-    color: darken(green, 10%);
+    color: darken(blue, 30%);
+
+    &[winner] {
+      color: darken(green, 0);
+    }
+
+    &[loser] {
+      color: darken(red, 30%);
+    }
   }
 }
 
@@ -43,16 +51,18 @@ h3 {
   @include playerLink;
 }
 
+$refWidth: 40px;
+$eloWidth: 60px;
+
 game-records-table {
   .game-record-card {
     > route-link {
+      $playerNameWidth: minmax(100px, 150px);
+      $eloDeltaWidth: 40px;
+      $resultWidth: minmax(70px, max-content);
+
       display: grid;
-      grid-template-columns:
-        minmax(40px, max-content) minmax(150px, 200px) minmax(
-          200px,
-          max-content
-        )
-        minmax(70px, max-content);
+      grid-template-columns: $refWidth $playerNameWidth $eloWidth $eloDeltaWidth $playerNameWidth $eloWidth $eloDeltaWidth $resultWidth;
 
       @include card;
     }

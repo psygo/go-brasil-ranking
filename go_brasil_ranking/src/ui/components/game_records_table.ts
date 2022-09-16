@@ -1,6 +1,6 @@
 import { apiUrl } from "../../infra/setup";
 import { FirebaseRef } from "../../models/firebase_ref";
-import { GameRecord, resultString } from "../../models/game_record";
+import { Color, GameRecord, resultString } from "../../models/game_record";
 
 export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
@@ -35,17 +35,25 @@ export default class GameRecordsTable extends HTMLElement {
   setGameRecordsTable = (gameRecords: GameRecord[]): void => {
     for (let i = gameRecords.length - 1; i >= 0; i--) {
       const gameRecord = gameRecords[i];
+      const blackWins =
+        gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
+      const whiteWins =
+        gameRecord.result.whoWins === Color.White ? "winner" : "loser";
 
       this.innerHTML += `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
           <route-link href="/game-records/${gameRecord.firebaseRef}">
             <p>${gameRecord.firebaseRef}</p>
-            <route-link href="/players/${gameRecord.blackRef}">
+            <route-link ${blackWins} href="/players/${gameRecord.blackRef}">
               <p>${gameRecord.blackName}</p>
             </route-link>
-            <route-link href="/players/${gameRecord.whiteRef}">
+            <p>${gameRecord.eloData.atTheTimeBlackElo}</p>
+            <p>${gameRecord.eloData.eloDeltaBlack}</p>
+            <route-link ${whiteWins} href="/players/${gameRecord.whiteRef}">
               <p>${gameRecord.whiteName}</p>
             </route-link>
+            <p>${gameRecord.eloData.atTheTimeWhiteElo}</p>
+            <p>${gameRecord.eloData.eloDeltaWhite}</p>
             <p>${resultString(gameRecord.result)}</p>
           </route-link>
         </div>

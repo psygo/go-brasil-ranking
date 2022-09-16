@@ -1,7 +1,7 @@
 import { apiUrl } from "../../infra/setup";
 import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_ref";
-import { getFlag, Player } from "../../models/player";
+import { getAllFlags, Player } from "../../models/player";
 import GameRecordsTable from "../components/game_records_table";
 
 export default class PlayerView extends HTMLElement {
@@ -28,9 +28,7 @@ export default class PlayerView extends HTMLElement {
   }
 
   private setPlayersPage = (player: Player): void => {
-    const countryFlags = player.countries
-      .map((c) => getFlag(c.name).toString())
-      .reduce((pflag, cflag) => `${pflag} ${cflag}`);
+    const countryFlags = getAllFlags(player.countries);
     const elo = new Elo(player.elo);
 
     this.innerHTML += `

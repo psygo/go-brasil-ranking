@@ -28,7 +28,7 @@ route-link:hover {
 
 main {
   display: grid;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   padding-top: 20px;
 }
@@ -54,7 +54,7 @@ h3 {
 
 game-records-table .game-record-card > route-link {
   display: grid;
-  grid-template-columns: minmax(40px, max-content) minmax(150px, 200px) minmax(200px, max-content) minmax(70px, max-content);
+  grid-template-columns: 40px minmax(100px, 150px) 60px 40px minmax(100px, 150px) 60px 40px minmax(70px, max-content);
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -71,12 +71,18 @@ game-records-table .game-record-card > route-link:hover {
   transform: translate3d(0px, -0.5px, 0px);
 }
 game-records-table .game-record-card > route-link route-link {
-  color: #004d00;
+  color: #000066;
+}
+game-records-table .game-record-card > route-link route-link[winner] {
+  color: green;
+}
+game-records-table .game-record-card > route-link route-link[loser] {
+  color: #660000;
 }
 
 players-table .player-card > route-link {
   display: grid;
-  grid-template-columns: minmax(40px, max-content) minmax(200px, 150px) minmax(80px, max-content) minmax(50px, max-content);
+  grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px minmax(40px, max-content);
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -93,7 +99,13 @@ players-table .player-card > route-link:hover {
   transform: translate3d(0px, -0.5px, 0px);
 }
 players-table .player-card > route-link route-link {
-  color: #004d00;
+  color: #000066;
+}
+players-table .player-card > route-link route-link[winner] {
+  color: green;
+}
+players-table .player-card > route-link route-link[loser] {
+  color: #660000;
 }
 
 about-view h1 {

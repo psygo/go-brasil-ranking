@@ -3,10 +3,12 @@
 players-table {
   .player-card {
     > route-link {
+      $playerNameWidth: minmax(100px, 200px);
+      $playerCountriesWidth: minmax(60px, max-content);
+      $danKyuWidth: minmax(40px, max-content);
+
       display: grid;
-      grid-template-columns:
-        minmax(40px, max-content) minmax(200px, 150px) minmax(80px, max-content)
-        minmax(50px, max-content);
+      grid-template-columns: grt.$refWidth $playerNameWidth $playerCountriesWidth grt.$eloWidth $danKyuWidth;
 
       @include grt.card;
     }

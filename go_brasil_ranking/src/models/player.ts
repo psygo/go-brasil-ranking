@@ -10,9 +10,15 @@ interface _Country {
 export type Country = Readonly<_Country>;
 
 export const getFlag = (cn: CountryName): CountryFlag => {
-  const ind = Object.keys(CountryFlag).findIndex(cf => cf === cn.toLowerCase())
-  return Object.values(CountryFlag)[ind]
-}
+  const ind = Object.keys(CountryFlag).findIndex(
+    (cf) => cf === cn.toLowerCase()
+  );
+  return Object.values(CountryFlag)[ind];
+};
+export const getAllFlags = (countries: readonly Country[]) =>
+  countries
+    .map((c) => getFlag(c.name).toString())
+    .reduce((pflag, cflag) => `${pflag} ${cflag}`);
 
 export namespace ToServerPlayers {
   interface _Player__Post extends JsonInterface {

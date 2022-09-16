@@ -39,7 +39,7 @@ export const fakeGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = [
       resignation: true,
     },
     sgf: fakeSgf2,
-    gameEvent: { type: "online", date: new Date() },
+    gameEvent: { type: "online", date: new Date(2022, 1, 1) },
   },
   {
     blackRef: "0",
@@ -49,7 +49,7 @@ export const fakeGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = [
       resignation: true,
     },
     sgf: fakeSgf1,
-    gameEvent: { type: "online", date: new Date() },
+    gameEvent: { type: "online", date: new Date(2022, 1, 2) },
   },
   {
     blackRef: "1",
