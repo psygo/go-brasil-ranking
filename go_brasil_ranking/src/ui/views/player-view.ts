@@ -27,7 +27,7 @@ export default class PlayerView extends HTMLElement {
     this.appendChild(new GameRecordsTable("max", this.playerRef));
   }
 
-  setPlayersPage = (player: Player): void => {
+  private setPlayersPage = (player: Player): void => {
     const countryFlags = player.countries
       .map((c) => c.flag.toString())
       .reduce((pflag, cflag) => pflag + " " + cflag);

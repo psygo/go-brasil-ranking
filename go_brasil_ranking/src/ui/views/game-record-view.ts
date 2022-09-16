@@ -1,38 +1,66 @@
 import { apiUrl } from "../../infra/setup";
 import { FirebaseRef } from "../../models/firebase_ref";
-import { GameRecord } from "../../models/game_record";
+import { GameRecord, resultString } from "../../models/game_record";
 
 export default class GameRecordView extends HTMLElement {
   static readonly tag: string = "game-record-view";
+
+  private gameRecord?: GameRecord;
 
   constructor(public readonly gameRecordRef: FirebaseRef) {
     super();
   }
 
-  private getGameRecord = async (): Promise<GameRecord> => {
+  private getGameRecord = async (): Promise<void> => {
     const response = await fetch(
       `${apiUrl}/game-records/${this.gameRecordRef}`
     );
     const json = await response.json();
-    return json["data"]["gameRecord"];
+    this.gameRecord = json["data"]["gameRecord"];
   };
 
   async connectedCallback() {
-    const gameRecord = await this.getGameRecord();
+    await this.getGameRecord();
 
-    console.log(this.gameRecordRef);
-    console.log(gameRecord);
+    if (this.gameRecord) {
+      document.title = `
+        Partida | ${this.gameRecord.blackName} vs ${this.gameRecord.whiteName}
+      `;
 
-    document.title = `
-      Partida | ${gameRecord.blackName} vs ${gameRecord.whiteName}
-    `;
-
-    this.setGameRecordPage(gameRecord);
+      this.setGameRecordPage();
+    }
   }
 
-  setGameRecordPage = (gameRecord: GameRecord): void => {
+  private setGameRecordPage = (): void => {
     this.innerHTML += `
-      <h2>${gameRecord.blackName} vs ${gameRecord.whiteName}</h2>
+      <h2>${this.gameRecord!.blackName} vs ${this.gameRecord!.whiteName}</h2>
+      <h3>${resultString(this.gameRecord!.result)}</h3>
+      <div id="glift_display1" style="width: 500px; height: 500px;"></div>
     `;
+
+    this.addSgfDiagram();
+  };
+
+  private addSgfDiagram = (): void => {
+    const glift = document.createElement("script");
+    glift.type = "text/javascript";
+    glift.src = "/public/glift_1_1_2.min.js";
+    document.head.appendChild(glift);
+
+    const s = document.createElement("script");
+    s.innerHTML = `
+      gliftWidget = glift.create({
+        divId: "glift_display1",
+        sgf: {
+          sgfString: \`${this.gameRecord!.sgf}\`,
+        },
+        display: {
+          theme: "DEPTH",
+          goBoardBackground: "images/purty_wood.png",
+          disableZoomForMobile: true,
+        },
+      });
+    `;
+    this.appendChild(s);
   };
 }
