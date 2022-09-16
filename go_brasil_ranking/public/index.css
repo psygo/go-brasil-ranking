@@ -26,11 +26,6 @@ route-link:hover {
   cursor: pointer;
 }
 
-main {
-  padding-top: 10px;
-  padding-left: 15px;
-}
-
 nav-bar {
   background-color: green;
   font-size: 1.1rem;
@@ -94,15 +89,29 @@ players-table .player-card > route-link route-link {
   color: #004d00;
 }
 
+about-view {
+  display: grid;
+  margin: 0 auto;
+  padding-top: 20px;
+  max-width: 500px;
+}
 about-view h1 {
   margin-bottom: 20px;
 }
 about-view h2 {
-  margin-top: 35px;
+  margin-top: 25px;
   margin-bottom: 20px;
+  margin-left: 10px;
 }
 about-view p {
-  padding-left: 29px;
+  padding-left: 39px;
+}
+about-view ul {
+  padding-top: 20px;
+  padding-left: 74px;
+}
+about-view ul li {
+  margin-bottom: 6px;
 }
 
 player-view {

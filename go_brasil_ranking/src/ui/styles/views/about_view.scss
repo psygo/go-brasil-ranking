@@ -1,14 +1,35 @@
+@use "../globals" as g;
+
 about-view {
+  display: grid;
+  margin: 0 auto;
+
+  padding-top: g.$mainPaddingTop;
+
+  max-width: 500px;
+
   h1 {
     margin-bottom: 20px;
   }
 
   h2 {
-    margin-top: 35px;
+    margin-top: 25px;
     margin-bottom: 20px;
+    margin-left: 10px;
   }
 
+  $paddingLeftP: 39px;
+
   p {
-    padding-left: 29px;
+    padding-left: $paddingLeftP;
+  }
+
+  ul {
+    padding-top: 20px;
+    padding-left: $paddingLeftP + 35px;
+
+    li {
+      margin-bottom: 6px;
+    }
   }
 }

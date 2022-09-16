@@ -1,9 +1,9 @@
 @use "globals";
 
 @use "components/navbar";
-@use "components/game_records_table.scss";
-@use "components/players_table.scss";
+@use "components/game_records_table";
+@use "components/players_table";
 
 @use "views/about_view";
 @use "views/home_view";
-@use "views/players_view.scss";
+@use "views/players_view";

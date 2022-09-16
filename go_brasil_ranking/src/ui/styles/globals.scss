@@ -1,6 +1,7 @@
 $bgColor: #d7d7d7;
 $lightFontColor: #f9f9f9;
 $mainPaddingLeft: 15px;
+$mainPaddingTop: 20px;
 
 *,
 ::after,
@@ -30,9 +31,4 @@ a {
 
 route-link:hover {
   cursor: pointer;
-}
-
-main {
-  padding-top: 10px;
-  padding-left: $mainPaddingLeft;
 }
