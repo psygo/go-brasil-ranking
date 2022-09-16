@@ -94,6 +94,17 @@ players-table .player-card > route-link route-link {
   color: #004d00;
 }
 
+about-view h1 {
+  margin-bottom: 20px;
+}
+about-view h2 {
+  margin-top: 35px;
+  margin-bottom: 20px;
+}
+about-view p {
+  padding-left: 29px;
+}
+
 player-view {
   display: grid;
   grid-row-gap: 10px;

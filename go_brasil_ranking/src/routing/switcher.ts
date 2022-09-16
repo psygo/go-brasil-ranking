@@ -6,6 +6,7 @@ import PlayerView from "../ui/views/player-view";
 import GameRecordsView from "../ui/views/game-records-view";
 import PlayersView from "../ui/views/players-view";
 import GameRecordView from "../ui/views/game-record-view";
+import AboutView from "../ui/views/about-view";
 
 export default class Switcher {
   protected readonly router: Router = router;
@@ -26,6 +27,9 @@ export default class Switcher {
         break;
       case RouteEnum.gameRecords:
         new GameRecordsSwitcher(this.splitPrefixRoute).switch();
+        break;
+      case RouteEnum.about:
+        new AboutSwitcher().switch();
         break;
       default:
         new UnknownSwitcher().switch();
@@ -60,6 +64,12 @@ class GameRecordsSwitcher extends Switcher {
       this.mainElement.replaceChildren(new GameRecordsView());
     else
       this.mainElement.replaceChildren(new GameRecordView(this.currentRoute));
+  };
+}
+
+class AboutSwitcher extends Switcher {
+  switch = (): void => {
+    this.mainElement.replaceChildren(new AboutView());
   };
 }
 

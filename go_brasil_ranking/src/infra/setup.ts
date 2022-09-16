@@ -11,6 +11,7 @@ import GameRecordsView from "../ui/views/game-records-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
+import AboutView from "../ui/views/about-view";
 
 export default class Setup {
   private static instance: Setup;
@@ -32,6 +33,7 @@ export default class Setup {
     customElements.define(GameRecordsTable.tag, GameRecordsTable);
     customElements.define(PlayersTable.tag, PlayersTable);
 
+    customElements.define(AboutView.tag, AboutView);
     customElements.define(GameRecordView.tag, GameRecordView);
     customElements.define(GameRecordsView.tag, GameRecordsView);
     customElements.define(HomeView.tag, HomeView);
