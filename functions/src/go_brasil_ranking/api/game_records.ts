@@ -8,17 +8,26 @@ import { gameRecordsCol } from "../collections/game_records_col";
 import { playersCol } from "../collections/players_col";
 import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 
-export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
+export const queryForPlayersGameRecords = async (
+  playerRef: FirebaseRef,
+  limit: number
+) => {
+  // TODO2: Each game should have its date at the top level...
+  //        And then we should do a query for games
+  //        where the player is either black or white...
   const gamesWithPlayer = (
     await playersCol.col
       .doc(playerRef)
       .collection("gamesRefs")
       .orderBy("gameDate", "desc")
+      .limit(limit)
       .get()
   ).docs;
 
   let gamesRefs: OnServerGameRecord.GameRecord__Ref[] = [];
-  gamesRefs = gamesWithPlayer.map((g) => g.data() as OnServerGameRecord.GameRecord__Ref);
+  gamesRefs = gamesWithPlayer.map(
+    (g) => g.data() as OnServerGameRecord.GameRecord__Ref
+  );
 
   const gameRecordsWithRefsQuery = gamesRefs.map((gRef) =>
     gameRecordsCol.col.doc(gRef.gameRef).get()
@@ -35,7 +44,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 
     const playerRef = req.query.playerRef as FirebaseRef;
     if (playerRef)
-      gameRecordsDocs = await queryForPlayersGameRecords(playerRef);
+      gameRecordsDocs = await queryForPlayersGameRecords(playerRef, limit);
     else gameRecordsDocs = await gameRecordsQuery.get();
 
     const gameRecords: GameRecord[] = [];
