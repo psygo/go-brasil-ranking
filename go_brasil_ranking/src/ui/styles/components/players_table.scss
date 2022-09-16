@@ -1,6 +1,8 @@
 @use "../components/game_records_table" as grt;
 
 players-table {
+  @include grt.captionDecoration;
+
   @mixin cardLegendGrid {
     $playerNameWidth: minmax(100px, 200px);
     $playerCountriesWidth: minmax(60px, max-content);

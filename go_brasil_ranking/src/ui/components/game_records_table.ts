@@ -26,7 +26,7 @@ export default class GameRecordsTable extends HTMLElement {
     const gameRecords = await this.getGameRecords();
 
     this.innerHTML = `
-      <h3>Partidas</h3>
+      <h2>Partidas</h2>
 
       <div class="game-records-table-legend">
         <p>#</p>

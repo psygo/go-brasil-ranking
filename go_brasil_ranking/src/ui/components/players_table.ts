@@ -15,7 +15,7 @@ export default class PlayersTable extends HTMLElement {
     const players = await this.getPlayers();
 
     this.innerHTML += `
-      <h3>Jogadores</h3>
+      <h2>Jogadores</h2>
       
       <div class="players-table-legend">
         <p>#</p>

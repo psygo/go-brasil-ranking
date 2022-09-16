@@ -47,13 +47,10 @@ nav-bar nav route-link {
   color: #f9f9f9;
 }
 
-h3 {
-  margin-bottom: 10px;
-  padding-left: 5px;
+game-records-table h2 {
+  padding-left: 13px;
 }
-
 game-records-table .game-record-card > route-link {
-  align-items: center;
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -64,6 +61,7 @@ game-records-table .game-record-card > route-link {
   padding: 12px 0px;
   padding-left: 17px;
   margin-bottom: 10px;
+  align-items: center;
   display: grid;
   grid-template-columns: 40px minmax(80px, 130px) 60px 40px minmax(80px, 130px) 60px 40px minmax(70px, max-content);
 }
@@ -97,8 +95,10 @@ game-records-table .game-records-table-legend .centered {
   margin-left: -20px;
 }
 
+players-table h2 {
+  padding-left: 13px;
+}
 players-table .player-card > route-link {
-  align-items: center;
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -109,6 +109,7 @@ players-table .player-card > route-link {
   padding: 12px 0px;
   padding-left: 17px;
   margin-bottom: 10px;
+  align-items: center;
   display: grid;
   grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
 }
