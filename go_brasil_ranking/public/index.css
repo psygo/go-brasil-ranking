@@ -53,8 +53,7 @@ h3 {
 }
 
 game-records-table .game-record-card > route-link {
-  display: grid;
-  grid-template-columns: 40px minmax(100px, 150px) 60px 40px minmax(100px, 150px) 60px 40px minmax(70px, max-content);
+  align-items: center;
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -62,9 +61,11 @@ game-records-table .game-record-card > route-link {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
-  margin-bottom: 10px;
   padding: 12px 0px;
-  padding-left: 10px;
+  padding-left: 17px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 40px minmax(80px, 130px) 60px 40px minmax(80px, 130px) 60px 40px minmax(70px, max-content);
 }
 game-records-table .game-record-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -79,10 +80,25 @@ game-records-table .game-record-card > route-link route-link[winner] {
 game-records-table .game-record-card > route-link route-link[loser] {
   color: #660000;
 }
+game-records-table .game-record-card > route-link .centered {
+  text-align: center;
+  margin-left: -21px;
+}
+game-records-table .game-records-table-legend {
+  display: grid;
+  grid-template-columns: 40px minmax(80px, 130px) 60px 40px minmax(80px, 130px) 60px 40px minmax(70px, max-content);
+  padding: 12px 0px;
+  padding-left: 17px;
+  align-items: center;
+  font-weight: bold;
+}
+game-records-table .game-records-table-legend .centered {
+  text-align: center;
+  margin-left: -20px;
+}
 
 players-table .player-card > route-link {
-  display: grid;
-  grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px minmax(40px, max-content);
+  align-items: center;
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -90,9 +106,11 @@ players-table .player-card > route-link {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
-  margin-bottom: 10px;
   padding: 12px 0px;
-  padding-left: 10px;
+  padding-left: 17px;
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
 }
 players-table .player-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -106,6 +124,22 @@ players-table .player-card > route-link route-link[winner] {
 }
 players-table .player-card > route-link route-link[loser] {
   color: #660000;
+}
+players-table .player-card > route-link .dan-kyu {
+  text-align: center;
+  margin-left: -17px;
+}
+players-table .player-card > route-link .countries {
+  text-align: center;
+  margin-left: -29px;
+}
+players-table .players-table-legend {
+  display: grid;
+  grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
+  padding: 12px 0px;
+  padding-left: 17px;
+  align-items: center;
+  font-weight: bold;
 }
 
 about-view h1 {

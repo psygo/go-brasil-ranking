@@ -16,6 +16,17 @@ export default class PlayersTable extends HTMLElement {
 
     this.innerHTML += `
       <h3>Jogadores</h3>
+      
+      <div class="players-table-legend">
+        <p>#</p>
+        <p>Nome</p>
+        <p>País</p>
+        <p>Elo</p>
+        <div>
+          <p>Dan</p>
+          <p>Kyu</p>
+        </div>
+      </div>
     `;
 
     this.setPlayersTable(players);
@@ -33,9 +44,9 @@ export default class PlayersTable extends HTMLElement {
             <route-link href="/players/${player.firebaseRef}">
               <p>${player.name}</p>
             </route-link>
-            <p>${getAllFlags(player.countries)}</p>
+            <p class="countries">${getAllFlags(player.countries)}</p>
             <p>${elo.num}</p>
-            <p>${elo.danKyuLevel()}</p>
+            <p class="dan-kyu">${elo.danKyuLevel()}</p>
           </route-link>
         </div>
       `;

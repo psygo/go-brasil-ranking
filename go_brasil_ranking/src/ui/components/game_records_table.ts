@@ -27,6 +27,23 @@ export default class GameRecordsTable extends HTMLElement {
 
     this.innerHTML = `
       <h3>Partidas</h3>
+
+      <div class="game-records-table-legend">
+        <p>#</p>
+        <p>Preto</p>
+        <p class="centered">Elo</p>
+        <div>
+          <p>Elo</p>
+          <p>Dif</p>
+        </div>
+        <p>Branco</p>
+        <p class="centered">Elo</p>
+        <div>
+          <p>Elo</p>
+          <p>Dif</p>
+        </div>
+        <p>Resultado</p>
+      </div>
     `;
 
     this.setGameRecordsTable(gameRecords);
@@ -48,12 +65,12 @@ export default class GameRecordsTable extends HTMLElement {
               <p>${gameRecord.blackName}</p>
             </route-link>
             <p>${gameRecord.eloData.atTheTimeBlackElo}</p>
-            <p>${gameRecord.eloData.eloDeltaBlack}</p>
+            <p class="centered">${gameRecord.eloData.eloDeltaBlack}</p>
             <route-link ${whiteWins} href="/players/${gameRecord.whiteRef}">
               <p>${gameRecord.whiteName}</p>
             </route-link>
             <p>${gameRecord.eloData.atTheTimeWhiteElo}</p>
-            <p>${gameRecord.eloData.eloDeltaWhite}</p>
+            <p class="centered">${gameRecord.eloData.eloDeltaWhite}</p>
             <p>${resultString(gameRecord.result)}</p>
           </route-link>
         </div>

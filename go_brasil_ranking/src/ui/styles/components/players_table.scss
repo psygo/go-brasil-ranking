@@ -1,16 +1,35 @@
 @use "../components/game_records_table" as grt;
 
 players-table {
+  @mixin cardLegendGrid {
+    $playerNameWidth: minmax(100px, 200px);
+    $playerCountriesWidth: minmax(60px, max-content);
+    $danKyuWidth: 45px;
+
+    display: grid;
+    grid-template-columns: grt.$refWidth $playerNameWidth $playerCountriesWidth grt.$eloWidth $danKyuWidth;
+  }
+
   .player-card {
     > route-link {
-      $playerNameWidth: minmax(100px, 200px);
-      $playerCountriesWidth: minmax(60px, max-content);
-      $danKyuWidth: minmax(40px, max-content);
-
-      display: grid;
-      grid-template-columns: grt.$refWidth $playerNameWidth $playerCountriesWidth grt.$eloWidth $danKyuWidth;
-
       @include grt.card;
+      @include cardLegendGrid;
+
+      .dan-kyu {
+        text-align: center;
+        margin-left: -17px;
+      }
+
+      .countries {
+        text-align: center;
+        margin-left: -29px;
+      }
     }
+  }
+
+  .players-table-legend {
+    @include cardLegendGrid;
+    @include grt.cardPadding;
+    @include grt.legendDecoration;
   }
 }

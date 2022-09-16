@@ -12,11 +12,13 @@
   }
 }
 
-@mixin cardMarginPadding {
+@mixin cardMargin {
   margin-bottom: 10px;
+}
 
+@mixin cardPadding {
   padding: 12px 0px;
-  padding-left: 10px;
+  padding-left: 17px;
 }
 
 @mixin playerLink {
@@ -45,26 +47,52 @@ h3 {
 }
 
 @mixin card {
+  align-items: center;
   @include rankingTable;
   @include cardDecoration;
-  @include cardMarginPadding;
+  @include cardPadding;
+  @include cardMargin;
   @include playerLink;
+}
+
+@mixin legendDecoration {
+  align-items: center;
+  font-weight: bold;
 }
 
 $refWidth: 40px;
 $eloWidth: 60px;
 
 game-records-table {
+  @mixin cardLegendGrid {
+    $playerNameWidth: minmax(80px, 130px);
+    $eloDeltaWidth: 40px;
+    $resultWidth: minmax(70px, max-content);
+
+    display: grid;
+    grid-template-columns: $refWidth $playerNameWidth $eloWidth $eloDeltaWidth $playerNameWidth $eloWidth $eloDeltaWidth $resultWidth;
+  }
+
   .game-record-card {
     > route-link {
-      $playerNameWidth: minmax(100px, 150px);
-      $eloDeltaWidth: 40px;
-      $resultWidth: minmax(70px, max-content);
-
-      display: grid;
-      grid-template-columns: $refWidth $playerNameWidth $eloWidth $eloDeltaWidth $playerNameWidth $eloWidth $eloDeltaWidth $resultWidth;
-
       @include card;
+      @include cardLegendGrid;
+      
+      .centered {
+        text-align: center;
+        margin-left: -21px;
+      }
+    }
+  }
+
+  .game-records-table-legend {
+    @include cardLegendGrid;
+    @include cardPadding;
+    @include legendDecoration;
+    
+    .centered {
+      text-align: center;
+      margin-left: -20px;
     }
   }
 }
