@@ -18,13 +18,11 @@ export enum Color {
 export const colorFromString = (cString: string): Color =>
   Object.values(Color).find((c) => c === cString)!;
 
-export const shortenedWhoWins = (c: Color): string => {
-  const dict = {
-    Preto: "B+",
-    Branco: "W+",
-  };
-  return dict[c];
+const shortenedColorDict = {
+  Preto: "B+",
+  Branco: "W+",
 };
+export const shortenedWhoWins = (c: Color): string => shortenedColorDict[c];
 
 interface _Result {
   whoWins: Color;

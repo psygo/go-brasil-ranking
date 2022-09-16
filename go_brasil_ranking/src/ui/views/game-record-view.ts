@@ -42,25 +42,29 @@ export default class GameRecordView extends HTMLElement {
   };
 
   private addSgfDiagram = (): void => {
-    const glift = document.createElement("script");
-    glift.type = "text/javascript";
-    glift.src = "/public/glift_1_1_2.min.js";
-    document.head.appendChild(glift);
+    const gliftScript = document.createElement("script");
+    gliftScript.type = "text/javascript";
+    gliftScript.src = "/public/glift_1_1_2.min.js";
+    gliftScript.setAttribute("async", "");
 
-    const s = document.createElement("script");
-    s.innerHTML = `
-      gliftWidget = glift.create({
-        divId: "glift_display1",
-        sgf: {
-          sgfString: \`${this.gameRecord!.sgf}\`,
-        },
-        display: {
-          theme: "DEPTH",
-          goBoardBackground: "images/purty_wood.png",
-          disableZoomForMobile: true,
-        },
-      });
-    `;
-    this.appendChild(s);
+    gliftScript.onload = () => {
+      const s = document.createElement("script");
+      s.innerHTML = `
+        gliftWidget = glift.create({
+          divId: "glift_display1",
+          sgf: {
+            sgfString: \`${this.gameRecord!.sgf}\`,
+          },
+          display: {
+            theme: "DEPTH",
+            goBoardBackground: "images/purty_wood.png",
+            disableZoomForMobile: true,
+          },
+        });
+      `;
+      this.appendChild(s);
+    };
+
+    document.head.appendChild(gliftScript);
   };
 }
