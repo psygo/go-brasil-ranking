@@ -26,6 +26,13 @@ route-link:hover {
   cursor: pointer;
 }
 
+main {
+  display: grid;
+  max-width: 600px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
 nav-bar {
   background-color: green;
   font-size: 1.1rem;
@@ -47,7 +54,7 @@ h3 {
 
 game-records-table .game-record-card > route-link {
   display: grid;
-  grid-template-columns: minmax(20px, max-content) minmax(200px, max-content) minmax(200px, max-content) minmax(50px, max-content);
+  grid-template-columns: minmax(40px, max-content) minmax(200px, 150px) minmax(200px, max-content) minmax(50px, max-content);
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -69,7 +76,7 @@ game-records-table .game-record-card > route-link route-link {
 
 players-table .player-card > route-link {
   display: grid;
-  grid-template-columns: minmax(20px, max-content) minmax(200px, max-content) minmax(200px, max-content) minmax(50px, max-content);
+  grid-template-columns: minmax(40px, max-content) minmax(200px, 150px) minmax(200px, max-content) minmax(50px, max-content);
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -89,12 +96,6 @@ players-table .player-card > route-link route-link {
   color: #004d00;
 }
 
-about-view {
-  display: grid;
-  margin: 0 auto;
-  padding-top: 20px;
-  max-width: 500px;
-}
 about-view h1 {
   margin-bottom: 20px;
 }
@@ -112,6 +113,13 @@ about-view ul {
 }
 about-view ul li {
   margin-bottom: 6px;
+}
+
+home-view {
+  display: grid;
+  grid-template-rows: max-content max-content;
+  grid-row-gap: 25px;
+  margin-bottom: 50px;
 }
 
 player-view {

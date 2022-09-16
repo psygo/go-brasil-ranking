@@ -39,7 +39,7 @@ h3 {
 @mixin card {
   display: grid;
   grid-template-columns:
-    minmax(20px, max-content) minmax(200px, max-content) minmax(
+    minmax(40px, max-content) minmax(200px, 150px) minmax(
       200px,
       max-content
     )

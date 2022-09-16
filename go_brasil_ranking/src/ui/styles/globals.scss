@@ -32,3 +32,12 @@ a {
 route-link:hover {
   cursor: pointer;
 }
+
+main {
+  display: grid;
+
+  max-width: 600px;
+
+  margin: 0 auto;
+  padding-top: $mainPaddingTop;
+}

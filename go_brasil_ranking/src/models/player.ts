@@ -3,12 +3,16 @@ import { SerializedElo } from "./elo";
 import { FirebaseRef } from "./firebase_ref";
 
 interface _Country {
-  name: string;
-  flag: CountryFlag;
+  name: CountryName;
   state?: BrazilianState;
   city?: string;
 }
 export type Country = Readonly<_Country>;
+
+export const getFlag = (cn: CountryName): CountryFlag => {
+  const ind = Object.keys(CountryFlag).findIndex(cf => cf === cn.toLowerCase())
+  return Object.values(CountryFlag)[ind]
+}
 
 export namespace ToServerPlayers {
   interface _Player__Post extends JsonInterface {
@@ -36,6 +40,21 @@ export namespace OnServerPlayers {
     gamesTotal: number;
   }
   export type Player__NoRef = Readonly<_Player__NoRef>;
+}
+
+export enum CountryName {
+  angola = "Angola",
+  argentina = "Argentina",
+  brazil = "Brazil",
+  colombia = "Colombia",
+  france = "France",
+  israel = "Israel",
+  italy = "Italy",
+  japan = "Japan",
+  mexico = "Mexico",
+  portugal = "Portugal",
+  romania = "Romania",
+  taiwan = "Taiwan",
 }
 
 export enum CountryFlag {

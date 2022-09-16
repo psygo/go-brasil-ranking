@@ -1,6 +1,6 @@
 import {
   BrazilianState,
-  CountryFlag,
+  CountryName,
   Player,
   ToServerPlayers,
 } from "../../../../go_brasil_ranking/src/models/player";
@@ -12,8 +12,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
     name: "Philippe Fanaro",
     countries: [
       {
-        name: "Brazil",
-        flag: CountryFlag.brazil,
+        name: CountryName.brazil,
         state: BrazilianState.sp,
         city: "São Paulo",
       },
@@ -24,8 +23,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
     name: "Fabrício Caluza Machado",
     countries: [
       {
-        name: "Brazil",
-        flag: CountryFlag.brazil,
+        name: CountryName.brazil,
         state: BrazilianState.df,
         city: "Brasília",
       },
@@ -36,13 +34,93 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
     name: "Ariel Oliveira",
     countries: [
       {
-        name: "Brazil",
-        flag: CountryFlag.brazil,
+        name: CountryName.brazil,
         state: BrazilianState.df,
         city: "São Paulo",
       },
     ],
     elo: 1050,
+  },
+  {
+    name: "Laura Augustina Avram",
+    countries: [
+      {
+        name: CountryName.romania,
+      },
+    ],
+    elo: 2250,
+  },
+  {
+    name: "Emanuel Araújo",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1650,
+  },
+  {
+    name: "Sophie Pagès",
+    countries: [
+      {
+        name: CountryName.france,
+      },
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 700,
+  },
+  {
+    name: "Laércio Pereira",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.pr,
+        city: "Curitiba",
+      },
+    ],
+    elo: 2000,
+  },
+  {
+    name: "Gabriel Ventura",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1600,
+  },
+  {
+    name: "Gabriel Garcia",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 550,
+  },
+  {
+    name: "Vanderson da Silva Rodrigues",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.al,
+      },
+    ],
+    elo: 550,
+  },
+  {
+    name: "Audrey Luciano Filho",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.ce,
+      },
+    ],
+    elo: 900,
   },
 ];
 
