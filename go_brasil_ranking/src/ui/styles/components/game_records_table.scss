@@ -37,14 +37,6 @@ h3 {
 }
 
 @mixin card {
-  display: grid;
-  grid-template-columns:
-    minmax(40px, max-content) minmax(200px, 150px) minmax(
-      200px,
-      max-content
-    )
-    minmax(50px, max-content);
-
   @include rankingTable;
   @include cardDecoration;
   @include cardMarginPadding;
@@ -54,6 +46,14 @@ h3 {
 game-records-table {
   .game-record-card {
     > route-link {
+      display: grid;
+      grid-template-columns:
+        minmax(40px, max-content) minmax(150px, 200px) minmax(
+          200px,
+          max-content
+        )
+        minmax(70px, max-content);
+
       @include card;
     }
   }

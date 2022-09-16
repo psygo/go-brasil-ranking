@@ -56,7 +56,7 @@ export const fakeGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = [
     whiteRef: "2",
     result: {
       whoWins: Color.Black,
-      difference: 20,
+      difference: 20.5,
     },
     sgf: fakeSgf1,
     gameEvent: { gameEventRef: "0" },

@@ -3,6 +3,11 @@
 players-table {
   .player-card {
     > route-link {
+      display: grid;
+      grid-template-columns:
+        minmax(40px, max-content) minmax(200px, 150px) minmax(80px, max-content)
+        minmax(50px, max-content);
+
       @include grt.card;
     }
   }

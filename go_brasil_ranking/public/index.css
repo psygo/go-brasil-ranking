@@ -54,7 +54,7 @@ h3 {
 
 game-records-table .game-record-card > route-link {
   display: grid;
-  grid-template-columns: minmax(40px, max-content) minmax(200px, 150px) minmax(200px, max-content) minmax(50px, max-content);
+  grid-template-columns: minmax(40px, max-content) minmax(150px, 200px) minmax(200px, max-content) minmax(70px, max-content);
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -76,7 +76,7 @@ game-records-table .game-record-card > route-link route-link {
 
 players-table .player-card > route-link {
   display: grid;
-  grid-template-columns: minmax(40px, max-content) minmax(200px, 150px) minmax(200px, max-content) minmax(50px, max-content);
+  grid-template-columns: minmax(40px, max-content) minmax(200px, 150px) minmax(80px, max-content) minmax(50px, max-content);
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
