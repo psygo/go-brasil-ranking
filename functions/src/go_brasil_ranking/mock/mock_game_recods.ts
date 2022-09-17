@@ -38,7 +38,7 @@ export const fakeGameRecords: readonly GameRecord[] = [
       whoWins: Color.Black,
     },
     sgf: fakeSgf2,
-    date: new Date(2022, 1, 1),
+    date: new Date(2022, 1, 1).getTime(),
     gameEvent: { type: GameEventTypes.online },
   },
   {
@@ -48,13 +48,13 @@ export const fakeGameRecords: readonly GameRecord[] = [
       whoWins: Color.White,
     },
     sgf: fakeSgf1,
-    date: new Date(2022, 1, 2),
+    date: new Date(2022, 1, 2).getTime(),
     gameEvent: { type: GameEventTypes.online },
   },
   {
     blackRef: "1",
     whiteRef: "2",
-    date: new Date(2022, 9, 10),
+    date: new Date(2022, 8, 10).getTime(),
     result: {
       whoWins: Color.Black,
       difference: 20.5,
@@ -86,7 +86,7 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
       doesThisColorWin(Color.White, gameRecord.result)
     );
 
-    const now = admin.firestore.Timestamp.now().toDate();
+    const now = admin.firestore.Timestamp.now().toMillis();
 
     const completeGameRecord: GameRecord = {
       ...gameRecord,

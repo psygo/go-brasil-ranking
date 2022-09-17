@@ -63,7 +63,7 @@ game-records-table .game-record-card > route-link {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 40px minmax(80px, 130px) 60px 40px minmax(80px, 130px) 60px 40px minmax(70px, max-content);
+  grid-template-columns: 40px 130px 60px 40px 130px 60px 40px 90px 100px;
 }
 game-records-table .game-record-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -84,7 +84,7 @@ game-records-table .game-record-card > route-link .centered {
 }
 game-records-table .game-records-table-legend {
   display: grid;
-  grid-template-columns: 40px minmax(80px, 130px) 60px 40px minmax(80px, 130px) 60px 40px minmax(70px, max-content);
+  grid-template-columns: 40px 130px 60px 40px 130px 60px 40px 90px 100px;
   padding: 12px 0px;
   padding-left: 17px;
   align-items: center;

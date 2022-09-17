@@ -10,8 +10,8 @@ interface _GameRecord extends JsonInterface {
   blackName?: string;
   whiteRef: FirebaseRef;
   whiteName?: string;
-  date: Date;
-  dateAdded?: Date;
+  date: number;
+  dateAdded?: number;
   result: Result;
   sgf: Sgf;
   gameEventRef?: FirebaseRef;
@@ -28,7 +28,7 @@ interface _EloData {
 }
 type EloData = Readonly<_EloData>;
 
-export type Sgf = string;
+export type Sgf = Readonly<string>;
 
 interface _Result {
   whoWins: Color;
@@ -41,7 +41,7 @@ export const resultString = (result: Result): string => {
 
   const short = shortenedWhoWins(whoWins);
 
-  return result?.difference ? `${short}R` : `${short}${result.difference}`;
+  return !result?.difference ? `${short}R` : `${short}${result.difference}`;
 };
 
 export const doesThisColorWin = (

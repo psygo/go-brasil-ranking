@@ -24,7 +24,7 @@ interface _GameEventTournament extends _GameEventBase {
   type: GameEventTypes.tournament;
   firebaseRef?: FirebaseRef;
   name: string;
-  dates: readonly Date[];
+  dates: readonly number[];
   gamesTotal: number;
 }
 export type GameEventTournament = Readonly<_GameEventTournament>;

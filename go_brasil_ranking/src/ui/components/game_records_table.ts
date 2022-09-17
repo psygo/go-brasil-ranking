@@ -1,4 +1,6 @@
 import { apiUrl } from "../../infra/setup";
+import { DateUtils } from "../../infra/date_utils";
+
 import { FirebaseRef } from "../../models/firebase_ref";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 
@@ -43,6 +45,7 @@ export default class GameRecordsTable extends HTMLElement {
           <p>Dif</p>
         </div>
         <p>Resultado</p>
+        <p>Data</p>
       </div>
     `;
 
@@ -56,6 +59,8 @@ export default class GameRecordsTable extends HTMLElement {
         gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
       const whiteWins =
         gameRecord.result.whoWins === Color.White ? "winner" : "loser";
+
+      const gameDate = new Date(gameRecord.date);
 
       this.innerHTML += `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
@@ -72,6 +77,7 @@ export default class GameRecordsTable extends HTMLElement {
             <p>${gameRecord!.eloData!.atTheTimeWhiteElo}</p>
             <p class="centered">${gameRecord!.eloData!.eloDeltaWhite}</p>
             <p>${resultString(gameRecord.result)}</p>
+            <span>${DateUtils.formatDate(gameDate)}</span>
           </route-link>
         </div>
       `;

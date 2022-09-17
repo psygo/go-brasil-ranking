@@ -69,12 +69,16 @@ game-records-table {
   @include captionDecoration;
 
   @mixin cardLegendGrid {
-    $playerNameWidth: minmax(80px, 130px);
+    $playerNameWidth: 130px;
     $eloDeltaWidth: 40px;
-    $resultWidth: minmax(70px, max-content);
+    $resultWidth: 90px;
+    $dateWidth: 100px;
 
     display: grid;
-    grid-template-columns: $refWidth $playerNameWidth $eloWidth $eloDeltaWidth $playerNameWidth $eloWidth $eloDeltaWidth $resultWidth;
+    grid-template-columns:
+      $refWidth $playerNameWidth $eloWidth
+      $eloDeltaWidth $playerNameWidth $eloWidth
+      $eloDeltaWidth $resultWidth $dateWidth;
   }
 
   .game-record-card {

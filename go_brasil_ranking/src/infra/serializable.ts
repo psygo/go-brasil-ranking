@@ -1,4 +1,3 @@
-// JSON + Helpful Firebase types.
 export type JsonDatum =
   | string
   | boolean
