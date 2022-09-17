@@ -132,6 +132,72 @@ export const fakePlayers: readonly Player[] = [
     elo: 900,
     gamesTotal: 0,
   },
+  {
+    name: "Amir Fragman",
+    countries: [
+      {
+        name: CountryName.israel,
+      },
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2500,
+    gamesTotal: 0,
+  },
+  {
+    name: "Alexandre Amaro",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2400,
+    gamesTotal: 0,
+  },
+  {
+    name: "Wang Seng Feng",
+    countries: [
+      {
+        name: CountryName.taiwan,
+      },
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2400,
+    gamesTotal: 0,
+  },
+  {
+    name: "Hélcio Alexandre Pacheco",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2100,
+    gamesTotal: 0,
+  },
+  {
+    name: "Felipe Herman van Riemsdijk",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2100,
+    gamesTotal: 0,
+  },
 ];
 
 export const mockPopulatePlayers = async (): Promise<Player[]> => {
