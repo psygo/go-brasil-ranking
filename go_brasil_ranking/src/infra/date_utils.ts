@@ -1,5 +1,5 @@
 export namespace DateUtils {
-  const defaultDateFormat = {
+  const defaultDateFormat: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "numeric",
     day: "numeric",

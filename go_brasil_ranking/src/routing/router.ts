@@ -8,10 +8,10 @@ export type Route = string;
 
 export enum RouteEnum {
   home = "/",
-  players = "/players",
-  gameRecords = "/game-records",
-  about = "/about",
-  unknown = "/unknown",
+  players = "/jogadores",
+  gameRecords = "/partidas",
+  about = "/sobre",
+  unknown = "/404",
 }
 
 export const getRouter = (): Router => {

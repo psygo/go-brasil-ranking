@@ -1,6 +1,7 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 
+import cors from "cors";
 import express from "express";
 
 import {
@@ -9,14 +10,6 @@ import {
   postPlayer,
 } from "./go_brasil_ranking/api/players";
 import { home } from "./go_brasil_ranking/api/others";
-
-import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
-import { mockPopulateGameRecordsApi } from "./go_brasil_ranking/mock/mock_game_recods";
-import { mockPopulateGameEventsApi } from "./go_brasil_ranking/mock/mock_game_events";
-import { ifDev } from "./infra";
-import { mockPopulateEverythingApi } from "./go_brasil_ranking/mock/mock_everything";
-
-import cors from "cors";
 import {
   getGameRecord,
   getGameRecords,
@@ -26,6 +19,12 @@ import {
   getGameEvent,
   getGameEvents,
 } from "./go_brasil_ranking/api/game_events";
+
+import { ifDev } from "./infra";
+import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
+import { mockPopulateGameRecordsApi } from "./go_brasil_ranking/mock/mock_game_recods";
+import { mockPopulateGameEventsApi } from "./go_brasil_ranking/mock/mock_game_events";
+import { mockPopulateEverythingApi } from "./go_brasil_ranking/mock/mock_everything";
 
 admin.initializeApp();
 
@@ -43,31 +42,25 @@ goBrasilRankingApp.use(
 goBrasilRankingApp.get("/", home);
 
 // 1. Players
-goBrasilRankingApp.get("/players", getPlayers);
-goBrasilRankingApp.get("/players/:playerId", getPlayer);
-goBrasilRankingApp.post("/players/new", postPlayer);
+goBrasilRankingApp.get("/jogadores", getPlayers);
+goBrasilRankingApp.get("/jogadores/:playerId", getPlayer);
+goBrasilRankingApp.post("/jogadores/new", postPlayer);
 
 // 2. Game Events
-goBrasilRankingApp.get("/game-events", getGameEvents);
-goBrasilRankingApp.get("/game-events/:gameEventId", getGameEvent);
-goBrasilRankingApp.post("/game-events/new", postPlayer);
+goBrasilRankingApp.get("/eventos", getGameEvents);
+goBrasilRankingApp.get("/eventos/:gameEventId", getGameEvent);
+goBrasilRankingApp.post("/eventos/new", postPlayer);
 
 // 3. Game Records
-goBrasilRankingApp.get("/game-records", getGameRecords);
-goBrasilRankingApp.get("/game-records/:gameRecordId", getGameRecord);
-goBrasilRankingApp.post("/game-records/new", postGameRecord);
+goBrasilRankingApp.get("/partidas", getGameRecords);
+goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
+goBrasilRankingApp.post("/partidas/new", postGameRecord);
 
 // 4. Mocking
 goBrasilRankingApp.use(ifDev);
 goBrasilRankingApp.post("/mock-populate-everything", mockPopulateEverythingApi);
-goBrasilRankingApp.post("/players/mock-populate", mockPopulatePlayersApi);
-goBrasilRankingApp.post(
-  "/game-events/mock-populate",
-  mockPopulateGameEventsApi
-);
-goBrasilRankingApp.post(
-  "/game-records/mock-populate",
-  mockPopulateGameRecordsApi
-);
+goBrasilRankingApp.post("/jogadores/mock-populate", mockPopulatePlayersApi);
+goBrasilRankingApp.post("/eventos/mock-populate", mockPopulateGameEventsApi);
+goBrasilRankingApp.post("/partidas/mock-populate", mockPopulateGameRecordsApi);
 
 export const goBrasilRanking = functions.https.onRequest(goBrasilRankingApp);

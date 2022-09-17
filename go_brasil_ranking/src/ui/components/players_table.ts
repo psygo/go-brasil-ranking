@@ -8,7 +8,7 @@ export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
 
   private getPlayers = async (): Promise<Player[]> => {
-    const response = await fetch(`${apiUrl}/players`);
+    const response = await fetch(`${apiUrl}/jogadores`);
     const json = await response.json();
     return json["data"]["players"];
   };
@@ -20,13 +20,13 @@ export default class PlayersTable extends HTMLElement {
       <h2>Jogadores</h2>
       
       <div class="players-table-legend">
-        <p>#</p>
-        <p>Nome</p>
-        <p>País</p>
-        <p>Elo</p>
+        <span>#</span>
+        <span>Nome</span>
+        <span>País</span>
+        <span>Elo</span>
         <div>
-          <p>Dan</p>
-          <p>Kyu</p>
+          <span>Dan</span>
+          <span>Kyu</span>
         </div>
       </div>
     `;
@@ -42,13 +42,13 @@ export default class PlayersTable extends HTMLElement {
       this.innerHTML += `
         <div class="player-card" id="${player.firebaseRef}">
           <route-link href="/players/${player.firebaseRef}">
-            <p>${i + 1}</p>
+            <span>${i + 1}</span>
             <route-link href="/players/${player.firebaseRef}">
-              <p>${player.name}</p>
+              <span>${player.name}</span>
             </route-link>
-            <p class="countries">${getAllFlags(player.countries)}</p>
-            <p>${elo.num}</p>
-            <p class="dan-kyu">${elo.danKyuLevel()}</p>
+            <span class="countries">${getAllFlags(player.countries)}</span>
+            <span>${elo.num}</span>
+            <span class="dan-kyu">${elo.danKyuLevel()}</span>
           </route-link>
         </div>
       `;

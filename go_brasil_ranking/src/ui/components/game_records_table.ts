@@ -11,7 +11,7 @@ export default class GameRecordsTable extends HTMLElement {
     const p = this.playerRef ? this.playerRef : "";
     const queryString = `?limit=${this.limit}&playerRef=${p}`;
 
-    const response = await fetch(`${apiUrl}/game-records${queryString}`);
+    const response = await fetch(`${apiUrl}/partidas${queryString}`);
 
     const json = await response.json();
     return json["data"]["gameRecords"];
@@ -31,21 +31,21 @@ export default class GameRecordsTable extends HTMLElement {
       <h2>Partidas</h2>
 
       <div class="game-records-table-legend">
-        <p>#</p>
-        <p>Preto</p>
-        <p class="centered">Elo</p>
+        <span>#</span>
+        <span>Preto</span>
+        <span class="centered">Elo</span>
         <div>
-          <p>Elo</p>
-          <p>Dif</p>
+          <p>Elo</span>
+          <p>Dif</span>
         </div>
-        <p>Branco</p>
-        <p class="centered">Elo</p>
+        <span>Branco</span>
+        <span class="centered">Elo</span>
         <div>
-          <p>Elo</p>
-          <p>Dif</p>
+          <span>Elo</span>
+          <span>Dif</span>
         </div>
-        <p>Resultado</p>
-        <p>Data</p>
+        <span>Resultado</span>
+        <span>Data</span>
       </div>
     `;
 
@@ -65,18 +65,18 @@ export default class GameRecordsTable extends HTMLElement {
       this.innerHTML += `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
           <route-link href="/game-records/${gameRecord.firebaseRef}">
-            <p>${gameRecord.firebaseRef}</p>
+            <span>${gameRecord.firebaseRef}</span>
             <route-link ${blackWins} href="/players/${gameRecord.blackRef}">
-              <p>${gameRecord.blackName}</p>
+              <span>${gameRecord.blackName}</span>
             </route-link>
-            <p>${gameRecord!.eloData!.atTheTimeBlackElo}</p>
-            <p class="centered">${gameRecord!.eloData!.eloDeltaBlack}</p>
+            <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
+            <span class="centered">${gameRecord!.eloData!.eloDeltaBlack}</span>
             <route-link ${whiteWins} href="/players/${gameRecord.whiteRef}">
-              <p>${gameRecord.whiteName}</p>
+              <span>${gameRecord.whiteName}</span>
             </route-link>
-            <p>${gameRecord!.eloData!.atTheTimeWhiteElo}</p>
-            <p class="centered">${gameRecord!.eloData!.eloDeltaWhite}</p>
-            <p>${resultString(gameRecord.result)}</p>
+            <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
+            <span class="centered">${gameRecord!.eloData!.eloDeltaWhite}</span>
+            <span>${resultString(gameRecord.result)}</span>
             <span>${DateUtils.formatDate(gameDate)}</span>
           </route-link>
         </div>
