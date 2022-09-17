@@ -1,13 +1,12 @@
 import {
   BrazilianState,
   CountryName,
-  Player,
-  ToServerPlayers,
-} from "../../../../go_brasil_ranking/src/models/player";
+} from "../../../../go_brasil_ranking/src/models/country";
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
 import { ExpressApiRoute } from "../../infra";
 import { playersCol } from "../collections/players_col";
 
-export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
+export const fakePlayers: readonly Player[] = [
   {
     name: "Philippe Fanaro",
     countries: [
@@ -18,6 +17,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 2150,
+    gamesTotal: 0,
   },
   {
     name: "Fabrício Caluza Machado",
@@ -29,6 +29,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 1750,
+    gamesTotal: 0,
   },
   {
     name: "Ariel Oliveira",
@@ -40,6 +41,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 1050,
+    gamesTotal: 0,
   },
   {
     name: "Laura Augustina Avram",
@@ -49,6 +51,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 2250,
+    gamesTotal: 0,
   },
   {
     name: "Emanuel Araújo",
@@ -60,6 +63,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 1650,
+    gamesTotal: 0,
   },
   {
     name: "Sophie Pagès",
@@ -72,6 +76,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 700,
+    gamesTotal: 0,
   },
   {
     name: "Laércio Pereira",
@@ -83,6 +88,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 2000,
+    gamesTotal: 0,
   },
   {
     name: "Gabriel Ventura",
@@ -92,6 +98,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 1600,
+    gamesTotal: 0,
   },
   {
     name: "Gabriel Garcia",
@@ -101,6 +108,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 550,
+    gamesTotal: 0,
   },
   {
     name: "Vanderson da Silva Rodrigues",
@@ -111,6 +119,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 550,
+    gamesTotal: 0,
   },
   {
     name: "Audrey Luciano Filho",
@@ -121,6 +130,7 @@ export const fakePlayers: readonly ToServerPlayers.Player__Post[] = [
       },
     ],
     elo: 900,
+    gamesTotal: 0,
   },
 ];
 
@@ -129,14 +139,13 @@ export const mockPopulatePlayers = async (): Promise<Player[]> => {
 
   for (let i = 0; i < fakePlayers.length; i++) {
     const player = fakePlayers[i];
+    const ref = i.toString();
 
-    await playersCol.col.doc(i.toString()).set({ ...player, gamesTotal: 0 });
+    await playersCol.col.doc(ref).set(player);
 
-    mockPlayersWithFirebaseRef.push({
-      firebaseRef: i.toString(),
-      gamesTotal: 0,
-      ...player,
-    });
+    const playerToReturn = { firebaseRef: ref, ...player };
+
+    mockPlayersWithFirebaseRef.push(playerToReturn);
   }
 
   return mockPlayersWithFirebaseRef;

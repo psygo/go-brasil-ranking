@@ -21,7 +21,4 @@ export default abstract class Serializable {
   abstract serialize(): Json;
 
   static dateToTimestamp = (date: Date): Timestamp => Timestamp.fromDate(date);
-
-  static jsonToTimestampToDate = (jsonDatum: JsonDatum): Date =>
-    (jsonDatum as Timestamp).toDate();
 }

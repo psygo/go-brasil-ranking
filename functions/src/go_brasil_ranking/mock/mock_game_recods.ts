@@ -8,13 +8,13 @@ import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import {
   Color,
   GameRecord,
-  colorResult,
-  OnServerGameRecord,
-  ToServerGameRecord,
+  doesThisColorWin,
 } from "../../../../go_brasil_ranking/src/models/game_record";
-import { OnServerGameEvents } from "../../../../go_brasil_ranking/src/models/game_event";
 import { playersCol } from "../collections/players_col";
 import { gameRecordsCol } from "../collections/game_records_col";
+import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
+import Serializable from "../../../../go_brasil_ranking/src/infra/serializable";
+import { fakeGameEvents } from "./mock_game_events";
 
 export const fakeSgf1 =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
@@ -30,36 +30,38 @@ export const fakeSgf2 = `
   ])
 `;
 
-export const fakeGameRecords: readonly ToServerGameRecord.GameRecord__Post[] = [
+export const fakeGameRecords: readonly GameRecord[] = [
   {
     blackRef: "0",
     whiteRef: "1",
     result: {
       whoWins: Color.Black,
-      resignation: true,
     },
     sgf: fakeSgf2,
-    gameEvent: { type: "online", date: new Date(2022, 1, 1) },
+    date: Serializable.dateToTimestamp(new Date(2022, 1, 1)),
+    gameEvent: { type: GameEventTypes.online },
   },
   {
     blackRef: "0",
     whiteRef: "1",
     result: {
       whoWins: Color.White,
-      resignation: true,
     },
     sgf: fakeSgf1,
-    gameEvent: { type: "online", date: new Date(2022, 1, 2) },
+    date: Serializable.dateToTimestamp(new Date(2022, 1, 2)),
+    gameEvent: { type: GameEventTypes.online },
   },
   {
     blackRef: "1",
     whiteRef: "2",
+    date: Serializable.dateToTimestamp(new Date(2022, 9, 10)),
     result: {
       whoWins: Color.Black,
       difference: 20.5,
     },
     sgf: fakeSgf1,
-    gameEvent: { gameEventRef: "0" },
+    gameEventRef: "0",
+    gameEvent: fakeGameEvents[0],
   },
 ];
 
@@ -76,14 +78,14 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
 
     const blackEloDelta = blackElo.deltaFromGame(
       whiteElo,
-      colorResult(gameRecord.result, Color.Black)
+      doesThisColorWin(Color.Black, gameRecord.result)
     );
     const whiteEloDelta = whiteElo.deltaFromGame(
       blackElo,
-      colorResult(gameRecord.result, Color.White)
+      doesThisColorWin(Color.White, gameRecord.result)
     );
 
-    const now = admin.firestore.Timestamp.now().toDate();
+    const nowLocalTs = admin.firestore.Timestamp.now().toMillis();
 
     const completeGameRecord: GameRecord = {
       ...gameRecord,
