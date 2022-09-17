@@ -1,4 +1,4 @@
-import { JsonInterface, SerializedTimeStamp } from "../infra/serializable";
+import { JsonInterface } from "../infra/serializable";
 
 import { SerializedElo, SerializedEloDelta } from "./elo";
 import { FirebaseRef } from "./firebase_ref";
@@ -10,8 +10,8 @@ interface _GameRecord extends JsonInterface {
   blackName?: string;
   whiteRef: FirebaseRef;
   whiteName?: string;
-  date: SerializedTimeStamp;
-  dateAdded?: SerializedTimeStamp;
+  date: Date;
+  dateAdded?: Date;
   result: Result;
   sgf: Sgf;
   gameEventRef?: FirebaseRef;

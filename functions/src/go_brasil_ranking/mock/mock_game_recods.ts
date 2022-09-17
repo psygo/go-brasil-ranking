@@ -1,10 +1,10 @@
+import * as admin from "firebase-admin";
+
 import { ExpressApiRoute } from "../../infra";
 
 import { gameRecordsCol } from "../collections/game_records_col";
 import { gameEventsCol } from "../collections/game_events_col";
 import { playersCol } from "../collections/players_col";
-
-import { TimeStamp } from "../../../../go_brasil_ranking/src/infra/serializable";
 
 import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
@@ -38,7 +38,7 @@ export const fakeGameRecords: readonly GameRecord[] = [
       whoWins: Color.Black,
     },
     sgf: fakeSgf2,
-    date: TimeStamp.fromDate(new Date(2022, 1, 1)),
+    date: new Date(2022, 1, 1),
     gameEvent: { type: GameEventTypes.online },
   },
   {
@@ -48,13 +48,13 @@ export const fakeGameRecords: readonly GameRecord[] = [
       whoWins: Color.White,
     },
     sgf: fakeSgf1,
-    date: TimeStamp.fromDate(new Date(2022, 1, 2)),
+    date: new Date(2022, 1, 2),
     gameEvent: { type: GameEventTypes.online },
   },
   {
     blackRef: "1",
     whiteRef: "2",
-    date: TimeStamp.fromDate(new Date(2022, 9, 10)),
+    date: new Date(2022, 9, 10),
     result: {
       whoWins: Color.Black,
       difference: 20.5,
@@ -86,12 +86,12 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
       doesThisColorWin(Color.White, gameRecord.result)
     );
 
-    const now = TimeStamp.now();
+    const now = admin.firestore.Timestamp.now().toDate();
 
     const completeGameRecord: GameRecord = {
       ...gameRecord,
       firebaseRef: ref,
-      dateAdded: now.serialize(),
+      dateAdded: now,
       blackName: black.name,
       whiteName: white.name,
       eloData: {

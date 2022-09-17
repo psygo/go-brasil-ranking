@@ -1,7 +1,5 @@
 import { ExpressApiRoute } from "../../infra";
 
-import { TimeStamp } from "../../../../go_brasil_ranking/src/infra/serializable";
-
 import {
   GameEvent,
   GameEventTypes,
@@ -13,19 +11,13 @@ export const fakeGameEvents: readonly GameEvent[] = [
   {
     type: GameEventTypes.tournament,
     name: "Copa do Brasil 2022",
-    dates: [
-      TimeStamp.fromDate(new Date(2022, 9, 10)),
-      TimeStamp.fromDate(new Date(2022, 9, 11)),
-    ],
+    dates: [new Date(2022, 9, 10), new Date(2022, 9, 11)],
     gamesTotal: 0,
   },
   {
     type: GameEventTypes.tournament,
     name: "Copa do Brasil 2018",
-    dates: [
-      TimeStamp.fromDate(new Date(2018, 9, 10)),
-      TimeStamp.fromDate(new Date(2018, 9, 11)),
-    ],
+    dates: [new Date(2018, 9, 10), new Date(2018, 9, 11)],
     gamesTotal: 0,
   },
 ];

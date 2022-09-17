@@ -1,5 +1,3 @@
-import { SerializedTimeStamp } from "../infra/serializable";
-
 import { FirebaseRef } from "./firebase_ref";
 
 export enum GameEventTypes {
@@ -26,7 +24,7 @@ interface _GameEventTournament extends _GameEventBase {
   type: GameEventTypes.tournament;
   firebaseRef?: FirebaseRef;
   name: string;
-  dates: readonly SerializedTimeStamp[];
+  dates: readonly Date[];
   gamesTotal: number;
 }
 export type GameEventTournament = Readonly<_GameEventTournament>;
