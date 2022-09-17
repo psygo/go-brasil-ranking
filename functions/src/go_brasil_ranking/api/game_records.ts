@@ -1,40 +1,32 @@
 import { ExpressApiRoute, howMany } from "../../infra";
 
-import {
-  GameRecord,
-  OnServerGameRecord,
-} from "../../../../go_brasil_ranking/src/models/game_record";
+import { GameRecord } from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
-import { playersCol } from "../collections/players_col";
-import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
+// import { playersCol } from "../collections/players_col";
+// import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 
-export const queryForPlayersGameRecords = async (
-  playerRef: FirebaseRef,
-  limit: number
-) => {
-  // TODO2: Each game should have its date at the top level...
-  //        And then we should do a query for games
-  //        where the player is either black or white...
-  const gamesWithPlayer = (
-    await playersCol.col
-      .doc(playerRef)
-      .collection("gamesRefs")
-      .orderBy("gameDate", "desc")
-      .limit(limit)
-      .get()
-  ).docs;
+// export const queryForPlayersGameRecords = async (
+//   playerRef: FirebaseRef,
+//   limit: number
+// ) => {
+//   const gamesWithPlayer = (
+//     await playersCol.col
+//       .doc(playerRef)
+//       .collection("gamesRefs")
+//       .orderBy("gameDate", "desc")
+//       .limit(limit)
+//       .get()
+//   ).docs;
 
-  let gamesRefs: OnServerGameRecord.GameRecord__Ref[] = [];
-  gamesRefs = gamesWithPlayer.map(
-    (g) => g.data() as OnServerGameRecord.GameRecord__Ref
-  );
+//   let gamesRefs: GameRecord[] = [];
+//   gamesRefs = gamesWithPlayer.map((g) => g.data() as GameRecord);
 
-  const gameRecordsWithRefsQuery = gamesRefs.map((gRef) =>
-    gameRecordsCol.col.doc(gRef.gameRef).get()
-  );
+//   const gameRecordsWithRefsQuery = gamesRefs.map((gRef) =>
+//     gameRecordsCol.col.doc(gRef.gameRef).get()
+//   );
 
-  return await Promise.all(gameRecordsWithRefsQuery);
-};
+//   return await Promise.all(gameRecordsWithRefsQuery);
+// };
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
@@ -42,15 +34,15 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
     let gameRecordsQuery = gameRecordsCol.col.limit(limit);
     let gameRecordsDocs;
 
-    const playerRef = req.query.playerRef as FirebaseRef;
-    if (playerRef)
-      gameRecordsDocs = await queryForPlayersGameRecords(playerRef, limit);
-    else gameRecordsDocs = await gameRecordsQuery.get();
+    // const playerRef = req.query.playerRef as FirebaseRef;
+    // if (playerRef)
+    //   gameRecordsDocs = await queryForPlayersGameRecords(playerRef, limit);
+    // else
+    gameRecordsDocs = await gameRecordsQuery.get();
 
     const gameRecords: GameRecord[] = [];
     gameRecordsDocs.forEach((gameRecordDoc) => {
-      const gameRecordNoRef =
-        gameRecordDoc.data() as OnServerGameRecord.GameRecord__NoRef;
+      const gameRecordNoRef = gameRecordDoc.data() as GameRecord;
       gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
     });
 
@@ -93,9 +85,6 @@ export const postGameRecord: ExpressApiRoute = async (req, res) => {
   try {
     const gameRecord =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
-
-    // TODO1: Add a check if the received conforms to the interface.
-    // See https://github.com/gristlabs/ts-interface-checker
 
     const gameRecordRef = await gameRecordsCol.col.add(gameRecord);
 

@@ -1,19 +1,19 @@
-import * as admin from "firebase-admin";
-
-import { db } from "../..";
-
 import { ExpressApiRoute } from "../../infra";
 
+import { gameRecordsCol } from "../collections/game_records_col";
+import { gameEventsCol } from "../collections/game_events_col";
+import { playersCol } from "../collections/players_col";
+
+import { TimeStamp } from "../../../../go_brasil_ranking/src/infra/serializable";
+
 import Elo from "../../../../go_brasil_ranking/src/models/elo";
+import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
 import {
   Color,
   GameRecord,
   doesThisColorWin,
 } from "../../../../go_brasil_ranking/src/models/game_record";
-import { playersCol } from "../collections/players_col";
-import { gameRecordsCol } from "../collections/game_records_col";
-import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
-import Serializable from "../../../../go_brasil_ranking/src/infra/serializable";
+
 import { fakeGameEvents } from "./mock_game_events";
 
 export const fakeSgf1 =
@@ -38,7 +38,7 @@ export const fakeGameRecords: readonly GameRecord[] = [
       whoWins: Color.Black,
     },
     sgf: fakeSgf2,
-    date: Serializable.dateToTimestamp(new Date(2022, 1, 1)),
+    date: TimeStamp.fromDate(new Date(2022, 1, 1)),
     gameEvent: { type: GameEventTypes.online },
   },
   {
@@ -48,13 +48,13 @@ export const fakeGameRecords: readonly GameRecord[] = [
       whoWins: Color.White,
     },
     sgf: fakeSgf1,
-    date: Serializable.dateToTimestamp(new Date(2022, 1, 2)),
+    date: TimeStamp.fromDate(new Date(2022, 1, 2)),
     gameEvent: { type: GameEventTypes.online },
   },
   {
     blackRef: "1",
     whiteRef: "2",
-    date: Serializable.dateToTimestamp(new Date(2022, 9, 10)),
+    date: TimeStamp.fromDate(new Date(2022, 9, 10)),
     result: {
       whoWins: Color.Black,
       difference: 20.5,
@@ -69,6 +69,7 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   let completeGameRecords: GameRecord[] = [];
   for (let i = 0; i < fakeGameRecords.length; i++) {
     const gameRecord = fakeGameRecords[i];
+    const ref = i.toString();
 
     const black = (await playersCol.getWithRef(gameRecord.blackRef))!;
     const white = (await playersCol.getWithRef(gameRecord.whiteRef))!;
@@ -85,27 +86,25 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
       doesThisColorWin(Color.White, gameRecord.result)
     );
 
-    const nowLocalTs = admin.firestore.Timestamp.now().toMillis();
+    const now = TimeStamp.now();
 
     const completeGameRecord: GameRecord = {
       ...gameRecord,
-      firebaseRef: i.toString(),
-      dateAdded: now,
+      firebaseRef: ref,
+      dateAdded: now.serialize(),
       blackName: black.name,
       whiteName: white.name,
       eloData: {
-        atTheTimeBlackElo: black.elo,
+        atTheTimeBlackElo: blackElo.serialize(),
         eloDeltaBlack: blackEloDelta.serialize(),
-        atTheTimeWhiteElo: white.elo,
+        atTheTimeWhiteElo: whiteElo.serialize(),
         eloDeltaWhite: whiteEloDelta.serialize(),
       },
     };
 
     completeGameRecords.push(completeGameRecord);
 
-    const { firebaseRef, ...noFirebaseRef } = { ...completeGameRecord };
-
-    await gameRecordsCol.col.doc(i.toString()).set(noFirebaseRef);
+    await gameRecordsCol.col.doc(ref).set(completeGameRecord);
 
     // Update Players' Elos and Total Games
     await playersCol.updateWithRef(gameRecord.blackRef, {
@@ -117,36 +116,14 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
       gamesTotal: white.gamesTotal + 1,
     });
 
-    // Update Game References for Each Player
-    await playersCol.col
-      .doc(gameRecord.blackRef)
-      .collection("gamesRefs")
-      .add(<OnServerGameRecord.GameRecord__Ref>{
-        gameRef: i.toString(),
-        gameDate: now,
-      });
-    await playersCol.col
-      .doc(gameRecord.whiteRef)
-      .collection("gamesRefs")
-      .add(<OnServerGameRecord.GameRecord__Ref>{
-        gameRef: i.toString(),
-        gameDate: now,
-      });
-
     // Update Game References on Tournament
-    if (
-      (gameRecord.gameEvent as OnServerGameEvents.GameEventRef).gameEventRef
-    ) {
-      const eventRefString = (
-        gameRecord.gameEvent as OnServerGameEvents.GameEventRef
-      ).gameEventRef;
+    if (gameRecord?.gameEventRef) {
+      const eventRefString = gameRecord.gameEventRef;
 
-      const eventRef = db.collection("game_events").doc(eventRefString);
+      const eventRef = gameEventsCol.col.doc(eventRefString);
       const gameEvent = (await eventRef.get()).data()!;
 
       await eventRef.update({ gamesTotal: gameEvent.gamesTotal + 1 });
-
-      await eventRef.collection("games").add({ gameRef: i.toString() });
     }
   }
 

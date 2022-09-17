@@ -64,13 +64,13 @@ export default class GameRecordsTable extends HTMLElement {
             <route-link ${blackWins} href="/players/${gameRecord.blackRef}">
               <p>${gameRecord.blackName}</p>
             </route-link>
-            <p>${gameRecord.eloData.atTheTimeBlackElo}</p>
-            <p class="centered">${gameRecord.eloData.eloDeltaBlack}</p>
+            <p>${gameRecord!.eloData!.atTheTimeBlackElo}</p>
+            <p class="centered">${gameRecord!.eloData!.eloDeltaBlack}</p>
             <route-link ${whiteWins} href="/players/${gameRecord.whiteRef}">
               <p>${gameRecord.whiteName}</p>
             </route-link>
-            <p>${gameRecord.eloData.atTheTimeWhiteElo}</p>
-            <p class="centered">${gameRecord.eloData.eloDeltaWhite}</p>
+            <p>${gameRecord!.eloData!.atTheTimeWhiteElo}</p>
+            <p class="centered">${gameRecord!.eloData!.eloDeltaWhite}</p>
             <p>${resultString(gameRecord.result)}</p>
           </route-link>
         </div>

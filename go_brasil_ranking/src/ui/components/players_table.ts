@@ -1,6 +1,8 @@
 import { apiUrl } from "../../infra/setup";
+
+import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
-import { getAllFlags, Player } from "../../models/player";
+import { Player } from "../../models/player";
 
 export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";

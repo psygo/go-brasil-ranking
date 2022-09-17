@@ -1,7 +1,10 @@
 import { apiUrl } from "../../infra/setup";
+
+import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_ref";
-import { getAllFlags, Player } from "../../models/player";
+import { Player } from "../../models/player";
+
 import GameRecordsTable from "../components/game_records_table";
 
 export default class PlayerView extends HTMLElement {

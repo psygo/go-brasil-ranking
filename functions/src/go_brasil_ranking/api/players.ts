@@ -1,10 +1,7 @@
 import { ExpressApiRoute, howMany } from "../../infra";
 
 import { db } from "../..";
-import {
-  OnServerPlayers,
-  Player,
-} from "../../../../go_brasil_ranking/src/models/player";
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
 import { playersCol } from "../collections/players_col";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
@@ -18,7 +15,7 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
 
     const players: Player[] = [];
     playersDocs.forEach((playerDoc) => {
-      const playerNoRef = playerDoc.data() as OnServerPlayers.Player__NoRef;
+      const playerNoRef = playerDoc.data() as Player;
       players.push({ ...playerNoRef, firebaseRef: playerDoc.id });
     });
 
