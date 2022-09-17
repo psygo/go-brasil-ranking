@@ -1,4 +1,5 @@
 import { apiUrl } from "../../infra/setup";
+import { RouteEnum } from "../../routing/router";
 
 import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
@@ -8,7 +9,7 @@ export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
 
   private getPlayers = async (): Promise<Player[]> => {
-    const response = await fetch(`${apiUrl}/jogadores`);
+    const response = await fetch(`${apiUrl}${RouteEnum.players}`);
     const json = await response.json();
     return json["data"]["players"];
   };
@@ -41,13 +42,17 @@ export default class PlayersTable extends HTMLElement {
 
       this.innerHTML += `
         <div class="player-card" id="${player.firebaseRef}">
-          <route-link href="/players/${player.firebaseRef}">
+          <route-link href="${RouteEnum.players}/${player.firebaseRef}">
             <span>${i + 1}</span>
-            <route-link href="/players/${player.firebaseRef}">
+
+            <route-link href="${RouteEnum.players}/${player.firebaseRef}">
               <span>${player.name}</span>
             </route-link>
+
             <span class="countries">${getAllFlags(player.countries)}</span>
+
             <span>${elo.num}</span>
+
             <span class="dan-kyu">${elo.danKyuLevel()}</span>
           </route-link>
         </div>

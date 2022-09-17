@@ -1,12 +1,12 @@
 import { Route, RouteEnum, Router } from "./router";
 import { router } from "../infra/setup";
 
+import AboutView from "../ui/views/about-view";
+import GameRecordView from "../ui/views/game-record-view";
+import GameRecordsView from "../ui/views/game-records-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
-import GameRecordsView from "../ui/views/game-records-view";
 import PlayersView from "../ui/views/players-view";
-import GameRecordView from "../ui/views/game-record-view";
-import AboutView from "../ui/views/about-view";
 
 export default class Switcher {
   protected readonly router: Router = router;

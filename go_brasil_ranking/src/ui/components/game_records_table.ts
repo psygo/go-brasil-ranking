@@ -1,5 +1,6 @@
 import { apiUrl } from "../../infra/setup";
 import { DateUtils } from "../../infra/date_utils";
+import { RouteEnum } from "../../routing/router";
 
 import { FirebaseRef } from "../../models/firebase_ref";
 import { Color, GameRecord, resultString } from "../../models/game_record";
@@ -11,7 +12,9 @@ export default class GameRecordsTable extends HTMLElement {
     const p = this.playerRef ? this.playerRef : "";
     const queryString = `?limit=${this.limit}&playerRef=${p}`;
 
-    const response = await fetch(`${apiUrl}/partidas${queryString}`);
+    const response = await fetch(
+      `${apiUrl}${RouteEnum.gameRecords}${queryString}`
+    );
 
     const json = await response.json();
     return json["data"]["gameRecords"];
@@ -64,19 +67,31 @@ export default class GameRecordsTable extends HTMLElement {
 
       this.innerHTML += `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
-          <route-link href="/game-records/${gameRecord.firebaseRef}">
+          <route-link href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}">
             <span>${gameRecord.firebaseRef}</span>
-            <route-link ${blackWins} href="/players/${gameRecord.blackRef}">
-              <span>${gameRecord.blackName}</span>
+
+            <route-link 
+              ${blackWins} 
+              href="${RouteEnum.players}/${gameRecord.blackRef}">
+                <span>${gameRecord.blackName}</span>
             </route-link>
+
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
+
             <span class="centered">${gameRecord!.eloData!.eloDeltaBlack}</span>
-            <route-link ${whiteWins} href="/players/${gameRecord.whiteRef}">
-              <span>${gameRecord.whiteName}</span>
+
+            <route-link 
+              ${whiteWins} 
+              href="${RouteEnum.players}/${gameRecord.whiteRef}">
+                <span>${gameRecord.whiteName}</span>
             </route-link>
+
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
+
             <span class="centered">${gameRecord!.eloData!.eloDeltaWhite}</span>
+
             <span>${resultString(gameRecord.result)}</span>
+
             <span>${DateUtils.formatDate(gameDate)}</span>
           </route-link>
         </div>

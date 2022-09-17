@@ -1,4 +1,6 @@
 import { apiUrl } from "../../infra/setup";
+import { RouteEnum } from "../../routing/router";
+
 import { FirebaseRef } from "../../models/firebase_ref";
 import { GameRecord, resultString } from "../../models/game_record";
 
@@ -13,7 +15,7 @@ export default class GameRecordView extends HTMLElement {
 
   private getGameRecord = async (): Promise<void> => {
     const response = await fetch(
-      `${apiUrl}/game-records/${this.gameRecordRef}`
+      `${apiUrl}${RouteEnum.gameRecords}/${this.gameRecordRef}`
     );
     const json = await response.json();
     this.gameRecord = json["data"]["gameRecord"];

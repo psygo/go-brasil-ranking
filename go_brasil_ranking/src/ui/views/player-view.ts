@@ -1,4 +1,5 @@
 import { apiUrl } from "../../infra/setup";
+import { RouteEnum } from "../../routing/router";
 
 import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
@@ -15,7 +16,9 @@ export default class PlayerView extends HTMLElement {
   }
 
   private getPlayers = async (): Promise<Player> => {
-    const response = await fetch(`${apiUrl}/players/${this.playerRef}`);
+    const response = await fetch(
+      `${apiUrl}${RouteEnum.players}/${this.playerRef}`
+    );
     const json = await response.json();
     return json["data"]["player"];
   };
