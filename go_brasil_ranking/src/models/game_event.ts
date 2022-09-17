@@ -4,6 +4,7 @@ export enum GameEventTypes {
   online = "online",
   live = "live",
   tournament = "tournament",
+  league = "league",
 }
 
 interface _GameEventBase {
@@ -25,9 +26,21 @@ interface _GameEventTournament extends _GameEventBase {
   firebaseRef?: FirebaseRef;
   name: string;
   dates: readonly number[];
-  gamesTotal: number;
+  gamesTotal?: number;
 }
 export type GameEventTournament = Readonly<_GameEventTournament>;
 
-type _GameEvent = GameEventOnline | GameEventLive | GameEventTournament;
+interface _GameEventLeague extends _GameEventBase {
+  type: GameEventTypes.league;
+  firebaseRef?: FirebaseRef;
+  name: string;
+  gamesTotal?: number;
+}
+export type GameEventLeague = Readonly<_GameEventLeague>;
+
+type _GameEvent =
+  | GameEventOnline
+  | GameEventLive
+  | GameEventTournament
+  | GameEventLeague;
 export type GameEvent = Readonly<_GameEvent>;

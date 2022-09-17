@@ -7,6 +7,6 @@ interface _Player {
   name: string;
   countries: readonly Country[];
   elo: SerializedElo;
-  gamesTotal: number;
+  gamesTotal?: number;
 }
 export type Player = Readonly<_Player>;

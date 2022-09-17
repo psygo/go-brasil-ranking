@@ -91,15 +91,15 @@ content-type: application/json
 
 ### 1. Mock Populate Players
 
-POST {{address}}/players/mock-populate
+POST {{address}}/jogadores/mock-populate
 
 ### 2. Mock Populate Game Events
 
-POST {{address}}/game-events/mock-populate
+POST {{address}}/eventos/mock-populate
 
 ### 3. Mock Populate Game Records
 
-POST {{address}}/game-records/mock-populate
+POST {{address}}/partidas/mock-populate
 
 ### 4. Mock Populate Everything
 

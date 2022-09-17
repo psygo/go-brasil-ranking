@@ -15,11 +15,11 @@ export const mockPopulateGameEvents = async (): Promise<GameEvent[]> => {
     const gameEvent = fakeGameEvents[i];
     const ref = i.toString();
 
-    await gameEventsCol.col.doc(ref).set(gameEvent);
+    await gameEventsCol.col.doc(ref).set({ ...gameEvent, gamesTotal: 0 });
 
     let gameEventToReturn = gameEvent;
     if (gameEvent.type === GameEventTypes.tournament)
-      gameEventToReturn = { ...gameEvent, firebaseRef: ref };
+      gameEventToReturn = { ...gameEvent, gamesTotal: 0, firebaseRef: ref };
 
     mockGameEventsWithFirebaseRef.push(gameEventToReturn);
   }

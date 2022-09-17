@@ -15,7 +15,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2150,
-    gamesTotal: 0,
   },
   {
     name: "Fabrício Caluza Machado",
@@ -27,7 +26,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1750,
-    gamesTotal: 0,
   },
   {
     name: "Ariel Oliveira",
@@ -39,7 +37,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1050,
-    gamesTotal: 0,
   },
   {
     name: "Laura Augustina Avram",
@@ -49,7 +46,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2250,
-    gamesTotal: 0,
   },
   {
     name: "Emanuel Araújo",
@@ -61,7 +57,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1650,
-    gamesTotal: 0,
   },
   {
     name: "Sophie Pagès",
@@ -74,7 +69,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 700,
-    gamesTotal: 0,
   },
   {
     name: "Laércio Pereira",
@@ -86,7 +80,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2000,
-    gamesTotal: 0,
   },
   {
     name: "Gabriel Ventura",
@@ -96,7 +89,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1600,
-    gamesTotal: 0,
   },
   {
     name: "Gabriel Garcia",
@@ -106,7 +98,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 550,
-    gamesTotal: 0,
   },
   {
     name: "Vanderson da Silva Rodrigues",
@@ -117,7 +108,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 550,
-    gamesTotal: 0,
   },
   {
     name: "Audrey Luciano Filho",
@@ -128,7 +118,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 900,
-    gamesTotal: 0,
   },
   {
     name: "Amir Fragman",
@@ -143,7 +132,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2500,
-    gamesTotal: 0,
   },
   {
     name: "Alexandre Amaro",
@@ -155,7 +143,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2400,
-    gamesTotal: 0,
   },
   {
     name: "Wang Seng Feng",
@@ -170,7 +157,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2400,
-    gamesTotal: 0,
   },
   {
     name: "Hélcio Alexandre Pacheco",
@@ -182,7 +168,6 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2100,
-    gamesTotal: 0,
   },
   {
     name: "Felipe Herman van Riemsdijk",
@@ -194,6 +179,5 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2100,
-    gamesTotal: 0,
   },
 ];
