@@ -1,4 +1,4 @@
-import { apiUrl } from "../../infra/setup";
+import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
 
@@ -13,7 +13,7 @@ export default class GameRecordsTable extends HTMLElement {
     const queryString = `?limit=${this.limit}&playerRef=${p}`;
 
     const response = await fetch(
-      `${apiUrl}${RouteEnum.gameRecords}${queryString}`
+      `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
     );
 
     const json = await response.json();

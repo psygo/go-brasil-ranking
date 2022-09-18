@@ -33,17 +33,17 @@ main {
   padding-top: 20px;
 }
 
-nav-bar {
+header {
   background-color: green;
   font-size: 1.1rem;
   padding-left: 15px;
   padding-top: 10px;
 }
-nav-bar nav {
+header nav-bar nav {
   display: flex;
   gap: 20px;
 }
-nav-bar nav route-link {
+header nav-bar nav route-link {
   color: #f9f9f9;
 }
 

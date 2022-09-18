@@ -1,4 +1,4 @@
-import { apiUrl } from "../../infra/setup";
+import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
 import { getAllFlags } from "../../models/country";
@@ -17,7 +17,7 @@ export default class PlayerView extends HTMLElement {
 
   private getPlayers = async (): Promise<Player> => {
     const response = await fetch(
-      `${apiUrl}${RouteEnum.players}/${this.playerRef}`
+      `${g.apiUrl}${RouteEnum.players}/${this.playerRef}`
     );
     const json = await response.json();
     return json["data"]["player"];

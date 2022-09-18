@@ -1,4 +1,4 @@
-import { apiUrl } from "../../infra/setup";
+import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
 import { getAllFlags } from "../../models/country";
@@ -9,7 +9,7 @@ export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
 
   private getPlayers = async (): Promise<Player[]> => {
-    const response = await fetch(`${apiUrl}${RouteEnum.players}`);
+    const response = await fetch(`${g.apiUrl}${RouteEnum.players}`);
     const json = await response.json();
     return json["data"]["players"];
   };
