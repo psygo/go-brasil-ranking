@@ -9,6 +9,7 @@ export type Route = string;
 export enum RouteEnum {
   home = "/",
   players = "/jogadores",
+  events = "/eventos",
   gameRecords = "/partidas",
   about = "/sobre",
   unknown = "/404",
