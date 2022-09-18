@@ -20,9 +20,10 @@ html {
 body {
   background-color: $bgColor;
 
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 42px 1fr;
+  grid-template-rows: 42px 1fr auto;
 }
 
 a {

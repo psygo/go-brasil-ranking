@@ -1,0 +1,18 @@
+@use "../globals" as g;
+
+footer {
+  foot-er {
+    display: flex;
+    justify-content: center;
+
+    padding-bottom: 5px;
+    padding-top: 10px;
+
+    background-color: darken(g.$bgColor, 1%);
+
+    svg {
+      width: 24px;
+      fill: darken(g.$bgColor, 40%);
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import { getRouter, Router } from "../routing/router";
 
 import Navbar from "../ui/components/navbar";
+import Footer from "../ui/components/foot-er";
 import RouteLink from "../ui/components/route-link";
 
 import GameRecordsTable from "../ui/components/game_records_table";
@@ -28,6 +29,7 @@ export default class Setup {
 
   private define = (): void => {
     customElements.define(Navbar.tag, Navbar);
+    customElements.define(Footer.tag, Footer);
     customElements.define(RouteLink.tag, RouteLink);
 
     customElements.define(GameRecordsTable.tag, GameRecordsTable);

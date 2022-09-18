@@ -1,3 +1,5 @@
+import { Globals as g } from "../../infra/globals";
+
 export default class AboutView extends HTMLElement {
   static readonly tag: string = "about-view";
 
@@ -9,8 +11,6 @@ export default class AboutView extends HTMLElement {
   }
 
   private static readonly moderatorEmail: string = "moderador@rbgo.com.br";
-  private static readonly repoAddress: string =
-    "https://github.com/psygo/ranking-brasileiro-de-go";
 
   private get moderatorLinkString(): string {
     return `<a href="mailto:${AboutView.moderatorEmail}">moderador</a>`;
@@ -47,7 +47,7 @@ export default class AboutView extends HTMLElement {
           O RBGo é um projeto em código aberto, ou seja, a infraestrutura é
           inspecionável por qualquer um. Se você quiser e puder acrescentar ou
           melhorar alguma funcionalidade é só 
-            <a href="${AboutView.repoAddress}">
+            <a href="${g.repoUrl}">
               adicionar um <i>pull request</i> no Github
             </a>.
         </p>

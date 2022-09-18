@@ -13,9 +13,10 @@ html {
 
 body {
   background-color: #d7d7d7;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 42px 1fr;
+  grid-template-rows: 42px 1fr auto;
 }
 
 a {
@@ -45,6 +46,18 @@ header nav-bar nav {
 }
 header nav-bar nav route-link {
   color: #f9f9f9;
+}
+
+footer foot-er {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  background-color: #d4d4d4;
+}
+footer foot-er svg {
+  width: 24px;
+  fill: #717171;
 }
 
 game-records-table h2 {

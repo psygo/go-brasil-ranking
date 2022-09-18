@@ -7,4 +7,6 @@ export namespace Globals {
 
   export const apiUrl =
     "http://localhost:4096/fanaro-firebase-lab/us-central1/goBrasilRanking";
+
+  export const repoUrl = "https://github.com/psygo/fanaro-firebase-lab";
 }
