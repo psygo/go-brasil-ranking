@@ -1,6 +1,7 @@
 import { Route, RouteEnum, Router } from "./router";
 import { Globals as g } from "../infra/globals";
 
+import AdminView from "../ui/views/admin-view";
 import AboutView from "../ui/views/about-view";
 import GameRecordView from "../ui/views/game-record-view";
 import GameRecordsView from "../ui/views/game-records-view";
@@ -30,6 +31,9 @@ export default class Switcher {
         break;
       case RouteEnum.about:
         new AboutSwitcher().switch();
+        break;
+      case RouteEnum.admin:
+        new AdminSwitcher().switch();
         break;
       default:
         new UnknownSwitcher().switch();
@@ -70,6 +74,12 @@ class GameRecordsSwitcher extends Switcher {
 class AboutSwitcher extends Switcher {
   switch = (): void => {
     this.mainElement.replaceChildren(new AboutView());
+  };
+}
+
+class AdminSwitcher extends Switcher {
+  switch = (): void => {
+    this.mainElement.replaceChildren(new AdminView());
   };
 }
 

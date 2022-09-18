@@ -9,7 +9,7 @@
     },
     "console.log": {
         "prefix": "csl",
-        "body": "console.log($1);"
+        "body": "console.log($1)"
     },
     "HTML Component": {
         "prefix": "html_component",

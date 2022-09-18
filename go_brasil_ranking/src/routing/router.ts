@@ -12,6 +12,7 @@ export enum RouteEnum {
   events = "/eventos",
   gameRecords = "/partidas",
   about = "/sobre",
+  admin = "/admin",
   unknown = "/404",
 }
 
@@ -19,7 +20,7 @@ export const getRouter = (): Router => {
   switch (envState) {
     case EnvState.dev:
       const router = DevRouter.singleInstance();
-      router.manualRouting("/");
+      // router.manualRouting("/admin");
       return router;
     case EnvState.prod:
       return ProdRouter.singleInstance();
