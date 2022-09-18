@@ -1,6 +1,8 @@
 @use "../globals" as g;
 
 footer {
+  grid-area: footer;
+
   foot-er {
     display: flex;
     justify-content: center;

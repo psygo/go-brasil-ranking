@@ -79,6 +79,11 @@ game-records-table {
       $refWidth $playerNameWidth $eloWidth
       $eloDeltaWidth $playerNameWidth $eloWidth
       $eloDeltaWidth $resultWidth $dateWidth;
+    grid-template-areas:
+      "ref"
+      "black elo-black elo-delta-black"
+      "white elo-white elo-delta-white"
+      "result date";
   }
 
   .game-record-card {

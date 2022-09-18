@@ -17,6 +17,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 42px 1fr auto;
+  grid-template-areas: "header" "main" "footer";
 }
 
 a {
@@ -28,6 +29,7 @@ route-link:hover {
 }
 
 main {
+  grid-area: main;
   display: grid;
   max-width: 800px;
   margin: 0 auto;
@@ -35,6 +37,7 @@ main {
 }
 
 header {
+  grid-area: header;
   background-color: green;
   font-size: 1.1rem;
   padding-left: 15px;
@@ -48,6 +51,9 @@ header nav-bar nav route-link {
   color: #f9f9f9;
 }
 
+footer {
+  grid-area: footer;
+}
 footer foot-er {
   display: flex;
   justify-content: center;
@@ -77,6 +83,7 @@ game-records-table .game-record-card > route-link {
   align-items: center;
   display: grid;
   grid-template-columns: 40px 130px 60px 40px 130px 60px 40px 90px 100px;
+  grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date";
 }
 game-records-table .game-record-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -98,6 +105,7 @@ game-records-table .game-record-card > route-link .centered {
 game-records-table .game-records-table-legend {
   display: grid;
   grid-template-columns: 40px 130px 60px 40px 130px 60px 40px 90px 100px;
+  grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date";
   padding: 12px 0px;
   padding-left: 17px;
   align-items: center;
@@ -125,6 +133,7 @@ players-table .player-card > route-link {
   align-items: center;
   display: grid;
   grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
+  grid-template-areas: "ref player-name countries elo dan-kyu";
 }
 players-table .player-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -140,16 +149,19 @@ players-table .player-card > route-link route-link[loser] {
   color: #660000;
 }
 players-table .player-card > route-link .dan-kyu {
+  grid-area: dan-kyu;
   text-align: center;
   margin-left: -17px;
 }
 players-table .player-card > route-link .countries {
+  grid-area: countries;
   text-align: center;
   margin-left: -29px;
 }
 players-table .players-table-legend {
   display: grid;
   grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
+  grid-template-areas: "ref player-name countries elo dan-kyu";
   padding: 12px 0px;
   padding-left: 17px;
   align-items: center;

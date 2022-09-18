@@ -1,6 +1,8 @@
 @use "../globals" as g;
 
 header {
+  grid-area: header;
+
   background-color: green;
   font-size: 1.1rem;
 
