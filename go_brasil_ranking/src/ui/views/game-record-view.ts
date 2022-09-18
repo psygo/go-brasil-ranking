@@ -4,6 +4,8 @@ import { RouteEnum } from "../../routing/router";
 import { FirebaseRef } from "../../models/firebase_ref";
 import { GameRecord, resultString } from "../../models/game_record";
 
+declare let glift: any;
+
 export default class GameRecordView extends HTMLElement {
   static readonly tag: string = "game-record-view";
 
@@ -50,21 +52,17 @@ export default class GameRecordView extends HTMLElement {
     gliftScript.setAttribute("async", "");
 
     gliftScript.onload = () => {
-      const s = document.createElement("script");
-      s.innerHTML = `
-        gliftWidget = glift.create({
-          divId: "glift_display1",
-          sgf: {
-            sgfString: \`${this.gameRecord!.sgf}\`,
-          },
-          display: {
-            theme: "DEPTH",
-            goBoardBackground: "images/purty_wood.png",
-            disableZoomForMobile: true,
-          },
-        });
-      `;
-      this.appendChild(s);
+      glift.create({
+        divId: "glift_display1",
+        sgf: {
+          sgfString: `${this.gameRecord!.sgf}`,
+        },
+        display: {
+          theme: "DEPTH",
+          goBoardBackground: "images/purty_wood.png",
+          disableZoomForMobile: true,
+        },
+      });
     };
 
     document.head.appendChild(gliftScript);
