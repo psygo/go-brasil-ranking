@@ -33,6 +33,7 @@ main {
   display: grid;
   max-width: 800px;
   margin: 0 auto;
+  margin-bottom: 50px;
   padding-top: 20px;
 }
 
@@ -191,7 +192,6 @@ home-view {
   display: grid;
   grid-template-rows: max-content max-content;
   grid-row-gap: 25px;
-  margin-bottom: 50px;
 }
 
 player-view hr {
