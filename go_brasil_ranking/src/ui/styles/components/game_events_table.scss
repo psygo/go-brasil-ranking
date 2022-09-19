@@ -1,0 +1,30 @@
+@use "../components/game_records_table" as grt;
+
+game-events-table {
+  @include grt.captionDecoration;
+
+  @mixin cardLegendGrid {
+    $gameEventNameWidth: 250px;
+
+    display: grid;
+    grid-template-columns: "ref name";
+    grid-template-columns: grt.$refWidth $gameEventNameWidth;
+  }
+
+  .game-event-card {
+    > route-link {
+      @include grt.card;
+      @include cardLegendGrid;
+    }
+
+    .game-event-name {
+      margin-right: 15px;
+    }
+  }
+
+  .game-events-table-legend {
+    @include grt.cardPadding;
+    @include grt.legendDecoration;
+    @include cardLegendGrid;
+  }
+}

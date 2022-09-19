@@ -8,6 +8,7 @@ import GameRecordsView from "../ui/views/game-records-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
+import GameEventsView from "../ui/views/game-events-view";
 
 export default class Switcher {
   protected readonly router: Router = g.router;
@@ -28,6 +29,9 @@ export default class Switcher {
         break;
       case RouteEnum.gameRecords:
         new GameRecordsSwitcher(this.splitPrefixRoute).switch();
+        break;
+      case RouteEnum.gameEvents:
+        new GameEventsSwitcher(this.splitPrefixRoute).switch();
         break;
       case RouteEnum.about:
         new AboutSwitcher().switch();
@@ -68,6 +72,15 @@ class GameRecordsSwitcher extends Switcher {
       this.mainElement.replaceChildren(new GameRecordsView());
     else
       this.mainElement.replaceChildren(new GameRecordView(this.currentRoute));
+  };
+}
+
+class GameEventsSwitcher extends Switcher {
+  switch = (): void => {
+    // if (!this.currentRoute)
+    this.mainElement.replaceChildren(new GameEventsView());
+    // else
+    // this.mainElement.replaceChildren(new GameEventsView(this.currentRoute));
   };
 }
 

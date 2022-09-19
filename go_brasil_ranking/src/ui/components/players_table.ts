@@ -17,7 +17,7 @@ export default class PlayersTable extends HTMLElement {
   async connectedCallback() {
     const players = await this.getPlayers();
 
-    this.innerHTML += `
+    this.innerHTML += /*html*/ `
       <h2>Jogadores</h2>
       
       <div class="players-table-legend">
@@ -40,7 +40,7 @@ export default class PlayersTable extends HTMLElement {
       const player = players[i];
       const elo = new Elo(player.elo);
 
-      this.innerHTML += `
+      this.innerHTML += /*html*/ `
         <div class="player-card" id="${player.firebaseRef}">
           <route-link href="${RouteEnum.players}/${player.firebaseRef}">
             <span>${i + 1}</span>

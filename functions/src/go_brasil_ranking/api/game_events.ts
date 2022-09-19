@@ -18,7 +18,7 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
     res.status(200).send({
       status: "success",
       message: `Game Records found (total: ${gameEvents.length}`,
-      data: { players: gameEvents },
+      data: { gameEvents: gameEvents },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);
@@ -43,7 +43,7 @@ export const getGameEvent: ExpressApiRoute = async (req, res) => {
       res.status(200).send({
         status: "success",
         message: "Game Record found.",
-        data: { players: gameEventDoc.data() },
+        data: { gameEvent: gameEventDoc.data() },
       });
   } catch (e) {
     res.status(500).json((e as Error).message);

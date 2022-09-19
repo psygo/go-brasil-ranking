@@ -83,7 +83,7 @@ game-records-table .game-record-card > route-link {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 40px 130px 60px 40px 130px 60px 40px 90px 100px;
+  grid-template-columns: 30px 130px 60px 40px 130px 60px 40px 90px 100px;
   grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date";
 }
 game-records-table .game-record-card > route-link:hover {
@@ -105,7 +105,7 @@ game-records-table .game-record-card > route-link .centered {
 }
 game-records-table .game-records-table-legend {
   display: grid;
-  grid-template-columns: 40px 130px 60px 40px 130px 60px 40px 90px 100px;
+  grid-template-columns: 30px 130px 60px 40px 130px 60px 40px 90px 100px;
   grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date";
   padding: 12px 0px;
   padding-left: 17px;
@@ -115,6 +115,51 @@ game-records-table .game-records-table-legend {
 game-records-table .game-records-table-legend .centered {
   text-align: center;
   margin-left: -20px;
+}
+
+game-events-table h2 {
+  padding-left: 13px;
+}
+game-events-table .game-event-card > route-link {
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  padding: 12px 0px;
+  padding-left: 17px;
+  margin-bottom: 10px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: "ref name";
+  grid-template-columns: 30px 250px;
+}
+game-events-table .game-event-card > route-link:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-events-table .game-event-card > route-link route-link {
+  color: #000066;
+}
+game-events-table .game-event-card > route-link route-link[winner] {
+  color: green;
+}
+game-events-table .game-event-card > route-link route-link[loser] {
+  color: #660000;
+}
+game-events-table .game-event-card .game-event-name {
+  margin-right: 15px;
+}
+game-events-table .game-events-table-legend {
+  padding: 12px 0px;
+  padding-left: 17px;
+  align-items: center;
+  font-weight: bold;
+  display: grid;
+  grid-template-columns: "ref name";
+  grid-template-columns: 30px 250px;
 }
 
 players-table h2 {
@@ -133,7 +178,7 @@ players-table .player-card > route-link {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
+  grid-template-columns: 30px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
   grid-template-areas: "ref player-name countries elo dan-kyu";
 }
 players-table .player-card > route-link:hover {
@@ -161,7 +206,7 @@ players-table .player-card > route-link .countries {
 }
 players-table .players-table-legend {
   display: grid;
-  grid-template-columns: 40px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
+  grid-template-columns: 30px minmax(100px, 200px) minmax(60px, max-content) 60px 45px;
   grid-template-areas: "ref player-name countries elo dan-kyu";
   padding: 12px 0px;
   padding-left: 17px;
