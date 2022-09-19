@@ -4,9 +4,11 @@ import Navbar from "../ui/components/navbar";
 import Footer from "../ui/components/foot-er";
 import RouteLink from "../ui/components/route-link";
 
+import GameEventsTable from "../ui/components/game_events_table";
 import GameRecordsTable from "../ui/components/game_records_table";
 import PlayersTable from "../ui/components/players_table";
 
+import GameEventsView from "../ui/views/game-events-view";
 import GameRecordView from "../ui/views/game-record-view";
 import GameRecordsView from "../ui/views/game-records-view";
 import HomeView from "../ui/views/home-view";
@@ -14,8 +16,6 @@ import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
 import AboutView from "../ui/views/about-view";
 import AdminView from "../ui/views/admin-view";
-import GameEventsView from "../ui/views/game-events-view";
-import GameEventsTable from "../ui/components/game_events_table";
 
 export default class Setup {
   private static instance: Setup;

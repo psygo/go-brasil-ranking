@@ -1,10 +1,5 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
-import {
-  Auth,
-  // browserLocalPersistence,
-  connectAuthEmulator,
-  getAuth,
-} from "firebase/auth";
+import { Auth, connectAuthEmulator, getAuth } from "firebase/auth";
 
 import { EnvState, envState } from "../infra/env";
 

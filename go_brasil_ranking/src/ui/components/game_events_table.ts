@@ -43,18 +43,18 @@ export default class GameEventsTable extends HTMLElement {
         gameEvent.type === GameEventTypes.league
       )
         this.innerHTML += /*html*/ `
-        <div class="game-event-card" id="${gameEvent.firebaseRef}">
-          <route-link href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
-            <span>${i + 1}</span>
+          <div class="game-event-card" id="${gameEvent.firebaseRef}">
+            <route-link href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
+              <span>${i + 1}</span>
 
-            <route-link 
-              class="game-event-name"
-              href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
-              <span>${gameEvent.name}</span>
+              <route-link 
+                class="game-event-name"
+                href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
+                <span>${gameEvent.name}</span>
+              </route-link>
             </route-link>
-          </route-link>
-        </div>
-      `;
+          </div>
+        `;
     }
   };
 }

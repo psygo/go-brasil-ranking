@@ -13,11 +13,13 @@ export default class AboutView extends HTMLElement {
   private static readonly moderatorEmail: string = "moderador@rbgo.com.br";
 
   private get moderatorLinkString(): string {
-    return `<a href="mailto:${AboutView.moderatorEmail}">moderador</a>`;
+    return /*html*/ `
+      <a href="mailto:${AboutView.moderatorEmail}">moderador</a>
+    `;
   }
 
   private setContent = (): void => {
-    this.innerHTML = `
+    this.innerHTML = /*html*/ `
       <h1>Sobre o Ranking Brasileiro de Go (RBGo)</h1>
       
       <h2>Como faço para ser incluído no RBGo?</h2>

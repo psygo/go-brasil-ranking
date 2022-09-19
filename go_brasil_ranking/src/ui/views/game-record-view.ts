@@ -27,7 +27,7 @@ export default class GameRecordView extends HTMLElement {
     await this.getGameRecord();
 
     if (this.gameRecord) {
-      document.title = `
+      document.title = /*html*/ `
         Partida | ${this.gameRecord.blackName} vs ${this.gameRecord.whiteName}
       `;
 
@@ -36,7 +36,7 @@ export default class GameRecordView extends HTMLElement {
   }
 
   private setGameRecordPage = (): void => {
-    this.innerHTML += `
+    this.innerHTML += /*html*/ `
       <h2>${this.gameRecord!.blackName} vs ${this.gameRecord!.whiteName}</h2>
       <h3>${resultString(this.gameRecord!.result)}</h3>
       <div id="glift_display1" style="width: 500px; height: 500px;"></div>
