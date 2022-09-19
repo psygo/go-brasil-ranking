@@ -206,4 +206,38 @@ player-view h2 {
   margin-bottom: 30px;
 }
 
+admin-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 200px;
+  font-size: 1.15rem;
+  margin-top: 150px;
+}
+admin-view form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-row-gap: 25px;
+}
+admin-view form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: 0;
+}
+admin-view form fieldset label {
+  height: 10px;
+  padding-left: 1px;
+}
+admin-view form fieldset input {
+  height: 30px;
+  padding-left: 7.5px;
+  font-size: 1.1rem;
+}
+admin-view button {
+  width: 100px;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
 /*# sourceMappingURL=index.css.map */

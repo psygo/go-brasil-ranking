@@ -13,6 +13,22 @@ export default class AdminView extends HTMLElement {
   async connectedCallback() {
     document.title = "RBGo | Admin";
 
+    this.innerHTML = `
+      <form>
+        <fieldset>
+          <label for="username">Administrador</label>
+          <input type="text" name="username" autofocus/>
+        </fieldset>
+      
+        <fieldset>
+          <label for="password">Senha</label>
+          <input type="text" name="password"/>
+        </fieldset>
+        
+        <button type="submit">Entrar</button>
+      </form>
+    `;
+
     await this.signIn();
   }
 
