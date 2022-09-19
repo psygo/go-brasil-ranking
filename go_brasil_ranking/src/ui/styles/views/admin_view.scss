@@ -1,53 +1,66 @@
 admin-view {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 250px 200px;
-
   font-size: 1.15rem;
 
-  margin-top: 150px;
-
-  form {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-row-gap: 25px;
-
-    fieldset {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr;
-
-      border: 0;
-
-      label {
-        height: 10px;
-        padding-left: 1px;
-      }
-
-      input {
-        height: 30px;
-
-        padding-left: 7.5px;
-
-        font-size: 1.1rem;
-      }
-    }
-  }
-
   button {
-    width: 100px;
+    width: max-content;
 
     margin-top: 10px;
+    padding: 2px 7.5px;
 
     font-size: 1.1rem;
   }
 
-  p {
-    margin-top: 40px;
+  &[signed-in="false"] {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 200px;
+    grid-template-areas: "form" "submit";
 
-    span {
-      color: darkblue;
+    margin-top: 150px;
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      grid-row-gap: 25px;
+      grid-area: form;
+      grid-template-areas: "username" "password";
+
+      fieldset {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+
+        border: 0;
+
+        label {
+          height: 10px;
+          padding-left: 1px;
+        }
+
+        input {
+          height: 30px;
+
+          padding-left: 7.5px;
+
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+
+  &[signed-in="true"] {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content;
+    grid-template-areas: "msg" "sign-out-button";
+
+    p {
+      margin-top: 40px;
+
+      span {
+        color: darkblue;
+      }
     }
   }
 }

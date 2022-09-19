@@ -207,42 +207,54 @@ player-view h2 {
 }
 
 admin-view {
+  font-size: 1.15rem;
+}
+admin-view button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 2px 7.5px;
+  font-size: 1.1rem;
+}
+admin-view[signed-in=false] {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 250px 200px;
-  font-size: 1.15rem;
+  grid-template-areas: "form" "submit";
   margin-top: 150px;
 }
-admin-view form {
+admin-view[signed-in=false] form {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   grid-row-gap: 25px;
+  grid-area: form;
+  grid-template-areas: "username" "password";
 }
-admin-view form fieldset {
+admin-view[signed-in=false] form fieldset {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   border: 0;
 }
-admin-view form fieldset label {
+admin-view[signed-in=false] form fieldset label {
   height: 10px;
   padding-left: 1px;
 }
-admin-view form fieldset input {
+admin-view[signed-in=false] form fieldset input {
   height: 30px;
   padding-left: 7.5px;
   font-size: 1.1rem;
 }
-admin-view button {
-  width: 100px;
-  margin-top: 10px;
-  font-size: 1.1rem;
+admin-view[signed-in=true] {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content;
+  grid-template-areas: "msg" "sign-out-button";
 }
-admin-view p {
+admin-view[signed-in=true] p {
   margin-top: 40px;
 }
-admin-view p span {
+admin-view[signed-in=true] p span {
   color: darkblue;
 }
 

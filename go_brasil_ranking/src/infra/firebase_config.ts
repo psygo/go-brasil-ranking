@@ -21,22 +21,17 @@ export const firebaseConfig = {
 export let app: FirebaseApp;
 export let auth: Auth;
 
-let authInitialized = false;
-export const initAuth = async () => {
+export const initAuth = async (): Promise<void> => {
   try {
-    if (!authInitialized) {
-      app = initializeApp(firebaseConfig);
-      auth = getAuth(app);
-      // await auth.setPersistence(browserLocalPersistence);
+    if (!app) app = initializeApp(firebaseConfig);
 
-      if (envState === EnvState.dev)
-        connectAuthEmulator(auth, "http://localhost:9094", {
-          disableWarnings: true,
-        });
-    }
+    if (!auth) auth = getAuth(app);
 
-    authInitialized = true;
+    if (envState === EnvState.dev)
+      connectAuthEmulator(auth, "http://localhost:9094", {
+        disableWarnings: true,
+      });
   } catch (error) {
-    authInitialized = false;
+    console.log(error);
   }
 };

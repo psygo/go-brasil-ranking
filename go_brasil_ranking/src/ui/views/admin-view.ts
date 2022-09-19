@@ -1,8 +1,15 @@
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  User,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { auth, initAuth } from "../../infra/firebase_config";
 
 export default class AdminView extends HTMLElement {
   static readonly tag: string = "admin-view";
+
+  private currentUser: User | null = null;
 
   constructor() {
     super();
@@ -15,16 +22,35 @@ export default class AdminView extends HTMLElement {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        this.innerHTML = /*html*/ `
-          <p>Você está logado como <span>${user.email}</span></p>
-        `;
+        this.currentUser = user;
+        this.alreadySignedIn();
       } else {
         this.signInForm();
       }
     });
   }
 
-  signInForm = (): void => {
+  private alreadySignedIn = (): void => {
+    this.setAttribute("signed-in", "true");
+
+    this.innerHTML = /*html*/ `
+      <p>Você está logado como <span>${this.currentUser!.email}</span></p>
+      
+      <button>Sair</button>
+    `;
+
+    const button: HTMLButtonElement = this.querySelector("button")!;
+
+    button.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      await signOut(auth);
+    });
+  };
+
+  private signInForm = (): void => {
+    this.setAttribute("signed-in", "false");
+
     this.innerHTML = /*html*/ `
       <form>
         <fieldset>
@@ -44,18 +70,12 @@ export default class AdminView extends HTMLElement {
     const submitButton: HTMLButtonElement = this.querySelector("button")!;
     submitButton.addEventListener("click", async (e: Event) => {
       e.preventDefault();
-      const isLoggedIn = await this.signIn();
 
-      const msg = isLoggedIn
-        ? "Você está logado!"
-        : "Você não conseguiu entrar...";
-      this.innerHTML += /*html*/ `
-        <p>${msg}</p>
-      `;
+      await this.signIn();
     });
   };
 
-  signIn = async (): Promise<boolean> => {
+  private signIn = async (): Promise<boolean> => {
     const adminUserInput: HTMLInputElement = this.querySelector(
       "input[name=username]"
     )!;
@@ -68,13 +88,9 @@ export default class AdminView extends HTMLElement {
 
     try {
       const cred = await signInWithEmailAndPassword(auth, username, password);
-
-      if (cred) return true;
-      else return false;
+      return cred ? true : false;
     } catch (error) {
-      const e = error as Error;
-      console.log(e.message);
-
+      console.log(error);
       return false;
     }
   };
