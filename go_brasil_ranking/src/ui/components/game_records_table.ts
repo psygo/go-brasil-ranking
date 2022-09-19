@@ -30,7 +30,7 @@ export default class GameRecordsTable extends HTMLElement {
   async connectedCallback() {
     const gameRecords = await this.getGameRecords();
 
-    this.innerHTML = `
+    this.innerHTML = /*html*/ `
       <h2>Partidas</h2>
 
       <div class="game-records-table-legend">
@@ -65,7 +65,7 @@ export default class GameRecordsTable extends HTMLElement {
 
       const gameDate = new Date(gameRecord.date);
 
-      this.innerHTML += `
+      this.innerHTML += /*html*/ `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
           <route-link href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}">
             <span>${gameRecord.firebaseRef}</span>

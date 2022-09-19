@@ -1,5 +1,10 @@
-import { initializeApp } from "firebase/app";
-import { connectAuthEmulator, getAuth } from "firebase/auth";
+import { FirebaseApp, initializeApp } from "firebase/app";
+import {
+  Auth,
+  // browserLocalPersistence,
+  connectAuthEmulator,
+  getAuth,
+} from "firebase/auth";
 
 import { EnvState, envState } from "../infra/env";
 
@@ -13,12 +18,16 @@ export const firebaseConfig = {
   measurementId: "G-Q5MSJZNXBW",
 };
 
+export let app: FirebaseApp;
+export let auth: Auth;
+
 let authInitialized = false;
-export const initAuth = () => {
+export const initAuth = async () => {
   try {
     if (!authInitialized) {
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
+      app = initializeApp(firebaseConfig);
+      auth = getAuth(app);
+      // await auth.setPersistence(browserLocalPersistence);
 
       if (envState === EnvState.dev)
         connectAuthEmulator(auth, "http://localhost:9094", {

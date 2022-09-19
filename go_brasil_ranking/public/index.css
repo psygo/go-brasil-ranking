@@ -209,7 +209,7 @@ player-view h2 {
 admin-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 200px;
+  grid-template-rows: 250px 200px;
   font-size: 1.15rem;
   margin-top: 150px;
 }
@@ -238,6 +238,12 @@ admin-view button {
   width: 100px;
   margin-top: 10px;
   font-size: 1.1rem;
+}
+admin-view p {
+  margin-top: 40px;
+}
+admin-view p span {
+  color: darkblue;
 }
 
 /*# sourceMappingURL=index.css.map */

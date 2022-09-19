@@ -11,6 +11,10 @@
         "prefix": "csl",
         "body": "console.log($1)"
     },
+    "ES6 HTML String VS Code String": {
+        "prefix": "hstring",
+        "body": "/*html*/`${1}`"
+    },
     "HTML Component": {
         "prefix": "html_component",
         "body": [

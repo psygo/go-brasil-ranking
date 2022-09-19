@@ -1,7 +1,7 @@
 admin-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 200px 200px;
+  grid-template-rows: 250px 200px;
 
   font-size: 1.15rem;
 
@@ -41,5 +41,13 @@ admin-view {
     margin-top: 10px;
 
     font-size: 1.1rem;
+  }
+
+  p {
+    margin-top: 40px;
+
+    span {
+      color: darkblue;
+    }
   }
 }
