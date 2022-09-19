@@ -29,17 +29,28 @@ export default class AdminView extends HTMLElement {
       </form>
     `;
 
-    await this.signIn();
+    const submitButton: HTMLButtonElement = this.querySelector("button")!;
+    submitButton.addEventListener("click", async (e: Event) => {
+      e.preventDefault();
+      await this.signIn();
+    });
   }
 
   signIn = async (): Promise<void> => {
-    const email = "philippefanaro@gmail.com";
-    const password = "asdfasdf";
+    const adminUserInput: HTMLInputElement = this.querySelector(
+      "input[name=username]"
+    )!;
+    const adminPasswordInput: HTMLInputElement = this.querySelector(
+      "input[name=password]"
+    )!;
+
+    const username = adminUserInput.value;
+    const password = adminPasswordInput.value;
 
     const auth = getAuth();
 
     try {
-      const cred = await signInWithEmailAndPassword(auth, email, password);
+      const cred = await signInWithEmailAndPassword(auth, username, password);
 
       console.log(cred);
     } catch (error) {
