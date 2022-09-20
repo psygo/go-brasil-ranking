@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-import { ExpressApiRoute, howMany } from "../../infra";
+import { ExpressApiRoute, howMany, parseBody } from "../../infra";
 
 import { playersCol } from "../collections/players_col";
 
@@ -80,8 +80,7 @@ export const postPlayer = async (
 
 export const postPlayerApi: ExpressApiRoute = async (req, res) => {
   try {
-    const player =
-      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const player = parseBody(req.body);
 
     const playerOnDbWithRef = await postPlayer(player);
 

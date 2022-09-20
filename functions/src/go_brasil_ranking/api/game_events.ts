@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-import { ExpressApiRoute, howMany } from "../../infra";
+import { ExpressApiRoute, howMany, parseBody } from "../../infra";
 
 import { gameEventsCol } from "../collections/game_events_col";
 
@@ -85,8 +85,7 @@ export const postGameEvent = async (
 
 export const postGameEventApi: ExpressApiRoute = async (req, res) => {
   try {
-    const gameEvent =
-      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const gameEvent = parseBody(req.body);
 
     const gameEventOnDbWithRef = await postGameEvent(gameEvent);
 

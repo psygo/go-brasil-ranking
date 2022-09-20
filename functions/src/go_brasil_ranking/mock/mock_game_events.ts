@@ -1,40 +1,33 @@
 import { ExpressApiRoute } from "../../infra";
 
-import { gameEventsCol } from "../collections/game_events_col";
-
-import {
-  GameEvent,
-  GameEventTypes,
-} from "../../../../go_brasil_ranking/src/models/game_event";
 import { fakeGameEvents } from "./data/fake_game_events";
+import { postGameEvent } from "../api/game_events";
+
+import { GameEvent } from "../../../../go_brasil_ranking/src/models/game_event";
 
 export const mockPopulateGameEvents = async (): Promise<GameEvent[]> => {
-  const mockGameEventsWithFirebaseRef: GameEvent[] = [];
+  const fakeGameEventsWithFirebaseRef: GameEvent[] = [];
 
   for (let i = 0; i < fakeGameEvents.length; i++) {
-    const gameEvent = fakeGameEvents[i];
+    const fakeGameEvent = fakeGameEvents[i];
     const ref = i.toString();
 
-    await gameEventsCol.col.doc(ref).set({ ...gameEvent, gamesTotal: 0 });
+    const fakeGameEventOnDb = await postGameEvent(fakeGameEvent, ref);
 
-    let gameEventToReturn = gameEvent;
-    if (gameEvent.type === GameEventTypes.tournament)
-      gameEventToReturn = { ...gameEvent, gamesTotal: 0, firebaseRef: ref };
-
-    mockGameEventsWithFirebaseRef.push(gameEventToReturn);
+    fakeGameEventsWithFirebaseRef.push(fakeGameEventOnDb);
   }
 
-  return mockGameEventsWithFirebaseRef;
+  return fakeGameEventsWithFirebaseRef;
 };
 
 export const mockPopulateGameEventsApi: ExpressApiRoute = async (_, res) => {
   try {
-    const mockGameEventsWithFirebaseRef = await mockPopulateGameEvents();
+    const gameEvents = await mockPopulateGameEvents();
 
     res.status(200).send({
       status: "success",
-      message: "Player added successfully",
-      data: { gameEvents: mockGameEventsWithFirebaseRef },
+      message: "Evento adicionado com sucesso.",
+      data: { gameEvents: gameEvents },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);

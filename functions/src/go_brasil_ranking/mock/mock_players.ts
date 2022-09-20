@@ -7,17 +7,18 @@ import { fakePlayers } from "./data/fake_players";
 import { postPlayer } from "../api/players";
 
 export const mockPopulatePlayers = async (): Promise<Player[]> => {
-  const mockPlayersWithFirebaseRef: Player[] = [];
+  const fakePlayersWithFirebaseRef: Player[] = [];
 
   for (let i = 0; i < fakePlayers.length; i++) {
     const fakePlayer = fakePlayers[i];
+    const ref = i.toString();
 
-    const fakePlayerOnDb = await postPlayer(fakePlayer, i.toString());
+    const fakePlayerOnDb = await postPlayer(fakePlayer, ref);
 
-    mockPlayersWithFirebaseRef.push(fakePlayerOnDb);
+    fakePlayersWithFirebaseRef.push(fakePlayerOnDb);
   }
 
-  return mockPlayersWithFirebaseRef;
+  return fakePlayersWithFirebaseRef;
 };
 
 export const mockPopulatePlayersApi: ExpressApiRoute = async (_, res) => {
@@ -26,7 +27,7 @@ export const mockPopulatePlayersApi: ExpressApiRoute = async (_, res) => {
 
     res.status(200).send({
       status: "success",
-      message: "Player added successfully",
+      message: "Jogadores adicionados com sucesso.",
       data: { players: players },
     });
   } catch (e) {

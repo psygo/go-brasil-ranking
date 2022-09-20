@@ -19,3 +19,6 @@ export const howMany = (askedLimit: string): number => {
 
   return intendedLimit <= maxLimit ? intendedLimit : maxLimit;
 };
+
+export const parseBody = (body: any): any =>
+  typeof body === "string" ? JSON.parse(body) : body;
