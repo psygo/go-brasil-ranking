@@ -27,6 +27,11 @@ export const initAuth = async (): Promise<void> => {
         disableWarnings: true,
       });
   } catch (error) {
-    console.log(error);
+    const e = error as Error;
+    console.log(`Name: ${e.name}`);
+    console.log(`Message: ${e.message}`);
+    console.log(`Cause: ${e.cause}`);
+    console.log(`Stack: ${e.stack}`);
+    console.log(`Full Error: ${e}`);
   }
 };

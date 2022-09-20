@@ -1,6 +1,4 @@
-admin-view {
-  font-size: 1.15rem;
-
+@mixin formButton {
   button {
     width: max-content;
 
@@ -9,44 +7,68 @@ admin-view {
 
     font-size: 1.1rem;
   }
+}
 
-  &[signed-in="false"] {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 250px 200px;
-    grid-template-areas: "form" "submit";
+@mixin formFieldsetDecoration {
+  border: 0;
+}
 
+@mixin formLabel {
+  label {
+    height: 10px;
+    padding-left: 1px;
+  }
+}
+
+@mixin formInputSelect {
+  input,
+  select {
+    height: 30px;
+
+    padding-left: 7.5px;
+
+    font-size: 1.1rem;
+  }
+}
+
+@mixin formGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 25px;
+}
+
+@mixin fieldsetGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+@mixin form {
+  form {
+    @include formGrid;
+    @include formButton;
+
+    font-size: 1.15rem;
     margin-top: 150px;
 
-    form {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr;
-      grid-row-gap: 25px;
-      grid-area: form;
-      grid-template-areas: "username" "password";
-
-      fieldset {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
-
-        border: 0;
-
-        label {
-          height: 10px;
-          padding-left: 1px;
-        }
-
-        input {
-          height: 30px;
-
-          padding-left: 7.5px;
-
-          font-size: 1.1rem;
-        }
-      }
+    fieldset {
+      @include fieldsetGrid;
+      @include formFieldsetDecoration;
+      @include formLabel;
+      @include formInputSelect;
     }
+  }
+}
+
+@mixin routeLinkDecoration {
+  route-link {
+    color: darken(green, 10%);
+  }
+}
+
+admin-view {
+  &[signed-in="false"] {
+    @include form;
   }
 
   &[signed-in="true"] {
@@ -54,6 +76,8 @@ admin-view {
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content max-content;
     grid-template-areas: "msg" "sign-out-button" "add-new-links";
+
+    @include formButton;
 
     p {
       margin-top: 40px;
@@ -67,17 +91,15 @@ admin-view {
       p {
         margin-bottom: 20px;
       }
-      
+
       ul {
         margin-left: 40px;
-        
+
         li {
           margin-bottom: 7px;
         }
-        
-        route-link {
-          color: darken(green, 10%);
-        }
+
+        @include routeLinkDecoration;
       }
     }
   }

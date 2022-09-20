@@ -27,7 +27,6 @@ export default class NewPlayerView extends HTMLElement {
         this.setNewPlayerForm();
       } else g.router.manualRouting(RouteEnum.admin);
     });
-    this.setNewPlayerForm();
   }
 
   private setNewPlayerForm = (): void => {
