@@ -5,6 +5,7 @@ import { ExpressApiRoute, howMany } from "../../infra";
 import { playersCol } from "../collections/players_col";
 
 import { Player } from "../../../../go_brasil_ranking/src/models/player";
+import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
@@ -56,7 +57,10 @@ export const getPlayer: ExpressApiRoute = async (req, res) => {
   }
 };
 
-export const postPlayer = async (player: Player): Promise<Player> => {
+export const postPlayer = async (
+  player: Player,
+  firebaseRef?: FirebaseRef
+): Promise<Player> => {
   const now = admin.firestore.Timestamp.now().toMillis();
 
   const playerOnDb = {
@@ -65,9 +69,13 @@ export const postPlayer = async (player: Player): Promise<Player> => {
     gamesTotal: 0,
   };
 
-  const playerRef = await playersCol.col.add(playerOnDb);
-
-  return { ...playerOnDb, firebaseRef: playerRef.id };
+  if (!firebaseRef) {
+    const playerRef = await playersCol.col.add(playerOnDb);
+    return { ...playerOnDb, firebaseRef: playerRef.id };
+  } else {
+    await playersCol.col.doc(firebaseRef).set(playerOnDb);
+    return { ...playerOnDb, firebaseRef: firebaseRef };
+  }
 };
 
 export const postPlayerApi: ExpressApiRoute = async (req, res) => {
