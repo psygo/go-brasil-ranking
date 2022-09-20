@@ -75,7 +75,7 @@ export default class NewGameRecordView extends HTMLElement {
     const whiteRef: HTMLInputElement = this.querySelector(
       "input[name=whiteRef]"
     )!;
-    const sgf: HTMLInputElement = this.querySelector("input[name=sgf]")!;
+    // const sgf: HTMLInputElement = this.querySelector("input[name=sgf]")!;
     const date: HTMLInputElement = this.querySelector("input[name=date]")!;
 
     const gameRecord: GameRecord = {
@@ -84,7 +84,7 @@ export default class NewGameRecordView extends HTMLElement {
       result: {
         whoWins: Color.Black,
       },
-      sgf: sgf.value,
+      // sgf: sgf.value,
       date: date.valueAsDate!.getTime(),
       author: {
         uid: this.currentUser?.uid!,

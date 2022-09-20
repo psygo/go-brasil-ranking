@@ -13,7 +13,7 @@ import { home } from "./go_brasil_ranking/api/others_api";
 import {
   getGameRecord,
   getGameRecords,
-  postGameRecord,
+  postGameRecordApi,
 } from "./go_brasil_ranking/api/game_records_api";
 import {
   getGameEvent,
@@ -60,7 +60,7 @@ goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
 goBrasilRankingApp.use("*/novo", validateFirebaseIdToken);
 goBrasilRankingApp.post("/jogadores/novo", postPlayerApi);
 goBrasilRankingApp.post("/eventos/novo", postGameEventApi);
-goBrasilRankingApp.post("/partidas/novo", postGameRecord);
+goBrasilRankingApp.post("/partidas/novo", postGameRecordApi);
 
 // 5. Mocking
 goBrasilRankingApp.use(ifDev);

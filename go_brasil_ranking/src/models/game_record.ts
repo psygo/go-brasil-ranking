@@ -14,7 +14,7 @@ interface _GameRecord extends JsonInterface {
   date: number;
   dateCreated?: number;
   result: Result;
-  sgf: Sgf;
+  sgf?: Sgf;
   gameEventRef?: FirebaseRef;
   gameEvent?: GameEvent;
   eloData?: EloData;

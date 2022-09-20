@@ -81,7 +81,7 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
   }
 };
 
-export const postGameRecord: ExpressApiRoute = async (req, res) => {
+export const postGameRecordApi: ExpressApiRoute = async (req, res) => {
   try {
     const gameRecord =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
