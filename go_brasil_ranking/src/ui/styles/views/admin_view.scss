@@ -52,14 +52,32 @@ admin-view {
   &[signed-in="true"] {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: max-content max-content;
-    grid-template-areas: "msg" "sign-out-button";
+    grid-template-rows: max-content max-content max-content;
+    grid-template-areas: "msg" "sign-out-button" "add-new-links";
 
     p {
       margin-top: 40px;
 
       span {
         color: darkblue;
+      }
+    }
+
+    #add-new {
+      p {
+        margin-bottom: 20px;
+      }
+      
+      ul {
+        margin-left: 40px;
+        
+        li {
+          margin-bottom: 7px;
+        }
+        
+        route-link {
+          color: darken(green, 10%);
+        }
       }
     }
   }

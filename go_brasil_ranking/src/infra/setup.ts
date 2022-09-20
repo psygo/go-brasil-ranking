@@ -16,7 +16,9 @@ import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
 import AboutView from "../ui/views/about-view";
+
 import AdminView from "../ui/views/admin-view";
+import NewPlayerView from "../ui/views/new-player-view";
 
 export default class Setup {
   private static instance: Setup;
@@ -40,7 +42,6 @@ export default class Setup {
     customElements.define(GameEventsTable.tag, GameEventsTable);
     customElements.define(PlayersTable.tag, PlayersTable);
 
-    customElements.define(AdminView.tag, AdminView);
     customElements.define(AboutView.tag, AboutView);
     customElements.define(GameRecordView.tag, GameRecordView);
     customElements.define(GameRecordsView.tag, GameRecordsView);
@@ -49,6 +50,9 @@ export default class Setup {
     customElements.define(HomeView.tag, HomeView);
     customElements.define(PlayerView.tag, PlayerView);
     customElements.define(PlayersView.tag, PlayersView);
+
+    customElements.define(AdminView.tag, AdminView);
+    customElements.define(NewPlayerView.tag, NewPlayerView);
   };
 
   static getInstance = (): Setup => {

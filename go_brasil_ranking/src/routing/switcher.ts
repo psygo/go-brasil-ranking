@@ -1,7 +1,6 @@
 import { Route, RouteEnum, Router } from "./router";
 import { Globals as g } from "../infra/globals";
 
-import AdminView from "../ui/views/admin-view";
 import AboutView from "../ui/views/about-view";
 import GameRecordView from "../ui/views/game-record-view";
 import GameRecordsView from "../ui/views/game-records-view";
@@ -10,6 +9,9 @@ import GameEventsView from "../ui/views/game-events-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
+
+import AdminView from "../ui/views/admin-view";
+import NewPlayerView from "../ui/views/new-player-view";
 
 export default class Switcher {
   protected readonly router: Router = g.router;
@@ -52,6 +54,10 @@ export default class Switcher {
   private get splitPrefixRoute(): string {
     return this.currentRoute.split("/")[2] || "";
   }
+
+  protected get isNewRoute(): boolean {
+    return this.currentRoute === "novo";
+  }
 }
 
 class HomeSwitcher extends Switcher {
@@ -63,6 +69,8 @@ class HomeSwitcher extends Switcher {
 class PlayersSwitcher extends Switcher {
   switch = (): void => {
     if (!this.currentRoute) this.mainElement.replaceChildren(new PlayersView());
+    else if (this.isNewRoute)
+      this.mainElement.replaceChildren(new NewPlayerView());
     else this.mainElement.replaceChildren(new PlayerView(this.currentRoute));
   };
 }

@@ -299,14 +299,51 @@ admin-view[signed-in=false] form fieldset input {
 admin-view[signed-in=true] {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: max-content max-content;
-  grid-template-areas: "msg" "sign-out-button";
+  grid-template-rows: max-content max-content max-content;
+  grid-template-areas: "msg" "sign-out-button" "add-new-links";
 }
 admin-view[signed-in=true] p {
   margin-top: 40px;
 }
 admin-view[signed-in=true] p span {
   color: darkblue;
+}
+admin-view[signed-in=true] #add-new p {
+  margin-bottom: 20px;
+}
+admin-view[signed-in=true] #add-new ul {
+  margin-left: 40px;
+}
+admin-view[signed-in=true] #add-new ul li {
+  margin-bottom: 7px;
+}
+admin-view[signed-in=true] #add-new ul route-link {
+  color: #004d00;
+}
+
+new-player-view form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content max-content;
+  grid-row-gap: 20px;
+  grid-template-areas: "name" "countries" "elo" "submit";
+}
+new-player-view form button {
+  width: max-content;
+  padding: 2px 7.5px;
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+new-player-view form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: 0;
+}
+new-player-view form fieldset label,
+new-player-view form fieldset input,
+new-player-view form fieldset select {
+  font-size: 1.2rem;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -5,6 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { auth, initAuth } from "../../infra/firebase_config";
+import { RouteEnum } from "../../routing/router";
 
 export default class AdminView extends HTMLElement {
   static readonly tag: string = "admin-view";
@@ -24,9 +25,7 @@ export default class AdminView extends HTMLElement {
       if (user) {
         this.currentUser = user;
         this.alreadySignedIn();
-      } else {
-        this.signInForm();
-      }
+      } else this.signInForm();
     });
   }
 
@@ -37,6 +36,28 @@ export default class AdminView extends HTMLElement {
       <p>Você está logado como <span>${this.currentUser!.email}</span></p>
       
       <button>Sair</button>
+      
+      <div id="add-new">
+        <p>O que você gostaria de adicionar?</p>
+
+        <ul>
+          <li>
+            <route-link href="${RouteEnum.gameRecords}/novo">
+              Partida
+            </route-link>
+          </li>
+          <li>
+            <route-link href="${RouteEnum.players}/novo">
+              Jogador
+            </route-link>
+          </li>
+          <li>
+            <route-link href="${RouteEnum.gameEvents}/novo">
+              Evento
+            </route-link>
+          </li>
+        </ul>
+      </div>
     `;
 
     const button: HTMLButtonElement = this.querySelector("button")!;

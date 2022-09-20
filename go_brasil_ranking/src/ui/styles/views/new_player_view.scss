@@ -1,0 +1,36 @@
+new-player-view {
+  form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content max-content max-content;
+    grid-row-gap: 20px;
+    grid-template-areas: "name" "countries" "elo" "submit";
+
+    button {
+      width: max-content;
+
+      padding: 2px 7.5px;
+      margin-top: 20px;
+
+      font-size: 1.1rem;
+    }
+
+    fieldset {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      border: 0;
+
+      label,
+      input,
+      select {
+        font-size: 1.2rem;
+      }
+      
+    //   select {
+    //     margin-top: 20px;
+    //   }
+    }
+  }
+}
