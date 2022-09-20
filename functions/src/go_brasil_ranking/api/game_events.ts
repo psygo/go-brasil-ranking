@@ -1,3 +1,5 @@
+import * as admin from "firebase-admin";
+
 import { ExpressApiRoute, howMany } from "../../infra";
 
 import { gameEventsCol } from "../collections/game_events_col";
@@ -6,6 +8,7 @@ import {
   GameEvent,
   isTournamentOrLeague,
 } from "../../../../go_brasil_ranking/src/models/game_event";
+import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 
 export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
@@ -59,20 +62,38 @@ export const getGameEvent: ExpressApiRoute = async (req, res) => {
   }
 };
 
-export const postGameEvent: ExpressApiRoute = async (req, res) => {
+export const postGameEvent = async (
+  gameEvent: GameEvent,
+  firebaseRef?: FirebaseRef
+): Promise<GameEvent> => {
+  const now = admin.firestore.Timestamp.now().toMillis();
+
+  const gameEventOnDb = {
+    ...gameEvent,
+    dateCreated: now,
+    gamesTotal: 0,
+  };
+
+  if (!firebaseRef) {
+    const gameEventRef = await gameEventsCol.col.add(gameEventOnDb);
+    return { ...gameEventOnDb, firebaseRef: gameEventRef.id };
+  } else {
+    await gameEventsCol.col.doc(firebaseRef).set(gameEventOnDb);
+    return { ...gameEventOnDb, firebaseRef: firebaseRef };
+  }
+};
+
+export const postGameEventApi: ExpressApiRoute = async (req, res) => {
   try {
-    const gameRecord =
+    const gameEvent =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
-    // TODO1: Add a check if the received conforms to the interface.
-    // See https://github.com/gristlabs/ts-interface-checker
-
-    const gameEventRef = await gameEventsCol.col.add(gameRecord);
+    const gameEventOnDbWithRef = await postGameEvent(gameEvent);
 
     res.status(200).send({
       status: "success",
-      message: "Game Record added successfully",
-      data: { id: gameEventRef.id },
+      message: "Evento adicionado com sucesso.",
+      data: { gameEvent: gameEventOnDbWithRef },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);

@@ -12,6 +12,7 @@ import PlayersView from "../ui/views/players-view";
 
 import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
+import NewGameEventView from "../ui/views/new-game-event-view";
 
 export default class Switcher {
   protected readonly router: Router = g.router;
@@ -88,6 +89,8 @@ class GameEventsSwitcher extends Switcher {
   switch = (): void => {
     if (!this.currentRoute)
       this.mainElement.replaceChildren(new GameEventsView());
+    else if (this.isNewRoute)
+      this.mainElement.replaceChildren(new NewGameEventView());
     else this.mainElement.replaceChildren(new GameEventView(this.currentRoute));
   };
 }

@@ -18,6 +18,7 @@ import {
 import {
   getGameEvent,
   getGameEvents,
+  postGameEventApi,
 } from "./go_brasil_ranking/api/game_events";
 
 import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
@@ -57,7 +58,7 @@ goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
 // 4. Only for Admins
 goBrasilRankingApp.use("*/novo", validateFirebaseIdToken);
 goBrasilRankingApp.post("/jogadores/novo", postPlayerApi);
-goBrasilRankingApp.post("/eventos/novo", postPlayerApi);
+goBrasilRankingApp.post("/eventos/novo", postGameEventApi);
 goBrasilRankingApp.post("/partidas/novo", postGameRecord);
 
 // 5. Mocking

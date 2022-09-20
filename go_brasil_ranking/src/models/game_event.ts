@@ -1,4 +1,4 @@
-import { FirebaseRef } from "./firebase_ref";
+import { FirebaseDoc, FirebaseRef } from "./firebase_ref";
 
 export enum GameEventTypes {
   online = "online",
@@ -7,7 +7,7 @@ export enum GameEventTypes {
   league = "league",
 }
 
-interface _GameEventBase {
+interface _GameEventBase extends FirebaseDoc {
   type: GameEventTypes;
 }
 
