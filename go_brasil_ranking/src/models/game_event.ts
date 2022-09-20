@@ -34,6 +34,8 @@ interface _GameEventLeague extends _GameEventBase {
   type: GameEventTypes.league;
   firebaseRef?: FirebaseRef;
   name: string;
+  dateInit: number;
+  dateEnd?: number;
   gamesTotal?: number;
 }
 export type GameEventLeague = Readonly<_GameEventLeague>;

@@ -55,7 +55,7 @@ goBrasilRankingApp.get("/partidas", getGameRecords);
 goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
 
 // 4. Only for Admins
-goBrasilRankingApp.use(validateFirebaseIdToken);
+goBrasilRankingApp.use("*/novo", validateFirebaseIdToken);
 goBrasilRankingApp.post("/jogadores/novo", postPlayer);
 goBrasilRankingApp.post("/eventos/novo", postPlayer);
 goBrasilRankingApp.post("/partidas/novo", postGameRecord);
