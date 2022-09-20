@@ -3,15 +3,16 @@ import { JsonInterface } from "../infra/serializable";
 import { SerializedElo, SerializedEloDelta } from "./elo";
 import { FirebaseRef } from "./firebase_ref";
 import { GameEvent } from "./game_event";
+import { Player } from "./player";
 
 interface _GameRecord extends JsonInterface {
   firebaseRef?: FirebaseRef;
   blackRef: FirebaseRef;
-  blackName?: string;
+  blackPlayer?: Player;
   whiteRef: FirebaseRef;
-  whiteName?: string;
+  whitePlayer?: Player;
   date: number;
-  dateAdded?: number;
+  dateCreated?: number;
   result: Result;
   sgf: Sgf;
   gameEventRef?: FirebaseRef;

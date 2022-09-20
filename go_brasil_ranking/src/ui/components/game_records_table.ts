@@ -89,7 +89,7 @@ export default class GameRecordsTable extends HTMLElement {
             <route-link 
               ${blackWins} 
               href="${RouteEnum.players}/${gameRecord.blackRef}">
-                <span>${gameRecord.blackName}</span>
+                <span>${gameRecord.blackPlayer!.name}</span>
             </route-link>
 
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
@@ -99,7 +99,7 @@ export default class GameRecordsTable extends HTMLElement {
             <route-link 
               ${whiteWins} 
               href="${RouteEnum.players}/${gameRecord.whiteRef}">
-                <span>${gameRecord.whiteName}</span>
+                <span>${gameRecord.whitePlayer!.name}</span>
             </route-link>
 
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>

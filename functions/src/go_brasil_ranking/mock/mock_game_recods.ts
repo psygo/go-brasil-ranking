@@ -13,6 +13,7 @@ import {
   doesThisColorWin,
 } from "../../../../go_brasil_ranking/src/models/game_record";
 import { fakeGameRecords } from "./data/fake_game_records";
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
 
 export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   let completeGameRecords: GameRecord[] = [];
@@ -20,8 +21,8 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
     const gameRecord = fakeGameRecords[i];
     const ref = i.toString();
 
-    const black = (await playersCol.getWithRef(gameRecord.blackRef))!;
-    const white = (await playersCol.getWithRef(gameRecord.whiteRef))!;
+    const black = (await playersCol.getWithRef(gameRecord.blackRef))! as Player;
+    const white = (await playersCol.getWithRef(gameRecord.whiteRef))! as Player;
 
     const blackElo = new Elo(black.elo);
     const whiteElo = new Elo(white.elo);
@@ -40,9 +41,9 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
     const completeGameRecord: GameRecord = {
       ...gameRecord,
       firebaseRef: ref,
-      dateAdded: now,
-      blackName: black.name,
-      whiteName: white.name,
+      dateCreated: now,
+      blackPlayer: black,
+      whitePlayer: white,
       eloData: {
         atTheTimeBlackElo: blackElo.serialize(),
         eloDeltaBlack: blackEloDelta.serialize(),
@@ -58,11 +59,11 @@ export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
     // Update Players' Elos and Total Games
     await playersCol.updateWithRef(gameRecord.blackRef, {
       elo: blackElo.add(blackEloDelta).num,
-      gamesTotal: black.gamesTotal + 1,
+      gamesTotal: black.gamesTotal! + 1,
     });
     await playersCol.updateWithRef(gameRecord.whiteRef, {
       elo: whiteElo.add(whiteEloDelta).num,
-      gamesTotal: white.gamesTotal + 1,
+      gamesTotal: white.gamesTotal! + 1,
     });
 
     // Update Game References on Tournament

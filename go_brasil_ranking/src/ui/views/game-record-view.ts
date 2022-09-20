@@ -28,7 +28,7 @@ export default class GameRecordView extends HTMLElement {
 
     if (this.gameRecord) {
       document.title = /*html*/ `
-        Partida | ${this.gameRecord.blackName} vs ${this.gameRecord.whiteName}
+        Partida | ${this.gameRecord.blackPlayer} vs ${this.gameRecord.whitePlayer}
       `;
 
       this.setGameRecordPage();
@@ -37,7 +37,7 @@ export default class GameRecordView extends HTMLElement {
 
   private setGameRecordPage = (): void => {
     this.innerHTML += /*html*/ `
-      <h2>${this.gameRecord!.blackName} vs ${this.gameRecord!.whiteName}</h2>
+      <h2>${this.gameRecord!.blackPlayer} vs ${this.gameRecord!.whitePlayer}</h2>
       <h3>${resultString(this.gameRecord!.result)}</h3>
       <div id="glift_display1" style="width: 500px; height: 500px;"></div>
     `;
