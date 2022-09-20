@@ -345,5 +345,11 @@ new-player-view form fieldset input,
 new-player-view form fieldset select {
   font-size: 1.2rem;
 }
+new-player-view h4 {
+  margin-top: 40px;
+}
+new-player-view h4 route-link {
+  color: #004d00;
+}
 
 /*# sourceMappingURL=index.css.map */

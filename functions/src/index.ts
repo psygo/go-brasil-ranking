@@ -7,7 +7,7 @@ import express from "express";
 import {
   getPlayer,
   getPlayers,
-  postPlayer,
+  postPlayerApi,
 } from "./go_brasil_ranking/api/players";
 import { home } from "./go_brasil_ranking/api/others";
 import {
@@ -56,8 +56,8 @@ goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
 
 // 4. Only for Admins
 goBrasilRankingApp.use("*/novo", validateFirebaseIdToken);
-goBrasilRankingApp.post("/jogadores/novo", postPlayer);
-goBrasilRankingApp.post("/eventos/novo", postPlayer);
+goBrasilRankingApp.post("/jogadores/novo", postPlayerApi);
+goBrasilRankingApp.post("/eventos/novo", postPlayerApi);
 goBrasilRankingApp.post("/partidas/novo", postGameRecord);
 
 // 5. Mocking

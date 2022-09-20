@@ -27,10 +27,14 @@ new-player-view {
       select {
         font-size: 1.2rem;
       }
-      
-    //   select {
-    //     margin-top: 20px;
-    //   }
+    }
+  }
+
+  h4 {
+    margin-top: 40px;
+
+    route-link {
+      color: darken(green, 10%);
     }
   }
 }

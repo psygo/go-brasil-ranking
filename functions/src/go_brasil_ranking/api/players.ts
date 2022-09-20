@@ -1,8 +1,10 @@
+import * as admin from "firebase-admin";
+
 import { ExpressApiRoute, howMany } from "../../infra";
 
-import { db } from "../..";
-import { Player } from "../../../../go_brasil_ranking/src/models/player";
 import { playersCol } from "../collections/players_col";
+
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
@@ -21,7 +23,7 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
 
     res.status(200).send({
       status: "success",
-      message: `Players found (total: ${players.length}`,
+      message: `Jogadores encontrados (total: ${players.length}`,
       data: { players: players },
     });
   } catch (e) {
@@ -33,20 +35,20 @@ export const getPlayer: ExpressApiRoute = async (req, res) => {
   try {
     const id = req.params.playerId;
 
-    const playerRef = db.collection("players").doc(id);
+    const playerRef = playersCol.col.doc(id);
 
     const playerDoc = await playerRef.get();
 
     if (req.query.exists === "")
       res.status(200).send({
         status: "success",
-        message: "Item exists",
+        message: "Jogador existe.",
         data: playerDoc.exists,
       });
     else
       res.status(200).send({
         status: "success",
-        message: "Player found.",
+        message: "Jogador encontrado.",
         data: { player: playerDoc.data() },
       });
   } catch (e) {
@@ -54,20 +56,31 @@ export const getPlayer: ExpressApiRoute = async (req, res) => {
   }
 };
 
-export const postPlayer: ExpressApiRoute = async (req, res) => {
+export const postPlayer = async (player: Player): Promise<Player> => {
+  const now = admin.firestore.Timestamp.now().toMillis();
+
+  const playerOnDb = {
+    ...player,
+    dateCreated: now,
+    gamesTotal: 0,
+  };
+
+  const playerRef = await playersCol.col.add(playerOnDb);
+
+  return { ...playerOnDb, firebaseRef: playerRef.id };
+};
+
+export const postPlayerApi: ExpressApiRoute = async (req, res) => {
   try {
     const player =
       typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
-    // TODO1: Add a check if the received conforms to the interface.
-    // See https://github.com/gristlabs/ts-interface-checker
-
-    const playerRef = await db.collection("players").add(player);
+    const playerOnDbWithRef = await postPlayer(player);
 
     res.status(200).send({
       status: "success",
-      message: "Player added successfully",
-      data: { id: playerRef.id },
+      message: "Jogador adicionado com sucesso.",
+      data: { player: playerOnDbWithRef },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);
