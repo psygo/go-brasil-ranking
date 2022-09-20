@@ -2,8 +2,6 @@ import { onAuthStateChanged, User } from "firebase/auth";
 
 import { Globals as g } from "../../infra/globals";
 
-import { auth, initAuth } from "../../infra/firebase_config";
-
 import { RouteEnum } from "../../routing/router";
 
 import { GameEventLeague, GameEventTypes } from "../../models/game_event";
@@ -16,17 +14,16 @@ export default class NewGameEventView extends HTMLElement {
   constructor() {
     super();
 
-    initAuth();
+    g.setup.initAuth();
   }
 
-  connectedCallback() {
-    onAuthStateChanged(auth, (user) => {
+  async connectedCallback() {
+    onAuthStateChanged(g.setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;
         this.setNewGameEventForm();
       } else g.router.manualRouting(RouteEnum.admin);
     });
-    this.setNewGameEventForm();
   }
 
   private setNewGameEventForm = (): void => {
@@ -66,6 +63,7 @@ export default class NewGameEventView extends HTMLElement {
   private onSubmit = async (e: Event) => {
     e.preventDefault();
 
+    // TODO2: Fix incomplete input capture...
     const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
     const dateInitInput: HTMLInputElement = this.querySelector(
       "input[name=date-init]"

@@ -1,3 +1,8 @@
+import { FirebaseApp, initializeApp } from "firebase/app";
+import { Auth, connectAuthEmulator, getAuth } from "firebase/auth";
+
+import { firebaseConfig } from "./firebase_config";
+
 import { getRouter, Router } from "../routing/router";
 
 import Navbar from "../ui/components/navbar";
@@ -20,11 +25,15 @@ import AboutView from "../ui/views/about-view";
 import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
 import NewGameEventView from "../ui/views/new-game-event-view";
+import { EnvState, envState } from "./env";
 
 export default class Setup {
   private static instance: Setup;
 
   private readonly _router: Router = getRouter();
+
+  private app: FirebaseApp | null = null;
+  auth: Auth | null = null;
 
   private constructor() {
     this.define();
@@ -33,6 +42,26 @@ export default class Setup {
   get router(): Router {
     return this._router;
   }
+
+  initAuth = (): void => {
+    try {
+      if (!this.app) this.app = initializeApp(firebaseConfig);
+
+      if (!this.auth) this.auth = getAuth(this.app);
+
+      if (envState === EnvState.dev)
+        connectAuthEmulator(this.auth, "http://localhost:9094", {
+          disableWarnings: true,
+        });
+    } catch (error) {
+      const e = error as Error;
+      console.log(`Name: ${e.name}`);
+      console.log(`Message: ${e.message}`);
+      console.log(`Cause: ${e.cause}`);
+      console.log(`Stack: ${e.stack}`);
+      console.log(`Full Error: ${e}`);
+    }
+  };
 
   private define = (): void => {
     customElements.define(Navbar.tag, Navbar);

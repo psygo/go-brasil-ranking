@@ -2,8 +2,6 @@ import { onAuthStateChanged, User } from "firebase/auth";
 
 import { Globals as g } from "../../infra/globals";
 
-import { auth, initAuth } from "../../infra/firebase_config";
-
 import { RouteEnum } from "../../routing/router";
 
 import { CountryName } from "../../models/country";
@@ -17,11 +15,11 @@ export default class NewPlayerView extends HTMLElement {
   constructor() {
     super();
 
-    initAuth();
+    g.setup.initAuth();
   }
 
-  connectedCallback() {
-    onAuthStateChanged(auth, (user) => {
+  async connectedCallback() {
+    onAuthStateChanged(g.setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;
         this.setNewPlayerForm();
@@ -60,6 +58,7 @@ export default class NewPlayerView extends HTMLElement {
   private onSubmit = async (e: Event) => {
     e.preventDefault();
 
+    // TODO2: Fix incomplete input capture...
     const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
     // const countriesInput: HTMLInputElement = this.querySelector(
     //   "input[name=countries]"
