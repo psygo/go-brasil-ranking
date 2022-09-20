@@ -1,7 +1,7 @@
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
-import { FirebaseRef } from "../../models/firebase_ref";
+import { FirebaseRef } from "../../models/firebase_models";
 import { GameRecord, resultString } from "../../models/game_record";
 
 declare let glift: any;

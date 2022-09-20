@@ -4,7 +4,7 @@ import { Player } from "../../../../go_brasil_ranking/src/models/player";
 
 import { fakePlayers } from "./data/fake_players";
 
-import { postPlayer } from "../api/players";
+import { postPlayer } from "../api/players_api";
 
 export const mockPopulatePlayers = async (): Promise<Player[]> => {
   const fakePlayersWithFirebaseRef: Player[] = [];

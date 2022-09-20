@@ -2,7 +2,7 @@ import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
 
-import { FirebaseRef } from "../../models/firebase_ref";
+import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 import { isTournamentOrLeague } from "../../models/game_event";
 

@@ -1,6 +1,6 @@
 import { Country } from "./country";
 import { SerializedElo } from "./elo";
-import { Author, FirebaseDoc, FirebaseRef } from "./firebase_ref";
+import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 
 interface _Player extends FirebaseDoc {
   firebaseRef?: FirebaseRef;

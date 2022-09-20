@@ -1,7 +1,7 @@
 import { ExpressApiRoute } from "../../infra";
 
 import { fakeGameEvents } from "./data/fake_game_events";
-import { postGameEvent } from "../api/game_events";
+import { postGameEvent } from "../api/game_events_api";
 
 import { GameEvent } from "../../../../go_brasil_ranking/src/models/game_event";
 

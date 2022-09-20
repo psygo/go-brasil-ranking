@@ -1,5 +1,5 @@
 import { db } from "../..";
-import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
+import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_models";
 
 export default abstract class Col {
   protected abstract readonly colName: FirebaseRef;

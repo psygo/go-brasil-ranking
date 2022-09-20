@@ -1,7 +1,7 @@
 import { JsonInterface } from "../infra/serializable";
 
 import { SerializedElo, SerializedEloDelta } from "./elo";
-import { FirebaseRef } from "./firebase_ref";
+import { FirebaseRef } from "./firebase_models";
 import { GameEvent } from "./game_event";
 import { Player } from "./player";
 

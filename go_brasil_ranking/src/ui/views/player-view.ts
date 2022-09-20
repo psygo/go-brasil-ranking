@@ -3,7 +3,7 @@ import { RouteEnum } from "../../routing/router";
 
 import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
-import { FirebaseRef } from "../../models/firebase_ref";
+import { FirebaseRef } from "../../models/firebase_models";
 import { Player } from "../../models/player";
 
 import GameRecordsTable from "../components/game_records_table";

@@ -1,4 +1,4 @@
-import { FirebaseDoc, FirebaseRef } from "./firebase_ref";
+import { FirebaseDoc, FirebaseRef } from "./firebase_models";
 
 export enum GameEventTypes {
   online = "online",
