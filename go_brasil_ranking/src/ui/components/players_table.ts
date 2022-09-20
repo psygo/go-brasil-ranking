@@ -39,6 +39,8 @@ export default class PlayersTable extends HTMLElement {
     for (let i = 0; i < players.length; i++) {
       const player = players[i];
       const elo = new Elo(player.elo);
+      
+      // TODO2: What if the Elos are identical? (Ties)
 
       this.innerHTML += /*html*/ `
         <div class="player-card" id="${player.firebaseRef}">

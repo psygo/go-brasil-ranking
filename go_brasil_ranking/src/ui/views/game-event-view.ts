@@ -43,8 +43,8 @@ export default class GameEventView extends HTMLElement {
 
     if (this.gameEvent?.type === GameEventTypes.tournament) {
       this.innerHTML += /*html*/ `
-          <h4>Dias</h4>
-        `;
+        <h4>Dias</h4>
+      `;
 
       const dates = this.gameEvent.dates;
 
