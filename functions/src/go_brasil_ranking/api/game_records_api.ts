@@ -2,11 +2,18 @@ import * as admin from "firebase-admin";
 
 import { ExpressApiRoute, howMany, parseBody } from "../../infra";
 
-import { GameRecord } from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
+import { playersCol } from "../collections/players_col";
+
+import {
+  Color,
+  doesThisColorWin,
+  GameRecord,
+} from "../../../../go_brasil_ranking/src/models/game_record";
 import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_models";
-// import { playersCol } from "../collections/players_col";
-// import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
+import Elo from "../../../../go_brasil_ranking/src/models/elo";
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
+import { gameEventsCol } from "../collections/game_events_col";
 
 // export const queryForPlayersGameRecords = async (
 //   playerRef: FirebaseRef,
@@ -51,7 +58,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 
     res.status(200).send({
       status: "success",
-      message: `Game Records found (total: ${gameRecords.length}`,
+      message: `Partidas encontradas (total: ${gameRecords.length}`,
       data: { gameRecords: gameRecords },
     });
   } catch (e) {
@@ -70,13 +77,13 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
     if (req.query.exists === "")
       res.status(200).send({
         status: "success",
-        message: "Game Record exists",
+        message: "Partida existe.",
         data: gameRecordDoc.exists,
       });
     else
       res.status(200).send({
         status: "success",
-        message: "Game Record found.",
+        message: "Partida encontrada.",
         data: { gameRecord: gameRecordDoc.data() },
       });
   } catch (e) {
@@ -88,13 +95,57 @@ export const postGameRecord = async (
   gameRecord: GameRecord,
   firebaseRef?: FirebaseRef
 ): Promise<GameRecord> => {
+  const black = (await playersCol.getWithRef(gameRecord.blackRef))! as Player;
+  const white = (await playersCol.getWithRef(gameRecord.whiteRef))! as Player;
+
+  const blackElo = new Elo(black.elo);
+  const whiteElo = new Elo(white.elo);
+
+  const blackEloDelta = blackElo.deltaFromGame(
+    whiteElo,
+    doesThisColorWin(Color.Black, gameRecord.result)
+  );
+  const whiteEloDelta = whiteElo.deltaFromGame(
+    blackElo,
+    doesThisColorWin(Color.White, gameRecord.result)
+  );
+
   const now = admin.firestore.Timestamp.now().toMillis();
 
-  const gameRecordOnDb = {
+  const gameRecordOnDb: GameRecord = {
     ...gameRecord,
+    blackPlayer: black,
+    whitePlayer: white,
+    eloData: {
+      atTheTimeBlackElo: blackElo.serialize(),
+      eloDeltaBlack: blackEloDelta.serialize(),
+      atTheTimeWhiteElo: whiteElo.serialize(),
+      eloDeltaWhite: whiteEloDelta.serialize(),
+    },
     dateCreated: now,
     gamesTotal: 0,
   };
+
+  // Update Players' Elos and Total Games
+  await playersCol.updateWithRef(gameRecord.blackRef, {
+    elo: blackElo.add(blackEloDelta).num,
+    gamesTotal: black.gamesTotal! + 1,
+  });
+  await playersCol.updateWithRef(gameRecord.whiteRef, {
+    elo: whiteElo.add(whiteEloDelta).num,
+    gamesTotal: white.gamesTotal! + 1,
+  });
+
+  // Update Total Games on Event, if it exists
+  if (gameRecord?.gameEventRef) {
+    const eventRefString = gameRecord.gameEventRef;
+
+    const eventRef = gameEventsCol.col.doc(eventRefString);
+    const gameEvent = (await eventRef.get()).data();
+
+    if (gameEvent)
+      await eventRef.update({ gamesTotal: gameEvent.gamesTotal + 1 });
+  }
 
   if (!firebaseRef) {
     const gameRecordRef = await gameRecordsCol.col.add(gameRecordOnDb);
@@ -113,7 +164,7 @@ export const postGameRecordApi: ExpressApiRoute = async (req, res) => {
 
     res.status(200).send({
       status: "success",
-      message: "Game Record added successfully",
+      message: "Partida adicionada com sucesso.",
       data: { gameRecord: gameRecordOnDbWithRef },
     });
   } catch (e) {
