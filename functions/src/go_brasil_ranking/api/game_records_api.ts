@@ -1,7 +1,10 @@
-import { ExpressApiRoute, howMany } from "../../infra";
+import * as admin from "firebase-admin";
+
+import { ExpressApiRoute, howMany, parseBody } from "../../infra";
 
 import { GameRecord } from "../../../../go_brasil_ranking/src/models/game_record";
 import { gameRecordsCol } from "../collections/game_records_col";
+import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_models";
 // import { playersCol } from "../collections/players_col";
 // import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_ref";
 
@@ -81,17 +84,37 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
   }
 };
 
+export const postGameRecord = async (
+  gameRecord: GameRecord,
+  firebaseRef?: FirebaseRef
+): Promise<GameRecord> => {
+  const now = admin.firestore.Timestamp.now().toMillis();
+
+  const gameRecordOnDb = {
+    ...gameRecord,
+    dateCreated: now,
+    gamesTotal: 0,
+  };
+
+  if (!firebaseRef) {
+    const gameRecordRef = await gameRecordsCol.col.add(gameRecordOnDb);
+    return { ...gameRecordOnDb, firebaseRef: gameRecordRef.id };
+  } else {
+    await gameRecordsCol.col.doc(firebaseRef).set(gameRecordOnDb);
+    return { ...gameRecordOnDb, firebaseRef: firebaseRef };
+  }
+};
+
 export const postGameRecordApi: ExpressApiRoute = async (req, res) => {
   try {
-    const gameRecord =
-      typeof req.body === "string" ? JSON.parse(req.body) : req.body;
+    const gameRecord = parseBody(req.body);
 
-    const gameRecordRef = await gameRecordsCol.col.add(gameRecord);
+    const gameRecordOnDbWithRef = await postGameRecord(gameRecord);
 
     res.status(200).send({
       status: "success",
       message: "Game Record added successfully",
-      data: { id: gameRecordRef.id },
+      data: { gameRecord: gameRecordOnDbWithRef },
     });
   } catch (e) {
     res.status(500).json((e as Error).message);
