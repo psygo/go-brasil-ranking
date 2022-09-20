@@ -1,6 +1,8 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, connectAuthEmulator, getAuth } from "firebase/auth";
 
+import { EnvState, envState } from "./env";
+
 import { firebaseConfig } from "./firebase_config";
 
 import { getRouter, Router } from "../routing/router";
@@ -25,7 +27,7 @@ import AboutView from "../ui/views/about-view";
 import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
 import NewGameEventView from "../ui/views/new-game-event-view";
-import { EnvState, envState } from "./env";
+import NewGameRecordView from "../ui/views/new-game-record-view";
 
 export default class Setup {
   private static instance: Setup;
@@ -84,6 +86,7 @@ export default class Setup {
     customElements.define(AdminView.tag, AdminView);
     customElements.define(NewPlayerView.tag, NewPlayerView);
     customElements.define(NewGameEventView.tag, NewGameEventView);
+    customElements.define(NewGameRecordView.tag, NewGameRecordView);
   };
 
   static getInstance = (): Setup => {

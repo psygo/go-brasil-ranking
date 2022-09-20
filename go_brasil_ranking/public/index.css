@@ -383,4 +383,34 @@ new-game-event-view form fieldset select {
   font-size: 1.1rem;
 }
 
+new-game-record-view form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 25px;
+  font-size: 1.15rem;
+  margin-top: 150px;
+}
+new-game-record-view form button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 2px 7.5px;
+  font-size: 1.1rem;
+}
+new-game-record-view form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  border: 0;
+}
+new-game-record-view form fieldset label {
+  height: 10px;
+  padding-left: 1px;
+}
+new-game-record-view form fieldset input,
+new-game-record-view form fieldset select {
+  height: 30px;
+  padding-left: 7.5px;
+  font-size: 1.1rem;
+}
+
 /*# sourceMappingURL=index.css.map */

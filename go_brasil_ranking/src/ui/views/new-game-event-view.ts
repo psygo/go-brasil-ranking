@@ -30,10 +30,10 @@ export default class NewGameEventView extends HTMLElement {
     this.innerHTML = /*html*/ `
       <form>
         <fieldset>
-          <label for="tipo">Tipo</label>
-          <select name="tipo">
-            <option value="league">Liga</option>
-            <option value="tournament">Torneio</option>
+          <label for="type">Tipo</label>
+          <select name="type">
+            <option value="${GameEventTypes.league}">Liga</option>
+            <option value="${GameEventTypes.tournament}">Torneio</option>
           </select>
         </fieldset>
 

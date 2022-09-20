@@ -1,0 +1,5 @@
+@use "admin_view" as av;
+
+new-game-record-view {
+  @include av.form;
+}
