@@ -1,6 +1,11 @@
-import { GameEvent } from "../../../../go_brasil_ranking/src/models/game_event";
 import { ExpressApiRoute, howMany } from "../../infra";
+
 import { gameEventsCol } from "../collections/game_events_col";
+
+import {
+  GameEvent,
+  isTournamentOrLeague,
+} from "../../../../go_brasil_ranking/src/models/game_event";
 
 export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
@@ -11,8 +16,12 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
     const gameEventsDocs = await gameEventsQuery.get();
 
     const gameEvents: GameEvent[] = [];
-    gameEventsDocs.forEach((playerDoc) => {
-      gameEvents.push(playerDoc.data() as GameEvent);
+    gameEventsDocs.forEach((gameEventDoc) => {
+      const gameEventNoRef = gameEventDoc.data() as GameEvent;
+
+      if (isTournamentOrLeague(gameEventNoRef))
+        gameEvents.push({ ...gameEventNoRef, firebaseRef: gameEventDoc.id });
+      else gameEvents.push(gameEventNoRef);
     });
 
     res.status(200).send({

@@ -41,6 +41,8 @@ export default class GameRecordView extends HTMLElement {
       <h3>${resultString(this.gameRecord!.result)}</h3>
       <div id="glift_display1" style="width: 500px; height: 500px;"></div>
     `;
+    
+    // TODO2: Add button for downloading the SGF
 
     this.addSgfDiagram();
   };

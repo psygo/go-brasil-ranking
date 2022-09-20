@@ -8,6 +8,7 @@ import GameEventsTable from "../ui/components/game_events_table";
 import GameRecordsTable from "../ui/components/game_records_table";
 import PlayersTable from "../ui/components/players_table";
 
+import GameEventView from "../ui/views/game-event-view";
 import GameEventsView from "../ui/views/game-events-view";
 import GameRecordView from "../ui/views/game-record-view";
 import GameRecordsView from "../ui/views/game-records-view";
@@ -43,6 +44,7 @@ export default class Setup {
     customElements.define(AboutView.tag, AboutView);
     customElements.define(GameRecordView.tag, GameRecordView);
     customElements.define(GameRecordsView.tag, GameRecordsView);
+    customElements.define(GameEventView.tag, GameEventView);
     customElements.define(GameEventsView.tag, GameEventsView);
     customElements.define(HomeView.tag, HomeView);
     customElements.define(PlayerView.tag, PlayerView);

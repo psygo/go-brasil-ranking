@@ -5,10 +5,11 @@ import AdminView from "../ui/views/admin-view";
 import AboutView from "../ui/views/about-view";
 import GameRecordView from "../ui/views/game-record-view";
 import GameRecordsView from "../ui/views/game-records-view";
+import GameEventView from "../ui/views/game-event-view";
+import GameEventsView from "../ui/views/game-events-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
-import GameEventsView from "../ui/views/game-events-view";
 
 export default class Switcher {
   protected readonly router: Router = g.router;
@@ -77,10 +78,9 @@ class GameRecordsSwitcher extends Switcher {
 
 class GameEventsSwitcher extends Switcher {
   switch = (): void => {
-    // if (!this.currentRoute)
-    this.mainElement.replaceChildren(new GameEventsView());
-    // else
-    // this.mainElement.replaceChildren(new GameEventsView(this.currentRoute));
+    if (!this.currentRoute)
+      this.mainElement.replaceChildren(new GameEventsView());
+    else this.mainElement.replaceChildren(new GameEventView(this.currentRoute));
   };
 }
 

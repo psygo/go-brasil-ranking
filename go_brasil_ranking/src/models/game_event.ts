@@ -44,3 +44,9 @@ type _GameEvent =
   | GameEventTournament
   | GameEventLeague;
 export type GameEvent = Readonly<_GameEvent>;
+
+export const isTournamentOrLeague = (
+  gameEvent: GameEvent
+): gameEvent is GameEventTournament | GameEventLeague =>
+  gameEvent.type === GameEventTypes.tournament ||
+  gameEvent.type === GameEventTypes.league;

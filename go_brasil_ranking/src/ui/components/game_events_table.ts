@@ -2,7 +2,7 @@ import { Globals as g } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
-import { GameEvent, GameEventTypes } from "../../models/game_event";
+import { GameEvent, isTournamentOrLeague } from "../../models/game_event";
 
 export default class GameEventsTable extends HTMLElement {
   static readonly tag: string = "game-events-table";
@@ -38,10 +38,7 @@ export default class GameEventsTable extends HTMLElement {
   private setPlayersTable = (gameEvents: GameEvent[]): void => {
     for (let i = 0; i < gameEvents.length; i++) {
       const gameEvent = gameEvents[i];
-      if (
-        gameEvent.type === GameEventTypes.tournament ||
-        gameEvent.type === GameEventTypes.league
-      )
+      if (isTournamentOrLeague(gameEvent))
         this.innerHTML += /*html*/ `
           <div class="game-event-card" id="${gameEvent.firebaseRef}">
             <route-link href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
@@ -50,7 +47,7 @@ export default class GameEventsTable extends HTMLElement {
               <route-link 
                 class="game-event-name"
                 href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
-                <span>${gameEvent.name}</span>
+                  <span>${gameEvent.name}</span>
               </route-link>
             </route-link>
           </div>
