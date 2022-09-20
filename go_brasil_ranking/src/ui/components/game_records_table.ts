@@ -4,6 +4,7 @@ import { RouteEnum } from "../../routing/router";
 
 import { FirebaseRef } from "../../models/firebase_ref";
 import { Color, GameRecord, resultString } from "../../models/game_record";
+import { isTournamentOrLeague } from "../../models/game_event";
 
 export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
@@ -48,7 +49,8 @@ export default class GameRecordsTable extends HTMLElement {
           <span>Dif</span>
         </div>
         <span>Resultado</span>
-        <span>Data</span>
+        <span class="centered">Data</span>
+        <span class="centered">Evento</span>
       </div>
     `;
 
@@ -58,12 +60,26 @@ export default class GameRecordsTable extends HTMLElement {
   setGameRecordsTable = (gameRecords: GameRecord[]): void => {
     for (let i = gameRecords.length - 1; i >= 0; i--) {
       const gameRecord = gameRecords[i];
+
       const blackWins =
         gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
       const whiteWins =
         gameRecord.result.whoWins === Color.White ? "winner" : "loser";
 
       const gameDate = new Date(gameRecord.date);
+
+      let gameEvent = gameRecord.gameEvent?.type.toString();
+      let gameEventLink = /*html*/ `<span class="centered">${gameEvent}</span>`;
+      if (gameRecord.gameEvent && isTournamentOrLeague(gameRecord.gameEvent)) {
+        gameEvent = gameRecord.gameEvent.name;
+        gameEventLink = /*html*/ `
+          <route-link 
+            class="centered" 
+            href="${RouteEnum.gameEvents}/${gameRecord.gameEventRef}">
+              <span>${gameRecord.gameEvent.name}</span>
+          </route-link>
+        `;
+      }
 
       this.innerHTML += /*html*/ `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
@@ -90,9 +106,11 @@ export default class GameRecordsTable extends HTMLElement {
 
             <span class="centered">${gameRecord!.eloData!.eloDeltaWhite}</span>
 
-            <span>${resultString(gameRecord.result)}</span>
+            <span class="centered">${resultString(gameRecord.result)}</span>
 
             <span>${DateUtils.formatDate(gameDate)}</span>
+            
+            ${gameEventLink}
           </route-link>
         </div>
       `;

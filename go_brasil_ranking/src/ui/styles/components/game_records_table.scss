@@ -19,6 +19,7 @@
 @mixin cardPadding {
   padding: 12px 0px;
   padding-left: 17px;
+  padding-right: 12px;
 }
 
 @mixin playerLink {
@@ -72,18 +73,20 @@ game-records-table {
     $playerNameWidth: 130px;
     $eloDeltaWidth: 40px;
     $resultWidth: 90px;
-    $dateWidth: 100px;
+    $dateWidth: 110px;
+    $eventWidth: 100px;
 
     display: grid;
     grid-template-columns:
       $refWidth $playerNameWidth $eloWidth
       $eloDeltaWidth $playerNameWidth $eloWidth
-      $eloDeltaWidth $resultWidth $dateWidth;
+      $eloDeltaWidth $resultWidth $dateWidth
+      $eventWidth;
     grid-template-areas:
       "ref"
       "black elo-black elo-delta-black"
       "white elo-white elo-delta-white"
-      "result date";
+      "result date event";
   }
 
   .game-record-card {
