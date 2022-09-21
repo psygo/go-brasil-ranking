@@ -12,25 +12,25 @@
 
 ### Players Max
 
-GET {{address}}/players
+GET {{address}}/jogadores
 
 ### Player by ID
 
 @fakeId1 = 0
 
-GET {{address}}/players/{{fakeId1}}
+GET {{address}}/jogadores/{{fakeId1}}
 
 ### Player Exists by ID
 
 @fakeId2 = 0
 
-GET {{address}}/players/{{fakeId2}}?exists
+GET {{address}}/jogadores/{{fakeId2}}?existe
 
 ## POST
 
 ### POST Player
 
-POST {{address}}/players/new
+POST {{address}}/jogadores/novo
 content-type: application/json
 
 {
@@ -50,15 +50,15 @@ content-type: application/json
 
 ### 1. GET All
 
-GET {{address}}/game-events
+GET {{address}}/partidas
 
 ### 2. GET
 
-GET {{address}}/game-events/0
+GET {{address}}/partidas/0
 
 ### 3. POST
 
-POST {{address}}/game-events/new
+POST {{address}}/partidas/novo
 
 ################################################################################
 
@@ -66,19 +66,19 @@ POST {{address}}/game-events/new
 
 ### 1. GET All
 
-GET {{address}}/game-records
+GET {{address}}/partidas
 
 ### 2. GET
 
-GET {{address}}/game-records/0
+GET {{address}}/partidas/0
 
 ### 2.1. GET game records from player
 
-GET {{address}}/game-records?playerRef=0
+GET {{address}}/partidas?jogadorRef=0
 
 ### 3. POST
 
-GET {{address}}/game-records/new
+GET {{address}}/partidas/novo
 content-type: application/json
 
 {
@@ -87,7 +87,7 @@ content-type: application/json
 
 ### 4. GET games by player
 
-GET {{address}}/partidas?playerRef=0
+GET {{address}}/partidas?jogadorRef=0
 
 ################################################################################
 
