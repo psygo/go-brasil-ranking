@@ -7,7 +7,7 @@ export type Country = Readonly<_Country>;
 
 export const getFlag = (cn: CountryName): CountryFlag => {
   const ind = Object.keys(CountryFlag).findIndex(
-    (cf) => cf === cn.toLowerCase()
+    (cf) => cf === countryKeyFromString(cn).toLowerCase()
   );
   return Object.values(CountryFlag)[ind];
 };
@@ -20,6 +20,7 @@ export enum CountryName {
   angola = "Angola",
   argentina = "Argentina",
   brazil = "Brasil",
+  canada = "Canadá",
   colombia = "Colombia",
   france = "França",
   israel = "Israel",
@@ -29,15 +30,22 @@ export enum CountryName {
   portugal = "Portugal",
   romania = "Romênia",
   taiwan = "Taiwan",
+  usa = "EUA",
 }
 
 export const countryNameFromString = (cString: string): CountryName =>
   Object.values(CountryName).find((c) => c === cString)!;
 
+export const countryKeyFromString = (cString: string): string => {
+  for (const [k, v] of Object.entries(CountryName)) if (v === cString) return k;
+  return "";
+};
+
 export enum CountryFlag {
   angola = "🇦🇴",
   argentina = "🇦🇷",
   brazil = "🇧🇷",
+  canada = "🇨🇦",
   colombia = "🇨🇴",
   france = "🇫🇷",
   israel = "🇮🇱",
@@ -47,6 +55,7 @@ export enum CountryFlag {
   portugal = "🇵🇹",
   romania = "🇷🇴",
   taiwan = "🇹🇼",
+  usa = "🇺🇸",
 }
 
 export enum BrazilianState {

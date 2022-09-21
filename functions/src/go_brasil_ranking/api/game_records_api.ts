@@ -56,7 +56,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
     const limit = howMany(req.query.limit as string);
     let gameRecords: GameRecord[] = [];
 
-    const playerRef = req.query.playerRef as FirebaseRef;
+    const playerRef = req.query.jogadorRef as FirebaseRef;
     if (playerRef)
       gameRecords = await queryForPlayersGameRecords(playerRef, limit);
     else {

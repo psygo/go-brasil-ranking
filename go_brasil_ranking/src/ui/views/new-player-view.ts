@@ -36,7 +36,7 @@ export default class NewPlayerView extends HTMLElement {
   private get countryOptions(): string {
     let options = "";
 
-    for (const [_, countryString] of Object.entries(CountryName)) {
+    for (const [_, countryString] of Object.entries(CountryName))
       options += /*html*/ `
         <option 
           ${countryString === CountryName.brazil ? "selected" : ""}
@@ -44,20 +44,16 @@ export default class NewPlayerView extends HTMLElement {
             ${countryString}
         </option>
       `;
-    }
 
     return options;
   }
-
-  private numberOfCountries: number = 0;
 
   private addCountrySelect = (): void => {
     const countriesSelectDiv: HTMLDivElement = this.querySelector(
       "div#countries-select"
     )!;
-    this.numberOfCountries++;
     countriesSelectDiv.innerHTML += /*html*/ `
-      <select name="countries" id="country-${this.numberOfCountries}">
+      <select name="countries">
         ${this.countryOptions}
       </select>
     `;
@@ -66,11 +62,10 @@ export default class NewPlayerView extends HTMLElement {
   private get brStateOptions(): string {
     let options = "";
 
-    for (const [_, brStateString] of Object.entries(BrazilianState)) {
+    for (const [_, brStateString] of Object.entries(BrazilianState))
       options += /*html*/ `
         <option value=${brStateString}>${brStateString}</option>
       `;
-    }
 
     return options;
   }
@@ -130,12 +125,11 @@ export default class NewPlayerView extends HTMLElement {
     const addCountrySelectButton: HTMLButtonElement = this.querySelector(
       "button#add-country-select"
     )!;
-    addCountrySelectButton.addEventListener("click", this.addCountrySelect);
+    addCountrySelectButton.onclick = this.addCountrySelect;
     this.addCountrySelect();
 
-    const submitButton: HTMLButtonElement =
-      this.querySelector("button#add-player")!;
-    submitButton.addEventListener("click", this.onSubmit);
+    const form: HTMLFormElement = this.querySelector("form")!;
+    form.onsubmit = this.onSubmit;
   };
 
   private get name(): string {
@@ -223,18 +217,23 @@ export default class NewPlayerView extends HTMLElement {
 
     if (playerFromServer)
       this.innerHTML += /*html*/ `
-        <h4>Jogador adicionado com sucesso!</h4>
-        <h4>
-          Para visualizá-lo, clique 
-          <route-link 
-            href="${RouteEnum.players}/${playerFromServer.firebaseRef}">
-              aqui
-          </route-link>.
-        </h4>
+        <div id="return-msg">
+          <p>Jogador adicionado com sucesso!</p>
+          
+          <p>
+            Para visualizá-lo, clique 
+            <route-link 
+              href="${RouteEnum.players}/${playerFromServer.firebaseRef}">
+                aqui.
+            </route-link>
+          </p>
+        </div>
       `;
     else
       this.innerHTML += /*html*/ `
-        <h4>Não foi possível adicionar tal jogador.</h4>
+        <div id="return-msg">
+          <p>Não foi possível adicionar tal jogador.</p>
+        </div>
       `;
   };
 }

@@ -45,13 +45,13 @@ export default class PlayerView extends HTMLElement {
       <hr/>
     `;
 
-    const brazil = player.countries.find((c) => c.name === "Brazil");
+    // const brazil = player.countries.find((c) => c.name === "Brazil");
 
-    if (brazil) {
+    // if (brazil) {
       // const state = brStateUpperCase(brazil.state!);
       // this.innerHTML += `
       //   <h3>${brazil.city} - ${state}</h3>
       // `;
-    }
+    // }
   };
 }

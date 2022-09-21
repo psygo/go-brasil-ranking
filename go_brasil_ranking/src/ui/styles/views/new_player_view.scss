@@ -2,6 +2,7 @@
 
 new-player-view {
   @include av.form;
+  @include av.formReturnMsg;
 
   fieldset {
     &#countries {
@@ -11,11 +12,5 @@ new-player-view {
         grid-row-gap: 10px;
       }
     }
-  }
-
-  h4 {
-    margin-top: 40px;
-
-    @include av.routeLinkDecoration;
   }
 }

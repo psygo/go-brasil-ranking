@@ -27,8 +27,11 @@ export default class GameRecordView extends HTMLElement {
     await this.getGameRecord();
 
     if (this.gameRecord) {
-      document.title = /*html*/ `
-        Partida | ${this.gameRecord.blackPlayer} vs ${this.gameRecord.whitePlayer}
+      document.title = `
+        Partida | 
+          ${this.gameRecord.blackPlayer!.name} 
+          vs 
+          ${this.gameRecord.whitePlayer!.name}
       `;
 
       this.setGameRecordPage();
@@ -37,11 +40,17 @@ export default class GameRecordView extends HTMLElement {
 
   private setGameRecordPage = (): void => {
     this.innerHTML += /*html*/ `
-      <h2>${this.gameRecord!.blackPlayer} vs ${this.gameRecord!.whitePlayer}</h2>
+      <h2>
+        ${this.gameRecord!.blackPlayer!.name}
+        vs 
+        ${this.gameRecord!.whitePlayer!.name}
+      </h2>
+
       <h3>${resultString(this.gameRecord!.result)}</h3>
+
       <div id="glift_display1" style="width: 500px; height: 500px;"></div>
     `;
-    
+
     // TODO2: Add button for downloading the SGF
 
     this.addSgfDiagram();
