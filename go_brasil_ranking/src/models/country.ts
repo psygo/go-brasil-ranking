@@ -19,17 +19,20 @@ export const getAllFlags = (countries: readonly Country[]) =>
 export enum CountryName {
   angola = "Angola",
   argentina = "Argentina",
-  brazil = "Brazil",
+  brazil = "Brasil",
   colombia = "Colombia",
-  france = "France",
+  france = "França",
   israel = "Israel",
-  italy = "Italy",
-  japan = "Japan",
-  mexico = "Mexico",
+  italy = "Itália",
+  japan = "Japão",
+  mexico = "México",
   portugal = "Portugal",
-  romania = "Romania",
+  romania = "Romênia",
   taiwan = "Taiwan",
 }
+
+export const countryNameFromString = (cString: string): CountryName =>
+  Object.values(CountryName).find((c) => c === cString)!;
 
 export enum CountryFlag {
   angola = "🇦🇴",
@@ -74,3 +77,6 @@ export enum BrazilianState {
   se = "SE",
   to = "TO",
 }
+
+export const brazilianStateFromString = (brString: string): BrazilianState =>
+  Object.values(BrazilianState).find((brS) => brS === brString)!;

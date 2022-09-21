@@ -262,18 +262,20 @@ admin-view[signed-in=false] form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 admin-view[signed-in=false] form button {
   width: max-content;
   margin-top: 10px;
-  padding: 2px 7.5px;
+  padding: 7px 10px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
 }
 admin-view[signed-in=false] form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 35px 1fr;
   border: 0;
 }
 admin-view[signed-in=false] form fieldset label {
@@ -282,9 +284,23 @@ admin-view[signed-in=false] form fieldset label {
 }
 admin-view[signed-in=false] form fieldset input,
 admin-view[signed-in=false] form fieldset select {
-  height: 30px;
-  padding-left: 7.5px;
+  height: 35px;
+  width: 275px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+admin-view[signed-in=false] form fieldset input:focus-visible,
+admin-view[signed-in=false] form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+admin-view[signed-in=false] form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+admin-view[signed-in=false] form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 admin-view[signed-in=true] {
   display: grid;
@@ -295,8 +311,10 @@ admin-view[signed-in=true] {
 admin-view[signed-in=true] button {
   width: max-content;
   margin-top: 10px;
-  padding: 2px 7.5px;
+  padding: 7px 10px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
 }
 admin-view[signed-in=true] p {
   margin-top: 40px;
@@ -322,18 +340,20 @@ new-player-view form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 new-player-view form button {
   width: max-content;
   margin-top: 10px;
-  padding: 2px 7.5px;
+  padding: 7px 10px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
 }
 new-player-view form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 35px 1fr;
   border: 0;
 }
 new-player-view form fieldset label {
@@ -342,9 +362,28 @@ new-player-view form fieldset label {
 }
 new-player-view form fieldset input,
 new-player-view form fieldset select {
-  height: 30px;
-  padding-left: 7.5px;
+  height: 35px;
+  width: 275px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-player-view form fieldset input:focus-visible,
+new-player-view form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+new-player-view form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+new-player-view form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+new-player-view fieldset#countries div#countries-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
 }
 new-player-view h4 {
   margin-top: 40px;
@@ -358,18 +397,20 @@ new-game-event-view form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 new-game-event-view form button {
   width: max-content;
   margin-top: 10px;
-  padding: 2px 7.5px;
+  padding: 7px 10px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
 }
 new-game-event-view form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 35px 1fr;
   border: 0;
 }
 new-game-event-view form fieldset label {
@@ -378,9 +419,23 @@ new-game-event-view form fieldset label {
 }
 new-game-event-view form fieldset input,
 new-game-event-view form fieldset select {
-  height: 30px;
-  padding-left: 7.5px;
+  height: 35px;
+  width: 275px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-game-event-view form fieldset input:focus-visible,
+new-game-event-view form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+new-game-event-view form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+new-game-event-view form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 new-game-record-view form {
@@ -388,18 +443,20 @@ new-game-record-view form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 150px;
+  margin-top: 50px;
 }
 new-game-record-view form button {
   width: max-content;
   margin-top: 10px;
-  padding: 2px 7.5px;
+  padding: 7px 10px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
 }
 new-game-record-view form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 35px 1fr;
   border: 0;
 }
 new-game-record-view form fieldset label {
@@ -408,9 +465,23 @@ new-game-record-view form fieldset label {
 }
 new-game-record-view form fieldset input,
 new-game-record-view form fieldset select {
-  height: 30px;
-  padding-left: 7.5px;
+  height: 35px;
+  width: 275px;
   font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-game-record-view form fieldset input:focus-visible,
+new-game-record-view form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+new-game-record-view form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+new-game-record-view form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -4,7 +4,13 @@ import { Globals as g } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
-import { CountryName } from "../../models/country";
+import {
+  BrazilianState,
+  brazilianStateFromString,
+  Country,
+  CountryName,
+  countryNameFromString,
+} from "../../models/country";
 import { Player } from "../../models/player";
 
 export default class NewPlayerView extends HTMLElement {
@@ -27,60 +33,181 @@ export default class NewPlayerView extends HTMLElement {
     });
   }
 
+  private get countryOptions(): string {
+    let options = "";
+
+    for (const [_, countryString] of Object.entries(CountryName)) {
+      options += /*html*/ `
+        <option 
+          ${countryString === CountryName.brazil ? "selected" : ""}
+          value=${countryString}>
+            ${countryString}
+        </option>
+      `;
+    }
+
+    return options;
+  }
+
+  private numberOfCountries: number = 0;
+
+  private addCountrySelect = (): void => {
+    const countriesSelectDiv: HTMLDivElement = this.querySelector(
+      "div#countries-select"
+    )!;
+    this.numberOfCountries++;
+    countriesSelectDiv.innerHTML += /*html*/ `
+      <select name="countries" id="country-${this.numberOfCountries}">
+        ${this.countryOptions}
+      </select>
+    `;
+  };
+
+  private get brStateOptions(): string {
+    let options = "";
+
+    for (const [_, brStateString] of Object.entries(BrazilianState)) {
+      options += /*html*/ `
+        <option value=${brStateString}>${brStateString}</option>
+      `;
+    }
+
+    return options;
+  }
+
   private setNewPlayerForm = (): void => {
     this.innerHTML = /*html*/ `
       <form>
         <fieldset>
           <label for="name">Nome</label>
-          <input required type="text" name="name" autofocus/>
+          <input 
+            required 
+            type="text" 
+            name="name" 
+            autofocus 
+            placeholder="João da Silva"/>
+        </fieldset>
+        
+        <fieldset id="countries">
+          <label for="countries">Países</label>
+          
+          <div id="countries-select"></div>
+          
+          <button id="add-country-select">+</button>
         </fieldset>
         
         <fieldset>
-          <label for="countries">Países</label>
-          <select name="countries">
-            <option value="Brazil">Brasil</option>
+          <label for="br-state">Estado Brasileiro (se brasileiro)</label>
+          
+          <select name="br-state">
+            <option selected value="">Selecione um estado</option>
+            ${this.brStateOptions}
           </select>
         </fieldset>
 
         <fieldset>
+          <label for="br-city">Cidade Brasileira (se brasileiro)</label>
+          
+          <input 
+            type="text" 
+            name="br-city" 
+            placeholder="Onde Judas Perdeu as Botas"/>
+        </fieldset>
+
+        <fieldset>
           <label for="elo">Elo</label>
-          <input required type="number" name="elo"/>
+          <input 
+            required 
+            type="number" 
+            name="elo"
+            placeholder="Ex.: 10 kyu = 1100"/>
         </fieldset>
         
-        <button type="submit">Adicionar Jogador</buton>
+        <button id="add-player" type="submit">Adicionar Jogador</buton>
       </form>
     `;
 
-    const submitButton: HTMLButtonElement = this.querySelector("button")!;
+    const addCountrySelectButton: HTMLButtonElement = this.querySelector(
+      "button#add-country-select"
+    )!;
+    addCountrySelectButton.addEventListener("click", this.addCountrySelect);
+    this.addCountrySelect();
+
+    const submitButton: HTMLButtonElement =
+      this.querySelector("button#add-player")!;
     submitButton.addEventListener("click", this.onSubmit);
   };
+
+  private get name(): string {
+    const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
+    return nameInput.value;
+  }
+
+  private get countries(): CountryName[] {
+    const countrySelects: NodeListOf<HTMLSelectElement> = this.querySelectorAll(
+      "select[name=countries]"
+    )!;
+
+    const countries: CountryName[] = [];
+    for (const select of countrySelects)
+      countries.push(countryNameFromString(select.value));
+
+    return countries;
+  }
+
+  private get brState(): BrazilianState | null {
+    const brStateSelect: HTMLSelectElement = this.querySelector(
+      "select[name=br-state]"
+    )!;
+
+    if (brStateSelect.value)
+      return brazilianStateFromString(brStateSelect.value);
+    else return null;
+  }
+
+  private get brCity(): string {
+    const brCityInput: HTMLInputElement = this.querySelector(
+      "input[name=br-city]"
+    )!;
+    return brCityInput.value;
+  }
+
+  private get completeCountries(): Country[] {
+    const countries: Country[] = [];
+
+    for (const countryName of this.countries) {
+      if (countryName === CountryName.brazil) {
+        countries.push(<Country>{
+          name: countryName,
+          state: this.brState,
+          city: this.brCity,
+        });
+      } else countries.push(<Country>{ name: countryName });
+    }
+
+    return countries;
+  }
+
+  private get elo(): number {
+    const eloInput: HTMLInputElement = this.querySelector("input[name=elo]")!;
+    return eloInput.valueAsNumber;
+  }
 
   private onSubmit = async (e: Event) => {
     e.preventDefault();
 
-    // TODO2: Fix incomplete input capture...
-    const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
-    // const countriesInput: HTMLInputElement = this.querySelector(
-    //   "input[name=countries]"
-    // )!;
-    const eloInput: HTMLInputElement = this.querySelector("input[name=elo]")!;
-
     const player: Player = {
-      name: nameInput.value,
-      countries: [
-        {
-          name: CountryName.brazil,
-        },
-      ],
-      elo: eloInput.valueAsNumber,
+      name: this.name,
+      countries: this.completeCountries,
+      elo: this.elo,
       author: {
-        uid: this.currentUser?.uid!,
-        name: this.currentUser?.displayName!,
-        email: this.currentUser?.email!,
+        uid: this.currentUser!.uid!,
+        name: this.currentUser!.displayName!,
+        email: this.currentUser!.email!,
       },
     };
 
-    const userIdToken = await this.currentUser?.getIdToken();
+    const userIdToken = await this.currentUser!.getIdToken();
 
     const res = await fetch(`${g.apiUrl}${RouteEnum.players}/novo`, {
       method: "POST",

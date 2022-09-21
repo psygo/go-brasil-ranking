@@ -3,9 +3,12 @@
     width: max-content;
 
     margin-top: 10px;
-    padding: 2px 7.5px;
+    padding: 7px 10px;
 
     font-size: 1.1rem;
+
+    border-radius: 0.3rem;
+    border: 1px solid gray;
   }
 }
 
@@ -23,11 +26,27 @@
 @mixin formInputSelect {
   input,
   select {
-    height: 30px;
-
-    padding-left: 7.5px;
+    height: 35px;
+    width: 275px;
 
     font-size: 1.1rem;
+
+    border-radius: 0.3rem;
+    border: 1px solid gray;
+
+    &:focus-visible {
+      outline: darken(blue, 10%) solid 1.5px;
+    }
+  }
+
+  input {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  select {
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }
 
@@ -40,7 +59,7 @@
 @mixin fieldsetGrid {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: 35px 1fr;
 }
 
 @mixin form {
@@ -49,7 +68,7 @@
     @include formButton;
 
     font-size: 1.15rem;
-    margin-top: 150px;
+    margin-top: 50px;
 
     fieldset {
       @include fieldsetGrid;
