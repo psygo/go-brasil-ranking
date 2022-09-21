@@ -9,7 +9,7 @@ import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_m
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
-    const limit = howMany(req.query.limit as string);
+    const limit = howMany(req.query.limite as string);
 
     const playersDocs = await playersCol.col
       .limit(limit)
@@ -23,7 +23,7 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
     });
 
     res.status(200).send({
-      status: "success",
+      status: "Sucesso",
       message: `Jogadores encontrados (total: ${players.length}`,
       data: { players: players },
     });
@@ -40,15 +40,15 @@ export const getPlayer: ExpressApiRoute = async (req, res) => {
 
     const playerDoc = await playerRef.get();
 
-    if (req.query.exists === "")
+    if (req.query.existe === "")
       res.status(200).send({
-        status: "success",
+        status: "Sucesso",
         message: "Jogador existe.",
         data: playerDoc.exists,
       });
     else
       res.status(200).send({
-        status: "success",
+        status: "Sucesso",
         message: "Jogador encontrado.",
         data: { player: playerDoc.data() },
       });
@@ -85,7 +85,7 @@ export const postPlayerApi: ExpressApiRoute = async (req, res) => {
     const playerOnDbWithRef = await postPlayer(player);
 
     res.status(200).send({
-      status: "success",
+      status: "Sucesso",
       message: "Jogador adicionado com sucesso.",
       data: { player: playerOnDbWithRef },
     });

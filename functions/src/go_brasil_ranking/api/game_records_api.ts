@@ -89,7 +89,7 @@ export const getGameRecord: ExpressApiRoute = async (req, res) => {
 
     const gameRecordDoc = await gameRecordRef.get();
 
-    if (req.query.exists === "")
+    if (req.query.existe === "")
       res.status(200).send({
         status: "success",
         message: "Partida existe.",

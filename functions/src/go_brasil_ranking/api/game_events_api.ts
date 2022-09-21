@@ -12,7 +12,7 @@ import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_m
 
 export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
-    const limit = howMany(req.query.limit as string);
+    const limit = howMany(req.query.limite as string);
 
     const gameEventsQuery = gameEventsCol.col.limit(limit);
 
@@ -28,8 +28,8 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
     });
 
     res.status(200).send({
-      status: "success",
-      message: `Game Records found (total: ${gameEvents.length}`,
+      status: "Sucesso",
+      message: `Partidas encontradas (total: ${gameEvents.length}`,
       data: { gameEvents: gameEvents },
     });
   } catch (e) {
@@ -45,16 +45,16 @@ export const getGameEvent: ExpressApiRoute = async (req, res) => {
 
     const gameEventDoc = await gameGameEventRef.get();
 
-    if (req.query.exists === "")
+    if (req.query.existe === "")
       res.status(200).send({
-        status: "success",
-        message: "Game Record exists",
+        status: "Sucesso",
+        message: "A partida existe.",
         data: gameEventDoc.exists,
       });
     else
       res.status(200).send({
-        status: "success",
-        message: "Game Record found.",
+        status: "Sucesso",
+        message: "Partida encontrada.",
         data: { gameEvent: gameEventDoc.data() },
       });
   } catch (e) {
@@ -90,7 +90,7 @@ export const postGameEventApi: ExpressApiRoute = async (req, res) => {
     const gameEventOnDbWithRef = await postGameEvent(gameEvent);
 
     res.status(200).send({
-      status: "success",
+      status: "sucesso",
       message: "Evento adicionado com sucesso.",
       data: { gameEvent: gameEventOnDbWithRef },
     });

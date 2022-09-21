@@ -8,7 +8,7 @@ export default class GameEventsTable extends HTMLElement {
   static readonly tag: string = "game-events-table";
 
   private getGameEvents = async (): Promise<GameEvent[]> => {
-    const queryString = `?limit=${this.limit}`;
+    const queryString = `?limite=${this.limit}`;
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameEvents}${queryString}`
     );

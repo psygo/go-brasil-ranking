@@ -11,7 +11,7 @@ export default class GameRecordsTable extends HTMLElement {
 
   private getGameRecords = async (): Promise<GameRecord[]> => {
     const p = this.playerRef ? this.playerRef : "";
-    const queryString = `?limit=${this.limit}&playerRef=${p}`;
+    const queryString = `?limite=${this.limit}&jogadorRef=${p}`;
 
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
