@@ -59,7 +59,15 @@
 @mixin fieldsetGrid {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 35px 1fr;
+  grid-row-gap: 20px;
+}
+
+@mixin multiSelect {
+  div.multi-select {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px;
+  }
 }
 
 @mixin form {
@@ -75,6 +83,7 @@
       @include formFieldsetDecoration;
       @include formLabel;
       @include formInputSelect;
+      @include multiSelect;
     }
   }
 }

@@ -45,38 +45,63 @@ export default class NewGameEventView extends HTMLElement {
         <fieldset>
           <label for="date-init">Data de Início</label>
           <input required type="date" name="date-init"/>
+
+          <label for="date-end">Data de Fim (Opcional)</label>
+          <input type="date" name="date-end"/>
         </fieldset>
 
         <fieldset>
-          <label for="date-end">Data de Fim</label>
-          <input required type="date" name="date-end"/>
+          <label for="link">Link (Opcional)</label>
+          <input type="text" name="link"/>
         </fieldset>
         
         <button type="submit">Adicionar Evento</buton>
       </form>
     `;
+    
+    const typeSelect: HTMLSelectElement = this.querySelector('select')!
+    typeSelect.onchange = (e) => {
+      e.preventDefault();
+      console.log(typeSelect.value)
+    }
 
-    const submitButton: HTMLButtonElement = this.querySelector("button")!;
-    submitButton.addEventListener("click", this.onSubmit);
+    const form: HTMLFormElement = this.querySelector("form")!;
+    form.onsubmit = this.onSubmit;
   };
+
+  private get name(): string {
+    const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
+    return nameInput.value;
+  }
+
+  private get link(): string {
+    const linkInput: HTMLInputElement = this.querySelector("input[name=link]")!;
+    return linkInput.value;
+  }
+
+  private get dateInit(): number {
+    const dateInitInput: HTMLInputElement = this.querySelector(
+      "input[name=date-init]"
+    )!;
+    return dateInitInput.valueAsDate!.getTime();
+  }
+
+  private get dateEnd(): number {
+    const dateEndInput: HTMLInputElement = this.querySelector(
+      "input[name=date-end]"
+    )!;
+    return dateEndInput.valueAsDate!.getTime();
+  }
 
   private onSubmit = async (e: Event) => {
     e.preventDefault();
 
-    // TODO2: Fix incomplete input capture...
-    const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
-    const dateInitInput: HTMLInputElement = this.querySelector(
-      "input[name=date-init]"
-    )!;
-    const dateEndInput: HTMLInputElement = this.querySelector(
-      "input[name=date-end]"
-    )!;
-
     const gameEvent: GameEventLeague = {
       type: GameEventTypes.league,
-      name: nameInput.value,
-      dateInit: dateInitInput.valueAsDate?.getTime()!,
-      dateEnd: dateEndInput.valueAsDate?.getTime()!,
+      name: this.name,
+      dateInit: this.dateInit,
+      dateEnd: this.dateEnd,
+      link: this.link,
       author: {
         uid: this.currentUser?.uid!,
         name: this.currentUser?.displayName!,
@@ -100,18 +125,26 @@ export default class NewGameEventView extends HTMLElement {
 
     if (gameEventFromServer)
       this.innerHTML += /*html*/ `
-        <h4>Partida adicionada com sucesso!</h4>
-        <h4>
-          Para visualizá-la, clique 
-          <route-link 
-            href="${RouteEnum.gameEvents}/${gameEventFromServer.firebaseRef}">
-              aqui
-          </route-link>.
-        </h4>
+        <div id="return-msg">
+          <p>
+            Evento adicionado (${gameEventFromServer.firebaseRef}) 
+            com sucesso!
+          </p>
+
+          <p>
+            Para visualizá-lo, clique 
+            <route-link 
+              href="${RouteEnum.gameEvents}/${gameEventFromServer.firebaseRef}">
+                aqui.
+            </route-link>
+          </p>
+        </div>
       `;
     else
       this.innerHTML += /*html*/ `
-        <h4>Não foi possível adicionar tal evento.</h4>
+        <div id="return-msg">
+          <p>Não foi possível adicionar tal evento.</p>
+        </div>
       `;
   };
 }

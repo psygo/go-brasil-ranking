@@ -275,7 +275,7 @@ admin-view[signed-in=false] form button {
 admin-view[signed-in=false] form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 35px 1fr;
+  grid-row-gap: 20px;
   border: 0;
 }
 admin-view[signed-in=false] form fieldset label {
@@ -301,6 +301,11 @@ admin-view[signed-in=false] form fieldset input {
 admin-view[signed-in=false] form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
+}
+admin-view[signed-in=false] form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
 }
 admin-view[signed-in=true] {
   display: grid;
@@ -359,7 +364,7 @@ new-player-view form button {
 new-player-view form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 35px 1fr;
+  grid-row-gap: 20px;
   border: 0;
 }
 new-player-view form fieldset label {
@@ -386,16 +391,16 @@ new-player-view form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
 }
+new-player-view form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
 new-player-view div#return-msg {
   margin-top: 30px;
 }
 new-player-view div#return-msg route-link {
   color: #004d00;
-}
-new-player-view fieldset#countries div#countries-select {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 10px;
 }
 
 new-game-event-view form {
@@ -416,7 +421,7 @@ new-game-event-view form button {
 new-game-event-view form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 35px 1fr;
+  grid-row-gap: 20px;
   border: 0;
 }
 new-game-event-view form fieldset label {
@@ -443,6 +448,17 @@ new-game-event-view form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
 }
+new-game-event-view form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+new-game-event-view div#return-msg {
+  margin-top: 30px;
+}
+new-game-event-view div#return-msg route-link {
+  color: #004d00;
+}
 
 new-game-record-view form {
   display: grid;
@@ -462,7 +478,7 @@ new-game-record-view form button {
 new-game-record-view form fieldset {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 35px 1fr;
+  grid-row-gap: 20px;
   border: 0;
 }
 new-game-record-view form fieldset label {
@@ -488,6 +504,11 @@ new-game-record-view form fieldset input {
 new-game-record-view form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
+}
+new-game-record-view form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
 }
 
 /*# sourceMappingURL=index.css.map */

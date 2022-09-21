@@ -26,6 +26,7 @@ interface _GameEventTournament extends _GameEventBase {
   firebaseRef?: FirebaseRef;
   name: string;
   dates: readonly number[];
+  link?: string;
   dateCreated?: number;
   gamesTotal?: number;
 }
@@ -37,6 +38,7 @@ interface _GameEventLeague extends _GameEventBase {
   name: string;
   dateInit: number;
   dateEnd?: number;
+  link?: string;
   dateCreated?: number;
   gamesTotal?: number;
 }

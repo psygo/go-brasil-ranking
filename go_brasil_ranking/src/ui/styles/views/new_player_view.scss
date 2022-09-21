@@ -3,14 +3,4 @@
 new-player-view {
   @include av.form;
   @include av.formReturnMsg;
-
-  fieldset {
-    &#countries {
-      div#countries-select {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-row-gap: 10px;
-      }
-    }
-  }
 }

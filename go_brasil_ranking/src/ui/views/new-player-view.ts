@@ -62,7 +62,7 @@ export default class NewPlayerView extends HTMLElement {
   private get brStateOptions(): string {
     let options = "";
 
-    for (const [_, brStateString] of Object.entries(BrazilianState))
+    for (const brStateString of Object.values(BrazilianState))
       options += /*html*/ `
         <option value=${brStateString}>${brStateString}</option>
       `;
@@ -86,22 +86,22 @@ export default class NewPlayerView extends HTMLElement {
         <fieldset id="countries">
           <label for="countries">Países</label>
           
-          <div id="countries-select"></div>
+          <div id="countries-select" class="multi-select"></div>
           
           <button id="add-country-select">+</button>
         </fieldset>
         
         <fieldset>
-          <label for="br-state">Estado Brasileiro (se brasileiro)</label>
+          <label for="br-state">Estado Brasileiro (Opcional)</label>
           
           <select name="br-state">
-            <option selected value="">Selecione um estado</option>
+            <option selected value="">Selecione um Estado</option>
             ${this.brStateOptions}
           </select>
         </fieldset>
 
         <fieldset>
-          <label for="br-city">Cidade Brasileira (se brasileiro)</label>
+          <label for="br-city">Cidade Brasileira (Opcional)</label>
           
           <input 
             type="text" 
@@ -218,7 +218,10 @@ export default class NewPlayerView extends HTMLElement {
     if (playerFromServer)
       this.innerHTML += /*html*/ `
         <div id="return-msg">
-          <p>Jogador adicionado com sucesso!</p>
+          <p>
+            ${playerFromServer.name} adicionado 
+            (${playerFromServer.firebaseRef}) com sucesso!
+          </p>
           
           <p>
             Para visualizá-lo, clique 
