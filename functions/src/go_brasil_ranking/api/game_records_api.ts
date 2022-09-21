@@ -15,50 +15,65 @@ import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import { Player } from "../../../../go_brasil_ranking/src/models/player";
 import { gameEventsCol } from "../collections/game_events_col";
 
-// export const queryForPlayersGameRecords = async (
-//   playerRef: FirebaseRef,
-//   limit: number
-// ) => {
-//   const gamesWithPlayer = (
-//     await playersCol.col
-//       .doc(playerRef)
-//       .collection("gamesRefs")
-//       .orderBy("gameDate", "desc")
-//       .limit(limit)
-//       .get()
-//   ).docs;
+export const queryForPlayersGameRecords = async (
+  playerRef: FirebaseRef,
+  limit: number
+) => {
+  const playerIsBlack = gameRecordsCol.col
+    .where("blackRef", "==", playerRef)
+    .orderBy("date", "desc")
+    .limit(limit)
+    .get();
+  const playerIsWhite = gameRecordsCol.col
+    .where("whiteRef", "==", playerRef)
+    .orderBy("date", "desc")
+    .limit(limit)
+    .get();
 
-//   let gamesRefs: GameRecord[] = [];
-//   gamesRefs = gamesWithPlayer.map((g) => g.data() as GameRecord);
+  const [snapsAsBlack, snapsAsWhite] = await Promise.all([
+    playerIsBlack,
+    playerIsWhite,
+  ]);
 
-//   const gameRecordsWithRefsQuery = gamesRefs.map((gRef) =>
-//     gameRecordsCol.col.doc(gRef.gameRef).get()
-//   );
+  const playerAsBlack = snapsAsBlack.docs.map((g) => {
+    const game = g.data() as GameRecord;
+    return { ...game, firebaseRef: g.id };
+  });
+  const playerAsWhite = snapsAsWhite.docs.map((g) => {
+    const game = g.data() as GameRecord;
+    return { ...game, firebaseRef: g.id };
+  });
 
-//   return await Promise.all(gameRecordsWithRefsQuery);
-// };
+  const allPlayerGames = [...playerAsBlack, ...playerAsWhite];
+
+  allPlayerGames.sort((g1, g2) => g1.date - g2.date);
+
+  return allPlayerGames;
+};
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limit as string);
-    let gameRecordsQuery = gameRecordsCol.col.limit(limit);
-    let gameRecordsDocs;
+    let gameRecords: GameRecord[] = [];
 
-    // const playerRef = req.query.playerRef as FirebaseRef;
-    // if (playerRef)
-    //   gameRecordsDocs = await queryForPlayersGameRecords(playerRef, limit);
-    // else
-    gameRecordsDocs = await gameRecordsQuery.get();
+    const playerRef = req.query.playerRef as FirebaseRef;
+    if (playerRef)
+      gameRecords = await queryForPlayersGameRecords(playerRef, limit);
+    else {
+      let gameRecordsDocs = await gameRecordsCol.col
+        .orderBy("date")
+        .limit(limit)
+        .get();
 
-    const gameRecords: GameRecord[] = [];
-    gameRecordsDocs.forEach((gameRecordDoc) => {
-      const gameRecordNoRef = gameRecordDoc.data() as GameRecord;
-      gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
-    });
+      gameRecordsDocs.forEach((gameRecordDoc) => {
+        const gameRecordNoRef = gameRecordDoc.data() as GameRecord;
+        gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
+      });
+    }
 
     res.status(200).send({
       status: "success",
-      message: `Partidas encontradas (total: ${gameRecords.length}`,
+      message: `Partidas encontradas (total: ${gameRecords.length})`,
       data: { gameRecords: gameRecords },
     });
   } catch (e) {

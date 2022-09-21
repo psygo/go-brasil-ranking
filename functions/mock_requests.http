@@ -85,6 +85,10 @@ content-type: application/json
     
 }
 
+### 4. GET games by player
+
+GET {{address}}/partidas?playerRef=0
+
 ################################################################################
 
 ## Mock
