@@ -7,6 +7,9 @@ export enum GameEventTypes {
   league = "league",
 }
 
+export const gameEventTypeFromString = (getString: string): GameEventTypes =>
+  Object.values(GameEventTypes).find((c) => c === getString)!;
+
 interface _GameEventBase extends FirebaseDoc {
   type: GameEventTypes;
 }
