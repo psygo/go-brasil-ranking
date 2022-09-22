@@ -4,8 +4,9 @@ import * as functions from "firebase-functions";
 import cors from "cors";
 import express from "express";
 
+import { home } from "./api/others/others_api";
+
 import { getPlayer, getPlayers, postPlayerApi } from "./api/players_api";
-import { home } from "./api/others_api";
 import {
   getGameRecord,
   getGameRecords,
