@@ -298,6 +298,10 @@ admin-view[signed-in=false] form fieldset input {
   padding-left: 10px;
   padding-right: 10px;
 }
+admin-view[signed-in=false] form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
 admin-view[signed-in=false] form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
@@ -387,6 +391,10 @@ new-player-view form fieldset input {
   padding-left: 10px;
   padding-right: 10px;
 }
+new-player-view form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
 new-player-view form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
@@ -444,6 +452,10 @@ new-game-event-view form fieldset input {
   padding-left: 10px;
   padding-right: 10px;
 }
+new-game-event-view form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
 new-game-event-view form fieldset select {
   padding-left: 5px;
   padding-right: 5px;
@@ -500,6 +512,10 @@ new-game-record-view form fieldset select:focus-visible {
 new-game-record-view form fieldset input {
   padding-left: 10px;
   padding-right: 10px;
+}
+new-game-record-view form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
 }
 new-game-record-view form fieldset select {
   padding-left: 5px;

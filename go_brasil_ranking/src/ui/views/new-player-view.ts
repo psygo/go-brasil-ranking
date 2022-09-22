@@ -219,8 +219,7 @@ export default class NewPlayerView extends HTMLElement {
       this.innerHTML += /*html*/ `
         <div id="return-msg">
           <p>
-            ${playerFromServer.name} adicionado 
-            (${playerFromServer.firebaseRef}) com sucesso!
+            ${playerFromServer.name} adicionado com sucesso!
           </p>
           
           <p>

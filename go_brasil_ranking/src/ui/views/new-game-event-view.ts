@@ -166,18 +166,17 @@ export default class NewGameEventView extends HTMLElement {
     e.preventDefault();
 
     let dates;
-    if (this.type === GameEventTypes.league) {
+    if (this.type === GameEventTypes.league)
       dates = {
         type: GameEventTypes.league,
         dateInit: this.dateInit,
         dateEnd: this.dateEnd,
       };
-    } else if (this.type === GameEventTypes.tournament) {
+    else if (this.type === GameEventTypes.tournament)
       dates = {
         type: GameEventTypes.tournament,
         dates: this.tournamentDates,
       };
-    }
 
     const gameEvent = {
       ...dates,
@@ -208,8 +207,7 @@ export default class NewGameEventView extends HTMLElement {
       this.innerHTML += /*html*/ `
         <div id="return-msg">
           <p>
-            Evento adicionado (${gameEventFromServer.firebaseRef}) 
-            com sucesso!
+            ${gameEventFromServer.name} adicionado(a) com sucesso!
           </p>
 
           <p>

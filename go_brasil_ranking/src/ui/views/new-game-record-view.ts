@@ -4,7 +4,7 @@ import { Globals as g } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
-import { Color, GameRecord } from "../../models/game_record";
+import { Color, colorFromString, GameRecord } from "../../models/game_record";
 
 export default class NewGameRecordView extends HTMLElement {
   static readonly tag: string = "new-game-record-view";
@@ -49,7 +49,7 @@ export default class NewGameRecordView extends HTMLElement {
         
         <fieldset>
           <label for="sgf">SGF</label>
-          <input type="text" name="sgf"/>
+          <input type="file" name="sgf" placeholder="Escolha um arquivo"/>
         </fieldset>
 
         <fieldset>
@@ -65,27 +65,55 @@ export default class NewGameRecordView extends HTMLElement {
     submitButton.addEventListener("click", this.onSubmit);
   };
 
+  private get blackRef(): string {
+    const blackRefInput: HTMLInputElement = this.querySelector(
+      "input[name=blackRef]"
+    )!;
+    return blackRefInput.value;
+  }
+
+  private get whiteRef(): string {
+    const whiteRefInput: HTMLInputElement = this.querySelector(
+      "input[name=whiteRef]"
+    )!;
+    return whiteRefInput.value;
+  }
+
+  private get date(): number {
+    const dateInput: HTMLInputElement = this.querySelector("input[name=date]")!;
+    return dateInput.valueAsDate?.getTime()!;
+  }
+
+  private get sgf(): string {
+    const sgfInput: HTMLInputElement = this.querySelector("input[name=sgf]")!;
+    const fileToLoad = sgfInput.files?.item(0);
+    const fileReader = new FileReader();
+
+    if (fileToLoad) {
+      fileReader.readAsText(fileToLoad, "UTF-8");
+      if (typeof fileReader.result === "string") return fileReader.result;
+    }
+    return "";
+  }
+
+  private get whoWins(): Color {
+    const colorSelect: HTMLSelectElement = this.querySelector(
+      "select[name=whoWins]"
+    )!;
+    return colorFromString(colorSelect.value);
+  }
+
   private onSubmit = async (e: Event) => {
     e.preventDefault();
 
-    // TODO2: Fix incomplete input capture...
-    const blackRef: HTMLInputElement = this.querySelector(
-      "input[name=blackRef]"
-    )!;
-    const whiteRef: HTMLInputElement = this.querySelector(
-      "input[name=whiteRef]"
-    )!;
-    // const sgf: HTMLInputElement = this.querySelector("input[name=sgf]")!;
-    const date: HTMLInputElement = this.querySelector("input[name=date]")!;
-
     const gameRecord: GameRecord = {
-      blackRef: blackRef.value,
-      whiteRef: whiteRef.value,
+      blackRef: this.blackRef,
+      whiteRef: this.whiteRef,
       result: {
-        whoWins: Color.Black,
+        whoWins: this.whoWins,
       },
-      // sgf: sgf.value,
-      date: date.valueAsDate!.getTime(),
+      sgf: this.sgf,
+      date: this.date,
       author: {
         uid: this.currentUser?.uid!,
         name: this.currentUser?.displayName!,
