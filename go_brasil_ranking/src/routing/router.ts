@@ -63,7 +63,7 @@ export abstract class Router {
   };
 
   private routeClickListener = (): void => {
-    document.addEventListener("click", (evt: MouseEvent) => {
+    document.onclick = (evt: MouseEvent) => {
       const routeLink: RouteLink | null = (evt.target as HTMLElement).closest(
         "route-link"
       );
@@ -75,7 +75,7 @@ export abstract class Router {
 
         history.pushState(null, "", this._currentRoute);
       }
-    });
+    };
   };
 
   manualRouting = (route: string): void => {

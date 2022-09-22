@@ -64,11 +64,11 @@ export default class AdminView extends HTMLElement {
 
     const button: HTMLButtonElement = this.querySelector("button")!;
 
-    button.addEventListener("click", async (e) => {
+    button.onclick = async (e) => {
       e.preventDefault();
 
       await signOut(g.setup.auth!);
-    });
+    };
   };
 
   private signInForm = (): void => {
@@ -90,12 +90,12 @@ export default class AdminView extends HTMLElement {
       </form>
     `;
 
-    const submitButton: HTMLButtonElement = this.querySelector("button")!;
-    submitButton.addEventListener("click", async (e: Event) => {
+    const form: HTMLFormElement = this.querySelector("form")!;
+    form.onsubmit = async (e: Event) => {
       e.preventDefault();
 
       await this.signIn();
-    });
+    };
   };
 
   private signIn = async (): Promise<boolean> => {

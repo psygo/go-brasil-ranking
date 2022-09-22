@@ -6,6 +6,7 @@ import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 interface _Player extends FirebaseDoc {
   firebaseRef?: FirebaseRef;
   name: string;
+  picture?: string;
   countries: readonly Country[];
   elo: SerializedElo;
   dateCreated?: number;

@@ -49,17 +49,20 @@ export default class NewGameRecordView extends HTMLElement {
         
         <fieldset>
           <label for="sgf">SGF</label>
-          <input type="file" name="sgf" placeholder="Escolha um arquivo"/>
+          <input type="file" name="sgf"/>
         </fieldset>
 
         <fieldset>
-          <label for="date">Data</label>
+          <label for="date">Data da Partida</label>
           <input type="date" name="date"/>
         </fieldset>
 
         <button type="submit">Adicionar Partida</buton>
       </form>
     `;
+
+    const sgfInput: HTMLInputElement = this.querySelector("input[name=sgf]")!;
+    sgfInput.onchange = this.sgfOnChange;
 
     const submitButton: HTMLButtonElement = this.querySelector("button")!;
     submitButton.addEventListener("click", this.onSubmit);
@@ -84,17 +87,19 @@ export default class NewGameRecordView extends HTMLElement {
     return dateInput.valueAsDate?.getTime()!;
   }
 
-  private get sgf(): string {
+  private sgf: string = "";
+
+  private sgfOnChange = () => {
     const sgfInput: HTMLInputElement = this.querySelector("input[name=sgf]")!;
-    const fileToLoad = sgfInput.files?.item(0);
+    const file = sgfInput.files?.item(0);
     const fileReader = new FileReader();
 
-    if (fileToLoad) {
-      fileReader.readAsText(fileToLoad, "UTF-8");
-      if (typeof fileReader.result === "string") return fileReader.result;
-    }
-    return "";
-  }
+    fileReader.onload = () => {
+      if (file!.size < 500000) this.sgf = fileReader.result as string;
+    };
+
+    if (file) fileReader.readAsText(file);
+  };
 
   private get whoWins(): Color {
     const colorSelect: HTMLSelectElement = this.querySelector(

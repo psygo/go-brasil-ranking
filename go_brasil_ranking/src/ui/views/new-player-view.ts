@@ -82,6 +82,12 @@ export default class NewPlayerView extends HTMLElement {
             autofocus 
             placeholder="João da Silva"/>
         </fieldset>
+
+        <fieldset>
+          <label for="picture">Foto (opcional, < 500KB)</label>
+          <input type="file" name="picture"/>
+          <img id="preview"/>
+        </fieldset>
         
         <fieldset id="countries">
           <label for="countries">Países</label>
@@ -92,7 +98,7 @@ export default class NewPlayerView extends HTMLElement {
         </fieldset>
         
         <fieldset>
-          <label for="br-state">Estado Brasileiro (Opcional)</label>
+          <label for="br-state">Estado Brasileiro (opcional)</label>
           
           <select name="br-state">
             <option selected value="">Selecione um Estado</option>
@@ -101,7 +107,7 @@ export default class NewPlayerView extends HTMLElement {
         </fieldset>
 
         <fieldset>
-          <label for="br-city">Cidade Brasileira (Opcional)</label>
+          <label for="br-city">Cidade Brasileira (opcional)</label>
           
           <input 
             type="text" 
@@ -122,6 +128,11 @@ export default class NewPlayerView extends HTMLElement {
       </form>
     `;
 
+    const pictureInput: HTMLInputElement = this.querySelector(
+      "input[name=picture]"
+    )!;
+    pictureInput.onchange = this.pictureOnChange;
+
     const addCountrySelectButton: HTMLButtonElement = this.querySelector(
       "button#add-country-select"
     )!;
@@ -136,6 +147,24 @@ export default class NewPlayerView extends HTMLElement {
     const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
     return nameInput.value;
   }
+
+  private picture: string = "";
+
+  private pictureOnChange = () => {
+    const output: HTMLImageElement = this.querySelector("img#preview")!;
+    const pictureInput: HTMLInputElement = this.querySelector(
+      "input[name=picture]"
+    )!;
+    const file = pictureInput.files?.item(0);
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      output.src = fileReader.result as string;
+      if (file!.size < 500000) this.picture = fileReader.result as string;
+    };
+
+    if (file) fileReader.readAsDataURL(file);
+  };
 
   private get countries(): CountryName[] {
     const countrySelects: NodeListOf<HTMLSelectElement> = this.querySelectorAll(
@@ -192,6 +221,7 @@ export default class NewPlayerView extends HTMLElement {
 
     const player: Player = {
       name: this.name,
+      picture: this.picture,
       countries: this.completeCountries,
       elo: this.elo,
       author: {
