@@ -4,7 +4,7 @@
   ],
   "references": [
     {
-      "path": "../go_brasil_ranking/tsconfig.json"
+      "path": "../frontend/tsconfig.json"
     }
   ],
   "compilerOptions": {

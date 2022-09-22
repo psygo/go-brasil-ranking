@@ -3,7 +3,7 @@ import { ExpressNexFunction } from "../infra";
 import {
   envState,
   EnvState,
-} from "../../../go_brasil_ranking/src/infra/env";
+} from "../../../frontend/src/infra/env";
 
 export const ifDev: ExpressNexFunction = (_, res, next) => {
   switch (envState) {

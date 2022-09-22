@@ -7,8 +7,8 @@ import { gameEventsCol } from "../collections/game_events_col";
 import {
   GameEvent,
   isTournamentOrLeague,
-} from "../../../go_brasil_ranking/src/models/game_event";
-import { FirebaseRef } from "../../../go_brasil_ranking/src/models/firebase_models";
+} from "../../../frontend/src/models/game_event";
+import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 
 export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {

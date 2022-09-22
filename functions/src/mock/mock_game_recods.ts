@@ -4,7 +4,7 @@ import { fakeGameRecords } from "./data/fake_game_records";
 
 import { postGameRecord } from "../api/game_records_api";
 
-import { GameRecord } from "../../../go_brasil_ranking/src/models/game_record";
+import { GameRecord } from "../../../frontend/src/models/game_record";
 
 export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   let completeGameRecords: GameRecord[] = [];

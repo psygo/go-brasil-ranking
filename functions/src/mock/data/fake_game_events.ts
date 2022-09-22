@@ -1,7 +1,7 @@
 import {
   GameEvent,
   GameEventTypes,
-} from "../../../../go_brasil_ranking/src/models/game_event";
+} from "../../../../frontend/src/models/game_event";
 
 export const fakeGameEvents: readonly GameEvent[] = [
   {

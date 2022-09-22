@@ -23,7 +23,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "go_brasil_ranking/public/index.html"
+        "destination": "frontend/public/index.html"
       }
     ]
   },
@@ -42,9 +42,6 @@
     },
     "hosting": {
       "port": 4095
-    },
-    "storage": {
-      "port": 9194
     },
     "ui": {
       "enabled": true,

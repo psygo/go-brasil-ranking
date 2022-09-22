@@ -9,16 +9,16 @@ import {
   Color,
   doesThisColorWin,
   GameRecord,
-} from "../../../go_brasil_ranking/src/models/game_record";
-import { FirebaseRef } from "../../../go_brasil_ranking/src/models/firebase_models";
-import Elo from "../../../go_brasil_ranking/src/models/elo";
-import { Player } from "../../../go_brasil_ranking/src/models/player";
+} from "../../../frontend/src/models/game_record";
+import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
+import Elo from "../../../frontend/src/models/elo";
+import { Player } from "../../../frontend/src/models/player";
 import { gameEventsCol } from "../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
   OnlineOrLive,
   TournamentOrLeague,
-} from "../../../go_brasil_ranking/src/models/game_event";
+} from "../../../frontend/src/models/game_event";
 
 export const queryForPlayersGameRecords = async (
   playerRef: FirebaseRef,
