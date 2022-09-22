@@ -64,8 +64,8 @@ export default class NewGameRecordView extends HTMLElement {
     const sgfInput: HTMLInputElement = this.querySelector("input[name=sgf]")!;
     sgfInput.onchange = this.sgfOnChange;
 
-    const submitButton: HTMLButtonElement = this.querySelector("button")!;
-    submitButton.addEventListener("click", this.onSubmit);
+    const form: HTMLFormElement = this.querySelector("form")!;
+    form.onclick = this.onSubmit;
   };
 
   private get blackRef(): string {
@@ -108,40 +108,46 @@ export default class NewGameRecordView extends HTMLElement {
     return colorFromString(colorSelect.value);
   }
 
+  private validate = (): boolean => {
+    if (this.blackRef === this.whiteRef) return false;
+    else return true;
+  };
+
   private onSubmit = async (e: Event) => {
     e.preventDefault();
 
-    const gameRecord: GameRecord = {
-      blackRef: this.blackRef,
-      whiteRef: this.whiteRef,
-      result: {
-        whoWins: this.whoWins,
-      },
-      sgf: this.sgf,
-      date: this.date,
-      author: {
-        uid: this.currentUser?.uid!,
-        name: this.currentUser?.displayName!,
-        email: this.currentUser?.email!,
-      },
-    };
+    if (this.validate()) {
+      const gameRecord: GameRecord = {
+        blackRef: this.blackRef,
+        whiteRef: this.whiteRef,
+        result: {
+          whoWins: this.whoWins,
+        },
+        sgf: this.sgf,
+        date: this.date,
+        author: {
+          uid: this.currentUser?.uid!,
+          name: this.currentUser?.displayName!,
+          email: this.currentUser?.email!,
+        },
+      };
 
-    const userIdToken = await this.currentUser?.getIdToken();
+      const userIdToken = await this.currentUser?.getIdToken();
 
-    const res = await fetch(`${g.apiUrl}${RouteEnum.gameRecords}/novo`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${userIdToken}`,
-      },
-      body: JSON.stringify(gameRecord),
-    });
+      const res = await fetch(`${g.apiUrl}${RouteEnum.gameRecords}/novo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userIdToken}`,
+        },
+        body: JSON.stringify(gameRecord),
+      });
 
-    const json = await res.json();
-    const gameRecordFromServer = json["data"]["gameRecord"];
+      const json = await res.json();
+      const gameRecordFromServer = json["data"]["gameRecord"];
 
-    if (gameRecordFromServer)
-      this.innerHTML += /*html*/ `
+      if (gameRecordFromServer)
+        this.innerHTML += /*html*/ `
         <h4>Partida adicionada com sucesso!</h4>
         <h4>
           Para visualizá-la, clique 
@@ -151,9 +157,10 @@ export default class NewGameRecordView extends HTMLElement {
           </route-link>.
         </h4>
       `;
-    else
-      this.innerHTML += /*html*/ `
+      else
+        this.innerHTML += /*html*/ `
         <h4>Não foi possível adicionar tal partida.</h4>
       `;
+    }
   };
 }
