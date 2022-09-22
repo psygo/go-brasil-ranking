@@ -3,4 +3,10 @@
 new-player-view {
   @include av.form;
   @include av.formReturnMsg;
+
+  img#preview {
+    max-width: 120px;
+
+    margin: 0 auto;
+  }
 }

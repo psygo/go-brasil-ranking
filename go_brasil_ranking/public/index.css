@@ -410,6 +410,10 @@ new-player-view div#return-msg {
 new-player-view div#return-msg route-link {
   color: #004d00;
 }
+new-player-view img#preview {
+  max-width: 120px;
+  margin: 0 auto;
+}
 
 new-game-event-view form {
   display: grid;
