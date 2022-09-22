@@ -1,10 +1,10 @@
 import { FirebaseDoc, FirebaseRef } from "./firebase_models";
 
 export enum GameEventTypes {
-  online = "online",
-  live = "live",
-  tournament = "tournament",
-  league = "league",
+  online = "Online",
+  live = "Ao Vivo",
+  tournament = "Torneio",
+  league = "Liga",
 }
 
 export const gameEventTypeFromString = (getString: string): GameEventTypes =>

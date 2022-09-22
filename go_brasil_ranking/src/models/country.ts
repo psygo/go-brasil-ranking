@@ -17,9 +17,9 @@ export const getAllFlags = (countries: readonly Country[]) =>
     .reduce((pflag, cflag) => `${pflag} ${cflag}`);
 
 export enum CountryName {
+  brazil = "Brasil",
   angola = "Angola",
   argentina = "Argentina",
-  brazil = "Brasil",
   canada = "Canadá",
   colombia = "Colombia",
   france = "França",

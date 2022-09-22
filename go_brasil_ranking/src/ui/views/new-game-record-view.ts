@@ -4,7 +4,13 @@ import { Globals as g } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
-import { Color, colorFromString, GameRecord } from "../../models/game_record";
+import {
+  Color,
+  colorFromString,
+  GameEventRef,
+  GameRecord,
+} from "../../models/game_record";
+import { GameEventTypes } from "../../models/game_event";
 
 export default class NewGameRecordView extends HTMLElement {
   static readonly tag: string = "new-game-record-view";
@@ -42,8 +48,14 @@ export default class NewGameRecordView extends HTMLElement {
         <fieldset>
           <label for="whoWins">Quem ganhou?</label>
           <select name="whoWins">
-            <option value="${Color.Black}">${Color.Black}</option>
+            <option selected value="${Color.Black}">${Color.Black}</option>
             <option value="${Color.White}">${Color.Black}</option>
+          </select>
+
+          <label for="resign">Por desistência ou por pontos?</label>
+          <select name="resign">
+            <option selected value="resign">Desistência</option>
+            <option value="points">Pontos</option>
           </select>
         </fieldset>
         
@@ -57,6 +69,21 @@ export default class NewGameRecordView extends HTMLElement {
           <input type="date" name="date"/>
         </fieldset>
 
+        <fieldset id="game-event">
+          <label for="game-event-type">Tipo de Evento</label>
+          <select name="game-event-type">
+            <option value="${GameEventTypes.online}">${GameEventTypes.online}</option>
+            <option value="${GameEventTypes.live}">${GameEventTypes.live}</option>
+            <option value="${GameEventTypes.tournament}">${GameEventTypes.tournament}</option>
+            <option value="${GameEventTypes.league}">${GameEventTypes.league}</option>
+          </select>
+
+          <div id="game-event-id"></div>
+        </fieldset>
+
+        <fieldset>
+        </fieldset>
+
         <button type="submit">Adicionar Partida</buton>
       </form>
     `;
@@ -64,8 +91,49 @@ export default class NewGameRecordView extends HTMLElement {
     const sgfInput: HTMLInputElement = this.querySelector("input[name=sgf]")!;
     sgfInput.onchange = this.sgfOnChange;
 
+    const gameEventTypeSelect: HTMLSelectElement = this.querySelector(
+      "select[name=game-event-type]"
+    )!;
+    gameEventTypeSelect.onchange = this.gameEventTypeSelectOnChange;
+
     const form: HTMLFormElement = this.querySelector("form")!;
     form.onclick = this.onSubmit;
+  };
+
+  private get gameEventRef(): GameEventRef {
+    const gameEventTypeSelect: HTMLSelectElement = this.querySelector(
+      "select[name=game-event-type]"
+    )!;
+    if (
+      gameEventTypeSelect.value === GameEventTypes.online ||
+      gameEventTypeSelect.value === GameEventTypes.league
+    )
+      return gameEventTypeSelect.value;
+    else {
+      const gameEventIdInput: HTMLInputElement = this.querySelector(
+        "input[name=game-event-id]"
+      )!;
+      return gameEventIdInput.value;
+    }
+  }
+
+  private gameEventTypeSelectOnChange = (): void => {
+    const gameEventTypeSelect: HTMLSelectElement = this.querySelector(
+      "select[name=game-event-type]"
+    )!;
+    const gameEventIdDiv: HTMLDivElement =
+      this.querySelector("div#game-event-id")!;
+    if (
+      gameEventTypeSelect.value === GameEventTypes.tournament ||
+      gameEventTypeSelect.value === GameEventTypes.league
+    )
+      gameEventIdDiv.innerHTML = /*html*/ `
+        <input 
+          type="text"
+          name="game-event-id"
+          placeholder="ID do Torneio ou Liga"/>
+      `;
+    else gameEventIdDiv.innerHTML = "";
   };
 
   private get blackRef(): string {
@@ -120,11 +188,12 @@ export default class NewGameRecordView extends HTMLElement {
       const gameRecord: GameRecord = {
         blackRef: this.blackRef,
         whiteRef: this.whiteRef,
+        date: this.date,
         result: {
           whoWins: this.whoWins,
         },
         sgf: this.sgf,
-        date: this.date,
+        gameEventRef: this.gameEventRef,
         author: {
           uid: this.currentUser?.uid!,
           name: this.currentUser?.displayName!,

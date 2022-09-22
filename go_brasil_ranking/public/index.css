@@ -262,7 +262,7 @@ admin-view[signed-in=false] form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 admin-view[signed-in=false] form button {
   width: max-content;
@@ -285,7 +285,7 @@ admin-view[signed-in=false] form fieldset label {
 admin-view[signed-in=false] form fieldset input,
 admin-view[signed-in=false] form fieldset select {
   height: 35px;
-  width: 275px;
+  width: 290px;
   font-size: 1.1rem;
   border-radius: 0.3rem;
   border: 1px solid gray;
@@ -355,7 +355,7 @@ new-player-view form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 new-player-view form button {
   width: max-content;
@@ -378,7 +378,7 @@ new-player-view form fieldset label {
 new-player-view form fieldset input,
 new-player-view form fieldset select {
   height: 35px;
-  width: 275px;
+  width: 290px;
   font-size: 1.1rem;
   border-radius: 0.3rem;
   border: 1px solid gray;
@@ -416,7 +416,7 @@ new-game-event-view form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 new-game-event-view form button {
   width: max-content;
@@ -439,7 +439,7 @@ new-game-event-view form fieldset label {
 new-game-event-view form fieldset input,
 new-game-event-view form fieldset select {
   height: 35px;
-  width: 275px;
+  width: 290px;
   font-size: 1.1rem;
   border-radius: 0.3rem;
   border: 1px solid gray;
@@ -477,7 +477,7 @@ new-game-record-view form {
   grid-template-columns: 1fr;
   grid-row-gap: 25px;
   font-size: 1.15rem;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 new-game-record-view form button {
   width: max-content;
@@ -500,7 +500,7 @@ new-game-record-view form fieldset label {
 new-game-record-view form fieldset input,
 new-game-record-view form fieldset select {
   height: 35px;
-  width: 275px;
+  width: 290px;
   font-size: 1.1rem;
   border-radius: 0.3rem;
   border: 1px solid gray;
@@ -525,6 +525,12 @@ new-game-record-view form fieldset div.multi-select {
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: 10px;
+}
+new-game-record-view div#return-msg {
+  margin-top: 30px;
+}
+new-game-record-view div#return-msg route-link {
+  color: #004d00;
 }
 
 /*# sourceMappingURL=index.css.map */

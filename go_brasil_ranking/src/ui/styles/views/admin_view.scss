@@ -27,7 +27,7 @@
   input,
   select {
     height: 35px;
-    width: 275px;
+    width: 290px;
 
     font-size: 1.1rem;
 
@@ -81,7 +81,7 @@
     @include formButton;
 
     font-size: 1.15rem;
-    margin-top: 50px;
+    margin-top: 30px;
 
     fieldset {
       @include fieldsetGrid;

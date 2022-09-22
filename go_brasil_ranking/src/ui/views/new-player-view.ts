@@ -38,11 +38,7 @@ export default class NewPlayerView extends HTMLElement {
 
     for (const [_, countryString] of Object.entries(CountryName))
       options += /*html*/ `
-        <option 
-          ${countryString === CountryName.brazil ? "selected" : ""}
-          value=${countryString}>
-            ${countryString}
-        </option>
+        <option value=${countryString}>${countryString}</option>
       `;
 
     return options;

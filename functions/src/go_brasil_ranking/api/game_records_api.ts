@@ -14,6 +14,7 @@ import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_m
 import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import { Player } from "../../../../go_brasil_ranking/src/models/player";
 import { gameEventsCol } from "../collections/game_events_col";
+import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
 
 export const queryForPlayersGameRecords = async (
   playerRef: FirebaseRef,
@@ -152,7 +153,11 @@ export const postGameRecord = async (
   });
 
   // Update Total Games on Event, if it exists
-  if (gameRecord?.gameEventRef) {
+  if (
+    gameRecord?.gameEventRef &&
+    gameRecord.gameEventRef !== GameEventTypes.online &&
+    gameRecord.gameEventRef !== GameEventTypes.live
+  ) {
     const eventRefString = gameRecord.gameEventRef;
 
     const eventRef = gameEventsCol.col.doc(eventRefString);

@@ -2,4 +2,5 @@
 
 new-game-record-view {
   @include av.form;
+  @include av.formReturnMsg;
 }
