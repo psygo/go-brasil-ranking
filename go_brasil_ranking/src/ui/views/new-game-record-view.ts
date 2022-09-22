@@ -57,6 +57,8 @@ export default class NewGameRecordView extends HTMLElement {
             <option selected value="resign">Desistência</option>
             <option value="points">Pontos</option>
           </select>
+          
+          <div id="difference"></div>
         </fieldset>
         
         <fieldset>
@@ -91,13 +93,38 @@ export default class NewGameRecordView extends HTMLElement {
     const sgfInput: HTMLInputElement = this.querySelector("input[name=sgf]")!;
     sgfInput.onchange = this.sgfOnChange;
 
+    const resignSelect: HTMLSelectElement = this.querySelector(
+      "select[name=resign]"
+    )!;
+    resignSelect.onchange = this.resignSelectOnchange;
+
     const gameEventTypeSelect: HTMLSelectElement = this.querySelector(
       "select[name=game-event-type]"
     )!;
     gameEventTypeSelect.onchange = this.gameEventTypeSelectOnChange;
 
     const form: HTMLFormElement = this.querySelector("form")!;
-    form.onclick = this.onSubmit;
+    form.onsubmit = this.onSubmit;
+  };
+
+  private get difference(): number | undefined {
+    const diffInput: HTMLInputElement | null = this.querySelector(
+      "input[name=difference]"
+    );
+    if (diffInput) return diffInput.valueAsNumber;
+    else return;
+  }
+
+  private resignSelectOnchange = (): void => {
+    const resignSelect: HTMLSelectElement = this.querySelector(
+      "select[name=resign]"
+    )!;
+    const diffDiv: HTMLDivElement = this.querySelector("div#difference")!;
+    if (resignSelect.value === "points")
+      diffDiv.innerHTML = /*html*/ `
+        <input type="number" name="difference" placeholder="diferença"/>
+      `;
+    else diffDiv.innerHTML = "";
   };
 
   private get gameEventRef(): GameEventRef {
@@ -191,6 +218,7 @@ export default class NewGameRecordView extends HTMLElement {
         date: this.date,
         result: {
           whoWins: this.whoWins,
+          difference: this.difference,
         },
         sgf: this.sgf,
         gameEventRef: this.gameEventRef,
