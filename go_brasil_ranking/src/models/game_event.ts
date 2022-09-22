@@ -59,3 +59,18 @@ export const isTournamentOrLeague = (
 ): gameEvent is GameEventTournament | GameEventLeague =>
   gameEvent.type === GameEventTypes.tournament ||
   gameEvent.type === GameEventTypes.league;
+
+export type GameEventRef =
+  | FirebaseRef
+  | GameEventTypes.online
+  | GameEventTypes.live;
+
+export const isTournamentOrLeagueRef = (
+  gameEventRef: GameEventRef
+): gameEventRef is FirebaseRef =>
+  gameEventRef !== GameEventTypes.online &&
+  gameEventRef !== GameEventTypes.live;
+
+export type TournamentOrLeague = GameEventTournament | GameEventLeague;
+
+export type OnlineOrLive = GameEventOnline | GameEventLive;

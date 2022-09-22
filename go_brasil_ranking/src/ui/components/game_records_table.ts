@@ -68,23 +68,10 @@ export default class GameRecordsTable extends HTMLElement {
 
       const gameDate = new Date(gameRecord.date);
 
-      let gameEvent = gameRecord.gameEvent?.type.toString();
-      let gameEventLink = /*html*/ `<span class="centered">${gameEvent}</span>`;
-      if (gameRecord.gameEvent && isTournamentOrLeague(gameRecord.gameEvent)) {
-        gameEvent = gameRecord.gameEvent.name;
-        gameEventLink = /*html*/ `
-          <route-link 
-            class="centered" 
-            href="${RouteEnum.gameEvents}/${gameRecord.gameEventRef}">
-              <span>${gameRecord.gameEvent.name}</span>
-          </route-link>
-        `;
-      }
-
       this.innerHTML += /*html*/ `
         <div class="game-record-card" id="${gameRecord.firebaseRef}">
           <route-link href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}">
-            <span>${gameRecord.firebaseRef}</span>
+            <span>${i.toString()}</span>
 
             <route-link 
               ${blackWins} 
@@ -110,10 +97,29 @@ export default class GameRecordsTable extends HTMLElement {
 
             <span>${DateUtils.formatDate(gameDate)}</span>
             
-            ${gameEventLink}
+            ${this.gameEventLink(gameRecord)}
           </route-link>
         </div>
       `;
     }
+  };
+
+  private gameEventLink = (gameRecord: GameRecord) => {
+    let gameEvent = gameRecord.gameEvent?.type.toString();
+
+    let gameEventLink = /*html*/ `<span class="centered">${gameEvent}</span>`;
+
+    if (gameRecord.gameEvent && isTournamentOrLeague(gameRecord.gameEvent)) {
+      gameEvent = gameRecord.gameEvent.name;
+      gameEventLink = /*html*/ `
+        <route-link 
+          class="centered" 
+          href="${RouteEnum.gameEvents}/${gameRecord.gameEventRef}">
+            <span>${gameRecord.gameEvent.name}</span>
+        </route-link>
+      `;
+    }
+
+    return gameEventLink;
   };
 }

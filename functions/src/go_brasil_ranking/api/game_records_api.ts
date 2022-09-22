@@ -14,7 +14,11 @@ import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_m
 import Elo from "../../../../go_brasil_ranking/src/models/elo";
 import { Player } from "../../../../go_brasil_ranking/src/models/player";
 import { gameEventsCol } from "../collections/game_events_col";
-import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
+import {
+  isTournamentOrLeagueRef,
+  OnlineOrLive,
+  TournamentOrLeague,
+} from "../../../../go_brasil_ranking/src/models/game_event";
 
 export const queryForPlayersGameRecords = async (
   playerRef: FirebaseRef,
@@ -48,6 +52,7 @@ export const queryForPlayersGameRecords = async (
   const allPlayerGames = [...playerAsBlack, ...playerAsWhite];
 
   allPlayerGames.sort((g1, g2) => g1.date - g2.date);
+  allPlayerGames.sort((g1, g2) => g1.dateCreated! - g2.dateCreated!);
 
   return allPlayerGames;
 };
@@ -63,6 +68,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
     else {
       let gameRecordsDocs = await gameRecordsCol.col
         .orderBy("date")
+        .orderBy("dateCreated")
         .limit(limit)
         .get();
 
@@ -126,22 +132,6 @@ export const postGameRecord = async (
     doesThisColorWin(Color.White, gameRecord.result)
   );
 
-  const now = admin.firestore.Timestamp.now().toMillis();
-
-  const gameRecordOnDb: GameRecord = {
-    ...gameRecord,
-    blackPlayer: black,
-    whitePlayer: white,
-    eloData: {
-      atTheTimeBlackElo: blackElo.serialize(),
-      eloDeltaBlack: blackEloDelta.serialize(),
-      atTheTimeWhiteElo: whiteElo.serialize(),
-      eloDeltaWhite: whiteEloDelta.serialize(),
-    },
-    dateCreated: now,
-    gamesTotal: 0,
-  };
-
   // Update Players' Elos and Total Games
   await playersCol.updateWithRef(gameRecord.blackRef, {
     elo: blackElo.add(blackEloDelta).num,
@@ -152,19 +142,42 @@ export const postGameRecord = async (
     gamesTotal: white.gamesTotal! + 1,
   });
 
-  // Update Total Games on Event, if it exists
+  const now = admin.firestore.Timestamp.now().toMillis();
+
+  let gameRecordOnDb: GameRecord = {
+    ...gameRecord,
+    blackPlayer: black,
+    whitePlayer: white,
+    eloData: {
+      atTheTimeBlackElo: blackElo.serialize(),
+      eloDeltaBlack: blackEloDelta.serialize(),
+      atTheTimeWhiteElo: whiteElo.serialize(),
+      eloDeltaWhite: whiteEloDelta.serialize(),
+    },
+    dateCreated: now,
+  };
+
+  // Update Games Event
+  let gameEvent: TournamentOrLeague;
   if (
     gameRecord?.gameEventRef &&
-    gameRecord.gameEventRef !== GameEventTypes.online &&
-    gameRecord.gameEventRef !== GameEventTypes.live
+    isTournamentOrLeagueRef(gameRecord.gameEventRef)
   ) {
     const eventRefString = gameRecord.gameEventRef;
 
     const eventRef = gameEventsCol.col.doc(eventRefString);
-    const gameEvent = (await eventRef.get()).data();
+    gameEvent = (await eventRef.get()).data() as TournamentOrLeague;
 
-    if (gameEvent)
-      await eventRef.update({ gamesTotal: gameEvent.gamesTotal + 1 });
+    if (gameEvent) {
+      await eventRef.update({ gamesTotal: gameEvent.gamesTotal! + 1 });
+
+      gameRecordOnDb = { ...gameRecordOnDb, gameEvent: gameEvent };
+    }
+  } else if (!isTournamentOrLeagueRef(gameRecord.gameEventRef)) {
+    gameRecordOnDb = {
+      ...gameRecordOnDb,
+      gameEvent: <OnlineOrLive>{ type: gameRecord.gameEventRef },
+    };
   }
 
   if (!firebaseRef) {

@@ -2,13 +2,8 @@ import { JsonInterface } from "../infra/serializable";
 
 import { SerializedElo, SerializedEloDelta } from "./elo";
 import { FirebaseRef } from "./firebase_models";
-import { GameEvent, GameEventTypes } from "./game_event";
+import { GameEvent, GameEventRef } from "./game_event";
 import { Player } from "./player";
-
-export type GameEventRef =
-  | FirebaseRef
-  | GameEventTypes.online
-  | GameEventTypes.tournament;
 
 interface _GameRecord extends JsonInterface {
   firebaseRef?: FirebaseRef;
@@ -20,7 +15,7 @@ interface _GameRecord extends JsonInterface {
   dateCreated?: number;
   result: Result;
   sgf?: Sgf;
-  gameEventRef?: GameEventRef;
+  gameEventRef: GameEventRef;
   gameEvent?: GameEvent;
   eloData?: EloData;
 }

@@ -5,8 +5,6 @@ import {
   Sgf,
 } from "../../../../../go_brasil_ranking/src/models/game_record";
 
-import { fakeGameEvents } from "./fake_game_events";
-
 export const fakeSgf1: Sgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
 export const fakeSgf2: Sgf = `
@@ -30,7 +28,7 @@ export const fakeGameRecords: readonly GameRecord[] = [
     },
     sgf: fakeSgf2,
     date: new Date(2022, 1, 1).getTime(),
-    gameEvent: { type: GameEventTypes.online },
+    gameEventRef: GameEventTypes.online,
   },
   {
     blackRef: "0",
@@ -40,7 +38,7 @@ export const fakeGameRecords: readonly GameRecord[] = [
     },
     sgf: fakeSgf1,
     date: new Date(2022, 1, 2).getTime(),
-    gameEvent: { type: GameEventTypes.online },
+    gameEventRef: GameEventTypes.online,
   },
   {
     blackRef: "1",
@@ -52,6 +50,5 @@ export const fakeGameRecords: readonly GameRecord[] = [
     },
     sgf: fakeSgf1,
     gameEventRef: "0",
-    gameEvent: fakeGameEvents[0],
   },
 ];

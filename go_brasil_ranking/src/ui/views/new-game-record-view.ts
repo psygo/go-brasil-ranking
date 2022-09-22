@@ -4,13 +4,8 @@ import { Globals as g } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
-import {
-  Color,
-  colorFromString,
-  GameEventRef,
-  GameRecord,
-} from "../../models/game_record";
-import { GameEventTypes } from "../../models/game_event";
+import { Color, colorFromString, GameRecord } from "../../models/game_record";
+import { GameEventRef, GameEventTypes } from "../../models/game_event";
 
 export default class NewGameRecordView extends HTMLElement {
   static readonly tag: string = "new-game-record-view";
