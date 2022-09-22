@@ -180,13 +180,24 @@ export const postGameRecord = async (
     };
   }
 
+  // Adding the Game and the FirebaseRef
   if (!firebaseRef) {
     const gameRecordRef = await gameRecordsCol.col.add(gameRecordOnDb);
-    return { ...gameRecordOnDb, firebaseRef: gameRecordRef.id };
+    gameRecordOnDb = { ...gameRecordOnDb, firebaseRef: gameRecordRef.id };
   } else {
     await gameRecordsCol.col.doc(firebaseRef).set(gameRecordOnDb);
-    return { ...gameRecordOnDb, firebaseRef: firebaseRef };
+    gameRecordOnDb = { ...gameRecordOnDb, firebaseRef: firebaseRef };
   }
+
+  // Adding the Complete Game Record to Each Player
+  await playersCol.updateWithRef(gameRecord.blackRef, {
+    lastGame: gameRecordOnDb,
+  });
+  await playersCol.updateWithRef(gameRecord.whiteRef, {
+    lastGame: gameRecordOnDb,
+  });
+
+  return gameRecordOnDb;
 };
 
 export const postGameRecordApi: ExpressApiRoute = async (req, res) => {

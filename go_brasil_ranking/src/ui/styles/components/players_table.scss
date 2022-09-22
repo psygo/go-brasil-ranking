@@ -7,12 +7,13 @@ players-table {
     $playerNameWidth: minmax(100px, 200px);
     $playerCountriesWidth: minmax(60px, max-content);
     $danKyuWidth: 45px;
+    $lastGameDateWidth: 100px;
 
     display: grid;
     grid-template-columns:
       grt.$refWidth $playerNameWidth $playerCountriesWidth
-      grt.$eloWidth $danKyuWidth;
-    grid-template-areas: "ref player-name countries elo dan-kyu";
+      grt.$eloWidth $danKyuWidth $lastGameDateWidth;
+    grid-template-areas: "ref player-name countries elo dan-kyu last-game-date";
   }
 
   .player-card {
@@ -31,6 +32,10 @@ players-table {
         text-align: center;
         margin-left: -29px;
       }
+
+      .centered {
+        text-align: center;
+      }
     }
   }
 
@@ -38,5 +43,10 @@ players-table {
     @include cardLegendGrid;
     @include grt.cardPadding;
     @include grt.legendDecoration;
+
+    .centered {
+      text-align: center;
+      margin-left: 8px;
+    }
   }
 }

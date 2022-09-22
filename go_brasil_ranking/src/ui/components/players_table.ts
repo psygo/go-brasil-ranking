@@ -4,6 +4,7 @@ import { RouteEnum } from "../../routing/router";
 import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
+import { DateUtils } from "../../infra/date_utils";
 
 export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
@@ -25,10 +26,8 @@ export default class PlayersTable extends HTMLElement {
         <span>Nome</span>
         <span>País</span>
         <span>Elo</span>
-        <div>
-          <span>Dan</span>
-          <span>Kyu</span>
-        </div>
+        <span>Dan Kyu</span>
+        <span class="centered">Data da Última Partida</span>
       </div>
     `;
 
@@ -36,29 +35,58 @@ export default class PlayersTable extends HTMLElement {
   }
 
   private setPlayersTable = (players: Player[]): void => {
-    for (let i = 0; i < players.length; i++) {
-      const player = players[i];
-      const elo = new Elo(player.elo);
-      
-      // TODO2: What if the Elos are identical? (Ties)
+    let i = 1;
+    this.currentPlayer = players[0];
+    for (const player of players) {
+      player.elo === this.currentPlayer.elo ? null : i++;
+
+      this.currentPlayer = player;
+
+      const elo = new Elo(this.currentPlayer.elo);
 
       this.innerHTML += /*html*/ `
-        <div class="player-card" id="${player.firebaseRef}">
-          <route-link href="${RouteEnum.players}/${player.firebaseRef}">
-            <span>${i + 1}</span>
+        <div 
+          class="player-card" 
+          id="${this.currentPlayer.firebaseRef}">
+            <route-link 
+              href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
+                <span>${i}</span>
 
-            <route-link href="${RouteEnum.players}/${player.firebaseRef}">
-              <span>${player.name}</span>
-            </route-link>
+                <route-link 
+                  href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
+                    <span>${this.currentPlayer.name}</span>
+                </route-link>
 
-            <span class="countries">${getAllFlags(player.countries)}</span>
+                <span class="countries">
+                  ${getAllFlags(this.currentPlayer.countries)}
+                </span>
 
-            <span>${elo.num}</span>
+                <span>${elo.num}</span>
 
-            <span class="dan-kyu">${elo.danKyuLevel()}</span>
+                <span class="dan-kyu">${elo.danKyuLevel()}</span>
+                
+                ${this.lastGameLink(this.currentPlayer)}
           </route-link>
         </div>
       `;
     }
+  };
+
+  private declare currentPlayer: Player;
+
+  private lastGameLink = (player: Player): string => {
+    if (player.lastGame) {
+      const lastGameDate = player.lastGame
+        ? DateUtils.formatDate(new Date(player.lastGame?.date!))
+        : "&mdash;";
+
+      return /*html*/ `
+        <route-link 
+          class="centered" 
+          href="${RouteEnum.gameRecords}/${player.lastGame.firebaseRef}">
+            <span>${lastGameDate}</span>
+        </route-link>
+      `;
+    } else return /*html*/ `<span class="centered">&mdash;</span>`;
   };
 }
