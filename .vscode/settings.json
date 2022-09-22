@@ -14,6 +14,7 @@
         //   2. Firebase
         //
         // 2.1. Config
+        "firebase/": true,
         "firebase.json": true,
         ".firebaserc": true,
         "firestore.indexes.json": true,
@@ -29,6 +30,6 @@
         //
         //   3. Others
         "index.js.LICENSE.txt": true,
-        "files.eol": "\r\n",
+        "files.eol": "\n",
     }
 }

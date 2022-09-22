@@ -1,6 +1,6 @@
 {
   "functions": {
-    "source": "functions",
+    "source": "../functions",
     "ignore": [
       "node_modules",
       ".git",
@@ -10,13 +10,13 @@
     "predeploy": "npm --prefix \"$RESOURCE_DIR\" run build"
   },
   "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
+    "rules": "firebase/firestore.rules",
+    "indexes": "firebase/firestore.indexes.json"
   },
   "hosting": {
     "public": "public",
     "ignore": [
-      "firebase.json",
+      "firebase/firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
@@ -26,9 +26,6 @@
         "destination": "frontend/public/index.html"
       }
     ]
-  },
-  "storage": {
-    "rules": "storage.rules"
   },
   "emulators": {
     "auth": {
@@ -49,6 +46,6 @@
     }
   },
   "remoteconfig": {
-    "template": "remoteconfig.template.json"
+    "template": "firebase/remoteconfig.template.json"
   }
 }
