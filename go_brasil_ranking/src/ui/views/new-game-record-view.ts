@@ -245,19 +245,23 @@ export default class NewGameRecordView extends HTMLElement {
 
       if (gameRecordFromServer)
         this.innerHTML += /*html*/ `
-        <h4>Partida adicionada com sucesso!</h4>
-        <h4>
-          Para visualizá-la, clique 
-          <route-link 
-            href="${RouteEnum.gameRecords}/${gameRecordFromServer.firebaseRef}">
-              aqui
-          </route-link>.
-        </h4>
-      `;
+          <div id="return-msg">
+            <p>Partida adicionada com sucesso!</p>
+            <p>
+              Para visualizá-la, clique 
+              <route-link 
+                href="${RouteEnum.gameRecords}/${gameRecordFromServer.firebaseRef}">
+                  aqui
+              </route-link>.
+            </p>
+          </div>
+        `;
       else
         this.innerHTML += /*html*/ `
-        <h4>Não foi possível adicionar tal partida.</h4>
-      `;
+          <div id="return-msg">
+            <p>Não foi possível adicionar tal partida.</p>
+          </div>
+        `;
     }
   };
 }
