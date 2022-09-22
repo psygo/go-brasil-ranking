@@ -1,17 +1,33 @@
 {
     "files.exclude": {
-        // JS | TS | Packages
-        "index.js": false,
-        "./node_modules/": true,
-        "package-lock.json": true,
+        //   0. General Stuff
+        ".gitignore": true,
+        "README.md": true,
+        //
+        //   1. JS | TS | Packages
+        "**/dist/": true,
+        "**/index.js": true,
+        "**/node_modules/": true,
+        "**/package-lock.json": true,
         "**/tsconfig.tsbuildinfo": true,
+        //
+        //   2. Firebase
+        //
+        // 2.1. Config
+        "firebase.json": true,
+        ".firebaserc": true,
+        "firestore.indexes.json": true,
+        "firestore.rules": true,
+        "remoteconfig.template.json": true,
         "functions/tsconfig.tsbuildinfo": true,
-        // Firebase
+        //
+        // 2.2. Debug
         "firebase-debug.log": true,
         "firestore-debug.log": true,
         "pubsub-debug.log": true,
         "ui-debug.log": true,
-        // Others
+        //
+        //   3. Others
         "index.js.LICENSE.txt": true,
         "files.eol": "\r\n",
     }
