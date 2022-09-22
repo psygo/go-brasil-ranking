@@ -8,7 +8,7 @@ export type ExpressNexFunction = (
 ) => void;
 
 export const howMany = (askedLimit: string): number => {
-  const maxLimit = 100;
+  const maxLimit = 10000;
 
   const intendedLimit =
     askedLimit === "max"

@@ -29,6 +29,11 @@ export default class GameEventsTable extends HTMLElement {
       <div class="game-events-table-legend">
         <span>#</span>
         <span>Nome</span>
+        <div class="centered">
+          <span>Total</span>
+          <span>de</span>
+          <span>Partidas</span>
+        </div>
       </div>
     `;
 
@@ -49,6 +54,8 @@ export default class GameEventsTable extends HTMLElement {
                 href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
                   <span>${gameEvent.name}</span>
               </route-link>
+              
+              <span class="centered">${gameEvent.gamesTotal}</span>
             </route-link>
           </div>
         `;

@@ -5,10 +5,11 @@ game-events-table {
 
   @mixin cardLegendGrid {
     $gameEventNameWidth: 250px;
+    $gamesTotalWidth: 65px;
 
     display: grid;
     grid-template-columns: "ref name";
-    grid-template-columns: grt.$refWidth $gameEventNameWidth;
+    grid-template-columns: grt.$refWidth $gameEventNameWidth $gamesTotalWidth;
   }
 
   .game-event-card {
@@ -20,11 +21,20 @@ game-events-table {
     .game-event-name {
       margin-right: 15px;
     }
+
+    .centered {
+      text-align: center;
+      margin-left: -5px;
+    }
   }
 
   .game-events-table-legend {
     @include grt.cardPadding;
     @include grt.legendDecoration;
     @include cardLegendGrid;
+
+    .centered {
+      text-align: center;
+    }
   }
 }

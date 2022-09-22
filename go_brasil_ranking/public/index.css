@@ -137,7 +137,7 @@ game-events-table .game-event-card > route-link {
   align-items: center;
   display: grid;
   grid-template-columns: "ref name";
-  grid-template-columns: 30px 250px;
+  grid-template-columns: 30px 250px 65px;
 }
 game-events-table .game-event-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -155,6 +155,10 @@ game-events-table .game-event-card > route-link route-link[loser] {
 game-events-table .game-event-card .game-event-name {
   margin-right: 15px;
 }
+game-events-table .game-event-card .centered {
+  text-align: center;
+  margin-left: -5px;
+}
 game-events-table .game-events-table-legend {
   padding: 12px 0px;
   padding-left: 17px;
@@ -163,7 +167,10 @@ game-events-table .game-events-table-legend {
   font-weight: bold;
   display: grid;
   grid-template-columns: "ref name";
-  grid-template-columns: 30px 250px;
+  grid-template-columns: 30px 250px 65px;
+}
+game-events-table .game-events-table-legend .centered {
+  text-align: center;
 }
 
 players-table h2 {
