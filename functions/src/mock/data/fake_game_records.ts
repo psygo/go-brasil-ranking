@@ -1,9 +1,9 @@
-import { GameEventTypes } from "../../../../../go_brasil_ranking/src/models/game_event";
+import { GameEventTypes } from "../../../../go_brasil_ranking/src/models/game_event";
 import {
   Color,
   GameRecord,
   Sgf,
-} from "../../../../../go_brasil_ranking/src/models/game_record";
+} from "../../../../go_brasil_ranking/src/models/game_record";
 
 export const fakeSgf1: Sgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";

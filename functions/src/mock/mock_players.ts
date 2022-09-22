@@ -1,6 +1,6 @@
-import { ExpressApiRoute } from "../../infra";
+import { ExpressApiRoute } from "../infra";
 
-import { Player } from "../../../../go_brasil_ranking/src/models/player";
+import { Player } from "../../../go_brasil_ranking/src/models/player";
 
 import { fakePlayers } from "./data/fake_players";
 

@@ -1,8 +1,8 @@
 import {
   BrazilianState,
   CountryName,
-} from "../../../../../go_brasil_ranking/src/models/country";
-import { Player } from "../../../../../go_brasil_ranking/src/models/player";
+} from "../../../../go_brasil_ranking/src/models/country";
+import { Player } from "../../../../go_brasil_ranking/src/models/player";
 
 export const fakePlayers: readonly Player[] = [
   {

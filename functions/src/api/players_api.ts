@@ -1,11 +1,11 @@
 import * as admin from "firebase-admin";
 
-import { ExpressApiRoute, howMany, parseBody } from "../../infra";
+import { ExpressApiRoute, howMany, parseBody } from "../infra";
 
 import { playersCol } from "../collections/players_col";
 
-import { Player } from "../../../../go_brasil_ranking/src/models/player";
-import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_models";
+import { Player } from "../../../go_brasil_ranking/src/models/player";
+import { FirebaseRef } from "../../../go_brasil_ranking/src/models/firebase_models";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {

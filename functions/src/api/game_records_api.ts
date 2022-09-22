@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 
-import { ExpressApiRoute, howMany, parseBody } from "../../infra";
+import { ExpressApiRoute, howMany, parseBody } from "../infra";
 
 import { gameRecordsCol } from "../collections/game_records_col";
 import { playersCol } from "../collections/players_col";
@@ -9,16 +9,16 @@ import {
   Color,
   doesThisColorWin,
   GameRecord,
-} from "../../../../go_brasil_ranking/src/models/game_record";
-import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_models";
-import Elo from "../../../../go_brasil_ranking/src/models/elo";
-import { Player } from "../../../../go_brasil_ranking/src/models/player";
+} from "../../../go_brasil_ranking/src/models/game_record";
+import { FirebaseRef } from "../../../go_brasil_ranking/src/models/firebase_models";
+import Elo from "../../../go_brasil_ranking/src/models/elo";
+import { Player } from "../../../go_brasil_ranking/src/models/player";
 import { gameEventsCol } from "../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
   OnlineOrLive,
   TournamentOrLeague,
-} from "../../../../go_brasil_ranking/src/models/game_event";
+} from "../../../go_brasil_ranking/src/models/game_event";
 
 export const queryForPlayersGameRecords = async (
   playerRef: FirebaseRef,

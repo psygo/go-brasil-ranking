@@ -8,26 +8,26 @@ import {
   getPlayer,
   getPlayers,
   postPlayerApi,
-} from "./go_brasil_ranking/api/players_api";
-import { home } from "./go_brasil_ranking/api/others_api";
+} from "./api/players_api";
+import { home } from "./api/others_api";
 import {
   getGameRecord,
   getGameRecords,
   postGameRecordApi,
-} from "./go_brasil_ranking/api/game_records_api";
+} from "./api/game_records_api";
 import {
   getGameEvent,
   getGameEvents,
   postGameEventApi,
-} from "./go_brasil_ranking/api/game_events_api";
+} from "./api/game_events_api";
 
-import { validateFirebaseIdToken } from "./go_brasil_ranking/middleware/auth";
+import { validateFirebaseIdToken } from "./middleware/auth";
 
-import { ifDev } from "./go_brasil_ranking/middleware/if_dev";
-import { mockPopulatePlayersApi } from "./go_brasil_ranking/mock/mock_players";
-import { mockPopulateGameRecordsApi } from "./go_brasil_ranking/mock/mock_game_recods";
-import { mockPopulateGameEventsApi } from "./go_brasil_ranking/mock/mock_game_events";
-import { mockPopulateEverythingApi } from "./go_brasil_ranking/mock/mock_everything";
+import { ifDev } from "./middleware/if_dev";
+import { mockPopulatePlayersApi } from "./mock/mock_players";
+import { mockPopulateGameRecordsApi } from "./mock/mock_game_recods";
+import { mockPopulateGameEventsApi } from "./mock/mock_game_events";
+import { mockPopulateEverythingApi } from "./mock/mock_everything";
 
 admin.initializeApp();
 

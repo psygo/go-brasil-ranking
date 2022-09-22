@@ -1,5 +1,5 @@
-import { JsonInterface } from "../../../../go_brasil_ranking/src/infra/serializable";
-import { FirebaseRef } from "../../../../go_brasil_ranking/src/models/firebase_models";
+import { JsonInterface } from "../../../go_brasil_ranking/src/infra/serializable";
+import { FirebaseRef } from "../../../go_brasil_ranking/src/models/firebase_models";
 import Col from "./col";
 
 class PlayersCol extends Col {

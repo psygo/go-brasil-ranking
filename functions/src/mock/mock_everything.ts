@@ -1,4 +1,4 @@
-import { ExpressApiRoute } from "../../infra";
+import { ExpressApiRoute } from "../infra";
 
 import { gameEventsCol } from "../collections/game_events_col";
 import { gameRecordsCol } from "../collections/game_records_col";

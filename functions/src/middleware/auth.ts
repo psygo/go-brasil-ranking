@@ -1,7 +1,7 @@
 import * as admin from "firebase-admin";
 import * as functions from "firebase-functions";
 
-import { ExpressNexFunction } from "../../infra";
+import { ExpressNexFunction } from "../infra";
 
 declare global {
   namespace Express {

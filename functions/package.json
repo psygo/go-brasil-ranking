@@ -8,12 +8,7 @@
     "tsc": "sh ./scripts/tsc.sh",
     "webpack": "sh ./scripts/webpack.sh",
     "test": "sh ./scripts/test.sh",
-    "emulators:kill": "sh ./scripts/firebase_emulators_kill.sh",
-    "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "emulators:kill": "sh ./scripts/firebase_emulators_kill.sh"
   },
   "engines": {
     "node": "16"
