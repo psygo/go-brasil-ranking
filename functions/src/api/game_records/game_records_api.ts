@@ -1,117 +1,24 @@
 import * as admin from "firebase-admin";
 
-import { ExpressApiRoute, howMany, parseBody } from "../infra";
+import { ExpressApiRoute, parseBody } from "../../infra";
 
-import { gameRecordsCol } from "../collections/game_records_col";
-import { playersCol } from "../collections/players_col";
+import { gameRecordsCol } from "../../collections/game_records_col";
+import { playersCol } from "../../collections/players_col";
 
 import {
   Color,
   doesThisColorWin,
   GameRecord,
-} from "../../../frontend/src/models/game_record";
-import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
-import Elo from "../../../frontend/src/models/elo";
-import { Player } from "../../../frontend/src/models/player";
-import { gameEventsCol } from "../collections/game_events_col";
+} from "../../../../frontend/src/models/game_record";
+import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
+import Elo from "../../../../frontend/src/models/elo";
+import { Player } from "../../../../frontend/src/models/player";
+import { gameEventsCol } from "../../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
   OnlineOrLive,
   TournamentOrLeague,
-} from "../../../frontend/src/models/game_event";
-
-export const queryForPlayersGameRecords = async (
-  playerRef: FirebaseRef,
-  limit: number
-) => {
-  const playerIsBlack = gameRecordsCol.col
-    .where("blackRef", "==", playerRef)
-    .orderBy("date", "desc")
-    .limit(limit)
-    .get();
-  const playerIsWhite = gameRecordsCol.col
-    .where("whiteRef", "==", playerRef)
-    .orderBy("date", "desc")
-    .limit(limit)
-    .get();
-
-  const [snapsAsBlack, snapsAsWhite] = await Promise.all([
-    playerIsBlack,
-    playerIsWhite,
-  ]);
-
-  const playerAsBlack = snapsAsBlack.docs.map((g) => {
-    const game = g.data() as GameRecord;
-    return { ...game, firebaseRef: g.id };
-  });
-  const playerAsWhite = snapsAsWhite.docs.map((g) => {
-    const game = g.data() as GameRecord;
-    return { ...game, firebaseRef: g.id };
-  });
-
-  const allPlayerGames = [...playerAsBlack, ...playerAsWhite];
-
-  allPlayerGames.sort((g1, g2) => g1.date - g2.date);
-  allPlayerGames.sort((g1, g2) => g1.dateCreated! - g2.dateCreated!);
-
-  return allPlayerGames;
-};
-
-export const getGameRecords: ExpressApiRoute = async (req, res) => {
-  try {
-    const limit = howMany(req.query.limit as string);
-    let gameRecords: GameRecord[] = [];
-
-    const playerRef = req.query.jogadorRef as FirebaseRef;
-    if (playerRef)
-      gameRecords = await queryForPlayersGameRecords(playerRef, limit);
-    else {
-      let gameRecordsDocs = await gameRecordsCol.col
-        .orderBy("date")
-        .orderBy("dateCreated")
-        .limit(limit)
-        .get();
-
-      gameRecordsDocs.forEach((gameRecordDoc) => {
-        const gameRecordNoRef = gameRecordDoc.data() as GameRecord;
-        gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
-      });
-    }
-
-    res.status(200).send({
-      status: "success",
-      message: `Partidas encontradas (total: ${gameRecords.length})`,
-      data: { gameRecords: gameRecords },
-    });
-  } catch (e) {
-    res.status(500).json((e as Error).message);
-  }
-};
-
-export const getGameRecord: ExpressApiRoute = async (req, res) => {
-  try {
-    const id = req.params.gameRecordId;
-
-    const gameRecordRef = gameRecordsCol.col.doc(id);
-
-    const gameRecordDoc = await gameRecordRef.get();
-
-    if (req.query.existe === "")
-      res.status(200).send({
-        status: "success",
-        message: "Partida existe.",
-        data: gameRecordDoc.exists,
-      });
-    else
-      res.status(200).send({
-        status: "success",
-        message: "Partida encontrada.",
-        data: { gameRecord: gameRecordDoc.data() },
-      });
-  } catch (e) {
-    res.status(500).json((e as Error).message);
-  }
-};
+} from "../../../../frontend/src/models/game_event";
 
 export const postGameRecord = async (
   gameRecord: GameRecord,

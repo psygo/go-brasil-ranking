@@ -2,7 +2,7 @@ import { ExpressApiRoute } from "../infra";
 
 import { fakeGameRecords } from "./data/fake_game_records";
 
-import { postGameRecord } from "../api/game_records_api";
+import { postGameRecord } from "../api/game_records/game_records_api";
 
 import { GameRecord } from "../../../frontend/src/models/game_record";
 

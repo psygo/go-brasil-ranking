@@ -6,11 +6,17 @@ import express from "express";
 
 import { home } from "./api/others/others_api";
 
-import {
-  getGameRecord,
-  getGameRecords,
-  postGameRecordApi,
-} from "./api/game_records_api";
+import { getPlayers } from "./api/players/get_players_api";
+import { getPlayer } from "./api/players/get_player_api";
+import { postPlayerApi } from "./api/players/post_player_api";
+
+import { getGameEvents } from "./api/game_events/get_game_events_api";
+import { getGameEvent } from "./api/game_events/get_game_event_api";
+import { postGameEventApi } from "./api/game_events/post_game_event_api";
+
+import { getGameRecords } from "./api/game_records/get_game_records_api";
+import { getGameRecord } from "./api/game_records/get_game_record_api";
+import { postGameRecordApi } from "./api/game_records/game_records_api";
 
 import { validateFirebaseIdToken } from "./middleware/auth";
 
@@ -19,14 +25,6 @@ import { mockPopulatePlayersApi } from "./mock/mock_players";
 import { mockPopulateGameRecordsApi } from "./mock/mock_game_recods";
 import { mockPopulateGameEventsApi } from "./mock/mock_game_events";
 import { mockPopulateEverythingApi } from "./mock/mock_everything";
-
-import { getPlayers } from "./api/players/get_players_api";
-import { getPlayer } from "./api/players/get_player_api";
-import { postPlayerApi } from "./api/players/post_player_api";
-
-import { getGameEvents } from "./api/game_events/get_game_events_api";
-import { getGameEvent } from "./api/game_events/get_game_event_api";
-import { postGameEventApi } from "./api/game_events/post_game_event_api";
 
 admin.initializeApp();
 
