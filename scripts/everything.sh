@@ -14,7 +14,7 @@ firebase emulators:start &
 
 # Go Brasil Ranking
 
-cd go_brasil_ranking || exit
+cd frontend || exit
 
 npm run everything &
 
