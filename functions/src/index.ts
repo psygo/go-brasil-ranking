@@ -4,22 +4,13 @@ import * as functions from "firebase-functions";
 import cors from "cors";
 import express from "express";
 
-import {
-  getPlayer,
-  getPlayers,
-  postPlayerApi,
-} from "./api/players_api";
+import { getPlayer, getPlayers, postPlayerApi } from "./api/players_api";
 import { home } from "./api/others_api";
 import {
   getGameRecord,
   getGameRecords,
   postGameRecordApi,
 } from "./api/game_records_api";
-import {
-  getGameEvent,
-  getGameEvents,
-  postGameEventApi,
-} from "./api/game_events_api";
 
 import { validateFirebaseIdToken } from "./middleware/auth";
 
@@ -28,6 +19,10 @@ import { mockPopulatePlayersApi } from "./mock/mock_players";
 import { mockPopulateGameRecordsApi } from "./mock/mock_game_recods";
 import { mockPopulateGameEventsApi } from "./mock/mock_game_events";
 import { mockPopulateEverythingApi } from "./mock/mock_everything";
+
+import { getGameEvents } from "./api/game_events/get_game_events_api";
+import { getGameEvent } from "./api/game_events/get_game_event_api";
+import { postGameEventApi } from "./api/game_events/post_game_event_api";
 
 admin.initializeApp();
 
