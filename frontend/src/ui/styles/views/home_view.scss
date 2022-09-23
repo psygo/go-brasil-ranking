@@ -1,5 +1,6 @@
 home-view {
   display: grid;
-  grid-template-rows: max-content max-content;
+  grid-template-rows: max-content max-content max-content;
   grid-row-gap: 25px;
+  justify-items: center;
 }

@@ -21,7 +21,11 @@ export default class PlayersTable extends HTMLElement {
     const players = await this.getPlayers();
 
     this.innerHTML += /*html*/ `
-      <h2>Jogadores</h2>
+      <h2>
+        <route-link href="${RouteEnum.players}">
+          Jogadores
+        </route-link>
+      </h2>
       
       <div class="players-table-legend">
         <span>#</span>
@@ -54,7 +58,7 @@ export default class PlayersTable extends HTMLElement {
           id="${this.currentPlayer.firebaseRef}">
             <route-link 
               href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                <span class="centered">${i}</span>
+                <span>${i}</span>
                 
                 ${this.playerPicture}
 

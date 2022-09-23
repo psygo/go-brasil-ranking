@@ -32,7 +32,11 @@ export default class GameRecordsTable extends HTMLElement {
     const gameRecords = await this.getGameRecords();
 
     this.innerHTML = /*html*/ `
-      <h2>Partidas</h2>
+      <h2>
+        <route-link href="${RouteEnum.gameRecords}">
+          Partidas
+        </route-link>
+      </h2>
 
       <div class="game-records-table-legend">
         <span>#</span>

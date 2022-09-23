@@ -24,12 +24,16 @@ export default class GameEventsTable extends HTMLElement {
     const gameEvents = await this.getGameEvents();
 
     this.innerHTML += /*html*/ `
-      <h2>Eventos</h2>
+      <h2>
+        <route-link href="${RouteEnum.gameEvents}">
+          Eventos
+        </route-link>
+      </h2>
       
       <div class="game-events-table-legend">
         <span>#</span>
-        <span>Nome</span>
-        <span class="centered">Total de Partidas</span>
+        <span class="align-left">Nome</span>
+        <span>Total de Partidas</span>
       </div>
     `;
 
@@ -46,12 +50,11 @@ export default class GameEventsTable extends HTMLElement {
               <span>${i + 1}</span>
 
               <route-link 
-                class="game-event-name"
                 href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
-                  <span>${gameEvent.name}</span>
+                  <span class="align-left">${gameEvent.name}</span>
               </route-link>
               
-              <span class="centered">${gameEvent.gamesTotal}</span>
+              <span>${gameEvent.gamesTotal}</span>
             </route-link>
           </div>
         `;

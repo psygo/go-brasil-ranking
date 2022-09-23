@@ -2,14 +2,16 @@
 
 game-events-table {
   @include grt.captionDecoration;
+  @include grt.spanAlignment;
 
   @mixin cardLegendGrid {
     $gameEventNameWidth: 250px;
     $gamesTotalWidth: 65px;
 
     display: grid;
-    grid-template-columns: "ref name";
+    grid-template-columns: "ref name total-games";
     grid-template-columns: grt.$refWidth $gameEventNameWidth $gamesTotalWidth;
+    grid-column-gap: grt.$columnGap;
   }
 
   .game-event-card {
@@ -17,24 +19,11 @@ game-events-table {
       @include grt.card;
       @include cardLegendGrid;
     }
-
-    .game-event-name {
-      margin-right: 15px;
-    }
-
-    .centered {
-      text-align: center;
-      margin-left: -5px;
-    }
   }
 
   .game-events-table-legend {
     @include grt.cardPadding;
     @include grt.legendDecoration;
     @include cardLegendGrid;
-
-    .centered {
-      text-align: center;
-    }
   }
 }

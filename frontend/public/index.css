@@ -31,7 +31,7 @@ route-link:hover {
 main {
   grid-area: main;
   display: grid;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   margin-bottom: 50px;
   padding-top: 20px;
@@ -68,7 +68,12 @@ footer foot-er svg {
 }
 
 game-records-table h2 {
-  padding-left: 13px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+game-records-table h2 route-link {
+  color: #005c00;
 }
 game-records-table span:not(.align-left) {
   display: flex;
@@ -120,7 +125,22 @@ game-records-table .game-records-table-legend {
 }
 
 game-events-table h2 {
-  padding-left: 13px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+game-events-table h2 route-link {
+  color: #005c00;
+}
+game-events-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-events-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
 }
 game-events-table .game-event-card > route-link {
   margin-bottom: 35px;
@@ -134,8 +154,9 @@ game-events-table .game-event-card > route-link {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: "ref name";
+  grid-template-columns: "ref name total-games";
   grid-template-columns: 30px 250px 65px;
+  grid-column-gap: 10px;
 }
 game-events-table .game-event-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -150,23 +171,14 @@ game-events-table .game-event-card > route-link route-link[winner] {
 game-events-table .game-event-card > route-link route-link[loser] {
   color: #660000;
 }
-game-events-table .game-event-card .game-event-name {
-  margin-right: 15px;
-}
-game-events-table .game-event-card .centered {
-  text-align: center;
-  margin-left: -5px;
-}
 game-events-table .game-events-table-legend {
   padding: 12px 8px;
   align-items: center;
   font-weight: bold;
   display: grid;
-  grid-template-columns: "ref name";
+  grid-template-columns: "ref name total-games";
   grid-template-columns: 30px 250px 65px;
-}
-game-events-table .game-events-table-legend .centered {
-  text-align: center;
+  grid-column-gap: 10px;
 }
 
 players-table span:not(.align-left) {
@@ -180,7 +192,12 @@ players-table .align-left {
   text-align: left;
 }
 players-table h2 {
-  padding-left: 13px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+players-table h2 route-link {
+  color: #005c00;
 }
 players-table .player-card > route-link {
   margin-bottom: 35px;
@@ -245,8 +262,9 @@ about-view ul li {
 
 home-view {
   display: grid;
-  grid-template-rows: max-content max-content;
+  grid-template-rows: max-content max-content max-content;
   grid-row-gap: 25px;
+  justify-items: center;
 }
 
 player-view img {
