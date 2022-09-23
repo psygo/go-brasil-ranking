@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "${PWD}"
+sh firebase_emulators_kill.sh
 
 firebase emulators:start \
     --config firebase/firebase.json \

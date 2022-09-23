@@ -38,16 +38,10 @@ export default class GameRecordsTable extends HTMLElement {
         <span>#</span>
         <span>Preto</span>
         <span class="centered">Elo</span>
-        <div>
-          <p>Elo</span>
-          <p>Dif</span>
-        </div>
+        <span>Elo Dif</span>
         <span>Branco</span>
         <span class="centered">Elo</span>
-        <div>
-          <span>Elo</span>
-          <span>Dif</span>
-        </div>
+        <span>Elo Dif</span>
         <span>Resultado</span>
         <span class="centered">Data</span>
         <span class="centered">Evento</span>
