@@ -190,7 +190,7 @@ players-table .player-card > route-link {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 60px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
+  grid-template-columns: 30px 70px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
   grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
 }
 players-table .player-card > route-link:hover {
@@ -207,7 +207,7 @@ players-table .player-card > route-link route-link[loser] {
   color: #660000;
 }
 players-table .player-card > route-link img {
-  max-height: 50px;
+  max-width: 65px;
 }
 players-table .player-card > route-link .dan-kyu {
   grid-area: dan-kyu;
@@ -222,9 +222,15 @@ players-table .player-card > route-link .countries {
 players-table .player-card > route-link .centered {
   text-align: center;
 }
+players-table .player-card > route-link #picture-placeholder {
+  margin-left: -22px;
+}
+players-table .player-card > route-link #picture {
+  margin-left: -6px;
+}
 players-table .players-table-legend {
   display: grid;
-  grid-template-columns: 30px 60px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
+  grid-template-columns: 30px 70px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
   grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
   padding: 12px 0px;
   padding-left: 17px;
@@ -235,6 +241,9 @@ players-table .players-table-legend {
 players-table .players-table-legend .centered {
   text-align: center;
   margin-left: 8px;
+}
+players-table .players-table-legend #picture {
+  margin-left: -17px;
 }
 
 about-view h1 {

@@ -196,6 +196,16 @@ export const fakePlayers: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2100,
+    elo: 2150,
+  },
+  {
+    name: "Yuichiro Shimawaki",
+    email: "bonbare@infoseek.jp",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 2600,
   },
 ];

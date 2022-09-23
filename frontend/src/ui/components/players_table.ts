@@ -25,7 +25,7 @@ export default class PlayersTable extends HTMLElement {
       
       <div class="players-table-legend">
         <span>#</span>
-        <span>Foto</span>
+        <span class="centered" id="picture">Foto</span>
         <span>Nome</span>
         <span>País</span>
         <span>Elo</span>
@@ -82,8 +82,8 @@ export default class PlayersTable extends HTMLElement {
 
   private get playerPicture(): string {
     return !this.currentPlayer.picture
-      ? /*html*/ `<span>&mdash;</span>`
-      : /*html*/ `<img src="${this.currentPlayer.picture}"/>`;
+      ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
+      : /*html*/ `<img class="centered" id="picture" src="${this.currentPlayer.picture}"/>`;
   }
 
   private get lastGameLink(): string {

@@ -4,7 +4,7 @@ players-table {
   @include grt.captionDecoration;
 
   @mixin cardLegendGrid {
-    $pictureWidth: 60px;
+    $pictureWidth: 70px;
     $playerNameWidth: minmax(100px, 200px);
     $playerCountriesWidth: minmax(60px, max-content);
     $danKyuWidth: 45px;
@@ -24,7 +24,7 @@ players-table {
       @include cardLegendGrid;
 
       img {
-        max-height: 50px;
+        max-width: 65px;
       }
 
       .dan-kyu {
@@ -39,8 +39,18 @@ players-table {
         margin-left: -29px;
       }
 
+      // TODO1: For the love of god, this manual centering is
+      //        just maddening.
       .centered {
         text-align: center;
+      }
+
+      #picture-placeholder {
+        margin-left: -22px;
+      }
+
+      #picture {
+        margin-left: -6px;
       }
     }
   }
@@ -53,6 +63,10 @@ players-table {
     .centered {
       text-align: center;
       margin-left: 8px;
+    }
+
+    #picture {
+      margin-left: -17px;
     }
   }
 }
