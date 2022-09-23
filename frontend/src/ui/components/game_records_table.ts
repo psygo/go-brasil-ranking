@@ -36,15 +36,15 @@ export default class GameRecordsTable extends HTMLElement {
 
       <div class="game-records-table-legend">
         <span>#</span>
-        <span>Preto</span>
-        <span class="centered">Elo</span>
+        <span class="align-left">Preto</span>
+        <span>Elo</span>
         <span>Elo Dif</span>
-        <span>Branco</span>
-        <span class="centered">Elo</span>
+        <span class="align-left">Branco</span>
+        <span>Elo</span>
         <span>Elo Dif</span>
         <span>Resultado</span>
-        <span class="centered">Data</span>
-        <span class="centered">Evento</span>
+        <span>Data</span>
+        <span>Evento</span>
       </div>
     `;
 
@@ -70,24 +70,24 @@ export default class GameRecordsTable extends HTMLElement {
             <route-link 
               ${blackWins} 
               href="${RouteEnum.players}/${gameRecord.blackRef}">
-                <span>${gameRecord.blackPlayer!.name}</span>
+                <span class="align-left">${gameRecord.blackPlayer!.name}</span>
             </route-link>
 
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
-            <span class="centered">${gameRecord!.eloData!.eloDeltaBlack}</span>
+            <span>${gameRecord!.eloData!.eloDeltaBlack}</span>
 
             <route-link 
               ${whiteWins} 
               href="${RouteEnum.players}/${gameRecord.whiteRef}">
-                <span>${gameRecord.whitePlayer!.name}</span>
+                <span class="align-left">${gameRecord.whitePlayer!.name}</span>
             </route-link>
 
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
 
-            <span class="centered">${gameRecord!.eloData!.eloDeltaWhite}</span>
+            <span>${gameRecord!.eloData!.eloDeltaWhite}</span>
 
-            <span class="centered">${resultString(gameRecord.result)}</span>
+            <span>${resultString(gameRecord.result)}</span>
 
             <span>${DateUtils.formatDate(gameDate)}</span>
             
@@ -101,13 +101,12 @@ export default class GameRecordsTable extends HTMLElement {
   private gameEventLink = (gameRecord: GameRecord) => {
     let gameEvent = gameRecord.gameEvent?.type.toString();
 
-    let gameEventLink = /*html*/ `<span class="centered">${gameEvent}</span>`;
+    let gameEventLink = /*html*/ `<span>${gameEvent}</span>`;
 
     if (gameRecord.gameEvent && isTournamentOrLeague(gameRecord.gameEvent)) {
       gameEvent = gameRecord.gameEvent.name;
       gameEventLink = /*html*/ `
         <route-link 
-          class="centered" 
           href="${RouteEnum.gameEvents}/${gameRecord.gameEventRef}">
             <span>${gameRecord.gameEvent.name}</span>
         </route-link>

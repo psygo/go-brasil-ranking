@@ -2,7 +2,7 @@
   background: whitesmoke;
 
   border: 3px solid #eee;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
 
@@ -17,9 +17,7 @@
 }
 
 @mixin cardPadding {
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  padding: 12px 8px;
 }
 
 @mixin playerLink {
@@ -63,11 +61,28 @@
   font-weight: bold;
 }
 
+@mixin spanAlignment {
+  span:not(.align-left) {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .align-left {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+  }
+}
+
 $refWidth: 30px;
 $eloWidth: 60px;
 
+$columnGap: 10px;
+
 game-records-table {
   @include captionDecoration;
+  @include spanAlignment;
 
   @mixin cardLegendGrid {
     $playerNameWidth: 130px;
@@ -87,17 +102,13 @@ game-records-table {
       "black elo-black elo-delta-black"
       "white elo-white elo-delta-white"
       "result date event";
+    grid-column-gap: $columnGap;
   }
 
   .game-record-card {
     > route-link {
       @include card;
       @include cardLegendGrid;
-
-      .centered {
-        text-align: center;
-        margin-left: -21px;
-      }
     }
   }
 
@@ -105,10 +116,5 @@ game-records-table {
     @include cardLegendGrid;
     @include cardPadding;
     @include legendDecoration;
-
-    .centered {
-      text-align: center;
-      margin-left: -20px;
-    }
   }
 }

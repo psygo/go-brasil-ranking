@@ -70,22 +70,31 @@ footer foot-er svg {
 game-records-table h2 {
   padding-left: 13px;
 }
+game-records-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-records-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
 game-records-table .game-record-card > route-link {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
   border: 3px solid #eee;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  padding: 12px 8px;
   margin-bottom: 10px;
   align-items: center;
   display: grid;
   grid-template-columns: 30px 130px 60px 40px 130px 60px 40px 90px 110px 100px;
   grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date event";
+  grid-column-gap: 10px;
 }
 game-records-table .game-record-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -100,23 +109,14 @@ game-records-table .game-record-card > route-link route-link[winner] {
 game-records-table .game-record-card > route-link route-link[loser] {
   color: #660000;
 }
-game-records-table .game-record-card > route-link .centered {
-  text-align: center;
-  margin-left: -21px;
-}
 game-records-table .game-records-table-legend {
   display: grid;
   grid-template-columns: 30px 130px 60px 40px 130px 60px 40px 90px 110px 100px;
   grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date event";
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  grid-column-gap: 10px;
+  padding: 12px 8px;
   align-items: center;
   font-weight: bold;
-}
-game-records-table .game-records-table-legend .centered {
-  text-align: center;
-  margin-left: -20px;
 }
 
 game-events-table h2 {
@@ -127,12 +127,10 @@ game-events-table .game-event-card > route-link {
   width: max-content;
   background: whitesmoke;
   border: 3px solid #eee;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  padding: 12px 8px;
   margin-bottom: 10px;
   align-items: center;
   display: grid;
@@ -160,9 +158,7 @@ game-events-table .game-event-card .centered {
   margin-left: -5px;
 }
 game-events-table .game-events-table-legend {
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  padding: 12px 8px;
   align-items: center;
   font-weight: bold;
   display: grid;
@@ -173,6 +169,16 @@ game-events-table .game-events-table-legend .centered {
   text-align: center;
 }
 
+players-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+players-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
 players-table h2 {
   padding-left: 13px;
 }
@@ -181,17 +187,16 @@ players-table .player-card > route-link {
   width: max-content;
   background: whitesmoke;
   border: 3px solid #eee;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  padding: 12px 8px;
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 70px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
+  grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
   grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
+  grid-column-gap: 10px;
 }
 players-table .player-card > route-link:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
@@ -206,44 +211,17 @@ players-table .player-card > route-link route-link[winner] {
 players-table .player-card > route-link route-link[loser] {
   color: #660000;
 }
-players-table .player-card > route-link img {
-  max-width: 65px;
-}
-players-table .player-card > route-link .dan-kyu {
-  grid-area: dan-kyu;
-  text-align: center;
-  margin-left: -17px;
-}
-players-table .player-card > route-link .countries {
-  grid-area: countries;
-  text-align: center;
-  margin-left: -29px;
-}
-players-table .player-card > route-link .centered {
-  text-align: center;
-}
-players-table .player-card > route-link #picture-placeholder {
-  margin-left: -22px;
-}
-players-table .player-card > route-link #picture {
-  margin-left: -6px;
+players-table .player-card img {
+  max-width: 70px;
 }
 players-table .players-table-legend {
   display: grid;
-  grid-template-columns: 30px 70px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
+  grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
   grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
-  padding: 12px 0px;
-  padding-left: 17px;
-  padding-right: 12px;
+  grid-column-gap: 10px;
+  padding: 12px 8px;
   align-items: center;
   font-weight: bold;
-}
-players-table .players-table-legend .centered {
-  text-align: center;
-  margin-left: 8px;
-}
-players-table .players-table-legend #picture {
-  margin-left: -17px;
 }
 
 about-view h1 {

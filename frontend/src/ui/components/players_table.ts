@@ -25,13 +25,13 @@ export default class PlayersTable extends HTMLElement {
       
       <div class="players-table-legend">
         <span>#</span>
-        <span class="centered" id="picture">Foto</span>
-        <span>Nome</span>
+        <span>Foto</span>
+        <span class="align-left">Nome</span>
         <span>País</span>
         <span>Elo</span>
-        <span class="centered">Dan Kyu</span>
-        <span class="centered">Data da Última Partida</span>
-        <span class="centered">Total de Partidas</span>
+        <span>Dan Kyu</span>
+        <span>Data da Última Partida</span>
+        <span>Número de Partidas</span>
       </div>
     `;
 
@@ -54,26 +54,26 @@ export default class PlayersTable extends HTMLElement {
           id="${this.currentPlayer.firebaseRef}">
             <route-link 
               href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                <span>${i}</span>
+                <span class="centered">${i}</span>
                 
                 ${this.playerPicture}
 
                 <route-link 
                   href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                    <span>${this.currentPlayer.name}</span>
+                    <span class="align-left">${this.currentPlayer.name}</span>
                 </route-link>
 
-                <div class="countries">
+                <div>
                   ${UiUtils.allFlags(this.currentPlayer.countries)}
                 </div>
 
                 <span>${elo.num}</span>
 
-                <span class="dan-kyu">${elo.danKyuLevel()}</span>
+                <span>${elo.danKyuLevel()}</span>
                 
                 ${this.lastGameLink}
                 
-                <span class="centered">${player.gamesTotal}</span>
+                <span>${player.gamesTotal}</span>
           </route-link>
         </div>
       `;
@@ -83,7 +83,7 @@ export default class PlayersTable extends HTMLElement {
   private get playerPicture(): string {
     return !this.currentPlayer.picture
       ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
-      : /*html*/ `<img class="centered" id="picture" src="${this.currentPlayer.picture}"/>`;
+      : /*html*/ `<img id="picture" src="${this.currentPlayer.picture}"/>`;
   }
 
   private get lastGameLink(): string {
