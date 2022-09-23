@@ -14,6 +14,7 @@ import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
 import NewGameEventView from "../ui/views/new-game-event-view";
 import NewGameRecordView from "../ui/views/new-game-record-view";
+import UnknownView from "../ui/views/unknown-view";
 
 export default class Switcher {
   protected readonly router: Router = g.router;
@@ -112,6 +113,6 @@ class AdminSwitcher extends Switcher {
 
 class UnknownSwitcher extends Switcher {
   switch = (): void => {
-    this.mainElement.innerHTML = "<p>desconhecido</p>";
+    this.mainElement.replaceChildren(new UnknownView());
   };
 }

@@ -28,6 +28,7 @@ import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
 import NewGameEventView from "../ui/views/new-game-event-view";
 import NewGameRecordView from "../ui/views/new-game-record-view";
+import UnknownView from "../ui/views/unknown-view";
 
 export default class Setup {
   private static instance: Setup;
@@ -82,6 +83,7 @@ export default class Setup {
     customElements.define(HomeView.tag, HomeView);
     customElements.define(PlayerView.tag, PlayerView);
     customElements.define(PlayersView.tag, PlayersView);
+    customElements.define(UnknownView.tag, UnknownView);
 
     customElements.define(AdminView.tag, AdminView);
     customElements.define(NewPlayerView.tag, NewPlayerView);
