@@ -4,6 +4,7 @@ players-table {
   @include grt.captionDecoration;
 
   @mixin cardLegendGrid {
+    $pictureWidth: 60px;
     $playerNameWidth: minmax(100px, 200px);
     $playerCountriesWidth: minmax(60px, max-content);
     $danKyuWidth: 45px;
@@ -12,15 +13,19 @@ players-table {
 
     display: grid;
     grid-template-columns:
-      grt.$refWidth $playerNameWidth $playerCountriesWidth
+      grt.$refWidth $pictureWidth $playerNameWidth $playerCountriesWidth
       grt.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
-    grid-template-areas: "ref player-name countries elo dan-kyu last-game-date";
+    grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
   }
 
   .player-card {
     > route-link {
       @include grt.card;
       @include cardLegendGrid;
+
+      img {
+        max-height: 50px;
+      }
 
       .dan-kyu {
         grid-area: dan-kyu;

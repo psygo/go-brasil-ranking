@@ -37,7 +37,7 @@ export default class PlayerView extends HTMLElement {
     const countryFlags = UiUtils.allFlags(player.countries);
     const elo = new Elo(player.elo);
 
-    this.innerHTML += `
+    this.innerHTML += /*html*/ `
       <h1>${player.name} ${countryFlags}</h1>
 
       <div id="player-metadata">
@@ -45,14 +45,5 @@ export default class PlayerView extends HTMLElement {
         <img src="${player.picture}"/>
       </div>
     `;
-
-    // const brazil = player.countries.find((c) => c.name === "Brazil");
-
-    // if (brazil) {
-    // const state = brStateUpperCase(brazil.state!);
-    // this.innerHTML += `
-    //   <h3>${brazil.city} - ${state}</h3>
-    // `;
-    // }
   };
 }
