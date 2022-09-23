@@ -80,6 +80,16 @@ export default class NewPlayerView extends HTMLElement {
         </fieldset>
 
         <fieldset>
+          <label for="email">Email</label>
+          <input 
+            required 
+            type="text" 
+            name="email" 
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            placeholder="joao@mail.com"/>
+        </fieldset>
+
+        <fieldset>
           <label for="picture">Foto (opcional, < 500KB)</label>
           <input type="file" name="picture"/>
           <img id="preview"/>
@@ -142,6 +152,12 @@ export default class NewPlayerView extends HTMLElement {
   private get name(): string {
     const nameInput: HTMLInputElement = this.querySelector("input[name=name]")!;
     return nameInput.value;
+  }
+
+  private get email(): string {
+    const emailInput: HTMLInputElement =
+      this.querySelector("input[name=email]")!;
+    return emailInput.value;
   }
 
   private picture: string = "";
@@ -217,6 +233,7 @@ export default class NewPlayerView extends HTMLElement {
 
     const player: Player = {
       name: this.name,
+      email: this.email,
       picture: this.picture,
       countries: this.completeCountries,
       elo: this.elo,

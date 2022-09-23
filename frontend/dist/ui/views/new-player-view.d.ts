@@ -8,6 +8,7 @@ export default class NewPlayerView extends HTMLElement {
     private get brStateOptions();
     private setNewPlayerForm;
     private get name();
+    private get email();
     private picture;
     private pictureOnChange;
     private get countries();

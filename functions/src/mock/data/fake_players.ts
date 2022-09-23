@@ -7,6 +7,7 @@ import { Player } from "../../../../frontend/src/models/player";
 export const fakePlayers: readonly Player[] = [
   {
     name: "Philippe Fanaro",
+    email: "philippefanaro@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -18,6 +19,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Fabrício Caluza Machado",
+    email: "fabricio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -29,6 +31,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Ariel Oliveira",
+    email: "ariel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -40,6 +43,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Laura Augustina Avram",
+    email: "laura@mail.com",
     countries: [
       {
         name: CountryName.romania,
@@ -49,6 +53,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Emanuel Araújo",
+    email: "emanuel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -60,6 +65,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Sophie Pagès",
+    email: "sophie@mail.com",
     countries: [
       {
         name: CountryName.france,
@@ -72,6 +78,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Laércio Pereira",
+    email: "laercio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -83,6 +90,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Gabriel Ventura",
+    email: "gabriel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -92,6 +100,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Gabriel Garcia",
+    email: "gabriel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -101,6 +110,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Vanderson da Silva Rodrigues",
+    email: "vanderson@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -111,6 +121,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Audrey Luciano Filho",
+    email: "audrey@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -121,6 +132,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Amir Fragman",
+    email: "amir@mail.com",
     countries: [
       {
         name: CountryName.israel,
@@ -135,6 +147,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Alexandre Amaro",
+    email: "alexandre@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -146,6 +159,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Wang Seng Feng",
+    email: "wang@mail.com",
     countries: [
       {
         name: CountryName.taiwan,
@@ -160,6 +174,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Hélcio Alexandre Pacheco",
+    email: "helcio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -171,6 +186,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Felipe Herman van Riemsdijk",
+    email: "fh.vanriemsdijk@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
