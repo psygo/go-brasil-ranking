@@ -1,10 +1,10 @@
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
-import { getFlag } from "../../models/country";
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
 import { DateUtils } from "../../infra/date_utils";
+import { UiUtils } from "../utils";
 
 export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
@@ -61,7 +61,7 @@ export default class PlayersTable extends HTMLElement {
                 </route-link>
 
                 <div class="countries">
-                  ${this.allFlags}
+                  ${UiUtils.allFlags(this.currentPlayer.countries)}
                 </div>
 
                 <span>${elo.num}</span>
@@ -76,18 +76,6 @@ export default class PlayersTable extends HTMLElement {
       `;
     }
   };
-
-  private get allFlags(): string {
-    return this.currentPlayer.countries
-      .map(
-        (c) => /*html*/ `
-          <span title="${c.name}">
-            ${getFlag(c.name)}
-          </span>
-        `
-      )
-      .reduce((pflag, cflag) => pflag + cflag);
-  }
 
   private get lastGameLink(): string {
     if (this.currentPlayer.lastGame) {

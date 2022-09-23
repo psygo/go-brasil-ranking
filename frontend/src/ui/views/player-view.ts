@@ -1,12 +1,12 @@
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
-import { getAllFlags } from "../../models/country";
 import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_models";
 import { Player } from "../../models/player";
 
 import GameRecordsTable from "../components/game_records_table";
+import { UiUtils } from "../utils";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -34,7 +34,7 @@ export default class PlayerView extends HTMLElement {
   }
 
   private setPlayersPage = (player: Player): void => {
-    const countryFlags = getAllFlags(player.countries);
+    const countryFlags = UiUtils.allFlags(player.countries);
     const elo = new Elo(player.elo);
 
     this.innerHTML += `
@@ -48,10 +48,10 @@ export default class PlayerView extends HTMLElement {
     // const brazil = player.countries.find((c) => c.name === "Brazil");
 
     // if (brazil) {
-      // const state = brStateUpperCase(brazil.state!);
-      // this.innerHTML += `
-      //   <h3>${brazil.city} - ${state}</h3>
-      // `;
+    // const state = brStateUpperCase(brazil.state!);
+    // this.innerHTML += `
+    //   <h3>${brazil.city} - ${state}</h3>
+    // `;
     // }
   };
 }
