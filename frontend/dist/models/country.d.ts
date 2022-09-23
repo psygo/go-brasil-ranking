@@ -5,7 +5,6 @@ interface _Country {
 }
 export declare type Country = Readonly<_Country>;
 export declare const getFlag: (cn: CountryName) => CountryFlag;
-export declare const getAllFlags: (countries: readonly Country[]) => string;
 export declare enum CountryName {
     brazil = "Brasil",
     angola = "Angola",

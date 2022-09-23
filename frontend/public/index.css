@@ -190,7 +190,7 @@ players-table .player-card > route-link {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 30px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px;
+  grid-template-columns: 30px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
   grid-template-areas: "ref player-name countries elo dan-kyu last-game-date";
 }
 players-table .player-card > route-link:hover {
@@ -221,7 +221,7 @@ players-table .player-card > route-link .centered {
 }
 players-table .players-table-legend {
   display: grid;
-  grid-template-columns: 30px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px;
+  grid-template-columns: 30px minmax(100px, 200px) minmax(60px, max-content) 60px 45px 100px 80px;
   grid-template-areas: "ref player-name countries elo dan-kyu last-game-date";
   padding: 12px 0px;
   padding-left: 17px;

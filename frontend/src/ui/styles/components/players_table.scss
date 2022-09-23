@@ -8,11 +8,12 @@ players-table {
     $playerCountriesWidth: minmax(60px, max-content);
     $danKyuWidth: 45px;
     $lastGameDateWidth: 100px;
+    $gamesTotalWidth: 80px;
 
     display: grid;
     grid-template-columns:
       grt.$refWidth $playerNameWidth $playerCountriesWidth
-      grt.$eloWidth $danKyuWidth $lastGameDateWidth;
+      grt.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
     grid-template-areas: "ref player-name countries elo dan-kyu last-game-date";
   }
 

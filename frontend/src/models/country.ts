@@ -11,10 +11,6 @@ export const getFlag = (cn: CountryName): CountryFlag => {
   );
   return Object.values(CountryFlag)[ind];
 };
-export const getAllFlags = (countries: readonly Country[]) =>
-  countries
-    .map((c) => getFlag(c.name).toString())
-    .reduce((pflag, cflag) => `${pflag} ${cflag}`);
 
 export enum CountryName {
   brazil = "Brasil",
