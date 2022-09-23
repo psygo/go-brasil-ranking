@@ -3,7 +3,6 @@ import { SerializedElo } from "./elo";
 import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 import { GameRecord } from "./game_record";
 
-// TODO1: Add field for email on the form
 interface _Player extends FirebaseDoc {
   firebaseRef?: FirebaseRef;
   name: string;

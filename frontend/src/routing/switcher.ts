@@ -112,6 +112,6 @@ class AdminSwitcher extends Switcher {
 
 class UnknownSwitcher extends Switcher {
   switch = (): void => {
-    this.mainElement.innerHTML = "<p>at unknown</p>";
+    this.mainElement.innerHTML = "<p>desconhecido</p>";
   };
 }

@@ -3,10 +3,12 @@ import {
   CountryName,
 } from "../../../../frontend/src/models/country";
 import { Player } from "../../../../frontend/src/models/player";
+import { fake_profile_picture } from "./fake_base64_pics";
 
 export const fakePlayers: readonly Player[] = [
   {
     name: "Philippe Fanaro",
+    picture: fake_profile_picture,
     email: "philippefanaro@gmail.com",
     countries: [
       {

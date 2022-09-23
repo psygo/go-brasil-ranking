@@ -259,8 +259,8 @@ home-view {
   grid-row-gap: 25px;
 }
 
-player-view hr {
-  margin-bottom: 20px;
+player-view img {
+  max-height: 80px;
 }
 
 player-view {

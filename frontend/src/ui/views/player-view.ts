@@ -39,10 +39,11 @@ export default class PlayerView extends HTMLElement {
 
     this.innerHTML += `
       <h1>${player.name} ${countryFlags}</h1>
-      <hr/>
 
-      <h3>${elo.num} | ${elo.danKyuLevel(true)}</h3>
-      <hr/>
+      <div id="player-metadata">
+        <h3>Elo: ${elo.num} | ${elo.danKyuLevel(true)}</h3>
+        <img src="${player.picture}"/>
+      </div>
     `;
 
     // const brazil = player.countries.find((c) => c.name === "Brazil");

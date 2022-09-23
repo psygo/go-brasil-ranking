@@ -11,19 +11,23 @@ export const postPlayer = async (
 ): Promise<Player> => {
   const now = admin.firestore.Timestamp.now().toMillis();
 
-  const playerOnDb = {
+  let playerOnDb = {
     ...player,
     dateCreated: now,
     gamesTotal: 0,
   };
 
+  if (player.picture) playerOnDb = { ...playerOnDb, picture: player.picture };
+
   if (!firebaseRef) {
     const playerRef = await playersCol.col.add(playerOnDb);
-    return { ...playerOnDb, firebaseRef: playerRef.id };
+    playerOnDb = { ...playerOnDb, firebaseRef: playerRef.id };
   } else {
     await playersCol.col.doc(firebaseRef).set(playerOnDb);
-    return { ...playerOnDb, firebaseRef: firebaseRef };
+    playerOnDb = { ...playerOnDb, firebaseRef: firebaseRef };
   }
+
+  return playerOnDb;
 };
 
 export const postPlayerApi: ExpressApiRoute = async (req, res) => {
