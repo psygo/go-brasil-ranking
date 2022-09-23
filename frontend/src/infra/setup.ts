@@ -23,12 +23,12 @@ import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
 import AboutView from "../ui/views/about-view";
+import UnknownView from "../ui/views/unknown-view";
 
 import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
 import NewGameEventView from "../ui/views/new-game-event-view";
 import NewGameRecordView from "../ui/views/new-game-record-view";
-import UnknownView from "../ui/views/unknown-view";
 
 export default class Setup {
   private static instance: Setup;
