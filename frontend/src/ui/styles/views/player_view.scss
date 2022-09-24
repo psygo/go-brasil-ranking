@@ -23,10 +23,8 @@ player-view {
     @include grt.spanAlignment;
 
     @mixin cardLegendGrid {
-      $standardRowWidth: 100px;
-
       display: grid;
-      grid-template-columns: $standardRowWidth $standardRowWidth 80px $standardRowWidth;
+      grid-template-columns: 240px 60px 60px 60px 120px;
       grid-column-gap: grt.$columnGap;
     }
 

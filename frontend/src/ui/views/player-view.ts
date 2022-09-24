@@ -54,6 +54,7 @@ export default class PlayerView extends HTMLElement {
     this.innerHTML += /*html*/ `
       <div id="player-personal-card">
         <div id="player-personal-card-legend">
+          <span>Email</span>
           <span>Elo</span>
           <span>Dan Kyu</span>
           <span>Número de Partidas</span>
@@ -61,6 +62,9 @@ export default class PlayerView extends HTMLElement {
         </div>
 
         <div id="player-personal-card-content">
+          <route-link href="mailto:${this.player.email}">
+            <span>${this.player.email}</span>
+          </route-link>
           <span>${elo.num}</span>
           <span>${elo.danKyuLevel(true)}</span>
           <span>${this.player.gamesTotal}</span>

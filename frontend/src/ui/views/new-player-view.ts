@@ -172,8 +172,8 @@ export default class NewPlayerView extends HTMLElement {
 
     fileReader.onload = () => {
       output.src = fileReader.result as string;
-      const kb100 = 10e5;
-      if (file!.size < kb100) this.picture = fileReader.result as string;
+      const kb150 = 1.5 * 10e5;
+      if (file!.size < kb150) this.picture = fileReader.result as string;
     };
 
     if (file) fileReader.readAsDataURL(file);
