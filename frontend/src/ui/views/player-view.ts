@@ -7,6 +7,9 @@ import { Player } from "../../models/player";
 
 import GameRecordsTable from "../components/game_records_table";
 import { UiUtils } from "../utils";
+import { Chart, registerables } from "chart.js";
+import { GameRecord } from "../../models/game_record";
+import { DateUtils } from "../../infra/date_utils";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -32,8 +35,94 @@ export default class PlayerView extends HTMLElement {
 
     this.setPlayersPage();
 
+    await this.setGraph();
+
     this.appendChild(new GameRecordsTable("max", this.playerRef));
   }
+
+  private setGraph = async (): Promise<void> => {
+    // Fetching the player's game records
+    // This is basically part of the Game Records Table,
+    // So it's copying code, and doing the same request twice...
+    const queryString = `?jogadorRef=${this.playerRef}`;
+    const response = await fetch(
+      `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
+    );
+    const json = await response.json();
+    let gameRecords = json["data"]["gameRecords"] as GameRecord[];
+    gameRecords;
+
+    const dateData = ["Início"].concat(
+      gameRecords.map((gr) => DateUtils.formatDate(new Date(gr.date)))
+    );
+
+    const eloData = gameRecords.map((gr) =>
+      gr.blackRef === this.playerRef
+        ? gr.eloData!.atTheTimeBlackElo
+        : gr.eloData!.atTheTimeWhiteElo
+    );
+    const length = gameRecords.length;
+    const lastElo = eloData[length - 1];
+    const lastGameRecord = gameRecords[length - 1];
+    const lastEloDelta =
+      lastGameRecord.blackRef === this.playerRef
+        ? lastGameRecord.eloData!.eloDeltaBlack
+        : lastGameRecord.eloData!.eloDeltaWhite;
+    eloData.push(lastElo + lastEloDelta);
+
+    Chart.register(...registerables);
+    const canvasDiv: HTMLDivElement = document.createElement("div");
+    canvasDiv.id = "graph";
+    const graphCanvas: HTMLCanvasElement = document.createElement("canvas");
+    canvasDiv.appendChild(graphCanvas);
+    this.appendChild(canvasDiv);
+    const ctx = graphCanvas.getContext("2d")!;
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: dateData,
+        datasets: [
+          {
+            label: `Elo de ${this.player.name}`,
+            data: eloData,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              // "rgba(54, 162, 235, 0.2)",
+              // "rgba(255, 206, 86, 0.2)",
+              // "rgba(75, 192, 192, 0.2)",
+              // "rgba(153, 102, 255, 0.2)",
+              // "rgba(255, 159, 64, 0.2)",
+            ],
+            borderColor: [
+              "rgba(54, 162, 235, 1)",
+              // "rgba(75, 192, 192, 1)",
+              // "rgba(255, 99, 132, 1)",
+              // "rgba(153, 102, 255, 1)",
+              // "rgba(255, 159, 64, 1)",
+            ],
+            borderWidth: 1.5,
+          },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              autoSkip: false,
+              maxRotation: 30,
+              minRotation: 30,
+            },
+          },
+        },
+      },
+    });
+  };
 
   private setPlayersPage = (): void => {
     const countryFlags = UiUtils.allFlags(this.player.countries);

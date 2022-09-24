@@ -283,6 +283,21 @@ player-view {
   grid-template-areas: "name" "metadata" "game-records";
   justify-items: center;
 }
+player-view #graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 250px;
+  margin-bottom: 30px;
+  background-color: whitesmoke;
+}
+player-view #graph canvas {
+  max-width: 500px;
+  max-height: 200px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
 player-view #name {
   display: flex;
   justify-content: center;

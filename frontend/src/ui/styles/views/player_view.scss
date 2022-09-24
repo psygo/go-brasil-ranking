@@ -1,3 +1,5 @@
+@use "../globals" as g;
+
 @use "../components/game_records_table" as grt;
 
 player-view {
@@ -7,6 +9,27 @@ player-view {
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "game-records";
   justify-items: center;
+
+  #graph {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 500px;
+    height: 250px;
+    
+    margin-bottom: 30px;
+
+    background-color: whitesmoke;
+
+    canvas {
+      max-width: 500px;
+      max-height: 200px;
+
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
 
   #name {
     display: flex;

@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/chai": "^4.3.3",
+    "@types/chart.js": "^2.9.37",
     "@types/jest": "^29.0.0",
     "chai": "^4.3.6",
     "concurrently": "^7.4.0",
@@ -27,6 +28,7 @@
     "webpack-cli": "^4.10.0"
   },
   "dependencies": {
+    "chart.js": "^3.9.1",
     "firebase": "^9.9.4"
   }
 }
