@@ -278,25 +278,35 @@ home-view {
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 165px 1fr;
+  grid-template-rows: 100px 135px 1fr 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "game-records";
   justify-items: center;
 }
 player-view #graph {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   justify-content: center;
   align-items: center;
   width: 500px;
-  height: 250px;
-  margin-bottom: 30px;
-  background-color: whitesmoke;
+  height: 325px;
 }
 player-view #graph canvas {
   max-width: 500px;
-  max-height: 200px;
-  padding-left: 30px;
-  padding-right: 30px;
+  max-height: 225px;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  background-color: whitesmoke;
+  padding: 15px 20px;
+}
+player-view #graph canvas:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
 }
 player-view #name {
   display: flex;

@@ -31,7 +31,8 @@ export default class GameRecordsTable extends HTMLElement {
   async connectedCallback() {
     const gameRecords = await this.getGameRecords();
 
-    this.innerHTML = /*html*/ `
+    if (gameRecords.length > 0) {
+      this.innerHTML = /*html*/ `
       <h2>
         <route-link href="${RouteEnum.gameRecords}">
           Partidas
@@ -52,7 +53,8 @@ export default class GameRecordsTable extends HTMLElement {
       </div>
     `;
 
-    this.setGameRecordsTable(gameRecords);
+      this.setGameRecordsTable(gameRecords);
+    }
   }
 
   setGameRecordsTable = (gameRecords: GameRecord[]): void => {

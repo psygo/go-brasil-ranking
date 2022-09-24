@@ -40,7 +40,7 @@ export default class PlayerView extends HTMLElement {
     this.appendChild(new GameRecordsTable("max", this.playerRef));
   }
 
-  private setGraph = async (): Promise<void> => {
+  private fetchPlayerGameRecords = async (): Promise<GameRecord[]> => {
     // Fetching the player's game records
     // This is basically part of the Game Records Table,
     // So it's copying code, and doing the same request twice...
@@ -49,87 +49,87 @@ export default class PlayerView extends HTMLElement {
       `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
     );
     const json = await response.json();
-    let gameRecords = json["data"]["gameRecords"] as GameRecord[];
-    gameRecords;
+    return json["data"]["gameRecords"];
+  };
 
-    const dateData = ["Início"].concat(
-      gameRecords.map((gr) => DateUtils.formatDate(new Date(gr.date)))
-    );
+  private setGraph = async (): Promise<void> => {
+    const gameRecords = await this.fetchPlayerGameRecords();
 
-    const eloData = gameRecords.map((gr) =>
-      gr.blackRef === this.playerRef
-        ? gr.eloData!.atTheTimeBlackElo
-        : gr.eloData!.atTheTimeWhiteElo
-    );
-    const length = gameRecords.length;
-    const lastElo = eloData[length - 1];
-    const lastGameRecord = gameRecords[length - 1];
-    const lastEloDelta =
-      lastGameRecord.blackRef === this.playerRef
-        ? lastGameRecord.eloData!.eloDeltaBlack
-        : lastGameRecord.eloData!.eloDeltaWhite;
-    eloData.push(lastElo + lastEloDelta);
+    if (gameRecords.length > 0) {
+      const dateData = ["Início"].concat(
+        gameRecords.map((gr) => DateUtils.formatDate(new Date(gr.date)))
+      );
 
-    Chart.register(...registerables);
-    const canvasDiv: HTMLDivElement = document.createElement("div");
-    canvasDiv.id = "graph";
-    const graphCanvas: HTMLCanvasElement = document.createElement("canvas");
-    canvasDiv.appendChild(graphCanvas);
-    this.appendChild(canvasDiv);
-    const ctx = graphCanvas.getContext("2d")!;
+      const eloData = gameRecords.map((gr) =>
+        gr.blackRef === this.playerRef
+          ? gr.eloData!.atTheTimeBlackElo
+          : gr.eloData!.atTheTimeWhiteElo
+      );
+      const length = gameRecords.length;
+      const lastElo = eloData[length - 1];
+      const lastGameRecord = gameRecords[length - 1];
+      const lastEloDelta =
+        lastGameRecord.blackRef === this.playerRef
+          ? lastGameRecord.eloData!.eloDeltaBlack
+          : lastGameRecord.eloData!.eloDeltaWhite;
+      eloData.push(lastElo + lastEloDelta);
 
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: dateData,
-        datasets: [
-          {
-            label: `Elo de ${this.player.name}`,
-            data: eloData,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              // "rgba(54, 162, 235, 0.2)",
-              // "rgba(255, 206, 86, 0.2)",
-              // "rgba(75, 192, 192, 0.2)",
-              // "rgba(153, 102, 255, 0.2)",
-              // "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-              "rgba(54, 162, 235, 1)",
-              // "rgba(75, 192, 192, 1)",
-              // "rgba(255, 99, 132, 1)",
-              // "rgba(153, 102, 255, 1)",
-              // "rgba(255, 159, 64, 1)",
-            ],
-            borderWidth: 1.5,
-          },
-        ],
-      },
-      options: {
-        plugins: {
-          legend: {
-            display: false,
-          },
+      Chart.register(...registerables);
+      const canvasDiv: HTMLDivElement = document.createElement("div");
+      canvasDiv.id = "graph";
+      canvasDiv.innerHTML = /*html*/ `
+        <h2>Evolução Elo</h2>
+      `;
+      const graphCanvas: HTMLCanvasElement = document.createElement("canvas");
+      canvasDiv.appendChild(graphCanvas);
+      this.appendChild(canvasDiv);
+      const ctx = graphCanvas.getContext("2d")!;
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: dateData,
+          datasets: [
+            {
+              label: `Elo de ${this.player.name}`,
+              fill: true,
+              data: eloData,
+              backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+              borderColor: ["rgba(54, 162, 235, 1)"],
+              borderWidth: 1.5,
+            },
+          ],
         },
-        scales: {
-          x: {
-            ticks: {
-              autoSkip: false,
-              maxRotation: 30,
-              minRotation: 30,
+        options: {
+          plugins: {
+            legend: {
+              display: false,
+            },
+          },
+          scales: {
+            x: {
+              ticks: {
+                autoSkip: false,
+                maxRotation: 30,
+                minRotation: 30,
+              },
             },
           },
         },
-      },
-    });
+      });
+    }
   };
 
   private setPlayersPage = (): void => {
     const countryFlags = UiUtils.allFlags(this.player.countries);
 
+    const picture = this.player.picture
+      ? /*html*/ `<img src="${this.player.picture}"/>`
+      : "";
+
     this.innerHTML += /*html*/ `
       <div id="name">
-        <img src="${this.player.picture}"/>
+        ${picture}
         <h1>${this.player.name} ${countryFlags}</h1>
       </div>
     `;
