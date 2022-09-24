@@ -3,7 +3,7 @@
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 150px 1fr;
+  grid-template-rows: 100px 165px 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "game-records";
   justify-items: center;
@@ -12,6 +12,7 @@ player-view {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 15px;
 
     img {
       max-height: 80px;
@@ -20,10 +21,12 @@ player-view {
 
   #player-personal-card {
     @include grt.spanAlignment;
-    
+
     @mixin cardLegendGrid {
+      $standardRowWidth: 100px;
+
       display: grid;
-      grid-template-columns: 100px 100px 100px;
+      grid-template-columns: $standardRowWidth $standardRowWidth 80px $standardRowWidth;
       grid-column-gap: grt.$columnGap;
     }
 

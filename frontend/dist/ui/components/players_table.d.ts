@@ -5,5 +5,4 @@ export default class PlayersTable extends HTMLElement {
     connectedCallback(): Promise<void>;
     private setPlayersTable;
     private get playerPicture();
-    private get lastGameLink();
 }

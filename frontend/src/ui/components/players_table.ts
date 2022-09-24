@@ -3,7 +3,6 @@ import { RouteEnum } from "../../routing/router";
 
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
-import { DateUtils } from "../../infra/date_utils";
 import { UiUtils } from "../utils";
 
 export default class PlayersTable extends HTMLElement {
@@ -75,7 +74,7 @@ export default class PlayersTable extends HTMLElement {
 
                 <span>${elo.danKyuLevel()}</span>
                 
-                ${this.lastGameLink}
+                ${UiUtils.lastGameLink(this.currentPlayer)}
                 
                 <span>${player.gamesTotal}</span>
           </route-link>
@@ -88,21 +87,5 @@ export default class PlayersTable extends HTMLElement {
     return !this.currentPlayer.picture
       ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
       : /*html*/ `<img id="picture" src="${this.currentPlayer.picture}"/>`;
-  }
-
-  private get lastGameLink(): string {
-    if (this.currentPlayer.lastGame) {
-      const lastGameDate = this.currentPlayer.lastGame
-        ? DateUtils.formatDate(new Date(this.currentPlayer.lastGame?.date!))
-        : "&mdash;";
-
-      return /*html*/ `
-        <route-link 
-          class="centered" 
-          href="${RouteEnum.gameRecords}/${this.currentPlayer.lastGame.firebaseRef}">
-            <span>${lastGameDate}</span>
-        </route-link>
-      `;
-    } else return /*html*/ `<span class="centered">&mdash;</span>`;
   }
 }

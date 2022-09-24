@@ -57,12 +57,14 @@ export default class PlayerView extends HTMLElement {
           <span>Elo</span>
           <span>Dan Kyu</span>
           <span>Número de Partidas</span>
+          <span>Data da Última Partida</span>
         </div>
 
         <div id="player-personal-card-content">
           <span>${elo.num}</span>
           <span>${elo.danKyuLevel(true)}</span>
           <span>${this.player.gamesTotal}</span>
+          <span>${UiUtils.lastGameLink(this.player)}</span>
         </div>
       </div>
     `;

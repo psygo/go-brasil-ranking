@@ -278,7 +278,7 @@ home-view {
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 150px 1fr;
+  grid-template-rows: 100px 165px 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "game-records";
   justify-items: center;
@@ -287,6 +287,7 @@ player-view #name {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 15px;
 }
 player-view #name img {
   max-height: 80px;
@@ -303,7 +304,7 @@ player-view #player-personal-card .align-left {
 }
 player-view #player-personal-card #player-personal-card-content {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: 100px 100px 80px 100px;
   grid-column-gap: 10px;
   margin-bottom: 35px;
   width: max-content;
@@ -333,7 +334,7 @@ player-view #player-personal-card #player-personal-card-content route-link[loser
 }
 player-view #player-personal-card #player-personal-card-legend {
   display: grid;
-  grid-template-columns: 100px 100px 100px;
+  grid-template-columns: 100px 100px 80px 100px;
   grid-column-gap: 10px;
   align-items: center;
   font-weight: bold;

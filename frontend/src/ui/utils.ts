@@ -1,8 +1,13 @@
+import { DateUtils } from "../infra/date_utils";
+
+import { RouteEnum } from "../routing/router";
+
 import { Country, getFlag } from "../models/country";
+import { Player } from "../models/player";
 
 export namespace UiUtils {
-  export const allFlags = (countries: readonly Country[]): string => {
-    return countries
+  export const allFlags = (countries: readonly Country[]): string =>
+    countries
       .map(
         (c) => /*html*/ `
           <span title="${c.name}">
@@ -11,5 +16,18 @@ export namespace UiUtils {
         `
       )
       .reduce((pflag, cflag) => pflag + cflag);
+
+  export const lastGameLink = (player: Player): string => {
+    if (player.lastGame) {
+      const lastGameDate = DateUtils.formatDate(new Date(player.lastGame.date));
+
+      return /*html*/ `
+        <route-link 
+          class="centered" 
+          href="${RouteEnum.gameRecords}/${player.lastGame.firebaseRef}">
+            <span>${lastGameDate}</span>
+        </route-link>
+      `;
+    } else return /*html*/ `<span class="centered">&mdash;</span>`;
   };
 }
