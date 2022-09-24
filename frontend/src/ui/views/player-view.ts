@@ -10,6 +10,7 @@ import { UiUtils } from "../utils";
 import { Chart, registerables } from "chart.js";
 import { GameRecord } from "../../models/game_record";
 import { DateUtils } from "../../infra/date_utils";
+import { CountryName } from "../../models/country";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -139,11 +140,21 @@ export default class PlayerView extends HTMLElement {
 
   private setPlayerCard = (): void => {
     const elo = new Elo(this.player.elo);
+    const brState =
+      this.player.countries[0].name === CountryName.brazil
+        ? this.player.countries[0].state
+        : "&mdash;";
+    const brCity =
+      this.player.countries[0].name === CountryName.brazil
+        ? this.player.countries[0].city
+        : "&mdash;";
 
     this.innerHTML += /*html*/ `
       <div id="player-personal-card">
         <div id="player-personal-card-legend">
           <span>Email</span>
+          <span>Estado</span>
+          <span>Cidade</span>
           <span>Elo</span>
           <span>Dan Kyu</span>
           <span>Número de Partidas</span>
@@ -154,6 +165,8 @@ export default class PlayerView extends HTMLElement {
           <route-link href="mailto:${this.player.email}">
             <span>${this.player.email}</span>
           </route-link>
+          <span>${brState}</span>
+          <span>${brCity}</span>
           <span>${elo.num}</span>
           <span>${elo.danKyuLevel(true)}</span>
           <span>${this.player.gamesTotal}</span>
