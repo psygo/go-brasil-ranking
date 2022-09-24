@@ -3,7 +3,9 @@ export default class PlayerView extends HTMLElement {
     readonly playerRef: FirebaseRef;
     static readonly tag: string;
     constructor(playerRef: FirebaseRef);
-    private getPlayers;
+    private getPlayer;
+    private player;
     connectedCallback(): Promise<void>;
     private setPlayersPage;
+    private setPlayerCard;
 }

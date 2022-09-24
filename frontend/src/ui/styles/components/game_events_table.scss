@@ -9,7 +9,7 @@ game-events-table {
     $gamesTotalWidth: 65px;
 
     display: grid;
-    grid-template-columns: "ref name total-games";
+    grid-template-areas: "ref name total-games";
     grid-template-columns: grt.$refWidth $gameEventNameWidth $gamesTotalWidth;
     grid-column-gap: grt.$columnGap;
   }

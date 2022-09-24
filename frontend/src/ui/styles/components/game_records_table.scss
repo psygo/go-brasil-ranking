@@ -10,6 +10,8 @@
     box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
     transform: translate3d(0px, -0.5px, 0px);
   }
+
+  font-size: 1.1rem;
 }
 
 @mixin cardMargin {
@@ -18,6 +20,7 @@
 
 @mixin cardPadding {
   padding: 12px 8px;
+  padding-right: 12px;
 }
 
 @mixin playerLink {
@@ -25,7 +28,7 @@
     color: darken(blue, 30%);
 
     &[winner] {
-      color: darken(green, 0);
+      color: darken(green, 9%);
     }
 
     &[loser] {

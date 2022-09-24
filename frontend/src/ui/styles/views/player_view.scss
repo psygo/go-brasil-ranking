@@ -1,5 +1,41 @@
+@use "../components/game_records_table" as grt;
+
 player-view {
-  img {
-    max-height: 80px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 150px 1fr;
+  grid-row-gap: 20px;
+  grid-template-areas: "name" "metadata" "game-records";
+  justify-items: center;
+
+  #name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-height: 80px;
+    }
+  }
+
+  #player-personal-card {
+    @include grt.spanAlignment;
+    
+    @mixin cardLegendGrid {
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+      grid-column-gap: grt.$columnGap;
+    }
+
+    #player-personal-card-content {
+      @include cardLegendGrid;
+      @include grt.card;
+    }
+
+    #player-personal-card-legend {
+      @include cardLegendGrid;
+      @include grt.legendDecoration;
+      @include grt.cardPadding;
+    }
   }
 }

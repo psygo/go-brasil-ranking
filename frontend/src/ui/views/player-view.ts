@@ -15,7 +15,7 @@ export default class PlayerView extends HTMLElement {
     super();
   }
 
-  private getPlayers = async (): Promise<Player> => {
+  private getPlayer = async (): Promise<Player> => {
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.players}/${this.playerRef}`
     );
@@ -23,26 +23,47 @@ export default class PlayerView extends HTMLElement {
     return json["data"]["player"];
   };
 
+  private declare player: Player;
+
   async connectedCallback() {
-    const player = await this.getPlayers();
+    this.player = await this.getPlayer();
 
-    document.title = `Jogador | ${player.name}`;
+    document.title = `Jogador | ${this.player.name}`;
 
-    this.setPlayersPage(player);
+    this.setPlayersPage();
 
     this.appendChild(new GameRecordsTable("max", this.playerRef));
   }
 
-  private setPlayersPage = (player: Player): void => {
-    const countryFlags = UiUtils.allFlags(player.countries);
-    const elo = new Elo(player.elo);
+  private setPlayersPage = (): void => {
+    const countryFlags = UiUtils.allFlags(this.player.countries);
 
     this.innerHTML += /*html*/ `
-      <h1>${player.name} ${countryFlags}</h1>
+      <div id="name">
+        <img src="${this.player.picture}"/>
+        <h1>${this.player.name} ${countryFlags}</h1>
+      </div>
+    `;
 
-      <div id="player-metadata">
-        <h3>Elo: ${elo.num} | ${elo.danKyuLevel(true)}</h3>
-        <img src="${player.picture}"/>
+    this.setPlayerCard();
+  };
+
+  private setPlayerCard = (): void => {
+    const elo = new Elo(this.player.elo);
+
+    this.innerHTML += /*html*/ `
+      <div id="player-personal-card">
+        <div id="player-personal-card-legend">
+          <span>Elo</span>
+          <span>Dan Kyu</span>
+          <span>Número de Partidas</span>
+        </div>
+
+        <div id="player-personal-card-content">
+          <span>${elo.num}</span>
+          <span>${elo.danKyuLevel(true)}</span>
+          <span>${this.player.gamesTotal}</span>
+        </div>
       </div>
     `;
   };
