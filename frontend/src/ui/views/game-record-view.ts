@@ -9,7 +9,7 @@ declare const glift: any;
 export default class GameRecordView extends HTMLElement {
   static readonly tag: string = "game-record-view";
 
-  private gameRecord?: GameRecord;
+  private declare gameRecord: GameRecord;
 
   constructor(public readonly gameRecordRef: FirebaseRef) {
     super();
@@ -41,12 +41,12 @@ export default class GameRecordView extends HTMLElement {
   private setGameRecordPage = (): void => {
     this.innerHTML += /*html*/ `
       <h2>
-        ${this.gameRecord!.blackPlayer!.name}
+        ${this.gameRecord.blackPlayer!.name}
         vs 
-        ${this.gameRecord!.whitePlayer!.name}
+        ${this.gameRecord.whitePlayer!.name}
       </h2>
 
-      <h3>${resultString(this.gameRecord!.result)}</h3>
+      <h3>${resultString(this.gameRecord.result)}</h3>
 
       <div id="glift"></div>
     `;
