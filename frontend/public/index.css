@@ -379,6 +379,17 @@ player-view #player-personal-card #player-personal-card-legend {
   padding-right: 12px;
 }
 
+game-record-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  justify-items: center;
+}
+game-record-view #glift {
+  max-width: 500px;
+  max-height: 500px;
+}
+
 unknown-view {
   display: flex;
   justify-content: center;

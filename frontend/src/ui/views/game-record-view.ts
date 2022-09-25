@@ -4,7 +4,7 @@ import { RouteEnum } from "../../routing/router";
 import { FirebaseRef } from "../../models/firebase_models";
 import { GameRecord, resultString } from "../../models/game_record";
 
-declare let glift: any;
+declare const glift: any;
 
 export default class GameRecordView extends HTMLElement {
   static readonly tag: string = "game-record-view";
@@ -48,9 +48,11 @@ export default class GameRecordView extends HTMLElement {
 
       <h3>${resultString(this.gameRecord!.result)}</h3>
 
-      <div id="glift_display1" style="width: 500px; height: 500px;"></div>
+      <div id="glift" style="width: 500px; height: 500px;"></div>
     `;
 
+    // TODO2: Other games from both players in a table
+    // TODO2: Add a way to hide the result at first
     // TODO2: Add button for downloading the SGF
 
     this.addSgfDiagram();
@@ -60,20 +62,23 @@ export default class GameRecordView extends HTMLElement {
     const gliftScript = document.createElement("script");
     gliftScript.type = "text/javascript";
     gliftScript.src = "/public/glift_1_1_2.min.js";
-    gliftScript.setAttribute("async", "");
+    gliftScript.toggleAttribute("async");
 
     gliftScript.onload = () => {
-      glift.create({
-        divId: "glift_display1",
-        sgf: {
-          sgfString: `${this.gameRecord!.sgf}`,
-        },
-        display: {
-          theme: "DEPTH",
-          goBoardBackground: "images/purty_wood.png",
-          disableZoomForMobile: true,
-        },
-      });
+      try {
+        glift.create({
+          divId: "glift",
+          sgf: {
+            sgfString: `${this.gameRecord!.sgf}`,
+          },
+          display: {
+            theme: "DEPTH",
+            goBoardBackground: "images/purty_wood.png",
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
     };
 
     document.head.appendChild(gliftScript);

@@ -90,12 +90,6 @@ export default class GameRecordsTable extends HTMLElement {
 
       const gameDate = new Date(gameRecord.date);
 
-      console.log(blackWins);
-      console.log(whiteWins);
-      console.log(this.playerRef);
-      console.log(gameRecord.blackRef);
-      console.log(gameRecord.whiteRef);
-
       let winOrLossAttr = "";
       if (this.playerRef)
         if (
