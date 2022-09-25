@@ -1,14 +1,15 @@
-import { JsonInterface } from "../infra/serializable";
 import { SerializedElo, SerializedEloDelta } from "./elo";
-import { FirebaseRef } from "./firebase_models";
+import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 import { GameEvent, GameEventRef } from "./game_event";
 import { Player } from "./player";
-interface _GameRecord extends JsonInterface {
+interface _GameRecord extends FirebaseDoc {
     firebaseRef?: FirebaseRef;
+    author?: Author;
     blackRef: FirebaseRef;
     blackPlayer?: Player;
     whiteRef: FirebaseRef;
     whitePlayer?: Player;
+    handicap?: number;
     date: number;
     dateCreated?: number;
     result: Result;
@@ -29,6 +30,7 @@ export declare type Sgf = Readonly<string>;
 interface _Result {
     whoWins: Color;
     difference?: number;
+    time?: boolean;
 }
 declare type Result = Readonly<_Result>;
 export declare const resultString: (result: Result) => string;

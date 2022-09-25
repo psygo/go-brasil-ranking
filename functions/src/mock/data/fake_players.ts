@@ -136,7 +136,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Gabriel Garcia",
-    nicks: [{ name: "Putz Grila", server: GoServers.ogs }],
+    nicks: [{ name: "PutzGrila", server: GoServers.ogs }],
     email: "gabriel@mail.com",
     countries: [
       {

@@ -4,6 +4,8 @@ import {
   GameRecord,
   Sgf,
 } from "../../../../frontend/src/models/game_record";
+import { fakeGameEvents } from "./fake_game_events";
+import { fakePlayers } from "./fake_players";
 
 export const fakeSgf1_empty: Sgf =
   "(;GM[1]FF[4]CA[UTF-8]AP[Sabaki:0.52.1]KM[0]SZ[19]DT[2022-09-12])";
@@ -50,5 +52,344 @@ export const fakeGameRecords: readonly GameRecord[] = [
     },
     sgf: fakeSgf1_empty,
     gameEventRef: "0",
+  },
+];
+
+const findFakePlayerRef = (name: string): string =>
+  fakePlayers.findIndex((p) => p.name.includes(name))!.toString();
+
+const findFakeEventRef = (name: string): string =>
+  fakeGameEvents.findIndex((gE) => gE.name.includes(name))!.toString();
+
+export const dogempGames: readonly GameRecord[] = [
+  // ***************************************************************************
+  // Nov 2021
+  // ***************************************************************************
+  {
+    blackRef: findFakePlayerRef("Audrey Luciano Filho"),
+    whiteRef: findFakePlayerRef("Philippe Fanaro"),
+    date: new Date(2021, 10, 1).getTime(),
+    handicap: 9,
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Gabriel Ventura"),
+    whiteRef: findFakePlayerRef("Philippe Fanaro"),
+    date: new Date(2021, 10, 6).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Gabriel Ventura"),
+    whiteRef: findFakePlayerRef("Erendiro Pedro Sangueve"),
+    date: new Date(2021, 10, 12).getTime(),
+    result: {
+      whoWins: Color.White,
+      difference: 151.5,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Erendiro Pedro Sangueve"),
+    whiteRef: findFakePlayerRef("Philippe Fanaro"),
+    date: new Date(2021, 10, 15).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Rui Malhado"),
+    whiteRef: findFakePlayerRef("Philippe Fanaro"),
+    date: new Date(2021, 10, 23).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  // ***************************************************************************
+  // Dez 2021
+  // ***************************************************************************
+  {
+    blackRef: findFakePlayerRef("Lucas Cristovam"),
+    whiteRef: findFakePlayerRef("Vanderson da Silva Rodrigues"),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.Black,
+      time: true,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Erendiro Pedro Sangueve"),
+    whiteRef: findFakePlayerRef("Philippe Fanaro"),
+    date: new Date(2021, 11, 7).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Sophie Pagès"),
+    whiteRef: findFakePlayerRef("André Barbosa"),
+    date: new Date(2021, 11, 9).getTime(),
+    handicap: 9,
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Erendiro Pedro Sangueve"),
+    whiteRef: findFakePlayerRef("Laura Augustina Avram"),
+    date: new Date(2021, 11, 9).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Lucas Cristovam"),
+    whiteRef: findFakePlayerRef("Sophie Pagès"),
+    date: new Date(2021, 11, 10).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Fabrício Caluza Machado"),
+    whiteRef: findFakePlayerRef("Philippe Fanaro"),
+    date: new Date(2021, 11, 10).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Sophie Pagès"),
+    whiteRef: findFakePlayerRef("Vanderson da Silva Rodrigues"),
+    date: new Date(2021, 11, 11).getTime(),
+    result: {
+      whoWins: Color.Black,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Philippe Fanaro"),
+    whiteRef: findFakePlayerRef("Rui Malhado"),
+    date: new Date(2021, 11, 16).getTime(),
+    result: {
+      whoWins: Color.Black,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Vanderson da Silva Rodrigues"),
+    whiteRef: findFakePlayerRef("André Barbosa"),
+    date: new Date(2021, 11, 17).getTime(),
+    handicap: 9,
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Sophie Pagès"),
+    whiteRef: findFakePlayerRef("Gabriel Ventura"),
+    date: new Date(2021, 11, 18).getTime(),
+    handicap: 9,
+    result: {
+      whoWins: Color.White,
+      difference: 40.5,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Erendiro Pedro Sangueve"),
+    whiteRef: findFakePlayerRef("Rui Malhado"),
+    date: new Date(2021, 11, 18).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Rui Malhado"),
+    whiteRef: findFakePlayerRef("Laura Augustina Avram"),
+    date: new Date(2021, 11, 20).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Erendiro Pedro Sangueve"),
+    whiteRef: findFakePlayerRef("Fabrício Caluza Machado"),
+    date: new Date(2021, 11, 22).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Laura Augustina Avram"),
+    whiteRef: findFakePlayerRef("Fabrício Caluza Machado"),
+    date: new Date(2021, 11, 26).getTime(),
+    result: {
+      whoWins: Color.Black,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Philippe Fanaro"),
+    whiteRef: findFakePlayerRef("Laura Augustina Avram"),
+    date: new Date(2021, 11, 27).getTime(),
+    result: {
+      whoWins: Color.White,
+      difference: 6.5,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef("Lucas Cristovam"),
+    whiteRef: findFakePlayerRef("André Barbosa"),
+    date: new Date(2021, 11, 29).getTime(),
+    handicap: 9,
+    result: {
+      whoWins: Color.White,
+      difference: 61.5,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  // ***************************************************************************
+  // Jan 2022
+  // ***************************************************************************
+  {
+    blackRef: findFakePlayerRef("Gabriel Garcia"),
+    whiteRef: findFakePlayerRef("Vanderson da Silva Rodrigues"),
+    date: new Date(2022, 0, 7).getTime(),
+    result: {
+      whoWins: Color.White,
+      difference: 109.5,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
+  },
+  {
+    blackRef: findFakePlayerRef(""),
+    whiteRef: findFakePlayerRef(""),
+    date: new Date(2021, 11, 4).getTime(),
+    result: {
+      whoWins: Color.White,
+    },
+    sgf: fakeSgf1_empty,
+    gameEventRef: findFakeEventRef("DOGemP"),
   },
 ];
