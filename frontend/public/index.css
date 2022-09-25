@@ -85,7 +85,7 @@ game-records-table .align-left {
   justify-content: left;
   text-align: left;
 }
-game-records-table .game-record-card > route-link {
+game-records-table route-link.game-record-card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -103,18 +103,24 @@ game-records-table .game-record-card > route-link {
   grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
 }
-game-records-table .game-record-card > route-link:hover {
+game-records-table route-link.game-record-card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-records-table .game-record-card > route-link route-link {
+game-records-table route-link.game-record-card route-link {
   color: #000066;
 }
-game-records-table .game-record-card > route-link route-link[winner] {
+game-records-table route-link.game-record-card route-link[winner] {
   color: #005200;
 }
-game-records-table .game-record-card > route-link route-link[loser] {
+game-records-table route-link.game-record-card route-link[loser] {
   color: #660000;
+}
+game-records-table route-link.game-record-card[player-wins] {
+  border-color: #008f00;
+}
+game-records-table route-link.game-record-card[player-loses] {
+  border-color: #8f0000;
 }
 game-records-table .game-records-table-legend {
   display: grid;
@@ -146,7 +152,7 @@ game-events-table .align-left {
   justify-content: left;
   text-align: left;
 }
-game-events-table .game-event-card > route-link {
+game-events-table route-link.game-event-card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -164,17 +170,17 @@ game-events-table .game-event-card > route-link {
   grid-template-columns: 30px 250px 65px;
   grid-column-gap: 10px;
 }
-game-events-table .game-event-card > route-link:hover {
+game-events-table route-link.game-event-card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-events-table .game-event-card > route-link route-link {
+game-events-table route-link.game-event-card route-link {
   color: #000066;
 }
-game-events-table .game-event-card > route-link route-link[winner] {
+game-events-table route-link.game-event-card route-link[winner] {
   color: #005200;
 }
-game-events-table .game-event-card > route-link route-link[loser] {
+game-events-table route-link.game-event-card route-link[loser] {
   color: #660000;
 }
 game-events-table .game-events-table-legend {
@@ -207,7 +213,7 @@ players-table h2 {
 players-table h2 route-link {
   color: #005c00;
 }
-players-table .player-card > route-link {
+players-table route-link.player-card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -225,20 +231,20 @@ players-table .player-card > route-link {
   grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
   grid-column-gap: 10px;
 }
-players-table .player-card > route-link:hover {
+players-table route-link.player-card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-players-table .player-card > route-link route-link {
+players-table route-link.player-card route-link {
   color: #000066;
 }
-players-table .player-card > route-link route-link[winner] {
+players-table route-link.player-card route-link[winner] {
   color: #005200;
 }
-players-table .player-card > route-link route-link[loser] {
+players-table route-link.player-card route-link[loser] {
   color: #660000;
 }
-players-table .player-card img {
+players-table img {
   max-width: 70px;
 }
 players-table .players-table-legend {

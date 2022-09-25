@@ -14,11 +14,9 @@ game-events-table {
     grid-column-gap: grt.$columnGap;
   }
 
-  .game-event-card {
-    > route-link {
-      @include grt.card;
-      @include cardLegendGrid;
-    }
+  route-link.game-event-card {
+    @include grt.card;
+    @include cardLegendGrid;
   }
 
   .game-events-table-legend {

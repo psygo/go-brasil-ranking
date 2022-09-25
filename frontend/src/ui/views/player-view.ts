@@ -148,12 +148,14 @@ export default class PlayerView extends HTMLElement {
 
   private setPlayerCard = (): void => {
     const elo = new Elo(this.player.elo);
+
+    const firstCountry = this.player.countries[0];
     const brState =
-      this.player.countries[0].name === CountryName.brazil
+      firstCountry.name === CountryName.brazil
         ? this.player.countries[0].state
         : "&mdash;";
     const brCity =
-      this.player.countries[0].name === CountryName.brazil
+      firstCountry.name === CountryName.brazil
         ? this.player.countries[0].city
         : "&mdash;";
 

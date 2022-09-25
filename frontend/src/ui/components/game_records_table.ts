@@ -90,40 +90,69 @@ export default class GameRecordsTable extends HTMLElement {
 
       const gameDate = new Date(gameRecord.date);
 
+      console.log(blackWins);
+      console.log(whiteWins);
+      console.log(this.playerRef);
+      console.log(gameRecord.blackRef);
+      console.log(gameRecord.whiteRef);
+
+      let winOrLossAttr = "";
+      if (this.playerRef)
+        if (
+          (blackWins === "winner" && this.playerRef === gameRecord.blackRef) ||
+          (whiteWins === "winner" && this.playerRef === gameRecord.whiteRef)
+        )
+          winOrLossAttr = "player-wins";
+        else winOrLossAttr = "player-loses";
+
       this.innerHTML += /*html*/ `
-        <div class="game-record-card" id="${gameRecord.firebaseRef}">
-          <route-link href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}">
-            <span>${i.toString()}</span>
+        <route-link 
+          class="game-record-card"
+          id="${gameRecord.firebaseRef}"
+          href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}"
+          ${winOrLossAttr}>
+            <span>${i + 1}</span>
 
             <route-link 
               ${blackWins} 
               href="${RouteEnum.players}/${gameRecord.blackRef}">
-                <span class="align-left">${gameRecord.blackPlayer!.name}</span>
+                <span class="align-left">
+                  ${gameRecord.blackPlayer!.name}
+                </span>
             </route-link>
 
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
-            <span>${gameRecord!.eloData!.eloDeltaBlack}</span>
+            <span>
+              ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
+            </span>
 
             <route-link 
               ${whiteWins} 
               href="${RouteEnum.players}/${gameRecord.whiteRef}">
-                <span class="align-left">${gameRecord.whitePlayer!.name}</span>
+                <span class="align-left">
+                  ${gameRecord.whitePlayer!.name}
+                </span>
             </route-link>
 
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
 
-            <span>${gameRecord!.eloData!.eloDeltaWhite}</span>
+            <span>
+              ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaWhite)}
+            </span>
 
             <span>${resultString(gameRecord.result)}</span>
 
             <span>${DateUtils.formatDate(gameDate)}</span>
             
             ${this.gameEventLink(gameRecord)}
-          </route-link>
-        </div>
+        </route-link>
       `;
     }
+  };
+
+  private signedEloDelta = (n: number): string => {
+    return n === 0 ? n.toString() : n > 0 ? `+${n}` : n.toString();
   };
 
   private gameEventLink = (gameRecord: GameRecord) => {

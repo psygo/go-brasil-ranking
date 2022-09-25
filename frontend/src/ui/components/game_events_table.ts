@@ -45,8 +45,10 @@ export default class GameEventsTable extends HTMLElement {
       const gameEvent = gameEvents[i];
       if (isTournamentOrLeague(gameEvent))
         this.innerHTML += /*html*/ `
-          <div class="game-event-card" id="${gameEvent.firebaseRef}">
-            <route-link href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
+          <route-link
+            class="game-event-card"
+            id="${gameEvent.firebaseRef}"
+            href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
               <span>${i + 1}</span>
 
               <route-link 
@@ -55,8 +57,7 @@ export default class GameEventsTable extends HTMLElement {
               </route-link>
               
               <span>${gameEvent.gamesTotal}</span>
-            </route-link>
-          </div>
+          </route-link>
         `;
     }
   };

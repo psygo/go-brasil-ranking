@@ -21,15 +21,13 @@ players-table {
     grid-column-gap: grt.$columnGap;
   }
 
-  .player-card {
-    > route-link {
-      @include grt.card;
-      @include cardLegendGrid;
-    }
+  route-link.player-card {
+    @include grt.card;
+    @include cardLegendGrid;
+  }
 
-    img {
-      max-width: $pictureWidth;
-    }
+  img {
+    max-width: $pictureWidth;
   }
 
   .players-table-legend {

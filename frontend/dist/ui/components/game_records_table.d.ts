@@ -9,5 +9,6 @@ export default class GameRecordsTable extends HTMLElement {
     private gameRecords;
     connectedCallback(): Promise<void>;
     setGameRecordsTable: () => void;
+    private signedEloDelta;
     private gameEventLink;
 }

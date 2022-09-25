@@ -52,33 +52,31 @@ export default class PlayersTable extends HTMLElement {
       const elo = new Elo(this.currentPlayer.elo);
 
       this.innerHTML += /*html*/ `
-        <div 
+        <route-link 
           class="player-card" 
-          id="${this.currentPlayer.firebaseRef}">
+          id="${this.currentPlayer.firebaseRef}"
+          href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
+            <span>${i}</span>
+            
+            ${this.playerPicture}
+
             <route-link 
               href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                <span>${i}</span>
-                
-                ${this.playerPicture}
+                <span class="align-left">${this.currentPlayer.name}</span>
+            </route-link>
 
-                <route-link 
-                  href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                    <span class="align-left">${this.currentPlayer.name}</span>
-                </route-link>
+            <div>
+              ${UiUtils.allFlags(this.currentPlayer.countries)}
+            </div>
 
-                <div>
-                  ${UiUtils.allFlags(this.currentPlayer.countries)}
-                </div>
+            <span>${elo.num}</span>
 
-                <span>${elo.num}</span>
-
-                <span>${elo.danKyuLevel()}</span>
-                
-                ${UiUtils.lastGameLink(this.currentPlayer)}
-                
-                <span>${player.gamesTotal}</span>
-          </route-link>
-        </div>
+            <span>${elo.danKyuLevel()}</span>
+            
+            ${UiUtils.lastGameLink(this.currentPlayer)}
+            
+            <span>${player.gamesTotal}</span>
+        </route-link>
       `;
     }
   };

@@ -47,7 +47,7 @@
   h2 {
     display: flex;
     justify-content: center;
-    
+
     margin-bottom: 15px;
 
     font-size: 1.8rem;
@@ -118,10 +118,16 @@ game-records-table {
     grid-column-gap: $columnGap;
   }
 
-  .game-record-card {
-    > route-link {
-      @include card;
-      @include cardLegendGrid;
+  route-link.game-record-card {
+    @include card;
+    @include cardLegendGrid;
+
+    &[player-wins] {
+      border-color: lighten(green, 3%);
+    }
+
+    &[player-loses] {
+      border-color: darken(red, 22%);
     }
   }
 
