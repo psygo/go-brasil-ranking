@@ -48,7 +48,7 @@ export default class GameRecordView extends HTMLElement {
 
       <h3>${resultString(this.gameRecord!.result)}</h3>
 
-      <div id="glift" style="width: 500px; height: 500px;"></div>
+      <div id="glift"></div>
     `;
 
     // TODO2: Other games from both players in a table

@@ -386,8 +386,8 @@ game-record-view {
   justify-items: center;
 }
 game-record-view #glift {
-  max-width: 500px;
-  max-height: 500px;
+  width: 500px;
+  height: 500px;
 }
 
 unknown-view {

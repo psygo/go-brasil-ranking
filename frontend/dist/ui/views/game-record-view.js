@@ -38,7 +38,7 @@ class GameRecordView extends HTMLElement {
 
       <h3>${(0, game_record_1.resultString)(this.gameRecord.result)}</h3>
 
-      <div id="glift" style="width: 500px; height: 500px;"></div>
+      <div id="glift"></div>
     `;
         this.addSgfDiagram();
     };
