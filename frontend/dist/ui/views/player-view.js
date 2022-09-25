@@ -86,7 +86,7 @@ class PlayerView extends HTMLElement {
                                 maxRotation: 45,
                                 minRotation: 45,
                                 font: {
-                                    size: 16,
+                                    size: 15,
                                 },
                             },
                         },

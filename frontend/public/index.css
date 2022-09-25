@@ -69,6 +69,7 @@ footer foot-er svg {
 game-records-table h2 {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
   font-size: 1.8rem;
 }
 game-records-table h2 route-link {
@@ -129,6 +130,7 @@ game-records-table .game-records-table-legend {
 game-events-table h2 {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
   font-size: 1.8rem;
 }
 game-events-table h2 route-link {
@@ -199,6 +201,7 @@ players-table .align-left {
 players-table h2 {
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
   font-size: 1.8rem;
 }
 players-table h2 route-link {
@@ -280,7 +283,7 @@ player-view {
   grid-template-columns: 1fr;
   grid-template-rows: 100px 155px 1fr 1fr;
   grid-row-gap: 20px;
-  grid-template-areas: "name" "metadata" "game-records";
+  grid-template-areas: "name" "metadata" "elo-graph" "game-records";
   justify-items: center;
 }
 player-view #graph {
@@ -291,6 +294,9 @@ player-view #graph {
   align-items: center;
   width: 500px;
   height: 325px;
+}
+player-view #graph h2 {
+  font-size: 1.8rem;
 }
 player-view #graph canvas {
   max-width: 500px;

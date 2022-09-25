@@ -9,7 +9,7 @@ import { isTournamentOrLeague } from "../../models/game_event";
 export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
 
-  private getGameRecords = async (): Promise<GameRecord[]> => {
+  private getGameRecords = async (): Promise<void> => {
     const p = this.playerRef ? this.playerRef : "";
     const queryString = `?limite=${this.limit}&jogadorRef=${p}`;
 
@@ -18,7 +18,7 @@ export default class GameRecordsTable extends HTMLElement {
     );
 
     const json = await response.json();
-    return json["data"]["gameRecords"];
+    this.gameRecords = json["data"]["gameRecords"];
   };
 
   constructor(
@@ -28,38 +28,60 @@ export default class GameRecordsTable extends HTMLElement {
     super();
   }
 
+  private get playerName(): string | null {
+    if (this.playerRef) {
+      const firstGame = this.gameRecords[0];
+      return firstGame.blackRef === this.playerRef
+        ? firstGame.blackPlayer!.name
+        : firstGame.whitePlayer!.name;
+    } else return null;
+  }
+
+  private declare gameRecords: GameRecord[];
+
   async connectedCallback() {
-    const gameRecords = await this.getGameRecords();
+    await this.getGameRecords();
 
-    if (gameRecords.length > 0) {
+    if (this.gameRecords.length > 0) {
+      const titleSuffix = this.playerRef ? ` de ${this.playerName}` : "";
+      const title = this.playerRef
+        ? /*html*/ `
+          <h2>
+            Partidas ${titleSuffix}
+          </h2>
+        `
+        : /*html*/ `
+          <h2>
+            <route-link href="${RouteEnum.gameRecords}">
+              Partidas
+            </route-link>
+          </h2>
+        `;
+
       this.innerHTML = /*html*/ `
-      <h2>
-        <route-link href="${RouteEnum.gameRecords}">
-          Partidas
-        </route-link>
-      </h2>
+        ${title}
 
-      <div class="game-records-table-legend">
-        <span>#</span>
-        <span class="align-left">Preto</span>
-        <span>Elo</span>
-        <span>Elo Dif</span>
-        <span class="align-left">Branco</span>
-        <span>Elo</span>
-        <span>Elo Dif</span>
-        <span>Resultado</span>
-        <span>Data</span>
-        <span>Evento</span>
-      </div>
-    `;
+        <div class="game-records-table-legend">
+          <span>#</span>
+          <span class="align-left">Preto</span>
+          <span>Elo</span>
+          <span>Elo Dif</span>
+          <span class="align-left">Branco</span>
+          <span>Elo</span>
+          <span>Elo Dif</span>
+          <span>Resultado</span>
+          <span>Data</span>
+          <span>Evento</span>
+        </div>
+      `;
 
-      this.setGameRecordsTable(gameRecords);
+      this.setGameRecordsTable();
     }
   }
 
-  setGameRecordsTable = (gameRecords: GameRecord[]): void => {
-    for (let i = gameRecords.length - 1; i >= 0; i--) {
-      const gameRecord = gameRecords[i];
+  setGameRecordsTable = (): void => {
+    for (let i = this.gameRecords.length - 1; i >= 0; i--) {
+      const gameRecord = this.gameRecords[i];
 
       const blackWins =
         gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
