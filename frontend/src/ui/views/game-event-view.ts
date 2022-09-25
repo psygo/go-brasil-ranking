@@ -12,7 +12,7 @@ import { DateUtils } from "../../infra/date_utils";
 export default class GameEventView extends HTMLElement {
   static readonly tag: string = "game-event-view";
 
-  private gameEvent?: GameEventTournament | GameEventLeague;
+  private declare gameEvent: GameEventTournament | GameEventLeague;
 
   constructor(public readonly gameEventRef: FirebaseRef) {
     super();
@@ -33,15 +33,18 @@ export default class GameEventView extends HTMLElement {
       document.title = `Evento | ${this.gameEvent.name}`;
 
       this.setGameEventPage();
+
+      // TODO2: Add players table with the participants
+      // TODO2: Add game records table with the games from the tournament
     }
   }
 
   private setGameEventPage = (): void => {
     this.innerHTML += /*html*/ `
-      <h2>${this.gameEvent?.name}</h2>
+      <h2>${this.gameEvent.name}</h2>
     `;
 
-    if (this.gameEvent?.type === GameEventTypes.tournament) {
+    if (this.gameEvent.type === GameEventTypes.tournament) {
       this.innerHTML += /*html*/ `
         <h4>Dias</h4>
       `;
@@ -54,7 +57,7 @@ export default class GameEventView extends HTMLElement {
           <p>${DateUtils.formatDate(date)}</p>
         `;
       }
-    } else if (this.gameEvent?.type === GameEventTypes.league) {
+    } else if (this.gameEvent.type === GameEventTypes.league) {
       const dateInit = DateUtils.formatDate(new Date(this.gameEvent.dateInit));
       let dateEnd;
       if (this.gameEvent.dateEnd) dateEnd = new Date(this.gameEvent.dateEnd);
