@@ -23,7 +23,7 @@ player-view {
     canvas {
       max-width: 500px;
       max-height: 225px;
-
+      
       @include grt.cardDecoration;
       background-color: whitesmoke;
 

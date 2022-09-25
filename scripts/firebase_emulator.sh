@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sh firebase_emulators_kill.sh
+sh scripts/firebase_emulators_kill.sh
 
 firebase emulators:start \
     --config firebase/firebase.json \

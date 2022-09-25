@@ -78,9 +78,7 @@ export default class PlayerView extends HTMLElement {
       Chart.register(...registerables);
       const canvasDiv: HTMLDivElement = document.createElement("div");
       canvasDiv.id = "graph";
-      canvasDiv.innerHTML = /*html*/ `
-        <h2>Evolução Elo</h2>
-      `;
+      canvasDiv.innerHTML = /*html*/ `<h2>Evolução Elo</h2>`;
       const graphCanvas: HTMLCanvasElement = document.createElement("canvas");
       canvasDiv.appendChild(graphCanvas);
       this.appendChild(canvasDiv);
@@ -111,8 +109,18 @@ export default class PlayerView extends HTMLElement {
             x: {
               ticks: {
                 autoSkip: false,
-                maxRotation: 30,
-                minRotation: 30,
+                maxRotation: 45,
+                minRotation: 45,
+                font: {
+                  size: 16,
+                },
+              },
+            },
+            y: {
+              ticks: {
+                font: {
+                  size: 16,
+                },
               },
             },
           },
