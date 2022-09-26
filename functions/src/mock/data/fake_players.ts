@@ -49,6 +49,7 @@ import { pic_patricia_bongiorno } from "./PicsBase64/pic_patricia_bongiorno";
 import { pic_pedro_regis } from "./PicsBase64/pic_pedro_regis";
 import { pic_philippe_fanaro } from "./PicsBase64/pic_philippe_fanaro";
 import { pic_rachel_esteves } from "./PicsBase64/pic_rachel_esteves";
+import { pic_rafael_leao } from "./PicsBase64/pic_rafael_leao";
 import { pic_renan_cruz } from "./PicsBase64/pic_renan_cruz";
 import { pic_rodrigo_braz } from "./PicsBase64/pic_rodrigo_braz";
 import { pic_rodrigo_issa } from "./PicsBase64/pic_rodrigo_issa";
@@ -739,6 +740,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Rafael Leão",
+    picture: pic_rafael_leao,
     countries: [
       {
         name: CountryName.brazil,
