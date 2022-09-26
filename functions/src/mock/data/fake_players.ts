@@ -7,6 +7,18 @@ import { fake_profile_picture_philippe_fanaro } from "./fake_base64_pics";
 
 export const fakePlayers: readonly Player[] = [
   {
+    name: "Adalberto Reis Duarte",
+    nicks: [{ name: "Adalberto", server: GoServers.ogs }],
+    email: "adalberto@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.pa,
+      },
+    ],
+    elo: 2000,
+  },
+  {
     name: "Alexandre Amaro",
     nicks: [{ name: "babao", server: GoServers.ogs }],
     email: "alexandre@mail.com",
@@ -47,6 +59,19 @@ export const fakePlayers: readonly Player[] = [
     elo: 1500,
   },
   {
+    name: "Anivaldo Reis",
+    nicks: [{ name: "seupera", server: GoServers.ogs }],
+    email: "andre@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.ce,
+        city: "Fortaleza",
+      },
+    ],
+    elo: 800,
+  },
+  {
     name: "Ariel Oliveira",
     nicks: [{ name: "Oliv.AS", server: GoServers.ogs }],
     email: "ariel@mail.com",
@@ -73,6 +98,55 @@ export const fakePlayers: readonly Player[] = [
     elo: 900,
   },
   {
+    name: "Augusto Cezar",
+    nicks: [{ name: "AugustoCezar", server: GoServers.ogs }],
+    email: "augusto@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+      },
+    ],
+    elo: 1000,
+  },
+  {
+    name: "Beatriz Bouchiglioni Neves",
+    nicks: [{ name: "BeatrizBouchiglioniNeves", server: GoServers.ogs }],
+    email: "beatriz@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1200,
+  },
+  {
+    name: "Bruno Aragão Wahlbuhl Gonçalves",
+    email: "beatriz@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1100,
+  },
+  {
+    name: "Bruno Borchartt",
+    email: "beatriz@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2200,
+  },
+  {
     name: "Caio Ribeiro Chagas",
     nicks: [{ name: "cchagas", server: GoServers.ogs }],
     email: "caio@mail.com",
@@ -83,6 +157,65 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1400,
+  },
+  {
+    name: "Caio Sant Anna",
+    nicks: [{ name: "caio_csan", server: GoServers.ogs }],
+    email: "caio@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.pr,
+      },
+    ],
+    elo: 700,
+  },
+  {
+    name: "Carlos Dutra",
+    email: "carlos@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1500,
+  },
+  {
+    name: "Carlos Esteves",
+    nicks: [{ name: "carlos.prog91", server: GoServers.ogs }],
+    email: "carlos@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+      },
+    ],
+    elo: 600,
+  },
+  {
+    name: "Celso Siqueira Scaff",
+    email: "celso@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1700,
+  },
+  {
+    name: "Cícero de Melo Lucas",
+    nicks: [{ name: "Musashi-san", server: GoServers.ogs }],
+    email: "cicero@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 0,
   },
   {
     name: "Emanuel Araújo",
