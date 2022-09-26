@@ -53,5 +53,13 @@
             "  $4",
             "};"
         ]
+    },
+    "Base64 Picture File": {
+        "prefix": "pic64",
+        "body": [
+            "export const $1 = `",
+            "$2",
+            "`"
+        ]
     }
 }

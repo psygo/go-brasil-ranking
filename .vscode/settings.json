@@ -30,6 +30,5 @@
         //
         //   3. Others
         "index.js.LICENSE.txt": true,
-        "files.eol": "\n",
     }
 }

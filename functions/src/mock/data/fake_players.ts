@@ -18,6 +18,7 @@ import { pic_carlos_dutra } from "./PicsBase64/pic_carlos_dutra";
 import { pic_carlos_esteves } from "./PicsBase64/pic_carlos_esteves";
 import { pic_celso_scaff } from "./PicsBase64/pic_celso_scaff";
 import { pic_chico_motta } from "./PicsBase64/pic_chico_motta";
+import { pic_cristiane_bertolino } from "./PicsBase64/pic_cristiane_bertolino";
 import { pic_diogo_barbosa } from "./PicsBase64/pic_diogo_barbosa";
 import { pic_edivan } from "./PicsBase64/pic_edivan";
 import { pic_eduardo_takeuti } from "./PicsBase64/pic_eduardo_takeuti";
@@ -40,10 +41,23 @@ import { pic_juno_jo } from "./PicsBase64/pic_juno_jo";
 import { pic_laercio_pereira } from "./PicsBase64/pic_laercio_pereira";
 import { pic_laura_avram } from "./PicsBase64/pic_laura_avram";
 import { pic_lucas_cristovam } from "./PicsBase64/pic_lucas_cristovam";
+import { pic_luiz_sato } from "./PicsBase64/pic_luiz_sato";
+import { pic_marton_divenyi } from "./PicsBase64/pic_marton_divenyi";
+import { pic_murilo_oliveira } from "./PicsBase64/pic_murilo_oliveira";
+import { pic_nelson_kenzo } from "./PicsBase64/pic_nelson_kenzo";
+import { pic_patricia_bongiorno } from "./PicsBase64/pic_patricia_bongiorno";
+import { pic_pedro_regis } from "./PicsBase64/pic_pedro_regis";
 import { pic_philippe_fanaro } from "./PicsBase64/pic_philippe_fanaro";
 import { pic_rachel_esteves } from "./PicsBase64/pic_rachel_esteves";
+import { pic_renan_cruz } from "./PicsBase64/pic_renan_cruz";
+import { pic_rodrigo_braz } from "./PicsBase64/pic_rodrigo_braz";
+import { pic_rodrigo_issa } from "./PicsBase64/pic_rodrigo_issa";
+import { pic_ronaldo_matayoshi } from "./PicsBase64/pic_ronaldo_matayoshi";
+import { pic_rui_malhado } from "./PicsBase64/pic_rui_malhado";
 import { pic_simao_goncalves } from "./PicsBase64/pic_simao_goncalves";
+import { pic_sophie_pages } from "./PicsBase64/pic_sophie_pages";
 import { pic_thiago_augusto } from "./PicsBase64/pic_thiago_augusto";
+import { pic_thiago_ramos } from "./PicsBase64/pic_thiago_ramos";
 import { pic_vanderson_rodrigues } from "./PicsBase64/pic_vanderson_rodrigues";
 import { pic_wang_feng } from "./PicsBase64/pic_wang_feng";
 import { pic_yuichiro_shimawaki } from "./PicsBase64/pic_yuichiro_shimawaki";
@@ -196,7 +210,7 @@ export const fakePlayers: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2200,
+    elo: 2150,
   },
   {
     name: "Caio Ribeiro Chagas",
@@ -278,11 +292,12 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Cristiane Amaral Bertolino",
+    picture: pic_cristiane_bertolino,
     countries: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1000,
@@ -517,7 +532,7 @@ export const fakePlayers: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2100,
+    elo: 2150,
   },
   {
     name: "Hiro Okawa",
@@ -626,6 +641,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Luiz Sato",
     nicks: [{ name: "biruta", server: GoServers.ogs }],
+    picture: pic_luiz_sato,
     countries: [
       {
         name: CountryName.brazil,
@@ -637,6 +653,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Márton Divényi",
     nicks: [{ name: "MartDiv", server: GoServers.ogs }],
+    picture: pic_marton_divenyi,
     countries: [
       {
         name: CountryName.brazil,
@@ -647,6 +664,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Murilo Oliveira",
+    picture: pic_murilo_oliveira,
     countries: [
       {
         name: CountryName.brazil,
@@ -658,6 +676,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Nelson Kenzo Tamashiro",
+    picture: pic_nelson_kenzo,
     countries: [
       {
         name: CountryName.brazil,
@@ -669,6 +688,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Patricia Bongiorno",
+    picture: pic_patricia_bongiorno,
     countries: [
       {
         name: CountryName.brazil,
@@ -681,6 +701,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Pedro Regis",
     nicks: [{ name: "Lunps422", server: GoServers.ogs }],
+    picture: pic_pedro_regis,
     countries: [
       {
         name: CountryName.brazil,
@@ -692,6 +713,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Philippe Fanaro",
+    email: "philippefanaro@gmail.com",
     nicks: [{ name: "psygo", server: GoServers.ogs }],
     picture: pic_philippe_fanaro,
     countries: [
@@ -726,6 +748,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Renan Pablo Cruz",
+    picture: pic_renan_cruz,
     countries: [
       {
         name: CountryName.brazil,
@@ -737,6 +760,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Rodrigo Braz",
+    picture: pic_rodrigo_braz,
     countries: [
       {
         name: CountryName.brazil,
@@ -748,6 +772,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Rodrigo Edelton Issa",
+    picture: pic_rodrigo_issa,
     countries: [
       {
         name: CountryName.brazil,
@@ -759,6 +784,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Ronaldo Matayoshi",
+    picture: pic_ronaldo_matayoshi,
     countries: [
       {
         name: CountryName.brazil,
@@ -771,6 +797,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Rui Malhado",
     nicks: [{ name: "Phelan", server: GoServers.ogs }],
+    picture: pic_rui_malhado,
     countries: [
       {
         name: CountryName.portugal,
@@ -804,6 +831,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Sophie Pagès",
     nicks: [{ name: "cixidetroy", server: GoServers.ogs }],
+    picture: pic_sophie_pages,
     countries: [
       {
         name: CountryName.france,
@@ -828,6 +856,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Thiago Sinji Shimada Ramos",
+    picture: pic_thiago_ramos,
     countries: [
       {
         name: CountryName.brazil,
