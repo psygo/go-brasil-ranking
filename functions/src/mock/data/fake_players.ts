@@ -48,6 +48,18 @@ export const fakePlayers: readonly Player[] = [
     elo: 2500,
   },
   {
+    name: "Ana Maria Cavalcanti",
+    email: "ana@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1000,
+  },
+  {
     name: "André Barbosa",
     nicks: [{ name: "seupera", server: GoServers.ogs }],
     email: "andre@mail.com",
@@ -218,6 +230,79 @@ export const fakePlayers: readonly Player[] = [
     elo: 0,
   },
   {
+    name: "Christian Spohn",
+    email: "christian@mail.com",
+    countries: [
+      {
+        name: CountryName.germany,
+      },
+    ],
+    elo: 1400,
+  },
+  {
+    name: "Diogo Barbosa",
+    email: "diogo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1600,
+  },
+  {
+    name: "Edivan José Junior",
+    nicks: [{ name: "juniorcloud7", server: GoServers.ogs }],
+    email: "edivan@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 2300,
+  },
+  {
+    name: "Eduardo Takeuti",
+    nicks: [{ name: "edu4ever", server: GoServers.ogs }],
+    email: "eduardo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1900,
+  },
+  {
+    name: "Efraim Queiroz",
+    nicks: [{ name: "efraimqe", server: GoServers.ogs }],
+    email: "efraim@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.df,
+        city: "Brasília"
+      },
+    ],
+    elo: 1500,
+  },
+  {
+    name: "Elias Bandeira Rodrigues Cardoso",
+    nicks: [{ name: "elias.rodriguescardoso", server: GoServers.ogs }],
+    email: "elias@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+      },
+    ],
+    elo: 1900,
+  },
+  {
     name: "Emanuel Araújo",
     nicks: [{ name: "Cactus Juice", server: GoServers.ogs }],
     email: "emanuel@mail.com",
@@ -229,6 +314,17 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1650,
+  },
+  {
+    name: "Erendiro Pedro Sangueve",
+    nicks: [{ name: "AfricanGrimReaper", server: GoServers.ogs }],
+    email: "eren@mail.com",
+    countries: [
+      {
+        name: CountryName.angola,
+      },
+    ],
+    elo: 1400,
   },
   {
     name: "Fabrício Caluza Machado",
@@ -244,17 +340,6 @@ export const fakePlayers: readonly Player[] = [
     elo: 1750,
   },
   {
-    name: "Erendiro Pedro Sangueve",
-    nicks: [{ name: "AfricanGrimReaper", server: GoServers.ogs }],
-    email: "eren@mail.com",
-    countries: [
-      {
-        name: CountryName.angola,
-      },
-    ],
-    elo: 1400,
-  },
-  {
     name: "Felipe Herman van Riemsdijk",
     nicks: [{ name: "riemsdijk", server: GoServers.ogs }],
     email: "fh.vanriemsdijk@gmail.com",
@@ -268,6 +353,31 @@ export const fakePlayers: readonly Player[] = [
     elo: 2150,
   },
   {
+    name: "Felipe Pait",
+    email: "pait@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1000,
+  },
+  {
+    name: "Francisco Motta",
+    nicks: [{ name: "ChicoMotta", server: GoServers.ogs }],
+    email: "chico@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+        city: "Niterói",
+      },
+    ],
+    elo: 1000,
+  },
+  {
     name: "Gabriel Garcia",
     nicks: [{ name: "PutzGrila", server: GoServers.ogs }],
     email: "gabriel@mail.com",
@@ -277,6 +387,18 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 550,
+  },
+  {
+    name: "Gabriel Makio",
+    email: "gabriel@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1900,
   },
   {
     name: "Gabriel Ventura",
@@ -301,6 +423,30 @@ export const fakePlayers: readonly Player[] = [
     elo: 1000,
   },
   {
+    name: "Guilherme Hatori",
+    email: "guilherme@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1000,
+  },
+  {
+    name: "Haruo Kitano",
+    email: "haruo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1500,
+  },
+  {
     name: "Hélcio Alexandre Pacheco",
     nicks: [{ name: "HelcioAlex", server: GoServers.ogs }],
     email: "helcio@mail.com",
@@ -312,6 +458,53 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2100,
+  },
+  {
+    name: "Hiro Okawa",
+    email: "hiro@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 2200,
+  },
+  {
+    name: "Jiéverson Maissiat",
+    nicks: [{ name: "jieverson", server: GoServers.ogs }],
+    email: "jieverson@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rs,
+        city: "Porto Alegre",
+      },
+    ],
+    elo: 1300,
+  },
+  {
+    name: "Julio Gabriel Otterback Pinheiro",
+    nicks: [{ name: "bodlike", server: GoServers.ogs }],
+    email: "julio@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.mt,
+      },
+    ],
+    elo: 1500,
+  },
+  {
+    name: "Juno Jo",
+    email: "juno@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1800,
   },
   {
     name: "Laércio Pereira",
@@ -338,6 +531,18 @@ export const fakePlayers: readonly Player[] = [
     elo: 2250,
   },
   {
+    name: "Leonardo Inomata",
+    email: "leonardo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1300,
+  },
+  {
     name: "Lucas Cristovam",
     nicks: [{ name: "lukeverso", server: GoServers.ogs }],
     email: "lucas@gmail.com",
@@ -349,6 +554,90 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 900,
+  },
+  {
+    name: "Lúcio Picanço",
+    email: "lucio@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.ma,
+      },
+    ],
+    elo: 1000,
+  },
+  {
+    name: "Luiz Sato",
+    nicks: [{ name: "biruta", server: GoServers.ogs }],
+    email: "luiz@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+      },
+    ],
+    elo: 2000,
+  },
+  {
+    name: "Márton Divényi",
+    nicks: [{ name: "MartDiv", server: GoServers.ogs }],
+    email: "mart@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+      },
+    ],
+    elo: 1200,
+  },
+  {
+    name: "Murilo Oliveira",
+    email: "murilo@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1400,
+  },
+  {
+    name: "Nelson Kenzo Tamashiro",
+    email: "nelson@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1500,
+  },
+  {
+    name: "Patricia Bongiorno",
+    email: "patricia@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1000,
+  },
+  {
+    name: "Pedro Regis",
+    nicks: [{ name: "Lunps422", server: GoServers.ogs }],
+    email: "pedro@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.ce,
+        city: "Fortaleza"
+      },
+    ],
+    elo: 1000,
   },
   {
     name: "Philippe Fanaro",
@@ -365,6 +654,64 @@ export const fakePlayers: readonly Player[] = [
     elo: 2150,
   },
   {
+    name: "Rachel Esteves",
+    nicks: [{ name: "Rachel Esteves", server: GoServers.ogs }],
+    email: "rachel@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.rj,
+      },
+    ],
+    elo: 600,
+  },
+  {
+    name: "Rafael Leão",
+    email: "rafael@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1400,
+  },
+  {
+    name: "Rodrigo Braz",
+    email: "rodrigo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1900,
+  },
+  {
+    name: "Rodrigo Edelton Issa",
+    email: "rodrigo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 1300,
+  },
+  {
+    name: "Ronaldo Matayoshi",
+    email: "ronaldo@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo"
+      },
+    ],
+    elo: 2100,
+  },
+  {
     name: "Rui Malhado",
     nicks: [{ name: "Phelan", server: GoServers.ogs }],
     email: "rui@gmail.com",
@@ -374,6 +721,32 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1700,
+  },
+  {
+    name: "Samuel Karasin",
+    nicks: [{ name: "Samkar69", server: GoServers.ogs }],
+    email: "samuel@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 600,
+  },
+  {
+    name: "Simão Gonçalves",
+    nicks: [{ name: "TsukeShinogi", server: GoServers.ogs }],
+    email: "samuel@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 600,
   },
   {
     name: "Sophie Pagès",
@@ -388,6 +761,30 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 700,
+  },
+  {
+    name: "Thiago Augusto",
+    email: "thiago@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1500,
+  },
+  {
+    name: "Thiago Sinji Shimada Ramos",
+    email: "thiago@gmail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2100,
   },
   {
     name: "Vanderson da Silva Rodrigues",
