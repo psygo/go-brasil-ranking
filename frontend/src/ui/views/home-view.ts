@@ -9,8 +9,8 @@ export default class HomeView extends HTMLElement {
     document.title = "Ranking Brasileiro de Go";
 
     this.append(
-      new GameRecordsTable(),
       new PlayersTable(),
+      new GameRecordsTable(),
       new GameEventsTable()
     );
   }

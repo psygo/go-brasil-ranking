@@ -82,7 +82,6 @@ export default class NewPlayerView extends HTMLElement {
         <fieldset>
           <label for="email">Email</label>
           <input 
-            required 
             type="text" 
             name="email" 
             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
@@ -173,7 +172,12 @@ export default class NewPlayerView extends HTMLElement {
     fileReader.onload = () => {
       output.src = fileReader.result as string;
       const kb150 = 1.5 * 10e5;
-      if (file!.size < kb150) this.picture = fileReader.result as string;
+      if (file!.size < kb150) {
+        this.picture = fileReader.result as string;
+        console.log('here')
+        localStorage.setItem(`${this.name}`, this.picture);
+        console.log(localStorage)
+      }
     };
 
     if (file) fileReader.readAsDataURL(file);

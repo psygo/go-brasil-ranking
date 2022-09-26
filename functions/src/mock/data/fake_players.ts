@@ -3,8 +3,9 @@ import {
   CountryName,
 } from "../../../../frontend/src/models/country";
 import { GoServers, Player } from "../../../../frontend/src/models/player";
+import { pic_laercio_pereira } from "./Pics/pic_laercio_pereira";
 
-import { fake_profile_picture_philippe_fanaro } from "./fake_base64_pics";
+import { pic_philippe_fanaro } from "./Pics/pic_philippe_fanaro";
 
 export const fakePlayers: readonly Player[] = [
   {
@@ -86,7 +87,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Ariel Oliveira",
-    nicks: [{ name: "Oliv.AS", server: GoServers.ogs }],
+    nicks: [{ name: "GOiano", server: GoServers.ogs }],
     email: "ariel@mail.com",
     countries: [
       {
@@ -390,7 +391,19 @@ export const fakePlayers: readonly Player[] = [
     elo: 550,
   },
   {
-    name: "Gabriel Makio",
+    name: "Gabriel Hissao Makio",
+    email: "gabriel@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1900,
+  },
+  {
+    name: "Gabriel Marcondes de Catilho",
     email: "gabriel@mail.com",
     countries: [
       {
@@ -510,6 +523,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Laércio Pereira",
     nicks: [{ name: "laercioskt", server: GoServers.ogs }],
+    picture: pic_laercio_pereira,
     email: "laercio@mail.com",
     countries: [
       {
@@ -643,7 +657,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Philippe Fanaro",
     nicks: [{ name: "psygo", server: GoServers.ogs }],
-    picture: fake_profile_picture_philippe_fanaro,
+    picture: pic_philippe_fanaro,
     email: "philippefanaro@gmail.com",
     countries: [
       {

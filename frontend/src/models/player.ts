@@ -6,8 +6,7 @@ import { GameRecord } from "./game_record";
 export interface _Player extends FirebaseDoc {
   firebaseRef?: FirebaseRef;
   name: string;
-  // TODO1: email should be optional
-  email: string;
+  email?: string;
   nicks?: readonly Nick[];
   picture?: string;
   countries: readonly Country[];
