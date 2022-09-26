@@ -3,6 +3,7 @@ import {
   CountryName,
 } from "../../../../frontend/src/models/country";
 import { GoServers, Player } from "../../../../frontend/src/models/player";
+import { pic_ariel_oliveira } from "./Pics/pic_ariel_oliveira";
 import { pic_laercio_pereira } from "./Pics/pic_laercio_pereira";
 
 import { pic_philippe_fanaro } from "./Pics/pic_philippe_fanaro";
@@ -11,7 +12,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Adalberto Reis Duarte",
     nicks: [{ name: "Adalberto", server: GoServers.ogs }],
-    email: "adalberto@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -23,7 +23,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Alexandre Amaro",
     nicks: [{ name: "babao", server: GoServers.ogs }],
-    email: "alexandre@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -36,7 +35,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Amir Fragman",
     nicks: [{ name: "wade", server: GoServers.ogs }],
-    email: "amir@mail.com",
     countries: [
       {
         name: CountryName.israel,
@@ -51,7 +49,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Ana Maria Cavalcanti",
-    email: "ana@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -64,7 +61,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "André Barbosa",
     nicks: [{ name: "seupera", server: GoServers.ogs }],
-    email: "andre@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -75,7 +71,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Anivaldo Reis",
     nicks: [{ name: "seupera", server: GoServers.ogs }],
-    email: "andre@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -87,8 +82,8 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Ariel Oliveira",
+    picture: pic_ariel_oliveira,
     nicks: [{ name: "GOiano", server: GoServers.ogs }],
-    email: "ariel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -101,7 +96,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Audrey Luciano Filho",
     nicks: [{ name: "AudreyLucianoFilho", server: GoServers.ogs }],
-    email: "audrey@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -114,7 +108,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Augusto Cezar",
     nicks: [{ name: "AugustoCezar", server: GoServers.ogs }],
-    email: "augusto@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -126,7 +119,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Beatriz Bouchiglioni Neves",
     nicks: [{ name: "BeatrizBouchiglioniNeves", server: GoServers.ogs }],
-    email: "beatriz@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -138,7 +130,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Bruno Aragão Wahlbuhl Gonçalves",
-    email: "beatriz@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -150,7 +141,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Bruno Borchartt",
-    email: "beatriz@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -163,7 +153,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Caio Ribeiro Chagas",
     nicks: [{ name: "cchagas", server: GoServers.ogs }],
-    email: "caio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -175,7 +164,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Caio Sant Anna",
     nicks: [{ name: "caio_csan", server: GoServers.ogs }],
-    email: "caio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -186,7 +174,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Carlos Dutra",
-    email: "carlos@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -199,7 +186,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Carlos Esteves",
     nicks: [{ name: "carlos.prog91", server: GoServers.ogs }],
-    email: "carlos@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -210,7 +196,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Celso Siqueira Scaff",
-    email: "celso@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -223,7 +208,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Cícero de Melo Lucas",
     nicks: [{ name: "Musashi-san", server: GoServers.ogs }],
-    email: "cicero@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -233,7 +217,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Christian Spohn",
-    email: "christian@mail.com",
     countries: [
       {
         name: CountryName.germany,
@@ -243,7 +226,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Diogo Barbosa",
-    email: "diogo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -256,7 +238,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Edivan José Junior",
     nicks: [{ name: "juniorcloud7", server: GoServers.ogs }],
-    email: "edivan@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -269,7 +250,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Eduardo Takeuti",
     nicks: [{ name: "edu4ever", server: GoServers.ogs }],
-    email: "eduardo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -282,7 +262,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Efraim Queiroz",
     nicks: [{ name: "efraimqe", server: GoServers.ogs }],
-    email: "efraim@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -295,7 +274,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Elias Bandeira Rodrigues Cardoso",
     nicks: [{ name: "elias.rodriguescardoso", server: GoServers.ogs }],
-    email: "elias@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -307,7 +285,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Emanuel Araújo",
     nicks: [{ name: "Cactus Juice", server: GoServers.ogs }],
-    email: "emanuel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -320,7 +297,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Erendiro Pedro Sangueve",
     nicks: [{ name: "AfricanGrimReaper", server: GoServers.ogs }],
-    email: "eren@mail.com",
     countries: [
       {
         name: CountryName.angola,
@@ -331,7 +307,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Fabrício Caluza Machado",
     nicks: [{ name: "Fabrício", server: GoServers.ogs }],
-    email: "fabricio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -356,7 +331,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Felipe Pait",
-    email: "pait@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -369,7 +343,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Francisco Motta",
     nicks: [{ name: "ChicoMotta", server: GoServers.ogs }],
-    email: "chico@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -382,7 +355,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Gabriel Garcia",
     nicks: [{ name: "PutzGrila", server: GoServers.ogs }],
-    email: "gabriel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -392,7 +364,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Gabriel Hissao Makio",
-    email: "gabriel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -404,7 +375,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Gabriel Marcondes de Catilho",
-    email: "gabriel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -417,7 +387,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Gabriel Ventura",
     nicks: [{ name: "Pedepano", server: GoServers.ogs }],
-    email: "gabriel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -428,7 +397,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Guilherme Francisco de Souza Silva",
     nicks: [{ name: "XIKO", server: GoServers.ogs }],
-    email: "guilherme@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -438,7 +406,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Guilherme Hatori",
-    email: "guilherme@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -450,7 +417,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Haruo Kitano",
-    email: "haruo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -463,7 +429,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Hélcio Alexandre Pacheco",
     nicks: [{ name: "HelcioAlex", server: GoServers.ogs }],
-    email: "helcio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -475,7 +440,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Hiro Okawa",
-    email: "hiro@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -488,7 +452,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Jiéverson Maissiat",
     nicks: [{ name: "jieverson", server: GoServers.ogs }],
-    email: "jieverson@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -501,7 +464,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Julio Gabriel Otterback Pinheiro",
     nicks: [{ name: "bodlike", server: GoServers.ogs }],
-    email: "julio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -512,7 +474,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Juno Jo",
-    email: "juno@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -524,7 +485,6 @@ export const fakePlayers: readonly Player[] = [
     name: "Laércio Pereira",
     nicks: [{ name: "laercioskt", server: GoServers.ogs }],
     picture: pic_laercio_pereira,
-    email: "laercio@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -537,7 +497,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Laura Augustina Avram",
     nicks: [{ name: "balaura", server: GoServers.ogs }],
-    email: "laura@mail.com",
     countries: [
       {
         name: CountryName.romania,
@@ -547,7 +506,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Leonardo Inomata",
-    email: "leonardo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -560,7 +518,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Lucas Cristovam",
     nicks: [{ name: "lukeverso", server: GoServers.ogs }],
-    email: "lucas@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -572,7 +529,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Lúcio Picanço",
-    email: "lucio@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -584,7 +540,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Luiz Sato",
     nicks: [{ name: "biruta", server: GoServers.ogs }],
-    email: "luiz@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -596,7 +551,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Márton Divényi",
     nicks: [{ name: "MartDiv", server: GoServers.ogs }],
-    email: "mart@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -607,7 +561,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Murilo Oliveira",
-    email: "murilo@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -619,7 +572,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Nelson Kenzo Tamashiro",
-    email: "nelson@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -631,7 +583,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Patricia Bongiorno",
-    email: "patricia@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -644,7 +595,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Pedro Regis",
     nicks: [{ name: "Lunps422", server: GoServers.ogs }],
-    email: "pedro@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -658,7 +608,6 @@ export const fakePlayers: readonly Player[] = [
     name: "Philippe Fanaro",
     nicks: [{ name: "psygo", server: GoServers.ogs }],
     picture: pic_philippe_fanaro,
-    email: "philippefanaro@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -671,7 +620,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Rachel Esteves",
     nicks: [{ name: "Rachel Esteves", server: GoServers.ogs }],
-    email: "rachel@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -682,7 +630,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Rafael Leão",
-    email: "rafael@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -692,7 +639,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Renan Pablo Cruz",
-    email: "renan@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -704,7 +650,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Rodrigo Braz",
-    email: "rodrigo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -716,7 +661,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Rodrigo Edelton Issa",
-    email: "rodrigo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -728,7 +672,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Ronaldo Matayoshi",
-    email: "ronaldo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -741,7 +684,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Rui Malhado",
     nicks: [{ name: "Phelan", server: GoServers.ogs }],
-    email: "rui@gmail.com",
     countries: [
       {
         name: CountryName.portugal,
@@ -752,7 +694,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Samuel Karasin",
     nicks: [{ name: "Samkar69", server: GoServers.ogs }],
-    email: "samuel@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -765,7 +706,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Simão Gonçalves",
     nicks: [{ name: "TsukeShinogi", server: GoServers.ogs }],
-    email: "samuel@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -778,7 +718,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Sophie Pagès",
     nicks: [{ name: "cixidetroy", server: GoServers.ogs }],
-    email: "sophie@mail.com",
     countries: [
       {
         name: CountryName.france,
@@ -791,7 +730,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Thiago Augusto",
-    email: "thiago@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -803,7 +741,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Thiago Sinji Shimada Ramos",
-    email: "thiago@gmail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -816,7 +753,6 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Vanderson da Silva Rodrigues",
     nicks: [{ name: "vandito", server: GoServers.ogs }],
-    email: "vanderson@mail.com",
     countries: [
       {
         name: CountryName.brazil,
@@ -827,7 +763,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Wang Seng Feng",
-    email: "wang@mail.com",
     countries: [
       {
         name: CountryName.taiwan,
@@ -842,7 +777,6 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Yuichiro Shimawaki",
-    email: "bonbare@infoseek.jp",
     countries: [
       {
         name: CountryName.japan,
