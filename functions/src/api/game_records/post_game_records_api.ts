@@ -12,7 +12,7 @@ import {
 } from "../../../../frontend/src/models/game_record";
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
 import Elo from "../../../../frontend/src/models/elo";
-import { Player } from "../../../../frontend/src/models/player";
+import { _Player } from "../../../../frontend/src/models/player";
 import { gameEventsCol } from "../../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
@@ -24,8 +24,10 @@ export const postGameRecord = async (
   gameRecord: GameRecord,
   firebaseRef?: FirebaseRef
 ): Promise<GameRecord> => {
-  const black = (await playersCol.getWithRef(gameRecord.blackRef))! as Player;
-  const white = (await playersCol.getWithRef(gameRecord.whiteRef))! as Player;
+  const black = (await playersCol.getWithRef(gameRecord.blackRef))! as _Player;
+  delete black.lastGame;
+  const white = (await playersCol.getWithRef(gameRecord.whiteRef))! as _Player;
+  delete white.lastGame;
 
   const blackElo = new Elo(black.elo);
   const whiteElo = new Elo(white.elo);

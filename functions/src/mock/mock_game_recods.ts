@@ -1,15 +1,16 @@
 import { ExpressApiRoute } from "../infra";
 
-import { fakeGameRecords } from "./data/fake_game_records";
+import { dogempGames } from "./data/fake_game_records";
 
-import { postGameRecord } from "../api/game_records/game_records_api";
+import { postGameRecord } from "../api/game_records/post_game_records_api";
 
 import { GameRecord } from "../../../frontend/src/models/game_record";
 
 export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   let completeGameRecords: GameRecord[] = [];
-  for (let i = 0; i < fakeGameRecords.length; i++) {
-    const fakeGameRecord = fakeGameRecords[i];
+  for (let i = 0; i < dogempGames.length; i++) {
+    const fakeGameRecord = dogempGames[i];
+
     const ref = i.toString();
 
     const fakeGameRecordOnDb = await postGameRecord(fakeGameRecord, ref);

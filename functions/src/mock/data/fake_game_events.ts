@@ -16,7 +16,7 @@ export const fakeGameEvents: readonly TournamentOrLeague[] = [
   },
   {
     type: GameEventTypes.league,
-    name: "DOGemP — Dojo Online de Go em Português",
+    name: "DOGemP",
     dateInit: new Date(2021, 10, 10).getTime(),
     dateEnd: new Date(2022, 2, 10).getTime(),
   },

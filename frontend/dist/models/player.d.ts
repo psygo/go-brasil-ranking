@@ -2,7 +2,7 @@ import { Country } from "./country";
 import { SerializedElo } from "./elo";
 import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 import { GameRecord } from "./game_record";
-interface _Player extends FirebaseDoc {
+export interface _Player extends FirebaseDoc {
     firebaseRef?: FirebaseRef;
     name: string;
     email: string;

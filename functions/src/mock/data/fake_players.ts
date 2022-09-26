@@ -3,6 +3,7 @@ import {
   CountryName,
 } from "../../../../frontend/src/models/country";
 import { GoServers, Player } from "../../../../frontend/src/models/player";
+
 import { fake_profile_picture_philippe_fanaro } from "./fake_base64_pics";
 
 export const fakePlayers: readonly Player[] = [
@@ -54,7 +55,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1000,
@@ -246,7 +247,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1600,
@@ -259,7 +260,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 2300,
@@ -272,7 +273,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1900,
@@ -285,7 +286,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.df,
-        city: "Brasília"
+        city: "Brasília",
       },
     ],
     elo: 1500,
@@ -395,7 +396,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1900,
@@ -429,7 +430,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1000,
@@ -441,7 +442,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1500,
@@ -466,7 +467,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 2200,
@@ -597,7 +598,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1400,
@@ -609,7 +610,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1500,
@@ -621,7 +622,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1000,
@@ -634,7 +635,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.ce,
-        city: "Fortaleza"
+        city: "Fortaleza",
       },
     ],
     elo: 1000,
@@ -676,13 +677,25 @@ export const fakePlayers: readonly Player[] = [
     elo: 1400,
   },
   {
+    name: "Renan Pablo Cruz",
+    email: "renan@mail.com",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 1800,
+  },
+  {
     name: "Rodrigo Braz",
     email: "rodrigo@mail.com",
     countries: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1900,
@@ -694,7 +707,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 1300,
@@ -706,7 +719,7 @@ export const fakePlayers: readonly Player[] = [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
-        city: "São Paulo"
+        city: "São Paulo",
       },
     ],
     elo: 2100,
