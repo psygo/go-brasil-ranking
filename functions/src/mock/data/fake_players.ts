@@ -3,7 +3,9 @@ import {
   CountryName,
 } from "../../../../frontend/src/models/country";
 import { GoServers, Player } from "../../../../frontend/src/models/player";
+
 import { pic_alexandre_amaro } from "./PicsBase64/pic_alexandre_amaro";
+import { pic_amir_fragman } from "./PicsBase64/pic_amir_fragman";
 import { pic_ariel_oliveira } from "./PicsBase64/pic_ariel_oliveira";
 import { pic_audrey_luciano_filho } from "./PicsBase64/pic_audrey_luciano";
 import { pic_augusto_cezar } from "./PicsBase64/pic_augusto_cezar";
@@ -11,13 +13,22 @@ import { pic_carlos_esteves } from "./PicsBase64/pic_carlos_esteves";
 import { pic_diogo_barbosa } from "./PicsBase64/pic_diogo_barbosa";
 import { pic_efraim_queiroz } from "./PicsBase64/pic_efraim_queiroz";
 import { pic_elias_rodrigues } from "./PicsBase64/pic_elias_rodrigues";
+import { pic_felipe_pait } from "./PicsBase64/pic_felipe_pait";
 import { pic_felipe_riemsdijk } from "./PicsBase64/pic_felipe_riemsdijk";
 import { pic_gabriel_castilho } from "./PicsBase64/pic_gabriel_castilho";
 import { pic_gabriel_makio } from "./PicsBase64/pic_gabriel_makio";
+import { pic_guilherme_francisco } from "./PicsBase64/pic_guilherme_francisco";
 import { pic_helcio_pacheco } from "./PicsBase64/pic_helcio_pacheco";
 import { pic_laercio_pereira } from "./PicsBase64/pic_laercio_pereira";
-
+import { pic_laura_avram } from "./PicsBase64/pic_laura_avram";
+import { pic_lucas_cristovam } from "./PicsBase64/pic_lucas_cristovam";
 import { pic_philippe_fanaro } from "./PicsBase64/pic_philippe_fanaro";
+import { pic_rachel_esteves } from "./PicsBase64/pic_rachel_esteves";
+import { pic_simao_goncalves } from "./PicsBase64/pic_simao_goncalves";
+import { pic_thiago_augusto } from "./PicsBase64/pic_thiago_augusto";
+import { pic_vanderson_rodrigues } from "./PicsBase64/pic_vanderson_rodrigues";
+import { pic_wang_feng } from "./PicsBase64/pic_wang_feng";
+import { pic_yuichiro_shimawaki } from "./PicsBase64/pic_yuichiro_shimawaki";
 
 export const fakePlayers: readonly Player[] = [
   {
@@ -46,7 +57,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Amir Fragman",
-    picture: pic_laercio_pereira,
+    picture: pic_amir_fragman,
     nicks: [{ name: "wade", server: GoServers.ogs }],
     countries: [
       {
@@ -352,6 +363,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Felipe Pait",
+    picture: pic_felipe_pait,
     countries: [
       {
         name: CountryName.brazil,
@@ -420,6 +432,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Guilherme Francisco de Souza Silva",
     nicks: [{ name: "XIKO", server: GoServers.ogs }],
+    picture: pic_guilherme_francisco,
     countries: [
       {
         name: CountryName.brazil,
@@ -521,6 +534,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Laura Augustina Avram",
     nicks: [{ name: "balaura", server: GoServers.ogs }],
+    picture: pic_laura_avram,
     countries: [
       {
         name: CountryName.romania,
@@ -542,6 +556,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Lucas Cristovam",
     nicks: [{ name: "lukeverso", server: GoServers.ogs }],
+    picture: pic_lucas_cristovam,
     countries: [
       {
         name: CountryName.brazil,
@@ -644,6 +659,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Rachel Esteves",
     nicks: [{ name: "Rachel Esteves", server: GoServers.ogs }],
+    picture: pic_rachel_esteves,
     countries: [
       {
         name: CountryName.brazil,
@@ -730,14 +746,13 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Simão Gonçalves",
     nicks: [{ name: "TsukeShinogi", server: GoServers.ogs }],
+    picture: pic_simao_goncalves,
     countries: [
       {
-        name: CountryName.brazil,
-        state: BrazilianState.sp,
-        city: "São Paulo",
+        name: CountryName.portugal,
       },
     ],
-    elo: 600,
+    elo: 2400,
   },
   {
     name: "Sophie Pagès",
@@ -754,6 +769,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Thiago Augusto",
+    picture: pic_thiago_augusto,
     countries: [
       {
         name: CountryName.brazil,
@@ -777,6 +793,7 @@ export const fakePlayers: readonly Player[] = [
   {
     name: "Vanderson da Silva Rodrigues",
     nicks: [{ name: "vandito", server: GoServers.ogs }],
+    picture: pic_vanderson_rodrigues,
     countries: [
       {
         name: CountryName.brazil,
@@ -787,6 +804,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Wang Seng Feng",
+    picture: pic_wang_feng,
     countries: [
       {
         name: CountryName.taiwan,
@@ -801,6 +819,7 @@ export const fakePlayers: readonly Player[] = [
   },
   {
     name: "Yuichiro Shimawaki",
+    picture: pic_yuichiro_shimawaki,
     countries: [
       {
         name: CountryName.japan,
