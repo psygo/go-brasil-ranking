@@ -38,7 +38,7 @@ export default class PlayerView extends HTMLElement {
 
     await this.setGraph();
 
-    this.appendChild(new GameRecordsTable("max", this.playerRef));
+    this.appendChild(new GameRecordsTable("Partidas", "max", this.playerRef));
   }
 
   private fetchPlayerGameRecords = async (): Promise<GameRecord[]> => {

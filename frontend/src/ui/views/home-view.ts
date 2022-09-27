@@ -1,4 +1,4 @@
-// import GameEventsTable from "../components/game_events_table";
+import GameEventsTable from "../components/game_events_table";
 import GameRecordsTable from "../components/game_records_table";
 import PlayersTable from "../components/players_table";
 
@@ -10,8 +10,8 @@ export default class HomeView extends HTMLElement {
 
     this.append(
       new PlayersTable("Os 10 Melhores Brasileiros", 10, true),
-      new GameRecordsTable("Partidas Recentes", 5)
-      // new GameEventsTable()
+      new GameRecordsTable("Partidas Recentes", 5),
+      new GameEventsTable("Eventos Recentes", 5)
     );
   }
 }

@@ -5,12 +5,17 @@ game-events-table {
   @include grt.spanAlignment;
 
   @mixin cardLegendGrid {
-    $gameEventNameWidth: 250px;
+    $gameEventNameWidth: 170px;
+    $gameEventTypeWidth: 75px;
     $gamesTotalWidth: 65px;
+    $gameEventFirstDate: 90px;
+    $gameEventLastDate: 90px;
 
     display: grid;
-    grid-template-areas: "ref name total-games";
-    grid-template-columns: grt.$refWidth $gameEventNameWidth $gamesTotalWidth;
+    grid-template-areas: "ref name type total-games";
+    grid-template-columns: 
+      grt.$refWidth $gameEventNameWidth $gameEventTypeWidth 
+      $gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
     grid-column-gap: grt.$columnGap;
   }
 

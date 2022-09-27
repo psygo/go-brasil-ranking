@@ -21,6 +21,7 @@ interface _GameEventTournament extends _GameEventBase {
     type: GameEventTypes.tournament;
     firebaseRef?: FirebaseRef;
     name: string;
+    firstDate?: number;
     dates: readonly number[];
     link?: string;
     dateCreated?: number;
@@ -31,8 +32,8 @@ interface _GameEventLeague extends _GameEventBase {
     type: GameEventTypes.league;
     firebaseRef?: FirebaseRef;
     name: string;
-    dateInit: number;
-    dateEnd?: number;
+    firstDate?: number;
+    dates: readonly number[];
     link?: string;
     dateCreated?: number;
     gamesTotal?: number;
@@ -40,6 +41,8 @@ interface _GameEventLeague extends _GameEventBase {
 export declare type GameEventLeague = Readonly<_GameEventLeague>;
 declare type _GameEvent = GameEventOnline | GameEventLive | GameEventTournament | GameEventLeague;
 export declare type GameEvent = Readonly<_GameEvent>;
+export declare const isTournament: (gameEvent: GameEvent) => gameEvent is Readonly<_GameEventTournament>;
+export declare const isLeague: (gameEvent: GameEvent) => gameEvent is Readonly<_GameEventLeague>;
 export declare const isTournamentOrLeague: (gameEvent: GameEvent) => gameEvent is Readonly<_GameEventTournament> | Readonly<_GameEventLeague>;
 export declare type GameEventRef = FirebaseRef | GameEventTypes.online | GameEventTypes.live;
 export declare const isTournamentOrLeagueRef: (gameEventRef: GameEventRef) => gameEventRef is string;

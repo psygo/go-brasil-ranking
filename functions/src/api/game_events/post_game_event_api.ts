@@ -5,16 +5,17 @@ import { gameEventsCol } from "../../collections/game_events_col";
 import { ExpressApiRoute, parseBody } from "../../infra";
 
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
-import { GameEvent } from "../../../../frontend/src/models/game_event";
+import { TournamentOrLeague } from "../../../../frontend/src/models/game_event";
 
 export const postGameEvent = async (
-  gameEvent: GameEvent,
+  gameEvent: TournamentOrLeague,
   firebaseRef?: FirebaseRef
-): Promise<GameEvent> => {
+): Promise<TournamentOrLeague> => {
   const now = admin.firestore.Timestamp.now().toMillis();
 
   const gameEventOnDb = {
     ...gameEvent,
+    firstDate: gameEvent.dates[0],
     dateCreated: now,
     gamesTotal: 0,
   };

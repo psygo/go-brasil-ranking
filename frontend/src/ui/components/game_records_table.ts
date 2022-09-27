@@ -81,6 +81,7 @@ export default class GameRecordsTable extends HTMLElement {
   }
 
   setGameRecordsTable = (): void => {
+    // TODO2: Add Player's Pictures
     for (let i = this.gameRecords.length - 1; i >= 0; i--) {
       const gameRecord = this.gameRecords[i];
 

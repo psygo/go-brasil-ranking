@@ -11,7 +11,9 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limite as string);
 
-    const gameEventsQuery = gameEventsCol.col.limit(limit);
+    const gameEventsQuery = gameEventsCol.col
+      .orderBy("firstDate", "desc")
+      .limit(limit);
 
     const gameEventsDocs = await gameEventsQuery.get();
 
