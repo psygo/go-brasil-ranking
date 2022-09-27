@@ -1,9 +1,12 @@
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
-import { GameRecord } from "../../../../frontend/src/models/game_record";
+import {
+  DateEloData,
+  GameRecord,
+} from "../../../../frontend/src/models/game_record";
 import { gameRecordsCol } from "../../collections/game_records_col";
 import { ExpressApiRoute, queryLimit } from "../../infra";
 
-export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
+const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   const playerIsBlack = gameRecordsCol.col
     .where("blackRef", "==", playerRef)
     .orderBy("date", "desc")
@@ -35,15 +38,44 @@ export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   return allPlayerGames;
 };
 
+const playerDateEloData = async (
+  playerRef: FirebaseRef
+): Promise<DateEloData[]> => {
+  const allPlayerGames = await queryForPlayersGameRecords(playerRef);
+
+  return allPlayerGames
+    .map((g) => ({
+      date: g.date,
+      atTheTimeElo:
+        playerRef === g.blackRef
+          ? g.eloData!.atTheTimeBlackElo
+          : g.eloData!.atTheTimeWhiteElo,
+      eloDelta:
+        playerRef === g.blackRef
+          ? g.eloData!.eloDeltaBlack
+          : g.eloData!.eloDeltaWhite,
+    }))
+    .reverse();
+};
+
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
     const startAfter = parseInt(req.query.de as string);
     const playerRef = req.query.jogadorRef as FirebaseRef;
+    const dateElo = req.query["data-elo"];
 
     let gameRecords: GameRecord[] = [];
 
-    if (playerRef) gameRecords = await queryForPlayersGameRecords(playerRef);
-    else {
+    if (playerRef) {
+      if (dateElo) {
+        res.status(200).send({
+          status: "Sucesso",
+          message: "Elos encontrados.",
+          data: { dateEloData: await playerDateEloData(playerRef) },
+        });
+        return;
+      } else gameRecords = await queryForPlayersGameRecords(playerRef);
+    } else {
       let gameRecordsDocs = await gameRecordsCol.col
         .orderBy("date", "desc")
         .get();

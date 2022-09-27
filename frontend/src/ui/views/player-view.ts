@@ -43,7 +43,9 @@ export default class PlayerView extends HTMLElement {
 
   private setGraph = async (): Promise<void> => {
     const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameRecords}/data-elo/${this.playerRef}`
+      `${g.apiUrl}${RouteEnum.gameRecords}` +
+        `?data-elo=true` +
+        `&jogadorRef=${this.playerRef}`
     );
     const json = await response.json();
     const dateEloData = json["data"]["dateEloData"] as DateEloData[];

@@ -25,7 +25,6 @@ import { mockPopulatePlayersApi } from "./mock/mock_players";
 import { mockPopulateGameRecordsApi } from "./mock/mock_game_recods";
 import { mockPopulateGameEventsApi } from "./mock/mock_game_events";
 import { mockPopulateEverythingApi } from "./mock/mock_everything";
-import { getPlayerDateEloData } from "./api/others/elo_graph_api";
 
 admin.initializeApp();
 
@@ -53,7 +52,6 @@ goBrasilRankingApp.get("/eventos/:gameEventId", getGameEvent);
 // 3. Game Records
 goBrasilRankingApp.get("/partidas", getGameRecords);
 goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
-goBrasilRankingApp.get("/partidas/data-elo/:playerId", getPlayerDateEloData);
 
 // 4. Only for Admins
 goBrasilRankingApp.use("*/novo", validateFirebaseIdToken);
