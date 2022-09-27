@@ -83,7 +83,7 @@ export default class GameRecordsTable extends HTMLElement {
         
         <div id="game-records-table-cards"></div>
 
-        <div id="game-records-table-pagination"></div>
+        <div class="pagination"></div>
       `;
 
       this.setCards();
@@ -93,9 +93,7 @@ export default class GameRecordsTable extends HTMLElement {
   }
 
   private setPagination = (): void => {
-    const paginationDiv: HTMLDivElement = this.querySelector(
-      "#game-records-table-pagination"
-    )!;
+    const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
 
     paginationDiv.innerHTML += /*html*/ `
       <button class="next-page">+ ${g.queryLimit} Partidas</button>

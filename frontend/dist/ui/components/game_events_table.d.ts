@@ -1,9 +1,11 @@
 export default class GameEventsTable extends HTMLElement {
     readonly title: string;
-    readonly limit: number | "max";
     static readonly tag: string;
     private getGameEvents;
-    constructor(title?: string, limit?: number | "max");
+    private readonly gameEvents;
+    private startAfter;
+    constructor(title?: string);
     connectedCallback(): Promise<void>;
-    private setPlayersTable;
+    private setPagination;
+    private setCards;
 }

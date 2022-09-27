@@ -6,6 +6,6 @@ export default class GameEventsView extends HTMLElement {
   async connectedCallback() {
     document.title = "RBGo | Eventos";
 
-    this.appendChild(new GameEventsTable("max"));
+    this.appendChild(new GameEventsTable("Eventos"));
   }
 }

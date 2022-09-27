@@ -3,6 +3,7 @@
 game-events-table {
   @include grt.captionDecoration;
   @include grt.spanAlignment;
+  @include grt.pagination;
 
   @mixin cardLegendGrid {
     $gameEventNameWidth: 170px;

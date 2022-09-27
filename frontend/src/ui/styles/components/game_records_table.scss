@@ -104,36 +104,8 @@ $eloWidth: 60px;
 
 $columnGap: 10px;
 
-game-records-table {
-  @include captionDecoration;
-  @include spanAlignment;
-
-  @mixin cardLegendGrid {
-    $playerNameWidth: 85px;
-    $countryFlagsWidth: 60px;
-    $handicapWidth: 40px;
-    $eloDeltaWidth: 40px;
-    $resultWidth: 90px;
-    $dateWidth: 110px;
-    $eventWidth: 100px;
-
-    display: grid;
-    grid-template-columns:
-      $refWidth 
-      $pictureWidth $playerNameWidth $countryFlagsWidth $handicapWidth
-      $eloWidth $eloDeltaWidth 
-      $pictureWidth $playerNameWidth $countryFlagsWidth 
-      $eloWidth $eloDeltaWidth 
-      $resultWidth $dateWidth $eventWidth;
-    grid-template-areas:
-      "ref"
-      "black-pic black country-flags handicapWidth elo-black elo-delta-black"
-      "white-pic white country-flags elo-white elo-delta-white"
-      "result date event";
-    grid-column-gap: $columnGap;
-  }
-
-  div#game-records-table-pagination {
+@mixin pagination {
+  .pagination {
     display: flex;
     justify-content: center;
 
@@ -146,6 +118,37 @@ game-records-table {
 
       cursor: pointer;
     }
+  }
+}
+
+game-records-table {
+  @include captionDecoration;
+  @include spanAlignment;
+  @include pagination;
+
+  @mixin cardLegendGrid {
+    $playerNameWidth: 85px;
+    $countryFlagsWidth: 60px;
+    $handicapWidth: 40px;
+    $eloDeltaWidth: 40px;
+    $resultWidth: 90px;
+    $dateWidth: 110px;
+    $eventWidth: 100px;
+
+    display: grid;
+    grid-template-columns:
+      $refWidth
+      $pictureWidth $playerNameWidth $countryFlagsWidth $handicapWidth
+      $eloWidth $eloDeltaWidth
+      $pictureWidth $playerNameWidth $countryFlagsWidth
+      $eloWidth $eloDeltaWidth
+      $resultWidth $dateWidth $eventWidth;
+    grid-template-areas:
+      "ref"
+      "black-pic black country-flags handicapWidth elo-black elo-delta-black"
+      "white-pic white country-flags elo-white elo-delta-white"
+      "result date event";
+    grid-column-gap: $columnGap;
   }
 
   route-link.game-record-card {

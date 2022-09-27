@@ -1,34 +1,31 @@
-import { ExpressApiRoute, howMany } from "../../infra";
+import { ExpressApiRoute } from "../../infra";
 
 import { gameEventsCol } from "../../collections/game_events_col";
 
-import {
-  GameEvent,
-  isTournamentOrLeague,
-} from "../../../../frontend/src/models/game_event";
+import { TournamentOrLeague } from "../../../../frontend/src/models/game_event";
+import { paginationSlicer } from "../game_records/get_game_records_api";
 
 export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
-    const limit = howMany(req.query.limite as string);
+    const startAfter = parseInt(req.query.de as string);
 
-    const gameEventsQuery = gameEventsCol.col
-      .orderBy("firstDate", "desc")
-      .limit(limit);
+    const gameEventsQuery = gameEventsCol.col.orderBy("firstDate", "desc");
 
-    const gameEventsDocs = await gameEventsQuery.get();
+    const gameEventsSnaps = await gameEventsQuery.get();
 
-    const gameEvents: GameEvent[] = [];
-    gameEventsDocs.forEach((gameEventDoc) => {
-      const gameEventNoRef = gameEventDoc.data() as GameEvent;
+    const docs = paginationSlicer(startAfter, gameEventsSnaps.docs);
+    
+    console.log(docs.length)
 
-      if (isTournamentOrLeague(gameEventNoRef))
-        gameEvents.push({ ...gameEventNoRef, firebaseRef: gameEventDoc.id });
-      else gameEvents.push(gameEventNoRef);
+    const gameEvents: TournamentOrLeague[] = [];
+    docs.forEach((gameEventDoc) => {
+      const gameEventNoRef = gameEventDoc.data() as TournamentOrLeague;
+      gameEvents.push({ ...gameEventNoRef, firebaseRef: gameEventDoc.id });
     });
 
     res.status(200).send({
       status: "Sucesso",
-      message: `Partidas encontradas (total: ${gameEvents.length}`,
+      message: `Eventos encontrados (total: ${gameEvents.length})`,
       data: { gameEvents: gameEvents },
     });
   } catch (e) {

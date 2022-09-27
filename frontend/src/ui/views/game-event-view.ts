@@ -5,9 +5,7 @@ import { FirebaseRef } from "../../models/firebase_models";
 import {
   GameEventLeague,
   GameEventTournament,
-  // GameEventTypes,
 } from "../../models/game_event";
-// import { DateUtils } from "../../infra/date_utils";
 
 export default class GameEventView extends HTMLElement {
   static readonly tag: string = "game-event-view";

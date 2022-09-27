@@ -2,30 +2,32 @@ import { Globals as g } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
-import { GameEvent, isTournamentOrLeague } from "../../models/game_event";
+import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
 
 export default class GameEventsTable extends HTMLElement {
   static readonly tag: string = "game-events-table";
 
-  private getGameEvents = async (): Promise<GameEvent[]> => {
-    const queryString = `?limite=${this.limit}`;
+  private getGameEvents = async (): Promise<void> => {
+    const queryString = `?de=${this.startAfter}`;
+
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameEvents}${queryString}`
     );
+
     const json = await response.json();
-    return json["data"]["gameEvents"];
+    this.gameEvents.push(...json["data"]["gameEvents"]);
   };
 
-  constructor(
-    public readonly title: string = "Eventos",
-    public readonly limit: number | "max" = 20
-  ) {
+  private readonly gameEvents: TournamentOrLeague[] = [];
+  private startAfter: number = 0;
+
+  constructor(public readonly title: string = "Eventos") {
     super();
   }
 
   async connectedCallback() {
-    const gameEvents = await this.getGameEvents();
+    await this.getGameEvents();
 
     this.innerHTML += /*html*/ `
       <h2>
@@ -42,50 +44,74 @@ export default class GameEventsTable extends HTMLElement {
         <span>Data de Início</span>
         <span>Data de Fim</span>
       </div>
+
+      <div id="game-events-table-cards"></div>
+
+      <div class="pagination"></div>
     `;
 
-    this.setPlayersTable(gameEvents);
+    this.setCards();
+
+    this.setPagination();
   }
 
-  private setPlayersTable = (gameEvents: GameEvent[]): void => {
-    const length = gameEvents.length;
-    for (let i = 0; i < length; i++) {
-      const gameEvent = gameEvents[i];
+  private setPagination = (): void => {
+    const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
 
-      if (isTournamentOrLeague(gameEvent)) {
-        const firstDate =
-          gameEvent.dates.length === 0
-            ? "&mdash;"
-            : DateUtils.formatDate(new Date(gameEvent.dates[0]));
-        let lastDate =
-          gameEvent.dates.length === 1
-            ? "&mdash;"
-            : DateUtils.formatDate(
-                new Date(gameEvent.dates[gameEvent.dates.length - 1])
-              );
+    paginationDiv.innerHTML += /*html*/ `
+      <button class="next-page">+ ${g.queryLimit} Eventos</button>
+    `;
 
-        this.innerHTML += /*html*/ `
-          <route-link
-            class="game-event-card"
-            id="${gameEvent.firebaseRef}"
-            href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
-              <span>${length - i}</span>
+    const nextPageButton: HTMLButtonElement =
+      this.querySelector("button.next-page")!;
 
-              <route-link 
-                href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
-                  <span class="align-left">${gameEvent.name}</span>
-              </route-link>
-              
-              <span>${gameEvent.type}</span>
-              
-              <span>${gameEvent.gamesTotal}</span>
-              
-              <span>${firstDate}</span>
+    nextPageButton.onclick = async (): Promise<void> => {
+      this.startAfter += g.queryLimit;
 
-              <span>${lastDate}</span>
-          </route-link>
-        `;
-      }
+      await this.getGameEvents();
+
+      this.setCards();
+    };
+  };
+
+  private setCards = (): void => {
+    const cardsDiv: HTMLDivElement = this.querySelector(
+      "#game-events-table-cards"
+    )!;
+    const length = this.gameEvents.length;
+    for (let i = this.startAfter; i < length; i++) {
+      const gameEvent = this.gameEvents[i];
+
+      const firstDate =
+        gameEvent.dates.length === 0
+          ? "&mdash;"
+          : DateUtils.formatDate(new Date(gameEvent.dates[0]));
+      const lastDate =
+        gameEvent.dates.length === 1
+          ? "&mdash;"
+          : DateUtils.formatDate(new Date(gameEvent.dates[length - 1]));
+
+      cardsDiv.innerHTML += /*html*/ `
+        <route-link
+          class="game-event-card"
+          id="${gameEvent.firebaseRef}"
+          href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
+            <span>${i + 1}</span>
+
+            <route-link 
+              href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
+                <span class="align-left">${gameEvent.name}</span>
+            </route-link>
+            
+            <span>${gameEvent.type}</span>
+            
+            <span>${gameEvent.gamesTotal}</span>
+            
+            <span>${firstDate}</span>
+
+            <span>${lastDate}</span>
+        </route-link>
+      `;
     }
   };
 }
