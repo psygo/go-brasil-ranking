@@ -30,4 +30,9 @@ export namespace UiUtils {
       `;
     } else return /*html*/ `<span class="centered">&mdash;</span>`;
   };
+
+  export const playerPicture = (picture: string | undefined): string =>
+    !picture
+      ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
+      : /*html*/ `<img id="picture" src="${picture}"/>`;
 }

@@ -3,7 +3,7 @@ import { RouteEnum } from "../../routing/router";
 
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
-import { UiUtils } from "../utils";
+import { UiUtils } from "../ui_utils";
 
 export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
@@ -72,7 +72,7 @@ export default class PlayersTable extends HTMLElement {
           href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
             <span>${i}</span>
             
-            ${this.playerPicture}
+            <span>${UiUtils.playerPicture(player.picture)}</span>
 
             <route-link 
               href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
@@ -95,9 +95,4 @@ export default class PlayersTable extends HTMLElement {
     }
   };
 
-  private get playerPicture(): string {
-    return !this.currentPlayer.picture
-      ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
-      : /*html*/ `<img id="picture" src="${this.currentPlayer.picture}"/>`;
-  }
 }

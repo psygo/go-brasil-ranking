@@ -99,8 +99,8 @@ game-records-table route-link.game-record-card {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 130px 60px 40px 130px 60px 40px 90px 110px 100px;
-  grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date event";
+  grid-template-columns: 30px 70px 130px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
+  grid-template-areas: "ref" "black-pic black elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
 }
 game-records-table route-link.game-record-card:hover {
@@ -116,6 +116,11 @@ game-records-table route-link.game-record-card route-link[winner] {
 game-records-table route-link.game-record-card route-link[loser] {
   color: #660000;
 }
+game-records-table route-link.game-record-card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
 game-records-table route-link.game-record-card[player-wins] {
   border-color: #008f00;
 }
@@ -124,8 +129,8 @@ game-records-table route-link.game-record-card[player-loses] {
 }
 game-records-table .game-records-table-legend {
   display: grid;
-  grid-template-columns: 30px 130px 60px 40px 130px 60px 40px 90px 110px 100px;
-  grid-template-areas: "ref" "black elo-black elo-delta-black" "white elo-white elo-delta-white" "result date event";
+  grid-template-columns: 30px 70px 130px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
+  grid-template-areas: "ref" "black-pic black elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
   padding: 12px 8px;
   padding-right: 12px;
@@ -182,6 +187,11 @@ game-events-table route-link.game-event-card route-link[winner] {
 }
 game-events-table route-link.game-event-card route-link[loser] {
   color: #660000;
+}
+game-events-table route-link.game-event-card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
 }
 game-events-table .game-events-table-legend {
   padding: 12px 8px;
@@ -244,7 +254,7 @@ players-table route-link.player-card route-link[winner] {
 players-table route-link.player-card route-link[loser] {
   color: #660000;
 }
-players-table img {
+players-table route-link.player-card img {
   max-width: 70px;
   max-height: 70px;
   border-radius: 10px;
@@ -370,6 +380,11 @@ player-view #player-personal-card #player-personal-card-content route-link[winne
 }
 player-view #player-personal-card #player-personal-card-content route-link[loser] {
   color: #660000;
+}
+player-view #player-personal-card #player-personal-card-content img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
 }
 player-view #player-personal-card #player-personal-card-legend {
   display: grid;

@@ -58,12 +58,23 @@
   }
 }
 
+$pictureWidth: 70px;
+
+@mixin imgDecoration {
+  img {
+    max-width: $pictureWidth;
+    max-height: $pictureWidth;
+    border-radius: 10px;
+  }
+}
+
 @mixin card {
   @include rankingTable;
   @include cardDecoration;
   @include cardPadding;
   @include cardMargin;
   @include playerLink;
+  @include imgDecoration;
 
   align-items: center;
 }
@@ -106,14 +117,14 @@ game-records-table {
 
     display: grid;
     grid-template-columns:
-      $refWidth $playerNameWidth $eloWidth
-      $eloDeltaWidth $playerNameWidth $eloWidth
+      $refWidth $pictureWidth $playerNameWidth $eloWidth
+      $eloDeltaWidth $pictureWidth $playerNameWidth $eloWidth
       $eloDeltaWidth $resultWidth $dateWidth
       $eventWidth;
     grid-template-areas:
       "ref"
-      "black elo-black elo-delta-black"
-      "white elo-white elo-delta-white"
+      "black-pic black elo-black elo-delta-black"
+      "white-pic white elo-white elo-delta-white"
       "result date event";
     grid-column-gap: $columnGap;
   }

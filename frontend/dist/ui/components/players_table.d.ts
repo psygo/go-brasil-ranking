@@ -8,5 +8,4 @@ export default class PlayersTable extends HTMLElement {
     constructor(title?: string, limit?: number | "max", isBrazilian?: boolean | undefined);
     connectedCallback(): Promise<void>;
     private setPlayersTable;
-    private get playerPicture();
 }

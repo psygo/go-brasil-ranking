@@ -5,6 +5,7 @@ import { RouteEnum } from "../../routing/router";
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 import { isTournamentOrLeague } from "../../models/game_event";
+import { UiUtils } from "../ui_utils";
 
 export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
@@ -64,9 +65,11 @@ export default class GameRecordsTable extends HTMLElement {
 
         <div class="game-records-table-legend">
           <span>#</span>
+          <span>Foto Preto</span>
           <span class="align-left">Preto</span>
           <span>Elo</span>
           <span>Elo Dif</span>
+          <span>Foto Branco</span>
           <span class="align-left">Branco</span>
           <span>Elo</span>
           <span>Elo Dif</span>
@@ -109,6 +112,10 @@ export default class GameRecordsTable extends HTMLElement {
           ${winOrLossAttr}>
             <span>${i + 1}</span>
 
+            <span>
+              ${UiUtils.playerPicture(gameRecord.blackPlayer!.picture)}
+            </span>
+
             <route-link 
               ${blackWins} 
               href="${RouteEnum.players}/${gameRecord.blackRef}">
@@ -121,6 +128,10 @@ export default class GameRecordsTable extends HTMLElement {
 
             <span>
               ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
+            </span>
+
+            <span>
+              ${UiUtils.playerPicture(gameRecord.whitePlayer!.picture)}
             </span>
 
             <route-link 

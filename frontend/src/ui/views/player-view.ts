@@ -6,7 +6,7 @@ import { FirebaseRef } from "../../models/firebase_models";
 import { Player } from "../../models/player";
 
 import GameRecordsTable from "../components/game_records_table";
-import { UiUtils } from "../utils";
+import { UiUtils } from "../ui_utils";
 import { Chart, registerables } from "chart.js";
 import { GameRecord } from "../../models/game_record";
 import { DateUtils } from "../../infra/date_utils";
