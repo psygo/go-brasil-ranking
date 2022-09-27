@@ -67,11 +67,13 @@ export default class GameRecordsTable extends HTMLElement {
           <span>#</span>
           <span>Foto Preto</span>
           <span class="align-left">Preto</span>
+          <span>País Preto</span>
           <span>Compen-sação</span>
           <span>Elo</span>
           <span>Elo Dif</span>
           <span>Foto Branco</span>
           <span class="align-left">Branco</span>
+          <span>País Branco</span>
           <span>Elo</span>
           <span>Elo Dif</span>
           <span>Resultado</span>
@@ -156,6 +158,10 @@ export default class GameRecordsTable extends HTMLElement {
                   ${gameRecord.blackPlayer!.name}
                 </span>
             </route-link>
+
+            <div>
+              ${UiUtils.allFlags(gameRecord.blackPlayer!.countries)}
+            </div>
             
             <span>${handicap}</span>
 
@@ -176,6 +182,10 @@ export default class GameRecordsTable extends HTMLElement {
                   ${gameRecord.whitePlayer!.name}
                 </span>
             </route-link>
+
+            <div>
+              ${UiUtils.allFlags(gameRecord.whitePlayer!.countries)}
+            </div>
 
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
 

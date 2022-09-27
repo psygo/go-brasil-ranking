@@ -41,9 +41,7 @@ player-view {
     align-items: center;
     gap: 15px;
 
-    img {
-      max-height: 80px;
-    }
+    @include grt.imgDecoration(100px);
   }
 
   #player-personal-card {

@@ -60,10 +60,10 @@
 
 $pictureWidth: 70px;
 
-@mixin imgDecoration {
+@mixin imgDecoration($width) {
   img {
-    max-width: $pictureWidth;
-    max-height: $pictureWidth;
+    max-width: $width;
+    max-height: $width;
     border-radius: 10px;
   }
 }
@@ -74,7 +74,7 @@ $pictureWidth: 70px;
   @include cardPadding;
   @include cardMargin;
   @include playerLink;
-  @include imgDecoration;
+  @include imgDecoration($pictureWidth);
 
   align-items: center;
 }
@@ -109,7 +109,8 @@ game-records-table {
   @include spanAlignment;
 
   @mixin cardLegendGrid {
-    $playerNameWidth: 130px;
+    $playerNameWidth: 85px;
+    $countryFlagsWidth: 60px;
     $handicapWidth: 40px;
     $eloDeltaWidth: 40px;
     $resultWidth: 90px;
@@ -118,14 +119,16 @@ game-records-table {
 
     display: grid;
     grid-template-columns:
-      $refWidth $pictureWidth $playerNameWidth $handicapWidth $eloWidth
-      $eloDeltaWidth $pictureWidth $playerNameWidth $eloWidth
-      $eloDeltaWidth $resultWidth $dateWidth
-      $eventWidth;
+      $refWidth 
+      $pictureWidth $playerNameWidth $countryFlagsWidth $handicapWidth
+      $eloWidth $eloDeltaWidth 
+      $pictureWidth $playerNameWidth $countryFlagsWidth 
+      $eloWidth $eloDeltaWidth 
+      $resultWidth $dateWidth $eventWidth;
     grid-template-areas:
       "ref"
-      "black-pic black handicapWidth elo-black elo-delta-black"
-      "white-pic white elo-white elo-delta-white"
+      "black-pic black country-flags handicapWidth elo-black elo-delta-black"
+      "white-pic white country-flags elo-white elo-delta-white"
       "result date event";
     grid-column-gap: $columnGap;
   }
