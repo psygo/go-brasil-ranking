@@ -26,6 +26,12 @@ interface _EloData {
     eloDeltaWhite: SerializedEloDelta;
 }
 declare type EloData = Readonly<_EloData>;
+interface _DateEloData {
+    date: number;
+    atTheTimeElo: number;
+    eloDelta: number;
+}
+export declare type DateEloData = Readonly<_DateEloData>;
 export declare type Sgf = Readonly<string>;
 interface _Result {
     whoWins: Color;

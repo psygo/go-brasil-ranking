@@ -6,7 +6,6 @@ export default class PlayerView extends HTMLElement {
     private getPlayer;
     private player;
     connectedCallback(): Promise<void>;
-    private fetchPlayerGameRecords;
     private setGraph;
     private setPlayersPage;
     private setPlayerCard;

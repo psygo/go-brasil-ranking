@@ -30,6 +30,13 @@ interface _EloData {
 }
 type EloData = Readonly<_EloData>;
 
+interface _DateEloData {
+  date: number;
+  atTheTimeElo: number;
+  eloDelta: number;
+}
+export type DateEloData = Readonly<_DateEloData>;
+
 export type Sgf = Readonly<string>;
 
 interface _Result {

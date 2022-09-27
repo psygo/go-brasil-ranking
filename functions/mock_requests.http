@@ -110,3 +110,10 @@ POST {{address}}/partidas/mock-populate
 POST {{address}}/mock-populate-everything
 
 ################################################################################
+# Other Stuff
+
+### 1. Graph Data
+
+GET {{address}}/partidas/data-elo/54
+
+################################################################################

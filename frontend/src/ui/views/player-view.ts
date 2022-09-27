@@ -8,7 +8,7 @@ import { Player } from "../../models/player";
 import GameRecordsTable from "../components/game_records_table";
 import { UiUtils } from "../ui_utils";
 import { Chart, registerables } from "chart.js";
-import { GameRecord } from "../../models/game_record";
+import { DateEloData } from "../../models/game_record";
 import { DateUtils } from "../../infra/date_utils";
 import { CountryName } from "../../models/country";
 
@@ -41,38 +41,26 @@ export default class PlayerView extends HTMLElement {
     this.appendChild(new GameRecordsTable("Partidas", this.playerRef));
   }
 
-  private fetchPlayerGameRecords = async (): Promise<GameRecord[]> => {
-    // Fetching the player's game records
-    // This is basically part of the Game Records Table,
-    // So it's copying code, and doing the same request twice...
-    const queryString = `?jogadorRef=${this.playerRef}`;
+  private setGraph = async (): Promise<void> => {
     const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
+      `${g.apiUrl}${RouteEnum.gameRecords}/data-elo/${this.playerRef}`
     );
     const json = await response.json();
-    return json["data"]["gameRecords"];
-  };
+    const dateEloData = json["data"]["dateEloData"] as DateEloData[];
 
-  private setGraph = async (): Promise<void> => {
-    const gameRecords = await this.fetchPlayerGameRecords();
+    console.log(dateEloData);
 
-    if (gameRecords.length > 0) {
+    if (dateEloData.length > 0) {
       const dateData = ["Início"].concat(
-        gameRecords.map((gr) => DateUtils.formatDate(new Date(gr.date)))
+        dateEloData.map((ded) => DateUtils.formatDate(new Date(ded.date)))
       );
 
-      const eloData = gameRecords.map((gr) =>
-        gr.blackRef === this.playerRef
-          ? gr.eloData!.atTheTimeBlackElo
-          : gr.eloData!.atTheTimeWhiteElo
-      );
-      const length = gameRecords.length;
-      const lastElo = eloData[length - 1];
-      const lastGameRecord = gameRecords[length - 1];
-      const lastEloDelta =
-        lastGameRecord.blackRef === this.playerRef
-          ? lastGameRecord.eloData!.eloDeltaBlack
-          : lastGameRecord.eloData!.eloDeltaWhite;
+      const eloData = dateEloData.map((ded) => ded.atTheTimeElo);
+
+      const length = dateEloData.length;
+      const lastElo = dateEloData[length - 1].atTheTimeElo;
+      const lastEloDelta = dateEloData[length - 1].eloDelta;
+
       eloData.push(lastElo + lastEloDelta);
 
       Chart.register(...registerables);
