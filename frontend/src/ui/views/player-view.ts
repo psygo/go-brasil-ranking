@@ -50,8 +50,6 @@ export default class PlayerView extends HTMLElement {
     const json = await response.json();
     const dateEloData = json["data"]["dateEloData"] as DateEloData[];
 
-    console.log(dateEloData);
-
     if (dateEloData.length > 0) {
       const dateData = ["Início"].concat(
         dateEloData.map((ded) => DateUtils.formatDate(new Date(ded.date)))

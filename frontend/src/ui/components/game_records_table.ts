@@ -104,8 +104,6 @@ export default class GameRecordsTable extends HTMLElement {
     nextPageButton.onclick = async (): Promise<void> => {
       this.startAfter += g.queryLimit;
 
-      console.log(this.startAfter);
-
       await this.getGameRecords();
 
       this.setCards();

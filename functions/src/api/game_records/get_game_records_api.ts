@@ -58,6 +58,9 @@ const playerDateEloData = async (
     .reverse();
 };
 
+export const paginationSlicer = (startAfter: number, list: any[]): any[] =>
+  list.slice(startAfter, startAfter + queryLimit);
+
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
     const startAfter = parseInt(req.query.de as string);
@@ -74,16 +77,17 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
           data: { dateEloData: await playerDateEloData(playerRef) },
         });
         return;
-      } else gameRecords = await queryForPlayersGameRecords(playerRef);
+      } else
+        gameRecords = paginationSlicer(
+          startAfter,
+          await queryForPlayersGameRecords(playerRef)
+        );
     } else {
-      let gameRecordsDocs = await gameRecordsCol.col
+      let gameRecordsSnaps = await gameRecordsCol.col
         .orderBy("date", "desc")
         .get();
 
-      const docs = gameRecordsDocs.docs.slice(
-        startAfter,
-        startAfter + queryLimit
-      );
+      const docs = paginationSlicer(startAfter, gameRecordsSnaps.docs);
 
       docs.forEach((gameRecordDoc) => {
         const gameRecordNoRef = gameRecordDoc.data() as GameRecord;
