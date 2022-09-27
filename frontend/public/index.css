@@ -120,8 +120,8 @@ game-records-table route-link.game-record-card {
   margin-bottom: 10px;
   align-items: center;
   display: grid;
-  grid-template-columns: 30px 70px 130px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
-  grid-template-areas: "ref" "black-pic black elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";
+  grid-template-columns: 30px 70px 130px 40px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
+  grid-template-areas: "ref" "black-pic black handicapWidth elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
 }
 game-records-table route-link.game-record-card:hover {
@@ -150,8 +150,8 @@ game-records-table route-link.game-record-card[player-loses] {
 }
 game-records-table #game-records-table-legend {
   display: grid;
-  grid-template-columns: 30px 70px 130px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
-  grid-template-areas: "ref" "black-pic black elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";
+  grid-template-columns: 30px 70px 130px 40px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
+  grid-template-areas: "ref" "black-pic black handicapWidth elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
   padding: 12px 8px;
   padding-right: 12px;

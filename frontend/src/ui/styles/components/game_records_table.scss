@@ -110,6 +110,7 @@ game-records-table {
 
   @mixin cardLegendGrid {
     $playerNameWidth: 130px;
+    $handicapWidth: 40px;
     $eloDeltaWidth: 40px;
     $resultWidth: 90px;
     $dateWidth: 110px;
@@ -117,13 +118,13 @@ game-records-table {
 
     display: grid;
     grid-template-columns:
-      $refWidth $pictureWidth $playerNameWidth $eloWidth
+      $refWidth $pictureWidth $playerNameWidth $handicapWidth $eloWidth
       $eloDeltaWidth $pictureWidth $playerNameWidth $eloWidth
       $eloDeltaWidth $resultWidth $dateWidth
       $eventWidth;
     grid-template-areas:
       "ref"
-      "black-pic black elo-black elo-delta-black"
+      "black-pic black handicapWidth elo-black elo-delta-black"
       "white-pic white elo-white elo-delta-white"
       "result date event";
     grid-column-gap: $columnGap;
@@ -132,14 +133,14 @@ game-records-table {
   div#game-records-table-pagination {
     display: flex;
     justify-content: center;
-    
+
     margin-top: 30px;
 
     button {
       @include cardDecoration;
       @include cardMargin;
       @include cardPadding;
-      
+
       cursor: pointer;
     }
   }

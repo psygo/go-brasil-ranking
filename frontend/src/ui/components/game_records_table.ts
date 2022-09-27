@@ -67,6 +67,7 @@ export default class GameRecordsTable extends HTMLElement {
           <span>#</span>
           <span>Foto Preto</span>
           <span class="align-left">Preto</span>
+          <span>Compen-sação</span>
           <span>Elo</span>
           <span>Elo Dif</span>
           <span>Foto Branco</span>
@@ -134,6 +135,8 @@ export default class GameRecordsTable extends HTMLElement {
           winOrLossAttr = "player-wins";
         else winOrLossAttr = "player-loses";
 
+      const handicap = gameRecord.handicap ? gameRecord.handicap : "&mdash;";
+
       cardsDiv.innerHTML += /*html*/ `
         <route-link 
           class="game-record-card"
@@ -153,6 +156,8 @@ export default class GameRecordsTable extends HTMLElement {
                   ${gameRecord.blackPlayer!.name}
                 </span>
             </route-link>
+            
+            <span>${handicap}</span>
 
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
