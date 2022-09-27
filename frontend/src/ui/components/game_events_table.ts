@@ -89,7 +89,9 @@ export default class GameEventsTable extends HTMLElement {
       const lastDate =
         gameEvent.dates.length === 1
           ? "&mdash;"
-          : DateUtils.formatDate(new Date(gameEvent.dates[length - 1]));
+          : DateUtils.formatDate(
+              new Date(gameEvent.dates[gameEvent.dates.length - 1])
+            );
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link
