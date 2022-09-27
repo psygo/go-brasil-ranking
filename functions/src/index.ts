@@ -16,7 +16,7 @@ import { postGameEventApi } from "./api/game_events/post_game_event_api";
 
 import { getGameRecords } from "./api/game_records/get_game_records_api";
 import { getGameRecord } from "./api/game_records/get_game_record_api";
-import { postGameRecordApi } from "./api/game_records/post_game_records_api";
+import { postGameRecordApi } from "./api/game_records/post_game_record_api";
 
 import { validateFirebaseIdToken } from "./middleware/auth";
 
