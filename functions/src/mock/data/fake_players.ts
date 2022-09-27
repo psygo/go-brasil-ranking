@@ -327,7 +327,7 @@ export const fakePlayers: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2300,
+    elo: 2400,
   },
   {
     name: "Eduardo Takeuti",
@@ -828,7 +828,7 @@ export const fakePlayers: readonly Player[] = [
         name: CountryName.portugal,
       },
     ],
-    elo: 2400,
+    elo: 2300,
   },
   {
     name: "Sophie Pagès",

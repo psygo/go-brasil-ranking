@@ -62,12 +62,12 @@ class AdminView extends HTMLElement {
       <form>
         <fieldset>
           <label for="username">Administrador</label>
-          <input type="text" name="username" autofocus/>
+          <input autofocus required type="text" name="username"/>
         </fieldset>
       
         <fieldset>
           <label for="password">Senha</label>
-          <input type="text" name="password"/>
+          <input required type="password" name="password" minlength="8"/>
         </fieldset>
         
         <button type="submit">Entrar</button>

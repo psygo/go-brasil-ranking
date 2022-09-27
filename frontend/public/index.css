@@ -246,6 +246,8 @@ players-table route-link.player-card route-link[loser] {
 }
 players-table img {
   max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
 }
 players-table .players-table-legend {
   display: grid;

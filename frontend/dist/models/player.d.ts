@@ -9,6 +9,7 @@ export interface _Player extends FirebaseDoc {
     nicks?: readonly Nick[];
     picture?: string;
     countries: readonly Country[];
+    isBrazilian?: boolean;
     elo: SerializedElo;
     dateCreated?: number;
     author?: Author;

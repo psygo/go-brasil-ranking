@@ -28,6 +28,8 @@ players-table {
 
   img {
     max-width: $pictureWidth;
+    max-height: $pictureWidth;
+    border-radius: 10px;
   }
 
   .players-table-legend {

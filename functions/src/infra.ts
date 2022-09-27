@@ -14,7 +14,7 @@ export const howMany = (askedLimit: string): number => {
     askedLimit === "max"
       ? maxLimit
       : askedLimit
-      ? parseInt(askedLimit as string)
+      ? parseInt(askedLimit)
       : maxLimit;
 
   return intendedLimit <= maxLimit ? intendedLimit : maxLimit;

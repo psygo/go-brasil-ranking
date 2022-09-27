@@ -5,11 +5,19 @@ import { ExpressApiRoute, howMany } from "../../infra";
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
     const limit = howMany(req.query.limite as string);
+    const isBrazilian =
+      req.query.isBrazilian === undefined
+        ? undefined
+        : req.query.isBrazilian
+        ? true
+        : false;
 
-    const playersDocs = await playersCol.col
-      .limit(limit)
-      .orderBy("elo", "desc")
-      .get();
+    let playersQuery = playersCol.col.limit(limit).orderBy("elo", "desc");
+
+    if (isBrazilian !== undefined)
+      playersQuery = playersQuery.where("isBrazilian", "==", isBrazilian);
+
+    const playersDocs = await playersQuery.get();
 
     const players: Player[] = [];
     playersDocs.forEach((playerDoc) => {

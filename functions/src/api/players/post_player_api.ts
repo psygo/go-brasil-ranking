@@ -1,4 +1,5 @@
 import * as admin from "firebase-admin";
+import { CountryName } from "../../../../frontend/src/models/country";
 
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
 import { Player } from "../../../../frontend/src/models/player";
@@ -11,8 +12,13 @@ export const postPlayer = async (
 ): Promise<Player> => {
   const now = admin.firestore.Timestamp.now().toMillis();
 
+  const isBrazilian = player.countries.some(
+    (c) => c.name === CountryName.brazil
+  );
+
   let playerOnDb = {
     ...player,
+    isBrazilian: isBrazilian,
     dateCreated: now,
     gamesTotal: 0,
   };

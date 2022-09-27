@@ -41,6 +41,9 @@ export default class GameEventsTable extends HTMLElement {
   }
 
   private setPlayersTable = (gameEvents: GameEvent[]): void => {
+    // TODO2: Add Type of Event
+    // TODO2: Add dates
+    // TODO2: Decreasing IDs on the table
     for (let i = 0; i < gameEvents.length; i++) {
       const gameEvent = gameEvents[i];
       if (isTournamentOrLeague(gameEvent))

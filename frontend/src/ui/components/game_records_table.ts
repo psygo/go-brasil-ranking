@@ -22,6 +22,7 @@ export default class GameRecordsTable extends HTMLElement {
   };
 
   constructor(
+    public readonly title: string = "Partidas",
     public readonly limit: number | "max" = 20,
     public readonly playerRef: FirebaseRef = ""
   ) {
@@ -43,17 +44,17 @@ export default class GameRecordsTable extends HTMLElement {
     await this.getGameRecords();
 
     if (this.gameRecords.length > 0) {
-      const titleSuffix = this.playerRef ? ` de ${this.playerName}` : "";
+      const titleSuffix = this.playerRef ? this.playerName : "";
       const title = this.playerRef
         ? /*html*/ `
           <h2>
-            Partidas ${titleSuffix}
+            Partidas de ${titleSuffix}
           </h2>
         `
         : /*html*/ `
           <h2>
             <route-link href="${RouteEnum.gameRecords}">
-              Partidas
+              ${this.title}
             </route-link>
           </h2>
         `;

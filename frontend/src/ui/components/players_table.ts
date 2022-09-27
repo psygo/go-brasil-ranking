@@ -11,10 +11,24 @@ export default class PlayersTable extends HTMLElement {
   private declare currentPlayer: Player;
 
   private getPlayers = async (): Promise<Player[]> => {
-    const response = await fetch(`${g.apiUrl}${RouteEnum.players}`);
+    const isBrazilian =
+      this.isBrazilian === undefined ? "" : `isBrazilian=${this.isBrazilian}`;
+
+    const response = await fetch(
+      `${g.apiUrl}${RouteEnum.players}?limite=${this.limit}&${isBrazilian}`
+    );
+
     const json = await response.json();
     return json["data"]["players"];
   };
+
+  constructor(
+    public readonly title: string = "Jogadores",
+    public readonly limit: number | "max" = 20,
+    public readonly isBrazilian: boolean | undefined = undefined
+  ) {
+    super();
+  }
 
   async connectedCallback() {
     const players = await this.getPlayers();
@@ -22,7 +36,7 @@ export default class PlayersTable extends HTMLElement {
     this.innerHTML += /*html*/ `
       <h2>
         <route-link href="${RouteEnum.players}">
-          Jogadores
+          ${this.title}
         </route-link>
       </h2>
       
