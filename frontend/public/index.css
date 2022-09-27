@@ -143,10 +143,10 @@ game-records-table route-link.game-record-card img {
   border-radius: 10px;
 }
 game-records-table route-link.game-record-card[player-wins] {
-  border-color: #008f00;
+  background-color: #e6ffe6;
 }
 game-records-table route-link.game-record-card[player-loses] {
-  border-color: #8f0000;
+  background-color: #ffe6e6;
 }
 game-records-table #game-records-table-legend {
   display: grid;
@@ -320,7 +320,7 @@ home-view {
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 155px 1fr 1fr;
+  grid-template-rows: 100px 155px 350px 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "elo-graph" "game-records";
   justify-items: center;

@@ -7,12 +7,10 @@ export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   const playerIsBlack = gameRecordsCol.col
     .where("blackRef", "==", playerRef)
     .orderBy("date", "desc")
-    .limit(queryLimit)
     .get();
   const playerIsWhite = gameRecordsCol.col
     .where("whiteRef", "==", playerRef)
     .orderBy("date", "desc")
-    .limit(queryLimit)
     .get();
 
   const [snapsAsBlack, snapsAsWhite] = await Promise.all([
@@ -31,8 +29,8 @@ export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
 
   const allPlayerGames = [...playerAsBlack, ...playerAsWhite];
 
-  allPlayerGames.sort((g1, g2) => g1.date - g2.date);
-  allPlayerGames.sort((g1, g2) => g1.dateCreated! - g2.dateCreated!);
+  allPlayerGames.sort((g1, g2) => g2.date - g1.date);
+  allPlayerGames.sort((g1, g2) => g2.dateCreated! - g1.dateCreated!);
 
   return allPlayerGames;
 };
@@ -52,7 +50,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 
       const docs = gameRecordsDocs.docs.slice(
         startAfter,
-        startAfter + queryLimit 
+        startAfter + queryLimit
       );
 
       docs.forEach((gameRecordDoc) => {

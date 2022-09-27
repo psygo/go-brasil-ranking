@@ -149,11 +149,11 @@ game-records-table {
     @include cardLegendGrid;
 
     &[player-wins] {
-      border-color: lighten(green, 3%);
+      background-color: lighten(green, 70%);
     }
 
     &[player-loses] {
-      border-color: darken(red, 22%);
+      background-color: lighten(red, 45%);
     }
   }
 
