@@ -1,21 +1,18 @@
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
 import { GameRecord } from "../../../../frontend/src/models/game_record";
 import { gameRecordsCol } from "../../collections/game_records_col";
-import { ExpressApiRoute, howMany } from "../../infra";
+import { ExpressApiRoute, queryLimit } from "../../infra";
 
-export const queryForPlayersGameRecords = async (
-  playerRef: FirebaseRef,
-  limit: number
-) => {
+export const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   const playerIsBlack = gameRecordsCol.col
     .where("blackRef", "==", playerRef)
     .orderBy("date", "desc")
-    .limit(limit)
+    .limit(queryLimit)
     .get();
   const playerIsWhite = gameRecordsCol.col
     .where("whiteRef", "==", playerRef)
     .orderBy("date", "desc")
-    .limit(limit)
+    .limit(queryLimit)
     .get();
 
   const [snapsAsBlack, snapsAsWhite] = await Promise.all([
@@ -42,20 +39,23 @@ export const queryForPlayersGameRecords = async (
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
-    const limit = howMany(req.query.limite as string);
+    const startAfter = parseInt(req.query.de as string);
+    const playerRef = req.query.jogadorRef as FirebaseRef;
+
     let gameRecords: GameRecord[] = [];
 
-    const playerRef = req.query.jogadorRef as FirebaseRef;
-    if (playerRef)
-      gameRecords = await queryForPlayersGameRecords(playerRef, limit);
+    if (playerRef) gameRecords = await queryForPlayersGameRecords(playerRef);
     else {
       let gameRecordsDocs = await gameRecordsCol.col
-        .orderBy("date")
-        .orderBy("dateCreated")
-        .limit(limit)
+        .orderBy("date", "desc")
         .get();
 
-      gameRecordsDocs.forEach((gameRecordDoc) => {
+      const docs = gameRecordsDocs.docs.slice(
+        startAfter,
+        startAfter + queryLimit 
+      );
+
+      docs.forEach((gameRecordDoc) => {
         const gameRecordNoRef = gameRecordDoc.data() as GameRecord;
         gameRecords.push({ ...gameRecordNoRef, firebaseRef: gameRecordDoc.id });
       });

@@ -6,6 +6,6 @@ export default class GameRecordsView extends HTMLElement {
   async connectedCallback() {
     document.title = "RBGo | Partidas";
 
-    this.appendChild(new GameRecordsTable("max"));
+    this.appendChild(new GameRecordsTable("Partidas"));
   }
 }

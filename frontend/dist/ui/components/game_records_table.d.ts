@@ -1,15 +1,16 @@
 import { FirebaseRef } from "../../models/firebase_models";
 export default class GameRecordsTable extends HTMLElement {
     readonly title: string;
-    readonly limit: number | "max";
     readonly playerRef: FirebaseRef;
     static readonly tag: string;
     private getGameRecords;
-    constructor(title?: string, limit?: number | "max", playerRef?: FirebaseRef);
+    private readonly gameRecords;
+    private startAfter;
+    constructor(title?: string, playerRef?: FirebaseRef);
     private get playerName();
-    private gameRecords;
     connectedCallback(): Promise<void>;
-    setGameRecordsTable: () => void;
+    private setPagination;
+    private setCards;
     private signedEloDelta;
     private gameEventLink;
 }

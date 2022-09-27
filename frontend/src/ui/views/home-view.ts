@@ -10,7 +10,7 @@ export default class HomeView extends HTMLElement {
 
     this.append(
       new PlayersTable("Os 10 Melhores Brasileiros", 10, true),
-      new GameRecordsTable("Partidas Recentes", 5),
+      new GameRecordsTable("Partidas Recentes"),
       new GameEventsTable("Eventos Recentes", 5)
     );
   }

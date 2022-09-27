@@ -7,6 +7,8 @@ export type ExpressNexFunction = (
   next: NextFunction
 ) => void;
 
+export const queryLimit = 5;
+
 export const howMany = (askedLimit: string): number => {
   const maxLimit = 10000;
 

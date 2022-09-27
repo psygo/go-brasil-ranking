@@ -129,6 +129,21 @@ game-records-table {
     grid-column-gap: $columnGap;
   }
 
+  div#game-records-table-pagination {
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 30px;
+
+    button {
+      @include cardDecoration;
+      @include cardMargin;
+      @include cardPadding;
+      
+      cursor: pointer;
+    }
+  }
+
   route-link.game-record-card {
     @include card;
     @include cardLegendGrid;
@@ -142,7 +157,7 @@ game-records-table {
     }
   }
 
-  .game-records-table-legend {
+  #game-records-table-legend {
     @include cardLegendGrid;
     @include cardPadding;
     @include legendDecoration;

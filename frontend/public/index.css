@@ -30,7 +30,7 @@ route-link:hover {
 
 main {
   grid-area: main;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   margin-bottom: 50px;
   padding-top: 20px;
@@ -85,6 +85,27 @@ game-records-table .align-left {
   justify-content: left;
   text-align: left;
 }
+game-records-table div#game-records-table-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+game-records-table div#game-records-table-pagination button {
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+game-records-table div#game-records-table-pagination button:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
 game-records-table route-link.game-record-card {
   margin-bottom: 35px;
   width: max-content;
@@ -127,7 +148,7 @@ game-records-table route-link.game-record-card[player-wins] {
 game-records-table route-link.game-record-card[player-loses] {
   border-color: #8f0000;
 }
-game-records-table .game-records-table-legend {
+game-records-table #game-records-table-legend {
   display: grid;
   grid-template-columns: 30px 70px 130px 60px 40px 70px 130px 60px 40px 90px 110px 100px;
   grid-template-areas: "ref" "black-pic black elo-black elo-delta-black" "white-pic white elo-white elo-delta-white" "result date event";

@@ -6,6 +6,6 @@ export default class PlayersView extends HTMLElement {
   async connectedCallback() {
     document.title = "RBGo | Jogadores";
 
-    this.appendChild(new PlayersTable());
+    this.appendChild(new PlayersTable("Jogadores", "max"));
   }
 }

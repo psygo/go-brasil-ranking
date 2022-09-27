@@ -11,20 +11,22 @@ export default class GameRecordsTable extends HTMLElement {
   static readonly tag: string = "game-records-table";
 
   private getGameRecords = async (): Promise<void> => {
-    const p = this.playerRef ? this.playerRef : "";
-    const queryString = `?limite=${this.limit}&jogadorRef=${p}`;
+    const queryString =
+      `?de=${this.startAfter}` + `&jogadorRef=${this.playerRef}`;
 
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
     );
 
     const json = await response.json();
-    this.gameRecords = json["data"]["gameRecords"];
+    this.gameRecords.push(...json["data"]["gameRecords"]);
   };
+
+  private readonly gameRecords: GameRecord[] = [];
+  private startAfter: number = 0;
 
   constructor(
     public readonly title: string = "Partidas",
-    public readonly limit: number | "max" = 20,
     public readonly playerRef: FirebaseRef = ""
   ) {
     super();
@@ -38,8 +40,6 @@ export default class GameRecordsTable extends HTMLElement {
         : firstGame.whitePlayer!.name;
     } else return null;
   }
-
-  private declare gameRecords: GameRecord[];
 
   async connectedCallback() {
     await this.getGameRecords();
@@ -63,7 +63,7 @@ export default class GameRecordsTable extends HTMLElement {
       this.innerHTML = /*html*/ `
         ${title}
 
-        <div class="game-records-table-legend">
+        <div id="game-records-table-legend">
           <span>#</span>
           <span>Foto Preto</span>
           <span class="align-left">Preto</span>
@@ -77,15 +77,47 @@ export default class GameRecordsTable extends HTMLElement {
           <span>Data</span>
           <span>Evento</span>
         </div>
+        
+        <div id="game-records-table-cards"></div>
+
+        <div id="game-records-table-pagination"></div>
       `;
 
-      this.setGameRecordsTable();
+      this.setCards();
+
+      this.setPagination();
     }
   }
 
-  setGameRecordsTable = (): void => {
-    // TODO2: Add Player's Pictures
-    for (let i = this.gameRecords.length - 1; i >= 0; i--) {
+  private setPagination = (): void => {
+    const paginationDiv: HTMLDivElement = this.querySelector(
+      "#game-records-table-pagination"
+    )!;
+
+    paginationDiv.innerHTML += /*html*/ `
+      <button class="next-page">+ ${g.queryLimit} Partidas</button>
+    `;
+
+    const nextPageButton: HTMLButtonElement =
+      this.querySelector("button.next-page")!;
+
+    nextPageButton.onclick = async (): Promise<void> => {
+      this.startAfter += g.queryLimit;
+
+      console.log(this.startAfter);
+
+      await this.getGameRecords();
+
+      this.setCards();
+    };
+  };
+
+  private setCards = (): void => {
+    const cardsDiv: HTMLDivElement = this.querySelector(
+      "#game-records-table-cards"
+    )!;
+    const length = this.gameRecords.length;
+    for (let i = this.startAfter; i < length; i++) {
       const gameRecord = this.gameRecords[i];
 
       const blackWins =
@@ -104,7 +136,7 @@ export default class GameRecordsTable extends HTMLElement {
           winOrLossAttr = "player-wins";
         else winOrLossAttr = "player-loses";
 
-      this.innerHTML += /*html*/ `
+      cardsDiv.innerHTML += /*html*/ `
         <route-link 
           class="game-record-card"
           id="${gameRecord.firebaseRef}"
