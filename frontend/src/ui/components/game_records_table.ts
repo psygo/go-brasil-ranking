@@ -135,7 +135,7 @@ export default class GameRecordsTable extends HTMLElement {
           winOrLossAttr = "player-wins";
         else winOrLossAttr = "player-loses";
 
-      const handicap = gameRecord.handicap ? gameRecord.handicap : "&mdash;";
+      const handicap = gameRecord.handicap ? gameRecord.handicap : "0";
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link 

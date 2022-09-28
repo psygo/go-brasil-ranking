@@ -69,23 +69,23 @@ describe("Elo Math", () => {
   });
 
   it("(With Handicap) Below 2000 and above 2000 should yield asymmetric deltas", () => {
-    const whiteEloAbove2000 = new Elo(2027);
-    const blackEloBelow2000 = new Elo(1016);
+    const whiteEloAbove2000 = new Elo(2150);
+    const blackEloBelow2000 = new Elo(900);
 
     const whiteDeltaEloAbove2000 = whiteEloAbove2000.deltaFromGame(
       blackEloBelow2000,
       GameResultStatus.Win,
-      7,
+      9,
       Color.White
     );
     const blackDeltaEloBelow2000 = blackEloBelow2000.deltaFromGame(
       whiteEloAbove2000,
       GameResultStatus.Loss,
-      7,
+      9,
       Color.Black
     );
 
     chai.expect(whiteDeltaEloAbove2000.num).equal(4);
-    chai.expect(blackDeltaEloBelow2000.num).equal(-7);
+    chai.expect(blackDeltaEloBelow2000.num).equal(-6);
   });
 });
