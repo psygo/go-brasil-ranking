@@ -10,6 +10,11 @@ export const fakeGameEvents: readonly TournamentOrLeague[] = [
     dates: [new Date(2022, 8, 10).getTime(), new Date(2022, 8, 11).getTime()],
   },
   {
+    type: GameEventTypes.league,
+    name: "Pandanet Latin American Team Championship 2022",
+    dates: [new Date(2022, 0, 0).getTime(), new Date(2022, 30, 11).getTime()],
+  },
+  {
     type: GameEventTypes.tournament,
     name: "Copa do Brasil 2021",
     dates: [new Date(2021, 8, 10).getTime(), new Date(2021, 8, 11).getTime()],
