@@ -2,10 +2,7 @@ import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
 import { FirebaseRef } from "../../models/firebase_models";
-import {
-  GameEventLeague,
-  GameEventTournament,
-} from "../../models/game_event";
+import { GameEventLeague, GameEventTournament } from "../../models/game_event";
 
 export default class GameEventView extends HTMLElement {
   static readonly tag: string = "game-event-view";
@@ -18,7 +15,7 @@ export default class GameEventView extends HTMLElement {
 
   private getGameEvent = async (): Promise<void> => {
     const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameEvents}/${this.gameEventRef}`
+      `${g.apiUrl}${RouteEnum.gameEvents}/${this.gameEventRef}`,
     );
     const json = await response.json();
     this.gameEvent = json["data"]["gameEvent"];

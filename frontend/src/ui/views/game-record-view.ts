@@ -17,7 +17,7 @@ export default class GameRecordView extends HTMLElement {
 
   private getGameRecord = async (): Promise<void> => {
     const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameRecords}/${this.gameRecordRef}`
+      `${g.apiUrl}${RouteEnum.gameRecords}/${this.gameRecordRef}`,
     );
     const json = await response.json();
     this.gameRecord = json["data"]["gameRecord"];

@@ -66,6 +66,4 @@ goBrasilRankingApp.post("/jogadores/mock-populate", mockPopulatePlayersApi);
 goBrasilRankingApp.post("/eventos/mock-populate", mockPopulateGameEventsApi);
 goBrasilRankingApp.post("/partidas/mock-populate", mockPopulateGameRecordsApi);
 
-export const goBrasilRanking = functions
-  .runWith({ timeoutSeconds: 300 })
-  .https.onRequest(goBrasilRankingApp);
+export const goBrasilRanking = functions.https.onRequest(goBrasilRankingApp);
