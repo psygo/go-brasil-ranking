@@ -38,22 +38,60 @@ export default class AboutView extends HTMLElement {
                com os seus dados:
             </p>
 
-            <ul>
-              <li>Nome completo</li>
-              <li>Email (opcional, mas recomendado, vide o próximo item)</li>
-              <li>Foto (opcional)</li>
-              <li>
-                País de Origem (opcionalmente, se brasileiro, estado e cidade)
-              </li>
-              <li>
-                Nível em um dos servidores conhecidos (KGS, OGS, Fox, Tygem,
-                etc.)
-              </li>
-              <li>3 partidas recentes</li>
-            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Dado</th>
+                  <th>Obrigatório?</th>
+                  <th>Mais informações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Nome Completo</td>
+                  <td>Sim</td>
+                  <td>&mdash;</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Email</td>
+                  <td>Não</td>
+                  <td>Recomendado, vide o próximo item</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>Foto</td>
+                  <td>Não</td>
+                  <td>&mdash;</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>País(es) de Origem</td>
+                  <td>Sim</td>
+                  <td>
+                    Se brasileiro, opcionalmente, adicionar estado e
+                    cidade
+                  </td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Nível em um dos Servidores Conhecidos</td>
+                  <td>Sim</td>
+                  <td>ex.: KGS, OGS, Fox, Tygem, etc.</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>3 Partidas Recentes</td>
+                  <td>Sim</td>
+                  <td>&mdash;</td>
+                </tr>
+              </tbody>
+            </table>
         </li>
         <li>
-          <h2>Como adicionar uma partida ao Ranking Brasileiro de Go?</h2>
+          <h2>Como adicionar uma partida ao RBGo?</h2>
           
             <p>
               Após ter feito seu cadastro, mande uma mensagem com a sua partida
@@ -99,9 +137,20 @@ export default class AboutView extends HTMLElement {
               os integrantes da equipe são:
             </p>
               
-            <ul>
-              <li>Philippe Fanaro (desenvolvedor e moderador)</li>
-            </ul>
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Funções</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Philippe Fanaro</td>
+                  <td>Desenvolvedor e Moderador</td>
+                </tr>
+              </tbody>
+            </table>
         </li>
       </ol>
     `;

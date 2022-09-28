@@ -359,11 +359,25 @@ about-view ol p {
   padding-left: 15px;
   margin-bottom: 15px;
 }
-about-view ol ul {
-  padding-left: 65px;
+about-view ol table {
+  padding-left: 30px;
+  padding-right: 40px;
+  border-spacing: 0;
+  border-collapse: separate;
 }
-about-view ol ul li {
-  margin-bottom: 6px;
+about-view ol table td,
+about-view ol table th {
+  padding: 7.5px;
+  border: solid 0.25px #1b1c1f;
+  text-align: center;
+}
+about-view ol table tr:nth-child(odd),
+about-view ol table th {
+  background-color: #d2d2d2;
+}
+about-view ol table tr:nth-child(even),
+about-view ol table th {
+  background-color: gainsboro;
 }
 
 home-view {

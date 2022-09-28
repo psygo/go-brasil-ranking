@@ -27,18 +27,33 @@ about-view {
       font-size: $liFontSize;
     }
 
-    $paddingLeftP: 15px;
-
     p {
-      padding-left: $paddingLeftP;
+      padding-left: 15px;
       margin-bottom: 15px;
     }
 
-    ul {
-      padding-left: $paddingLeftP + 50px;
+    table {
+      padding-left: 30px;
+      padding-right: 40px;
+      border-spacing: 0;
+      border-collapse: separate;
 
-      li {
-        margin-bottom: 6px;
+      td,
+      th {
+        padding: 7.5px;
+        border: solid 0.25px #1b1c1f;
+
+        text-align: center;
+      }
+
+      tr:nth-child(odd),
+      th {
+        background-color: lighten(grey, 32%);
+      }
+
+      tr:nth-child(even),
+      th {
+        background-color: lighten(grey, 36%);
       }
     }
   }
