@@ -7,25 +7,27 @@ const globals_1 = require("../../infra/globals");
 const router_1 = require("../../routing/router");
 const elo_1 = __importDefault(require("../../models/elo"));
 const ui_utils_1 = require("../ui_utils");
+const utils_1 = require("../../infra/utils");
 class PlayersTable extends HTMLElement {
     title;
-    limit;
     isBrazilian;
     static tag = "players-table";
     getPlayers = async () => {
         const isBrazilian = this.isBrazilian === undefined ? "" : `isBrazilian=${this.isBrazilian}`;
-        const response = await fetch(`${globals_1.Globals.apiUrl}${router_1.RouteEnum.players}?limite=${this.limit}&${isBrazilian}`);
+        const queryString = `?de=${this.startAfter}&${isBrazilian}`;
+        const response = await fetch(`${globals_1.Globals.apiUrl}${router_1.RouteEnum.players}${queryString}`);
         const json = await response.json();
-        return json["data"]["players"];
+        this.players.push(...json["data"]["players"]);
     };
-    constructor(title = "Jogadores", limit = 20, isBrazilian = undefined) {
+    startAfter = 0;
+    players = [];
+    constructor(title = "Jogadores", isBrazilian = undefined) {
         super();
         this.title = title;
-        this.limit = limit;
         this.isBrazilian = isBrazilian;
     }
     async connectedCallback() {
-        const players = await this.getPlayers();
+        await this.getPlayers();
         this.innerHTML += `
       <h2>
         <route-link href="${router_1.RouteEnum.players}">
@@ -33,7 +35,7 @@ class PlayersTable extends HTMLElement {
         </route-link>
       </h2>
       
-      <div class="players-table-legend">
+      <div id="players-table-legend">
         <span>#</span>
         <span>Foto</span>
         <span class="align-left">Nome</span>
@@ -43,39 +45,62 @@ class PlayersTable extends HTMLElement {
         <span>Data da Última Partida</span>
         <span>Número de Partidas</span>
       </div>
+
+      <div id="players-table-cards"></div>
+
+      <div class="pagination"></div>
     `;
-        this.setPlayersTable(players);
+        this.setCards();
+        this.setPagination();
+        const nextPageButton = this.querySelector("button.next-page");
+        nextPageButton.click();
     }
-    setPlayersTable = (players) => {
-        let i = 1;
-        this.currentPlayer = players[0];
-        for (const player of players) {
-            player.elo === this.currentPlayer.elo ? null : i++;
-            this.currentPlayer = player;
-            const elo = new elo_1.default(this.currentPlayer.elo);
-            this.innerHTML += `
+    setPagination = () => {
+        const paginationDiv = this.querySelector(".pagination");
+        paginationDiv.innerHTML += `
+      <button class="next-page">+ Jogadores</button>
+    `;
+        const nextPageButton = this.querySelector("button.next-page");
+        nextPageButton.onclick = async () => {
+            this.startAfter += globals_1.Globals.queryLimit;
+            await this.getPlayers();
+            this.setCards();
+        };
+    };
+    i = 0;
+    lastElo = -10000;
+    setCards = () => {
+        const cardsDiv = this.querySelector("#players-table-cards");
+        const slicedPlayers = (0, utils_1.paginationSlicer)(this.startAfter, this.players);
+        for (const player of slicedPlayers) {
+            if (player.elo !== this.lastElo) {
+                this.i++;
+                this.lastElo = player.elo;
+            }
+            const elo = new elo_1.default(player.elo);
+            cardsDiv.innerHTML += `
         <route-link 
           class="player-card" 
-          id="${this.currentPlayer.firebaseRef}"
-          href="${router_1.RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-            <span>${i}</span>
+          id="${player.firebaseRef}"
+          href="${router_1.RouteEnum.players}/${player.firebaseRef}">
+            <span>${this.i}</span>
             
             <span>${ui_utils_1.UiUtils.playerPicture(player.picture)}</span>
 
             <route-link 
-              href="${router_1.RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                <span class="align-left">${this.currentPlayer.name}</span>
+              href="${router_1.RouteEnum.players}/${player.firebaseRef}">
+                <span class="align-left">${player.name}</span>
             </route-link>
 
             <div>
-              ${ui_utils_1.UiUtils.allFlags(this.currentPlayer.countries)}
+              ${ui_utils_1.UiUtils.allFlags(player.countries)}
             </div>
 
             <span>${elo.num}</span>
 
             <span>${elo.danKyuLevel()}</span>
             
-            ${ui_utils_1.UiUtils.lastGameLink(this.currentPlayer)}
+            ${ui_utils_1.UiUtils.lastGameLink(player)}
             
             <span>${player.gamesTotal}</span>
         </route-link>
@@ -84,4 +109,4 @@ class PlayersTable extends HTMLElement {
     };
 }
 exports.default = PlayersTable;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGxheWVyc190YWJsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy91aS9jb21wb25lbnRzL3BsYXllcnNfdGFibGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxpREFBbUQ7QUFDbkQsaURBQWlEO0FBRWpELDJEQUFtQztBQUVuQywwQ0FBc0M7QUFFdEMsTUFBcUIsWUFBYSxTQUFRLFdBQVc7SUFrQmpDO0lBQ0E7SUFDQTtJQW5CbEIsTUFBTSxDQUFVLEdBQUcsR0FBVyxlQUFlLENBQUM7SUFJdEMsVUFBVSxHQUFHLEtBQUssSUFBdUIsRUFBRTtRQUNqRCxNQUFNLFdBQVcsR0FDZixJQUFJLENBQUMsV0FBVyxLQUFLLFNBQVMsQ0FBQyxDQUFDLENBQUMsRUFBRSxDQUFDLENBQUMsQ0FBQyxlQUFlLElBQUksQ0FBQyxXQUFXLEVBQUUsQ0FBQztRQUUxRSxNQUFNLFFBQVEsR0FBRyxNQUFNLEtBQUssQ0FDMUIsR0FBRyxpQkFBQyxDQUFDLE1BQU0sR0FBRyxrQkFBUyxDQUFDLE9BQU8sV0FBVyxJQUFJLENBQUMsS0FBSyxJQUFJLFdBQVcsRUFBRSxDQUN0RSxDQUFDO1FBRUYsTUFBTSxJQUFJLEdBQUcsTUFBTSxRQUFRLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDbkMsT0FBTyxJQUFJLENBQUMsTUFBTSxDQUFDLENBQUMsU0FBUyxDQUFDLENBQUM7SUFDakMsQ0FBQyxDQUFDO0lBRUYsWUFDa0IsUUFBZ0IsV0FBVyxFQUMzQixRQUF3QixFQUFFLEVBQzFCLGNBQW1DLFNBQVM7UUFFNUQsS0FBSyxFQUFFLENBQUM7UUFKUSxVQUFLLEdBQUwsS0FBSyxDQUFzQjtRQUMzQixVQUFLLEdBQUwsS0FBSyxDQUFxQjtRQUMxQixnQkFBVyxHQUFYLFdBQVcsQ0FBaUM7SUFHOUQsQ0FBQztJQUVELEtBQUssQ0FBQyxpQkFBaUI7UUFDckIsTUFBTSxPQUFPLEdBQUcsTUFBTSxJQUFJLENBQUMsVUFBVSxFQUFFLENBQUM7UUFFeEMsSUFBSSxDQUFDLFNBQVMsSUFBYTs7NEJBRUgsa0JBQVMsQ0FBQyxPQUFPO1lBQ2pDLElBQUksQ0FBQyxLQUFLOzs7Ozs7Ozs7Ozs7OztLQWNqQixDQUFDO1FBRUYsSUFBSSxDQUFDLGVBQWUsQ0FBQyxPQUFPLENBQUMsQ0FBQztJQUNoQyxDQUFDO0lBRU8sZUFBZSxHQUFHLENBQUMsT0FBaUIsRUFBUSxFQUFFO1FBQ3BELElBQUksQ0FBQyxHQUFHLENBQUMsQ0FBQztRQUNWLElBQUksQ0FBQyxhQUFhLEdBQUcsT0FBTyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ2hDLEtBQUssTUFBTSxNQUFNLElBQUksT0FBTyxFQUFFO1lBQzVCLE1BQU0sQ0FBQyxHQUFHLEtBQUssSUFBSSxDQUFDLGFBQWEsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQyxFQUFFLENBQUM7WUFFbkQsSUFBSSxDQUFDLGFBQWEsR0FBRyxNQUFNLENBQUM7WUFFNUIsTUFBTSxHQUFHLEdBQUcsSUFBSSxhQUFHLENBQUMsSUFBSSxDQUFDLGFBQWEsQ0FBQyxHQUFHLENBQUMsQ0FBQztZQUU1QyxJQUFJLENBQUMsU0FBUyxJQUFhOzs7Z0JBR2pCLElBQUksQ0FBQyxhQUFhLENBQUMsV0FBVztrQkFDNUIsa0JBQVMsQ0FBQyxPQUFPLElBQUksSUFBSSxDQUFDLGFBQWEsQ0FBQyxXQUFXO29CQUNqRCxDQUFDOztvQkFFRCxrQkFBTyxDQUFDLGFBQWEsQ0FBQyxNQUFNLENBQUMsT0FBTyxDQUFDOzs7c0JBR25DLGtCQUFTLENBQUMsT0FBTyxJQUFJLElBQUksQ0FBQyxhQUFhLENBQUMsV0FBVzsyQ0FDOUIsSUFBSSxDQUFDLGFBQWEsQ0FBQyxJQUFJOzs7O2dCQUlsRCxrQkFBTyxDQUFDLFFBQVEsQ0FBQyxJQUFJLENBQUMsYUFBYSxDQUFDLFNBQVMsQ0FBQzs7O29CQUcxQyxHQUFHLENBQUMsR0FBRzs7b0JBRVAsR0FBRyxDQUFDLFdBQVcsRUFBRTs7Y0FFdkIsa0JBQU8sQ0FBQyxZQUFZLENBQUMsSUFBSSxDQUFDLGFBQWEsQ0FBQzs7b0JBRWxDLE1BQU0sQ0FBQyxVQUFVOztPQUU5QixDQUFDO1NBQ0g7SUFDSCxDQUFDLENBQUM7O0FBeEZKLCtCQTBGQyJ9
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicGxheWVyc190YWJsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy91aS9jb21wb25lbnRzL3BsYXllcnNfdGFibGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxpREFBbUQ7QUFDbkQsaURBQWlEO0FBRWpELDJEQUFtQztBQUVuQywwQ0FBc0M7QUFDdEMsNkNBQXFEO0FBRXJELE1BQXFCLFlBQWEsU0FBUSxXQUFXO0lBcUJqQztJQUNBO0lBckJsQixNQUFNLENBQVUsR0FBRyxHQUFXLGVBQWUsQ0FBQztJQUV0QyxVQUFVLEdBQUcsS0FBSyxJQUFtQixFQUFFO1FBQzdDLE1BQU0sV0FBVyxHQUNmLElBQUksQ0FBQyxXQUFXLEtBQUssU0FBUyxDQUFDLENBQUMsQ0FBQyxFQUFFLENBQUMsQ0FBQyxDQUFDLGVBQWUsSUFBSSxDQUFDLFdBQVcsRUFBRSxDQUFDO1FBRTFFLE1BQU0sV0FBVyxHQUFHLE9BQU8sSUFBSSxDQUFDLFVBQVUsSUFBSSxXQUFXLEVBQUUsQ0FBQztRQUU1RCxNQUFNLFFBQVEsR0FBRyxNQUFNLEtBQUssQ0FDMUIsR0FBRyxpQkFBQyxDQUFDLE1BQU0sR0FBRyxrQkFBUyxDQUFDLE9BQU8sR0FBRyxXQUFXLEVBQUUsQ0FDaEQsQ0FBQztRQUVGLE1BQU0sSUFBSSxHQUFHLE1BQU0sUUFBUSxDQUFDLElBQUksRUFBRSxDQUFDO1FBQ25DLElBQUksQ0FBQyxPQUFPLENBQUMsSUFBSSxDQUFDLEdBQUcsSUFBSSxDQUFDLE1BQU0sQ0FBQyxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUM7SUFDaEQsQ0FBQyxDQUFDO0lBRU0sVUFBVSxHQUFXLENBQUMsQ0FBQztJQUNkLE9BQU8sR0FBYSxFQUFFLENBQUM7SUFFeEMsWUFDa0IsUUFBZ0IsV0FBVyxFQUMzQixjQUFtQyxTQUFTO1FBRTVELEtBQUssRUFBRSxDQUFDO1FBSFEsVUFBSyxHQUFMLEtBQUssQ0FBc0I7UUFDM0IsZ0JBQVcsR0FBWCxXQUFX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

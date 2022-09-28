@@ -265,6 +265,27 @@ players-table h2 {
 players-table h2 route-link {
   color: #005c00;
 }
+players-table .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+players-table .pagination button {
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+players-table .pagination button:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
 players-table route-link.player-card {
   margin-bottom: 35px;
   width: max-content;
@@ -301,7 +322,7 @@ players-table route-link.player-card img {
   max-height: 70px;
   border-radius: 10px;
 }
-players-table .players-table-legend {
+players-table #players-table-legend {
   display: grid;
   grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
   grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";

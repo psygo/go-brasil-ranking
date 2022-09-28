@@ -4,34 +4,37 @@ import { RouteEnum } from "../../routing/router";
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
+import { paginationSlicer } from "../../infra/utils";
 
 export default class PlayersTable extends HTMLElement {
   static readonly tag: string = "players-table";
 
-  private declare currentPlayer: Player;
-
-  private getPlayers = async (): Promise<Player[]> => {
+  private getPlayers = async (): Promise<void> => {
     const isBrazilian =
       this.isBrazilian === undefined ? "" : `isBrazilian=${this.isBrazilian}`;
 
+    const queryString = `?de=${this.startAfter}&${isBrazilian}`;
+
     const response = await fetch(
-      `${g.apiUrl}${RouteEnum.players}?limite=${this.limit}&${isBrazilian}`
+      `${g.apiUrl}${RouteEnum.players}${queryString}`
     );
 
     const json = await response.json();
-    return json["data"]["players"];
+    this.players.push(...json["data"]["players"]);
   };
+
+  private startAfter: number = 0;
+  private readonly players: Player[] = [];
 
   constructor(
     public readonly title: string = "Jogadores",
-    public readonly limit: number | "max" = 20,
     public readonly isBrazilian: boolean | undefined = undefined
   ) {
     super();
   }
 
   async connectedCallback() {
-    const players = await this.getPlayers();
+    await this.getPlayers();
 
     this.innerHTML += /*html*/ `
       <h2>
@@ -40,7 +43,7 @@ export default class PlayersTable extends HTMLElement {
         </route-link>
       </h2>
       
-      <div class="players-table-legend">
+      <div id="players-table-legend">
         <span>#</span>
         <span>Foto</span>
         <span class="align-left">Nome</span>
@@ -50,49 +53,83 @@ export default class PlayersTable extends HTMLElement {
         <span>Data da Última Partida</span>
         <span>Número de Partidas</span>
       </div>
+
+      <div id="players-table-cards"></div>
+
+      <div class="pagination"></div>
     `;
 
-    this.setPlayersTable(players);
+    this.setCards();
+
+    this.setPagination();
+
+    const nextPageButton: HTMLButtonElement =
+      this.querySelector("button.next-page")!;
+    nextPageButton.click();
   }
 
-  private setPlayersTable = (players: Player[]): void => {
-    let i = 1;
-    this.currentPlayer = players[0];
-    for (const player of players) {
-      player.elo === this.currentPlayer.elo ? null : i++;
+  private setPagination = (): void => {
+    const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
 
-      this.currentPlayer = player;
+    paginationDiv.innerHTML += /*html*/ `
+      <button class="next-page">+ Jogadores</button>
+    `;
 
-      const elo = new Elo(this.currentPlayer.elo);
+    const nextPageButton: HTMLButtonElement =
+      this.querySelector("button.next-page")!;
 
-      this.innerHTML += /*html*/ `
+    nextPageButton.onclick = async (): Promise<void> => {
+      this.startAfter += g.queryLimit;
+
+      await this.getPlayers();
+
+      this.setCards();
+    };
+  };
+
+  private i: number = 0;
+  private lastElo: number = -10000;
+
+  private setCards = (): void => {
+    const cardsDiv: HTMLDivElement = this.querySelector(
+      "#players-table-cards"
+    )!;
+    const slicedPlayers = paginationSlicer(this.startAfter, this.players);
+    for (const player of slicedPlayers) {
+      if (player.elo !== this.lastElo) {
+        this.i++;
+        this.lastElo = player.elo;
+      }
+
+      const elo = new Elo(player.elo);
+
+      cardsDiv.innerHTML += /*html*/ `
         <route-link 
           class="player-card" 
-          id="${this.currentPlayer.firebaseRef}"
-          href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-            <span>${i}</span>
+          id="${player.firebaseRef}"
+          href="${RouteEnum.players}/${player.firebaseRef}">
+            <span>${this.i}</span>
             
             <span>${UiUtils.playerPicture(player.picture)}</span>
 
             <route-link 
-              href="${RouteEnum.players}/${this.currentPlayer.firebaseRef}">
-                <span class="align-left">${this.currentPlayer.name}</span>
+              href="${RouteEnum.players}/${player.firebaseRef}">
+                <span class="align-left">${player.name}</span>
             </route-link>
 
             <div>
-              ${UiUtils.allFlags(this.currentPlayer.countries)}
+              ${UiUtils.allFlags(player.countries)}
             </div>
 
             <span>${elo.num}</span>
 
             <span>${elo.danKyuLevel()}</span>
             
-            ${UiUtils.lastGameLink(this.currentPlayer)}
+            ${UiUtils.lastGameLink(player)}
             
             <span>${player.gamesTotal}</span>
         </route-link>
       `;
     }
   };
-
 }

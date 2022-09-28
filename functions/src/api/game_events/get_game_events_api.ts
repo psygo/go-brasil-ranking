@@ -1,9 +1,8 @@
-import { ExpressApiRoute } from "../../infra";
+import { ExpressApiRoute, paginationSlicer } from "../../infra";
 
 import { gameEventsCol } from "../../collections/game_events_col";
 
 import { TournamentOrLeague } from "../../../../frontend/src/models/game_event";
-import { paginationSlicer } from "../game_records/get_game_records_api";
 
 export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
@@ -14,8 +13,6 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
     const gameEventsSnaps = await gameEventsQuery.get();
 
     const docs = paginationSlicer(startAfter, gameEventsSnaps.docs);
-    
-    console.log(docs.length)
 
     const gameEvents: TournamentOrLeague[] = [];
     docs.forEach((gameEventDoc) => {

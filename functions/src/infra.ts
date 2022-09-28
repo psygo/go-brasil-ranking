@@ -7,7 +7,10 @@ export type ExpressNexFunction = (
   next: NextFunction
 ) => void;
 
-export const queryLimit = 5;
+const queryLimit = 5;
+
+export const paginationSlicer = (startAfter: number, list: any[]): any[] =>
+  list.slice(startAfter, startAfter + queryLimit);
 
 export const howMany = (askedLimit: string): number => {
   const maxLimit = 10000;

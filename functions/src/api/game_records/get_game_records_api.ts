@@ -4,7 +4,8 @@ import {
   GameRecord,
 } from "../../../../frontend/src/models/game_record";
 import { gameRecordsCol } from "../../collections/game_records_col";
-import { ExpressApiRoute, queryLimit } from "../../infra";
+import { ExpressApiRoute, paginationSlicer } from "../../infra";
+
 
 const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   const playerIsBlack = gameRecordsCol.col
@@ -57,9 +58,6 @@ const playerDateEloData = async (
     }))
     .reverse();
 };
-
-export const paginationSlicer = (startAfter: number, list: any[]): any[] =>
-  list.slice(startAfter, startAfter + queryLimit);
 
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {

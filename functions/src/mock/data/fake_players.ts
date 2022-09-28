@@ -86,7 +86,7 @@ export const fakePlayers: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2400,
+    elo: 2450,
   },
   {
     name: "Amir Fragman",

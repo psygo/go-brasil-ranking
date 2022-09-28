@@ -1,10 +1,11 @@
 import { Player } from "../../../../frontend/src/models/player";
 import { playersCol } from "../../collections/players_col";
-import { ExpressApiRoute, howMany } from "../../infra";
+import { ExpressApiRoute, paginationSlicer } from "../../infra";
+
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
-    const limit = howMany(req.query.limite as string);
+    const startAfter = parseInt(req.query.de as string);
     const isBrazilian =
       req.query.isBrazilian === undefined
         ? undefined
@@ -12,15 +13,17 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
         ? true
         : false;
 
-    let playersQuery = playersCol.col.limit(limit).orderBy("elo", "desc");
+    let playersQuery = playersCol.col.orderBy("elo", "desc");
 
-    if (isBrazilian !== undefined)
+    if (isBrazilian)
       playersQuery = playersQuery.where("isBrazilian", "==", isBrazilian);
 
-    const playersDocs = await playersQuery.get();
+    const playersSnaps = await playersQuery.get();
+
+    const docs = paginationSlicer(startAfter, playersSnaps.docs);
 
     const players: Player[] = [];
-    playersDocs.forEach((playerDoc) => {
+    docs.forEach((playerDoc) => {
       const playerNoRef = playerDoc.data() as Player;
       players.push({ ...playerNoRef, firebaseRef: playerDoc.id });
     });

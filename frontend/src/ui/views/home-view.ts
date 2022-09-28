@@ -9,9 +9,9 @@ export default class HomeView extends HTMLElement {
     document.title = "Ranking Brasileiro de Go";
 
     this.append(
-      new PlayersTable("Os 10 Melhores Brasileiros", 10, true),
+      new PlayersTable("Os 10 Melhores Brasileiros", true),
       new GameRecordsTable("Partidas Recentes"),
-      new GameEventsTable("Eventos Recentes", 5)
+      new GameEventsTable("Eventos Recentes")
     );
   }
 }

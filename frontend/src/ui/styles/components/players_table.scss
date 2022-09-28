@@ -3,6 +3,7 @@
 players-table {
   @include grt.spanAlignment;
   @include grt.captionDecoration;
+  @include grt.pagination;
 
   @mixin cardLegendGrid {
     $playerNameWidth: 175px;
@@ -24,7 +25,7 @@ players-table {
     @include cardLegendGrid;
   }
 
-  .players-table-legend {
+  #players-table-legend {
     @include cardLegendGrid;
     @include grt.cardPadding;
     @include grt.legendDecoration;

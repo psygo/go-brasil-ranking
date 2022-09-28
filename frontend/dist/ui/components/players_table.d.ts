@@ -1,11 +1,14 @@
 export default class PlayersTable extends HTMLElement {
     readonly title: string;
-    readonly limit: number | "max";
     readonly isBrazilian: boolean | undefined;
     static readonly tag: string;
-    private currentPlayer;
     private getPlayers;
-    constructor(title?: string, limit?: number | "max", isBrazilian?: boolean | undefined);
+    private startAfter;
+    private readonly players;
+    constructor(title?: string, isBrazilian?: boolean | undefined);
     connectedCallback(): Promise<void>;
-    private setPlayersTable;
+    private setPagination;
+    private i;
+    private lastElo;
+    private setCards;
 }
