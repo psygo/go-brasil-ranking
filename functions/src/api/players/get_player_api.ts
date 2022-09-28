@@ -11,13 +11,13 @@ export const getPlayer: ExpressApiRoute = async (req, res) => {
 
     if (req.query.existe === "")
       res.status(200).send({
-        status: "Sucesso",
+        status: "success",
         message: "Jogador existe.",
         data: playerDoc.exists,
       });
     else
       res.status(200).send({
-        status: "Sucesso",
+        status: "success",
         message: "Jogador encontrado.",
         data: { player: playerDoc.data() },
       });

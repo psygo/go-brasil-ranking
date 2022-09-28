@@ -12,13 +12,13 @@ export const getGameEvent: ExpressApiRoute = async (req, res) => {
 
     if (req.query.existe === "")
       res.status(200).send({
-        status: "Sucesso",
+        status: "success",
         message: "A partida existe.",
         data: gameEventDoc.exists,
       });
     else
       res.status(200).send({
-        status: "Sucesso",
+        status: "success",
         message: "Partida encontrada.",
         data: { gameEvent: gameEventDoc.data() },
       });

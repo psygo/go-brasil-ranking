@@ -21,7 +21,7 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
     });
 
     res.status(200).send({
-      status: "Sucesso",
+      status: "success",
       message: `Eventos encontrados (total: ${gameEvents.length})`,
       data: { gameEvents: gameEvents },
     });

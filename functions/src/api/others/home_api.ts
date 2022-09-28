@@ -3,7 +3,7 @@ import { ExpressApiRoute } from "../../infra";
 export const home: ExpressApiRoute = async (_, res) => {
   try {
     res.status(200).send({
-      status: "Sucesso",
+      status: "success",
       message: "Go Brasil Ranking API",
     });
   } catch (e) {

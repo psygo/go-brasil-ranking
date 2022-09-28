@@ -29,7 +29,7 @@ export const getPlayers: ExpressApiRoute = async (req, res) => {
     });
 
     res.status(200).send({
-      status: "Sucesso",
+      status: "success",
       message: `Jogadores encontrados (total: ${players.length})`,
       data: { players: players },
     });

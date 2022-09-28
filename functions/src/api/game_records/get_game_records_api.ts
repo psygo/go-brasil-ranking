@@ -6,7 +6,6 @@ import {
 import { gameRecordsCol } from "../../collections/game_records_col";
 import { ExpressApiRoute, paginationSlicer } from "../../infra";
 
-
 const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   const playerIsBlack = gameRecordsCol.col
     .where("blackRef", "==", playerRef)
@@ -70,7 +69,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
     if (playerRef) {
       if (dateElo) {
         res.status(200).send({
-          status: "Sucesso",
+          status: "success",
           message: "Elos encontrados.",
           data: { dateEloData: await playerDateEloData(playerRef) },
         });

@@ -43,7 +43,7 @@ export const postPlayerApi: ExpressApiRoute = async (req, res) => {
     const playerOnDbWithRef = await postPlayer(player);
 
     res.status(200).send({
-      status: "Sucesso",
+      status: "success",
       message: "Jogador adicionado com sucesso.",
       data: { player: playerOnDbWithRef },
     });
