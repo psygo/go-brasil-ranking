@@ -1,5 +1,5 @@
 import Serializable, { JsonDatum } from "../infra/serializable";
-import { GameResultStatus } from "./game_record";
+import { Color, GameResultStatus } from "./game_record";
 
 export type SerializedElo = number;
 export type SerializedEloDelta = number;
@@ -23,7 +23,7 @@ export default class Elo implements Serializable {
     (Math.floor(this.num / 100) - 20 + 1).toString() + (long ? " dan" : "d");
 
   private kyuFormatter = (long: boolean = false): string =>
-    Math.floor(20 - this.num / 100).toString() + (long ? " kyu" : "k");
+    (20 - Math.floor(this.num / 100)).toString() + (long ? " kyu" : "k");
 
   danKyuLevel = (long: boolean = false): string =>
     this.danOrKyu ? this.danFormatter(long) : this.kyuFormatter(long);
@@ -36,17 +36,26 @@ export default class Elo implements Serializable {
       : Elo.kAboveOrEqual2000;
   }
 
-  deltaFromGame = (opponentElo: Elo, gameResult: GameResultStatus): Elo => {
-    if (gameResult === GameResultStatus.Voided) return this;
+  deltaFromGame = (
+    opponentElo: Elo,
+    gameResult: GameResultStatus,
+    handicap: number = 0,
+    myColor: Color = Color.Black
+  ): Elo => {
+    if (gameResult === GameResultStatus.Voided) return new Elo(0);
 
-    const levelDiff = opponentElo.num - this.num;
+    const signedHandicap = myColor === Color.Black ? -handicap : handicap;
+
+    const levelDiff = opponentElo.num - this.num + signedHandicap * 100;
 
     const gameResultAsNumber: number =
       gameResult === GameResultStatus.Win ? 1 : 0;
 
     const expectedValue = 1 / (1 + 10 ** (levelDiff / 400));
 
-    return new Elo(Math.round((gameResultAsNumber - expectedValue) * this.k));
+    const delta = Math.round((gameResultAsNumber - expectedValue) * this.k);
+
+    return new Elo(delta);
   };
 
   add = (delta: Elo): Elo => new Elo(this.num + delta.num);

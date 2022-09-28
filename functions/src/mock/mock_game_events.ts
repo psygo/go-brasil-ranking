@@ -25,7 +25,7 @@ export const mockPopulateGameEventsApi: ExpressApiRoute = async (_, res) => {
     const gameEvents = await mockPopulateGameEvents();
 
     res.status(200).send({
-      status: "success",
+      status: "Successo",
       message: "Evento adicionado com sucesso.",
       data: { gameEvents: gameEvents },
     });

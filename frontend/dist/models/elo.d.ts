@@ -1,5 +1,5 @@
 import Serializable, { JsonDatum } from "../infra/serializable";
-import { GameResultStatus } from "./game_record";
+import { Color, GameResultStatus } from "./game_record";
 export declare type SerializedElo = number;
 export declare type SerializedEloDelta = number;
 export default class Elo implements Serializable {
@@ -15,6 +15,6 @@ export default class Elo implements Serializable {
     private kyuFormatter;
     danKyuLevel: (long?: boolean) => string;
     private get k();
-    deltaFromGame: (opponentElo: Elo, gameResult: GameResultStatus) => Elo;
+    deltaFromGame: (opponentElo: Elo, gameResult: GameResultStatus, handicap?: number, myColor?: Color) => Elo;
     add: (delta: Elo) => Elo;
 }

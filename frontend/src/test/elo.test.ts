@@ -1,9 +1,17 @@
 import * as chai from "chai";
 
 import Elo from "../models/elo";
-import { GameResultStatus } from "../models/game_record";
+import { Color, GameResultStatus } from "../models/game_record";
 
-describe("Elo", () => {
+describe("Elo Formatting", () => {
+  it("Below 2000 and above 2000 should yield asymmetric deltas", () => {
+    const eloNear2000 = new Elo(1980);
+
+    chai.expect(eloNear2000.danKyuLevel()).equal("1k");
+  });
+});
+
+describe("Elo Math", () => {
   it("Below 2000 and above 2000 should yield asymmetric deltas", () => {
     const eloAbove2000 = new Elo(2027);
     const eloBelow2000 = new Elo(1716);
@@ -47,10 +55,37 @@ describe("Elo", () => {
     const eloAbove1500 = new Elo(1499);
     const eloBelow1500 = new Elo(1501);
 
-    const deltaEloAbove1500 = eloAbove1500.deltaFromGame(eloBelow1500, GameResultStatus.Win);
-    const deltaEloBelow1500 = eloBelow1500.deltaFromGame(eloAbove1500, GameResultStatus.Loss);
+    const deltaEloAbove1500 = eloAbove1500.deltaFromGame(
+      eloBelow1500,
+      GameResultStatus.Win
+    );
+    const deltaEloBelow1500 = eloBelow1500.deltaFromGame(
+      eloAbove1500,
+      GameResultStatus.Loss
+    );
 
     chai.expect(deltaEloAbove1500.num).equal(25);
     chai.expect(deltaEloBelow1500.num).equal(-20);
+  });
+
+  it("(With Handicap) Below 2000 and above 2000 should yield asymmetric deltas", () => {
+    const whiteEloAbove2000 = new Elo(2027);
+    const blackEloBelow2000 = new Elo(1016);
+
+    const whiteDeltaEloAbove2000 = whiteEloAbove2000.deltaFromGame(
+      blackEloBelow2000,
+      GameResultStatus.Win,
+      7,
+      Color.White
+    );
+    const blackDeltaEloBelow2000 = blackEloBelow2000.deltaFromGame(
+      whiteEloAbove2000,
+      GameResultStatus.Loss,
+      7,
+      Color.Black
+    );
+
+    chai.expect(whiteDeltaEloAbove2000.num).equal(4);
+    chai.expect(blackDeltaEloBelow2000.num).equal(-7);
   });
 });

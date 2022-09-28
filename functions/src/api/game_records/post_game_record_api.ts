@@ -34,11 +34,15 @@ export const postGameRecord = async (
 
   const blackEloDelta = blackElo.deltaFromGame(
     whiteElo,
-    doesThisColorWin(Color.Black, gameRecord.result)
+    doesThisColorWin(Color.Black, gameRecord.result),
+    gameRecord.handicap ?? 0,
+    Color.Black
   );
   const whiteEloDelta = whiteElo.deltaFromGame(
     blackElo,
-    doesThisColorWin(Color.White, gameRecord.result)
+    doesThisColorWin(Color.White, gameRecord.result),
+    gameRecord.handicap ?? 0,
+    Color.White
   );
 
   // Update Players' Elos and Total Games
