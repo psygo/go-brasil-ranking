@@ -59,7 +59,7 @@ export default class GameEventsTable extends HTMLElement {
     const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
 
     paginationDiv.innerHTML += /*html*/ `
-      <button class="next-page">+ ${g.queryLimit} Eventos</button>
+      <button class="next-page">+ Eventos</button>
     `;
 
     const nextPageButton: HTMLButtonElement =

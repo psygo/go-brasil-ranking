@@ -96,7 +96,7 @@ export default class GameRecordsTable extends HTMLElement {
     const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
 
     paginationDiv.innerHTML += /*html*/ `
-      <button class="next-page">+ ${g.queryLimit} Partidas</button>
+      <button class="next-page">+ Partidas</button>
     `;
 
     const nextPageButton: HTMLButtonElement =
