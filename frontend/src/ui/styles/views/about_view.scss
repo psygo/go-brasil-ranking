@@ -1,26 +1,45 @@
 about-view {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 650px;
+
   h1 {
     margin-bottom: 20px;
   }
 
-  h2 {
-    margin-top: 25px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-  }
+  ol {
+    padding-left: 50px;
+    padding-right: 50px;
 
-  $paddingLeftP: 39px;
+    $liFontSize: 1.4rem;
 
-  p {
-    padding-left: $paddingLeftP;
-  }
+    li::marker {
+      font-size: $liFontSize - 0.2rem;
+      font-weight: bold;
+    }
 
-  ul {
-    padding-top: 20px;
-    padding-left: $paddingLeftP + 35px;
+    h2 {
+      margin-top: 25px;
+      margin-bottom: 20px;
+      margin-left: 10px;
 
-    li {
-      margin-bottom: 6px;
+      font-size: $liFontSize;
+    }
+
+    $paddingLeftP: 15px;
+
+    p {
+      padding-left: $paddingLeftP;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: $paddingLeftP + 50px;
+
+      li {
+        margin-bottom: 6px;
+      }
     }
   }
 }

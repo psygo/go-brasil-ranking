@@ -333,22 +333,36 @@ players-table #players-table-legend {
   font-weight: bold;
 }
 
+about-view {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+}
 about-view h1 {
   margin-bottom: 20px;
 }
-about-view h2 {
+about-view ol {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+about-view ol li::marker {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+about-view ol h2 {
   margin-top: 25px;
   margin-bottom: 20px;
   margin-left: 10px;
+  font-size: 1.4rem;
 }
-about-view p {
-  padding-left: 39px;
+about-view ol p {
+  padding-left: 15px;
+  margin-bottom: 15px;
 }
-about-view ul {
-  padding-top: 20px;
-  padding-left: 74px;
+about-view ol ul {
+  padding-left: 65px;
 }
-about-view ul li {
+about-view ol ul li {
   margin-bottom: 6px;
 }
 
