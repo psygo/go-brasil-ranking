@@ -137,6 +137,8 @@ export default class PlayerView extends HTMLElement {
   private setPlayerCard = (): void => {
     const elo = new Elo(this.player.elo);
 
+    const email = this.player.email ? this.player.email : "&mdash;";
+
     const firstCountry = this.player.countries[0];
     const brState =
       firstCountry.name === CountryName.brazil
@@ -161,7 +163,7 @@ export default class PlayerView extends HTMLElement {
 
         <div id="player-personal-card-content">
           <route-link href="mailto:${this.player.email}">
-            <span>${this.player.email}</span>
+            <span>${email}</span>
           </route-link>
           <span>${brState}</span>
           <span>${brCity}</span>
