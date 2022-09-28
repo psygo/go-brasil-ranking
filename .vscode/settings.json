@@ -1,7 +1,7 @@
 {
     "files.exclude": {
         //   0. General Stuff
-        ".gitignore": true,
+        // ".gitignore": true,
         "README.md": true,
         //
         //   1. JS | TS | Packages

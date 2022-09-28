@@ -15,6 +15,15 @@ functions/typings/
 go_brasil_ranking/index.js
 go_brasil_ranking/dist/
 
+go_brasil_ranking/node_modules/
+go_brasil_ranking/dist
+go_brasil_ranking/index.js
+
+go_brasil_ranking/lib/**/*.js
+go_brasil_ranking/lib/**/*.js.map
+
+functions/typings/
+
 # Logs
 logs
 *.log
