@@ -26,7 +26,6 @@ module.exports = {
     path: path.resolve(__dirname, "./"),
     libraryTarget: "this",
   },
-  watch: true,
   target: "node",
   externals: [nodeExternals()],
 };

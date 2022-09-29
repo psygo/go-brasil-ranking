@@ -2,7 +2,7 @@
 
 FIREBASE="."
 
-sh scripts/emulators_kill.sh
+sh scripts/kill_emulators.sh
 
 firebase emulators:start \
     --config ${FIREBASE}/firebase.json \

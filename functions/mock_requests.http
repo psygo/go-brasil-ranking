@@ -4,6 +4,11 @@
 
 @address = http://localhost:4096/fanaro-firebase-lab/us-central1/goBrasilRanking
 
+## Home Test
+
+### GET
+GET {{address}}
+
 ################################################################################
 
 # Players

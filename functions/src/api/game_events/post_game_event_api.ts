@@ -1,4 +1,4 @@
-import * as admin from "firebase-admin";
+// import * as admin from "firebase-admin";
 
 import { gameEventsCol } from "../../collections/game_events_col";
 
@@ -11,12 +11,10 @@ export const postGameEvent = async (
   gameEvent: TournamentOrLeague,
   firebaseRef?: FirebaseRef
 ): Promise<TournamentOrLeague> => {
-  const now = admin.firestore.Timestamp.now().toMillis();
-
   const gameEventOnDb = {
     ...gameEvent,
     firstDate: gameEvent.dates[0],
-    dateCreated: now,
+    dateCreated: new Date().getTime(),
     gamesTotal: 0,
   };
 

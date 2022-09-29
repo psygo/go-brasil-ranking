@@ -1,5 +1,3 @@
-import * as admin from "firebase-admin";
-
 import { ExpressApiRoute, parseBody } from "../../infra";
 
 import { gameRecordsCol } from "../../collections/game_records_col";
@@ -55,8 +53,6 @@ export const postGameRecord = async (
     gamesTotal: white.gamesTotal! + 1,
   });
 
-  const now = admin.firestore.Timestamp.now().toMillis();
-
   let gameRecordOnDb: GameRecord = {
     ...gameRecord,
     blackPlayer: black,
@@ -67,7 +63,7 @@ export const postGameRecord = async (
       atTheTimeWhiteElo: whiteElo.serialize(),
       eloDeltaWhite: whiteEloDelta.serialize(),
     },
-    dateCreated: now,
+    dateCreated: new Date().getTime(),
   };
 
   // Update Games Event
