@@ -2,7 +2,6 @@
   "name": "go_brasil_ranking",
   "version": "1.0.0",
   "author": "Philippe Fanaro",
-  "license": "ISC",
   "description": "Ranking Go Brasil",
   "private": true,
   "main": "index.js",

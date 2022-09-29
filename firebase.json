@@ -1,6 +1,6 @@
 {
   "functions": {
-    "source": "../functions",
+    "source": "functions/",
     "ignore": [
       "node_modules",
       ".git",
@@ -13,7 +13,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "/frontend/public",
+    "public": "frontend/public/",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -22,7 +22,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/frontend/public/index_out.html"
+        "destination": "frontend/public/index_out.html"
       }
     ]
   },

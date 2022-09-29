@@ -1,24 +1,16 @@
 #!/bin/sh
 
-# Firebase Emulators
-
-# We need to be in the functions directory for this.
-# Run it with `npm run everything`
-
-# if [[ ":$PWD:" != *":functions:"]]; then
-#     echo "Need to be in the functions/ directory."
-#     exit
-# fi
+# 1. Firebase Emulators
 
 firebase emulators:start &
 
-# Go Brasil Ranking
+# 2. Go Brasil Ranking
 
 cd frontend || exit
 
 npm run everything &
 
-# Functions
+# 3. Functions
 
 cd ../functions || exit
 
