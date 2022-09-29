@@ -6,26 +6,28 @@
       ".git",
       "firebase-debug.log",
       "firebase-debug.*.log"
-    ],
-    "predeploy": "npm --prefix \"$RESOURCE_DIR\" run build"
+    ]
   },
   "firestore": {
-    "rules": "firebase/firestore.rules",
-    "indexes": "firebase/firestore.indexes.json"
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "public",
+    "public": "/frontend/public",
     "ignore": [
-      "firebase/firebase.json",
+      "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "rewrites": [
       {
         "source": "**",
-        "destination": "frontend/public/index.html"
+        "destination": "/frontend/public/index_out.html"
       }
     ]
+  },
+  "remoteconfig": {
+    "template": "remoteconfig.template.json"
   },
   "emulators": {
     "auth": {
@@ -44,8 +46,5 @@
       "enabled": true,
       "port": 7000
     }
-  },
-  "remoteconfig": {
-    "template": "firebase/remoteconfig.template.json"
   }
 }

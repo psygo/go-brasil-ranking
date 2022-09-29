@@ -14,7 +14,7 @@
         //   2. Firebase
         //
         // 2.1. Config
-        "firebase/": true,
+        "firebase/": false,
         "firebase.json": true,
         ".firebaserc": true,
         "firestore.indexes.json": true,
