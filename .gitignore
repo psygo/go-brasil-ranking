@@ -1,5 +1,9 @@
+# General Stuff
 **/node_modules/
 **/dist/
 **/index.js
 **/tsconfig.tsbuildinfo
 **/*.log
+
+# Firebase
+**/.firebase/
