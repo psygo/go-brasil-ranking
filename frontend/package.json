@@ -8,11 +8,11 @@
   "main": "index.js",
   "scripts": {
     "everything": "sh ./scripts/everything.sh",
-    "tsc": "sh ./scripts/tsc.sh",
+    "liveserver": "sh ./scripts/liveserver.sh",
     "sass": "sh ./scripts/sass.sh",
-    "webpack": "sh ./scripts/webpack.sh",
     "test": "sh ./scripts/test.sh",
-    "liveserver": "sh ./scripts/liveserver.sh"
+    "tsc": "sh ./scripts/tsc.sh",
+    "webpack": "sh ./scripts/webpack.sh"
   },
   "devDependencies": {
     "@types/chai": "^4.3.3",

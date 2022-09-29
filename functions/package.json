@@ -5,10 +5,9 @@
   "private": true,
   "scripts": {
     "everything": "sh ./scripts/everything.sh",
-    "tsc": "sh ./scripts/tsc.sh",
-    "webpack": "sh ./scripts/webpack.sh",
     "test": "sh ./scripts/test.sh",
-    "emulators:kill": "sh ./scripts/firebase_emulators_kill.sh"
+    "tsc": "sh ./scripts/tsc.sh",
+    "webpack": "sh ./scripts/webpack.sh"
   },
   "engines": {
     "node": "16"

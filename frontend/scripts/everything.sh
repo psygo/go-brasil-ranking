@@ -1,4 +1,10 @@
-#!/bin/sh
+#!/bin/bash
+
+PORT=8086
+
+if [[ $(lsof -ti:"${PORT}") ]]; then
+    lsof -ti:"${PORT}" | xargs kill -9
+fi
 
 npm run tsc &
 npm run sass &
