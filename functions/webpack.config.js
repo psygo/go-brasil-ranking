@@ -23,7 +23,7 @@ module.exports = {
   },
   output: {
     filename: "index.js",
-    path: path.resolve(__dirname, "./"),
+    path: path.resolve(__dirname, "../public/"),
     libraryTarget: "this",
   },
   target: "node",

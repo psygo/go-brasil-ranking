@@ -13,7 +13,7 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "frontend/public/",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -22,7 +22,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "frontend/public/index_out.html"
+        "function": "goBrasilRanking"
       }
     ]
   },
