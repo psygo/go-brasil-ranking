@@ -9,4 +9,4 @@ sed 's/\/public\///g' "${PUBLIC}"/index.html \
 
 firebase deploy \
     --config ${FIREBASE}/firebase.json \
-    --only hosting,functions,firestore,auth
+    --only functions
