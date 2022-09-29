@@ -115,6 +115,8 @@ POST {{address}}/mock-populate-everything
 
 ### 1. Graph Data
 
-GET {{address}}/partidas/data-elo/54
+@game=10
+
+GET {{address}}/partidas/{{game}}?data-elo=true
 
 ################################################################################
