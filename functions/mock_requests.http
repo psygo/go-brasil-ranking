@@ -125,3 +125,7 @@ POST {{address}}/mock-populate-everything
 GET {{address}}/partidas/{{game}}?data-elo=true
 
 ################################################################################
+
+# Real Function
+
+@address = http://localhost:4096/fanaro-firebase-lab/us-central1/goBrasilRanking

@@ -26,7 +26,9 @@ import { mockPopulateGameRecordsApi } from "./mock/mock_game_recods";
 import { mockPopulateGameEventsApi } from "./mock/mock_game_events";
 import { mockPopulateEverythingApi } from "./mock/mock_everything";
 
-admin.initializeApp();
+import { firebaseConfig } from "../../frontend/src/infra/firebase_config";
+
+admin.initializeApp(firebaseConfig);
 
 export const db = admin.firestore();
 

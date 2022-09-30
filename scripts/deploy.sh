@@ -4,6 +4,8 @@ LOCAL="frontend/local"
 PUBLIC="public"
 FIREBASE="."
 
+rm -r "./public/"
+
 cp -r "${LOCAL}" .
 
 mv "./local/" "./public/"
@@ -17,4 +19,4 @@ rm "${PUBLIC}/index_local.html"
 
 firebase deploy \
     --config ${FIREBASE}/firebase.json \
-    --only hosting
+    --only functions
