@@ -132,7 +132,7 @@ GET {{address}}/partidas/{{game}}?data-elo=true
 
 ### Test
 
-GET {{addressReal}}/
+GET {{addressReal}}
 
 ### Mock Real
 

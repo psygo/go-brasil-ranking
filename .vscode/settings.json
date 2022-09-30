@@ -24,8 +24,8 @@
         "**/remoteconfig.template.json": false,
         //
         // 2.2. Debug
-        // "**/firebase-debug.log": true,
-        // "**/firestore-debug.log": true,
+        "**/firebase-debug.log": true,
+        "**/firestore-debug.log": true,
         "**/pubsub-debug.log": true,
         "**/ui-debug.log": true,
         //
