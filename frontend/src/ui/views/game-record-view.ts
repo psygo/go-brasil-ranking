@@ -61,7 +61,8 @@ export default class GameRecordView extends HTMLElement {
   private addSgfDiagram = (): void => {
     const gliftScript = document.createElement("script");
     gliftScript.type = "text/javascript";
-    gliftScript.src = "/public/glift_1_1_2.min.js";
+    // TODO2: Need to add an if for when in production
+    gliftScript.src = "/local/glift_1_1_2.min.js";
     gliftScript.toggleAttribute("async");
 
     gliftScript.onload = () => {
