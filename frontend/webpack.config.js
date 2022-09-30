@@ -20,7 +20,7 @@ module.exports = {
   },
   output: {
     filename: "index.js",
-    path: path.resolve(__dirname, "./public"),
+    path: path.resolve(__dirname, "./local/"),
   },
   watchOptions: {
     ignored: ["./firebase-debug.log", "./firestore-debug.log"],

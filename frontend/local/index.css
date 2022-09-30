@@ -1,0 +1,792 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: sans-serif;
+  height: 100%;
+}
+
+body {
+  background-color: #d7d7d7;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 42px 1fr auto;
+  grid-template-areas: "header" "main" "footer";
+}
+
+a {
+  text-decoration: none;
+}
+
+route-link:hover {
+  cursor: pointer;
+}
+
+main {
+  grid-area: main;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  padding-top: 20px;
+}
+
+header {
+  grid-area: header;
+  background-color: green;
+  font-size: 1.1rem;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+header nav-bar nav {
+  display: flex;
+  gap: 20px;
+}
+header nav-bar nav route-link {
+  color: #f9f9f9;
+}
+
+footer {
+  grid-area: footer;
+}
+footer foot-er {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  background-color: #d4d4d4;
+}
+footer foot-er svg {
+  width: 24px;
+  fill: #717171;
+}
+
+game-records-table h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+game-records-table h2 route-link {
+  color: #005c00;
+}
+game-records-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-records-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+game-records-table .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+game-records-table .pagination button {
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+game-records-table .pagination button:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-records-table route-link.game-record-card {
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 12px 8px;
+  padding-right: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 30px 70px 85px 60px 40px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
+  grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
+  grid-column-gap: 10px;
+}
+game-records-table route-link.game-record-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-records-table route-link.game-record-card route-link {
+  color: #000066;
+}
+game-records-table route-link.game-record-card route-link[winner] {
+  color: #005200;
+}
+game-records-table route-link.game-record-card route-link[loser] {
+  color: #660000;
+}
+game-records-table route-link.game-record-card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+game-records-table route-link.game-record-card[player-wins] {
+  background-color: #e6ffe6;
+}
+game-records-table route-link.game-record-card[player-loses] {
+  background-color: #ffe6e6;
+}
+game-records-table #game-records-table-legend {
+  display: grid;
+  grid-template-columns: 30px 70px 85px 60px 40px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
+  grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
+  grid-column-gap: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  align-items: center;
+  font-weight: bold;
+}
+
+game-events-table h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+game-events-table h2 route-link {
+  color: #005c00;
+}
+game-events-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-events-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+game-events-table .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+game-events-table .pagination button {
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+game-events-table .pagination button:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-events-table route-link.game-event-card {
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 12px 8px;
+  padding-right: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+  display: grid;
+  grid-template-areas: "ref name type total-games";
+  grid-template-columns: 30px 170px 75px 65px 90px 90px;
+  grid-column-gap: 10px;
+}
+game-events-table route-link.game-event-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-events-table route-link.game-event-card route-link {
+  color: #000066;
+}
+game-events-table route-link.game-event-card route-link[winner] {
+  color: #005200;
+}
+game-events-table route-link.game-event-card route-link[loser] {
+  color: #660000;
+}
+game-events-table route-link.game-event-card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+game-events-table .game-events-table-legend {
+  padding: 12px 8px;
+  padding-right: 12px;
+  align-items: center;
+  font-weight: bold;
+  display: grid;
+  grid-template-areas: "ref name type total-games";
+  grid-template-columns: 30px 170px 75px 65px 90px 90px;
+  grid-column-gap: 10px;
+}
+
+players-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+players-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+players-table h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+players-table h2 route-link {
+  color: #005c00;
+}
+players-table .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+players-table .pagination button {
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+players-table .pagination button:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+players-table route-link.player-card {
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 12px 8px;
+  padding-right: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
+  grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
+  grid-column-gap: 10px;
+}
+players-table route-link.player-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+players-table route-link.player-card route-link {
+  color: #000066;
+}
+players-table route-link.player-card route-link[winner] {
+  color: #005200;
+}
+players-table route-link.player-card route-link[loser] {
+  color: #660000;
+}
+players-table route-link.player-card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+players-table #players-table-legend {
+  display: grid;
+  grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
+  grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
+  grid-column-gap: 10px;
+  padding: 12px 8px;
+  padding-right: 12px;
+  align-items: center;
+  font-weight: bold;
+}
+
+about-view {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+}
+about-view h1 {
+  margin-bottom: 20px;
+}
+about-view ol {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+about-view ol li::marker {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+about-view ol h2 {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  font-size: 1.4rem;
+}
+about-view ol p {
+  padding-left: 15px;
+  margin-bottom: 15px;
+}
+about-view ol table {
+  padding-left: 30px;
+  padding-right: 40px;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+about-view ol table td,
+about-view ol table th {
+  padding: 7.5px;
+  border: solid 0.25px #1b1c1f;
+  text-align: center;
+}
+about-view ol table tr:nth-child(odd),
+about-view ol table th {
+  background-color: #d2d2d2;
+}
+about-view ol table tr:nth-child(even),
+about-view ol table th {
+  background-color: gainsboro;
+}
+
+home-view {
+  display: grid;
+  grid-template-rows: max-content max-content max-content;
+  grid-row-gap: 25px;
+  justify-items: center;
+}
+
+player-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px 155px 350px 1fr;
+  grid-row-gap: 20px;
+  grid-template-areas: "name" "metadata" "elo-graph" "game-records";
+  justify-items: center;
+}
+player-view #graph {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 325px;
+}
+player-view #graph h2 {
+  font-size: 1.8rem;
+}
+player-view #graph canvas {
+  max-width: 500px;
+  max-height: 225px;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  background-color: whitesmoke;
+  padding: 15px 20px;
+}
+player-view #graph canvas:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+player-view #name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+player-view #name img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 10px;
+}
+player-view #player-personal-card span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+player-view #player-personal-card .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+player-view #player-personal-card #player-personal-card-content {
+  display: grid;
+  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
+  grid-column-gap: 10px;
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 12px 8px;
+  padding-right: 12px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+player-view #player-personal-card #player-personal-card-content:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+player-view #player-personal-card #player-personal-card-content route-link {
+  color: #000066;
+}
+player-view #player-personal-card #player-personal-card-content route-link[winner] {
+  color: #005200;
+}
+player-view #player-personal-card #player-personal-card-content route-link[loser] {
+  color: #660000;
+}
+player-view #player-personal-card #player-personal-card-content img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+player-view #player-personal-card #player-personal-card-legend {
+  display: grid;
+  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
+  grid-column-gap: 10px;
+  align-items: center;
+  font-weight: bold;
+  padding: 12px 8px;
+  padding-right: 12px;
+}
+
+game-record-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  justify-items: center;
+}
+game-record-view #glift {
+  width: 500px;
+  height: 500px;
+}
+
+unknown-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 300px;
+  font-size: 1.8rem;
+}
+
+admin-view[signed-in=false] form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 25px;
+  font-size: 1.15rem;
+  margin-top: 30px;
+}
+admin-view[signed-in=false] form button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 7px 10px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+admin-view[signed-in=false] form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  border: 0;
+}
+admin-view[signed-in=false] form fieldset label {
+  height: 10px;
+  padding-left: 1px;
+}
+admin-view[signed-in=false] form fieldset input,
+admin-view[signed-in=false] form fieldset select {
+  height: 35px;
+  width: 290px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+admin-view[signed-in=false] form fieldset input:focus-visible,
+admin-view[signed-in=false] form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+admin-view[signed-in=false] form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+admin-view[signed-in=false] form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
+admin-view[signed-in=false] form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+admin-view[signed-in=false] form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+admin-view[signed-in=true] {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content max-content max-content;
+  grid-template-areas: "msg" "sign-out-button" "add-new-links";
+}
+admin-view[signed-in=true] button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 7px 10px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+admin-view[signed-in=true] div#return-msg {
+  margin-top: 30px;
+}
+admin-view[signed-in=true] div#return-msg route-link {
+  color: #004d00;
+}
+admin-view[signed-in=true] p {
+  margin-top: 40px;
+}
+admin-view[signed-in=true] p span {
+  color: darkblue;
+}
+admin-view[signed-in=true] #add-new p {
+  margin-bottom: 20px;
+}
+admin-view[signed-in=true] #add-new ul {
+  margin-left: 40px;
+}
+admin-view[signed-in=true] #add-new ul li {
+  margin-bottom: 7px;
+}
+admin-view[signed-in=true] #add-new ul route-link {
+  color: #004d00;
+}
+
+new-player-view form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 25px;
+  font-size: 1.15rem;
+  margin-top: 30px;
+}
+new-player-view form button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 7px 10px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-player-view form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  border: 0;
+}
+new-player-view form fieldset label {
+  height: 10px;
+  padding-left: 1px;
+}
+new-player-view form fieldset input,
+new-player-view form fieldset select {
+  height: 35px;
+  width: 290px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-player-view form fieldset input:focus-visible,
+new-player-view form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+new-player-view form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+new-player-view form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
+new-player-view form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+new-player-view form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+new-player-view div#return-msg {
+  margin-top: 30px;
+}
+new-player-view div#return-msg route-link {
+  color: #004d00;
+}
+new-player-view img#preview {
+  max-width: 120px;
+  margin: 0 auto;
+}
+
+new-game-event-view form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 25px;
+  font-size: 1.15rem;
+  margin-top: 30px;
+}
+new-game-event-view form button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 7px 10px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-game-event-view form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  border: 0;
+}
+new-game-event-view form fieldset label {
+  height: 10px;
+  padding-left: 1px;
+}
+new-game-event-view form fieldset input,
+new-game-event-view form fieldset select {
+  height: 35px;
+  width: 290px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-game-event-view form fieldset input:focus-visible,
+new-game-event-view form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+new-game-event-view form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+new-game-event-view form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
+new-game-event-view form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+new-game-event-view form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+new-game-event-view div#return-msg {
+  margin-top: 30px;
+}
+new-game-event-view div#return-msg route-link {
+  color: #004d00;
+}
+
+new-game-record-view form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 25px;
+  font-size: 1.15rem;
+  margin-top: 30px;
+}
+new-game-record-view form button {
+  width: max-content;
+  margin-top: 10px;
+  padding: 7px 10px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-game-record-view form fieldset {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 20px;
+  border: 0;
+}
+new-game-record-view form fieldset label {
+  height: 10px;
+  padding-left: 1px;
+}
+new-game-record-view form fieldset input,
+new-game-record-view form fieldset select {
+  height: 35px;
+  width: 290px;
+  font-size: 1.1rem;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+}
+new-game-record-view form fieldset input:focus-visible,
+new-game-record-view form fieldset select:focus-visible {
+  outline: #0000cc solid 1.5px;
+}
+new-game-record-view form fieldset input {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+new-game-record-view form fieldset input[type=file] {
+  border: 0;
+  padding-left: 1px;
+}
+new-game-record-view form fieldset select {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+new-game-record-view form fieldset div.multi-select {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
+}
+new-game-record-view div#return-msg {
+  margin-top: 30px;
+}
+new-game-record-view div#return-msg route-link {
+  color: #004d00;
+}
+
+/*# sourceMappingURL=index.css.map */

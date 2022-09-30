@@ -1,11 +1,19 @@
 #!/bin/sh
 
-# PUBLIC="frontend/public"
+LOCAL="frontend/local"
+PUBLIC="public"
 FIREBASE="."
 
-# # Take out `/public/` from `index.html`.
-# sed 's/\/public\///g' "${PUBLIC}"/index.html \
-#     >"${PUBLIC}"/index_out.html
+cp -r "${LOCAL}" .
+
+mv "./local/" "./public/"
+
+mv "${PUBLIC}/index.html" "${PUBLIC}/index_local.html"
+
+sed 's/\/local\///g' "${PUBLIC}/index_local.html" \
+    >"${PUBLIC}/index.html"
+
+rm "${PUBLIC}/index_local.html"
 
 firebase deploy \
     --config ${FIREBASE}/firebase.json \
