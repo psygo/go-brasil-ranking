@@ -5,6 +5,7 @@ import { RouteEnum } from "../../routing/router";
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
 import UiTable from "./ui_table";
+import { HtmlString } from "../../infra/utils";
 
 export default class GameEventsTable extends UiTable<TournamentOrLeague> {
   static readonly tag: string = "game-events-table";
@@ -24,14 +25,18 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
     super(title);
   }
 
-  protected prepareTable = (): void => {
-    this.innerHTML += /*html*/ `
+  protected get caption(): HtmlString {
+    return /*html*/ `
       <h2>
         <route-link href="${RouteEnum.gameEvents}">
           ${this.title}
         </route-link>
       </h2>
-      
+    `;
+  }
+
+  protected get legend(): HtmlString {
+    return /*html*/ `
       <div id="legend">
         <span>#</span>
         <span class="align-left">Nome</span>
@@ -41,9 +46,7 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
         <span>Data de Fim</span>
       </div>
     `;
-
-    this.addHtmlCardLoaderPaginationDivs();
-  };
+  }
 
   protected setCards = (): void => {
     const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;

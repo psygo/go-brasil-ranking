@@ -4,3 +4,5 @@ export const paginationSlicer = (startAfter: number, list: any[]): any[] =>
   list.slice(startAfter, startAfter + g.queryLimit);
 
 export const inf = 1e10;
+
+export type HtmlString = string;

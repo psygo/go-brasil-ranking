@@ -1,4 +1,5 @@
 import { Globals as g } from "../../infra/globals";
+import { HtmlString } from "../../infra/utils";
 
 import { TournamentOrLeague } from "../../models/game_event";
 import { GameRecord } from "../../models/game_record";
@@ -18,13 +19,14 @@ export default abstract class UiTable<
   async connectedCallback(): Promise<void> {
     this.prepareTable();
 
+    this.toggleLoader();
+
     await this.getData();
 
     if (this.data.length > 0) {
-      this.toggleLoader();
-
+      this.setLegend();
+      this.setCaption();
       this.setCards();
-
       this.setPagination();
     }
   }
@@ -37,9 +39,19 @@ export default abstract class UiTable<
     loaderDiv.style.display = loaderDivDisplay === "none" ? "flex" : "none";
   };
 
-  protected abstract prepareTable(): void;
+  protected abstract get caption(): HtmlString;
 
-  protected addHtmlCardLoaderPaginationDivs = (): void => {
+  private setCaption = (): void => {
+    this.innerHTML = this.caption + this.innerHTML;
+  };
+
+  protected abstract get legend(): HtmlString;
+
+  private setLegend = (): void => {
+    this.innerHTML = this.legend + this.innerHTML;
+  };
+
+  protected prepareTable = (): void => {
     this.innerHTML += /*html*/ `
       <div id="cards"></div>
 

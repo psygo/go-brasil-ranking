@@ -7,6 +7,7 @@ import { Color, GameRecord, resultString } from "../../models/game_record";
 import { isTournamentOrLeague } from "../../models/game_event";
 import { UiUtils } from "../ui_utils";
 import UiTable from "./ui_table";
+import { HtmlString } from "../../infra/utils";
 
 export default class GameRecordsTable extends UiTable<GameRecord> {
   static readonly tag: string = "game-records-table";
@@ -39,9 +40,9 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     } else return null;
   }
 
-  protected prepareTable = (): void => {
+  protected get caption(): HtmlString {
     const titleSuffix = this.playerRef ? this.playerName : "";
-    const title = this.playerRef
+    return this.playerRef
       ? /*html*/ `
           <h2>
             Partidas de ${titleSuffix}
@@ -54,31 +55,29 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
             </route-link>
           </h2>
         `;
+  }
 
-    this.innerHTML = /*html*/ `
-        ${title}
-
-        <div id="legend">
-          <span>#</span>
-          <span>Foto Preto</span>
-          <span class="align-left">Preto</span>
-          <span>País Preto</span>
-          <span>Compen-sação</span>
-          <span>Elo</span>
-          <span>Elo Dif</span>
-          <span>Foto Branco</span>
-          <span class="align-left">Branco</span>
-          <span>País Branco</span>
-          <span>Elo</span>
-          <span>Elo Dif</span>
-          <span>Resultado</span>
-          <span>Data</span>
-          <span>Evento</span>
-        </div>
-      `;
-
-    this.addHtmlCardLoaderPaginationDivs();
-  };
+  protected get legend(): HtmlString {
+    return /*html*/ `
+      <div id="legend">
+        <span>#</span>
+        <span>Foto Preto</span>
+        <span class="align-left">Preto</span>
+        <span>País Preto</span>
+        <span>Compen-sação</span>
+        <span>Elo</span>
+        <span>Elo Dif</span>
+        <span>Foto Branco</span>
+        <span class="align-left">Branco</span>
+        <span>País Branco</span>
+        <span>Elo</span>
+        <span>Elo Dif</span>
+        <span>Resultado</span>
+        <span>Data</span>
+        <span>Evento</span>
+      </div>
+    `;
+  }
 
   protected setCards = (): void => {
     const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;

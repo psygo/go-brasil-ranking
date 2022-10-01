@@ -4,7 +4,7 @@ import { RouteEnum } from "../../routing/router";
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
-import { inf, paginationSlicer } from "../../infra/utils";
+import { HtmlString, inf, paginationSlicer } from "../../infra/utils";
 import UiTable from "./ui_table";
 
 export default class PlayersTable extends UiTable<Player> {
@@ -40,14 +40,18 @@ export default class PlayersTable extends UiTable<Player> {
     nextButton.click();
   }
 
-  protected prepareTable = (): void => {
-    this.innerHTML += /*html*/ `
+  protected get caption(): HtmlString {
+    return /*html*/ `
       <h2>
         <route-link href="${RouteEnum.players}">
           ${this.title}
         </route-link>
       </h2>
-      
+    `;
+  }
+
+  protected get legend(): HtmlString {
+    return /*html*/ `
       <div id="legend">
         <span>#</span>
         <span>Foto</span>
@@ -59,9 +63,7 @@ export default class PlayersTable extends UiTable<Player> {
         <span>Número de Partidas</span>
       </div>
     `;
-
-    this.addHtmlCardLoaderPaginationDivs();
-  };
+  }
 
   private i: number = 0;
   private lastElo: number = -inf;
