@@ -145,10 +145,13 @@ game-records-table route-link.card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-records-table route-link.card span[winner] {
+game-records-table route-link.card route-link {
+  color: #000066;
+}
+game-records-table route-link.card route-link span[winner] {
   color: #005200;
 }
-game-records-table route-link.card span[loser] {
+game-records-table route-link.card route-link span[loser] {
   color: #660000;
 }
 game-records-table route-link.card img {
@@ -263,10 +266,13 @@ game-events-table route-link.card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-events-table route-link.card span[winner] {
+game-events-table route-link.card route-link {
+  color: #000066;
+}
+game-events-table route-link.card route-link span[winner] {
   color: #005200;
 }
-game-events-table route-link.card span[loser] {
+game-events-table route-link.card route-link span[loser] {
   color: #660000;
 }
 game-events-table route-link.card img {
@@ -368,10 +374,13 @@ players-table route-link.card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-players-table route-link.card span[winner] {
+players-table route-link.card route-link {
+  color: #000066;
+}
+players-table route-link.card route-link span[winner] {
   color: #005200;
 }
-players-table route-link.card span[loser] {
+players-table route-link.card route-link span[loser] {
   color: #660000;
 }
 players-table route-link.card img {
@@ -519,10 +528,13 @@ player-view #player-personal-card #player-personal-card-content:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-player-view #player-personal-card #player-personal-card-content span[winner] {
+player-view #player-personal-card #player-personal-card-content route-link {
+  color: #000066;
+}
+player-view #player-personal-card #player-personal-card-content route-link span[winner] {
   color: #005200;
 }
-player-view #player-personal-card #player-personal-card-content span[loser] {
+player-view #player-personal-card #player-personal-card-content route-link span[loser] {
   color: #660000;
 }
 player-view #player-personal-card #player-personal-card-content img {
