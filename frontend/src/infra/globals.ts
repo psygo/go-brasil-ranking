@@ -9,7 +9,7 @@ export namespace Globals {
   export const router = setup.router;
 
   export const apiUrl = envState === EnvState.dev ?
-    "http://localhost:4096/fanaro-firebase-lab/us-central1/goBrasilRanking" :
+    "http://localhost:4096/fanaro-firebase-lab/southamerica-east1/goBrasilRanking" :
     "https://southamerica-east1-fanaro-firebase-lab.cloudfunctions.net/goBrasilRanking";
 
   export const repoUrl = "https://github.com/psygo/fanaro-firebase-lab";

@@ -42,17 +42,28 @@ export default class GameRecordsTable extends HTMLElement {
   }
 
   async connectedCallback() {
+    this.prepareTable();
+
     await this.getGameRecords();
 
     if (this.gameRecords.length > 0) {
-      const titleSuffix = this.playerRef ? this.playerName : "";
-      const title = this.playerRef
-        ? /*html*/ `
+      this.toggleLoader();
+
+      this.setCards();
+
+      this.setPagination();
+    }
+  }
+
+  private prepareTable = (): void => {
+    const titleSuffix = this.playerRef ? this.playerName : "";
+    const title = this.playerRef
+      ? /*html*/ `
           <h2>
             Partidas de ${titleSuffix}
           </h2>
         `
-        : /*html*/ `
+      : /*html*/ `
           <h2>
             <route-link href="${RouteEnum.gameRecords}">
               ${this.title}
@@ -60,7 +71,7 @@ export default class GameRecordsTable extends HTMLElement {
           </h2>
         `;
 
-      this.innerHTML = /*html*/ `
+    this.innerHTML = /*html*/ `
         ${title}
 
         <div id="game-records-table-legend">
@@ -83,14 +94,19 @@ export default class GameRecordsTable extends HTMLElement {
         
         <div id="game-records-table-cards"></div>
 
+        <div class="loader-container">
+          <span class="loader"></span>
+        </div>
+
         <div class="pagination"></div>
       `;
+  };
 
-      this.setCards();
-
-      this.setPagination();
-    }
-  }
+  private toggleLoader = (): void => {
+    const loaderDiv: HTMLDivElement = this.querySelector(".loader-container")!;
+    const loaderDivDisplay = loaderDiv.style.display;
+    loaderDiv.style.display = loaderDivDisplay === "none" ? "flex" : "none";
+  };
 
   private setPagination = (): void => {
     const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
@@ -105,7 +121,11 @@ export default class GameRecordsTable extends HTMLElement {
     nextPageButton.onclick = async (): Promise<void> => {
       this.startAfter += g.queryLimit;
 
+      this.toggleLoader();
+
       await this.getGameRecords();
+
+      this.toggleLoader();
 
       this.setCards();
     };

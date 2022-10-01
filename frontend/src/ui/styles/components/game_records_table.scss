@@ -121,10 +121,39 @@ $columnGap: 10px;
   }
 }
 
+@mixin loaderContainer {
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    margin: 20px 0;
+
+    .loader {
+      border: 10px solid #f3f3f3;
+      border-top: 10px solid green;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
 game-records-table {
   @include captionDecoration;
   @include spanAlignment;
   @include pagination;
+  @include loaderContainer;
 
   @mixin cardLegendGrid {
     $playerNameWidth: 85px;
