@@ -80,6 +80,8 @@ $pictureWidth: 70px;
 @mixin legendDecoration {
   align-items: center;
 
+  margin-bottom: 10px;
+
   font-weight: bold;
 }
 

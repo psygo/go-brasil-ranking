@@ -2,21 +2,20 @@ import { Player } from "../../../../frontend/src/models/player";
 import { playersCol } from "../../collections/players_col";
 import { ExpressApiRoute, paginationSlicer } from "../../infra";
 
-
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
     const startAfter = parseInt(req.query.de as string);
-    const isBrazilian =
-      req.query.isBrazilian === undefined
+    const onlyBrazilians =
+      req.query.somenteBrasileiros === undefined
         ? undefined
-        : req.query.isBrazilian
+        : req.query.somenteBrasileiros
         ? true
         : false;
 
     let playersQuery = playersCol.col.orderBy("elo", "desc");
 
-    if (isBrazilian)
-      playersQuery = playersQuery.where("isBrazilian", "==", isBrazilian);
+    if (onlyBrazilians)
+      playersQuery = playersQuery.where("isBrazilian", "==", onlyBrazilians);
 
     const playersSnaps = await playersQuery.get();
 

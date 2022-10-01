@@ -160,6 +160,7 @@ game-records-table #legend {
   padding: 12px 8px;
   padding-right: 12px;
   align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 game-records-table route-link.card,
@@ -252,6 +253,7 @@ game-events-table .game-events-table-legend {
   padding: 12px 8px;
   padding-right: 12px;
   align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
   display: grid;
   grid-template-areas: "ref name type total-games";
@@ -360,6 +362,7 @@ players-table #legend {
   padding: 12px 8px;
   padding-right: 12px;
   align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -511,6 +514,7 @@ player-view #player-personal-card #player-personal-card-legend {
   grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
   grid-column-gap: 10px;
   align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
   padding: 12px 8px;
   padding-right: 12px;

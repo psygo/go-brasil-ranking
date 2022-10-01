@@ -4,17 +4,19 @@ import { RouteEnum } from "../../routing/router";
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
-import { paginationSlicer } from "../../infra/utils";
+import { inf, paginationSlicer } from "../../infra/utils";
 import UiTable from "./ui_table";
 
 export default class PlayersTable extends UiTable<Player> {
   static readonly tag: string = "players-table";
 
   protected getData = async (): Promise<void> => {
-    const isBrazilian =
-      this.isBrazilian === undefined ? "" : `isBrazilian=${this.isBrazilian}`;
+    const onlyBrazilians =
+      this.onlyBrazilians === undefined
+        ? ""
+        : `somenteBrasileiros=${this.onlyBrazilians}`;
 
-    const queryString = `?de=${this.startAfter}&${isBrazilian}`;
+    const queryString = `?de=${this.startAfter}&${onlyBrazilians}`;
 
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.players}${queryString}`
@@ -26,7 +28,7 @@ export default class PlayersTable extends UiTable<Player> {
 
   constructor(
     title: string = "Jogadores",
-    public readonly isBrazilian: boolean | undefined = undefined
+    public readonly onlyBrazilians: boolean | undefined = undefined
   ) {
     super(title);
   }
@@ -34,7 +36,7 @@ export default class PlayersTable extends UiTable<Player> {
   async connectedCallback(): Promise<void> {
     await super.connectedCallback();
 
-    const nextButton: HTMLButtonElement = this.querySelector("next-page")!;
+    const nextButton: HTMLButtonElement = this.querySelector(".next-page")!;
     nextButton.click();
   }
 
@@ -62,7 +64,7 @@ export default class PlayersTable extends UiTable<Player> {
   };
 
   private i: number = 0;
-  private lastElo: number = -10000;
+  private lastElo: number = -inf;
 
   protected setCards = (): void => {
     const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
