@@ -113,8 +113,10 @@ $columnGap: 10px;
 
     button {
       @include cardDecoration;
-      @include cardMargin;
-      @include cardPadding;
+
+      font-size: 1.6rem;
+
+      padding: 10px;
 
       cursor: pointer;
     }
@@ -180,7 +182,7 @@ game-records-table {
     grid-column-gap: $columnGap;
   }
 
-  route-link.game-record-card {
+  route-link.card {
     @include card;
     @include cardLegendGrid;
 
@@ -193,7 +195,7 @@ game-records-table {
     }
   }
 
-  #game-records-table-legend {
+  #legend {
     @include cardLegendGrid;
     @include cardPadding;
     @include legendDecoration;

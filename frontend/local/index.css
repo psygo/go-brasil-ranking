@@ -97,9 +97,8 @@ game-records-table .pagination button {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
+  font-size: 1.6rem;
+  padding: 10px;
   cursor: pointer;
 }
 game-records-table .pagination button:hover {
@@ -128,7 +127,7 @@ game-records-table .loader-container .loader {
     transform: rotate(360deg);
   }
 }
-game-records-table route-link.game-record-card {
+game-records-table route-link.card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -146,31 +145,31 @@ game-records-table route-link.game-record-card {
   grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
 }
-game-records-table route-link.game-record-card:hover {
+game-records-table route-link.card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-records-table route-link.game-record-card route-link {
+game-records-table route-link.card route-link {
   color: #000066;
 }
-game-records-table route-link.game-record-card route-link[winner] {
+game-records-table route-link.card route-link[winner] {
   color: #005200;
 }
-game-records-table route-link.game-record-card route-link[loser] {
+game-records-table route-link.card route-link[loser] {
   color: #660000;
 }
-game-records-table route-link.game-record-card img {
+game-records-table route-link.card img {
   max-width: 70px;
   max-height: 70px;
   border-radius: 10px;
 }
-game-records-table route-link.game-record-card[player-wins] {
+game-records-table route-link.card[player-wins] {
   background-color: #e6ffe6;
 }
-game-records-table route-link.game-record-card[player-loses] {
+game-records-table route-link.card[player-loses] {
   background-color: #ffe6e6;
 }
-game-records-table #game-records-table-legend {
+game-records-table #legend {
   display: grid;
   grid-template-columns: 30px 70px 85px 60px 40px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
   grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
@@ -212,9 +211,8 @@ game-events-table .pagination button {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
+  font-size: 1.6rem;
+  padding: 10px;
   cursor: pointer;
 }
 game-events-table .pagination button:hover {
@@ -299,9 +297,8 @@ players-table .pagination button {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
+  font-size: 1.6rem;
+  padding: 10px;
   cursor: pointer;
 }
 players-table .pagination button:hover {

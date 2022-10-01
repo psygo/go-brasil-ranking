@@ -24,13 +24,12 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   };
 
   protected readonly data: GameRecord[] = [];
-  protected startAfter: number = 0;
 
   constructor(
-    public readonly title: string = "Partidas",
+    title: string = "Partidas",
     public readonly playerRef: FirebaseRef = ""
   ) {
-    super();
+    super(title);
   }
 
   private get playerName(): string | null {
@@ -42,21 +41,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     } else return null;
   }
 
-  async connectedCallback() {
-    this.prepareTable();
-
-    await this.getData();
-
-    if (this.data.length > 0) {
-      this.toggleLoader();
-
-      this.setCards();
-
-      this.setPagination();
-    }
-  }
-
-  private prepareTable = (): void => {
+  protected prepareTable = (): void => {
     const titleSuffix = this.playerRef ? this.playerName : "";
     const title = this.playerRef
       ? /*html*/ `
@@ -75,7 +60,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     this.innerHTML = /*html*/ `
         ${title}
 
-        <div id="game-records-table-legend">
+        <div id="legend">
           <span>#</span>
           <span>Foto Preto</span>
           <span class="align-left">Preto</span>
@@ -92,44 +77,13 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
           <span>Data</span>
           <span>Evento</span>
         </div>
-        
-        <div id="game-records-table-cards"></div>
-
-        <div class="loader-container">
-          <span class="loader"></span>
-        </div>
-
-        <div class="pagination"></div>
       `;
+
+    this.addHtmlCardLoaderPaginationDivs();
   };
 
-  private setPagination = (): void => {
-    const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
-
-    paginationDiv.innerHTML += /*html*/ `
-      <button class="next-page">+ Partidas</button>
-    `;
-
-    const nextPageButton: HTMLButtonElement =
-      this.querySelector("button.next-page")!;
-
-    nextPageButton.onclick = async (): Promise<void> => {
-      this.startAfter += g.queryLimit;
-
-      this.toggleLoader();
-
-      await this.getData();
-
-      this.toggleLoader();
-
-      this.setCards();
-    };
-  };
-
-  private setCards = (): void => {
-    const cardsDiv: HTMLDivElement = this.querySelector(
-      "#game-records-table-cards"
-    )!;
+  protected setCards = (): void => {
+    const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
     const length = this.data.length;
     for (let i = this.startAfter; i < length; i++) {
       const gameRecord = this.data[i];
@@ -154,7 +108,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link 
-          class="game-record-card"
+          class="card"
           id="${gameRecord.firebaseRef}"
           href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}"
           ${winOrLossAttr}>
