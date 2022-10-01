@@ -1,10 +1,6 @@
 @use "../components/game_records_table" as grt;
 
 game-events-table {
-  @include grt.captionDecoration;
-  @include grt.spanAlignment;
-  @include grt.pagination;
-
   @mixin cardLegendGrid {
     $gameEventNameWidth: 170px;
     $gameEventTypeWidth: 75px;
@@ -13,21 +9,17 @@ game-events-table {
     $gameEventLastDate: 90px;
 
     display: grid;
-    grid-template-areas: "ref name type total-games";
-    grid-template-columns: 
-      grt.$refWidth $gameEventNameWidth $gameEventTypeWidth 
+    grid-template-columns:
+      grt.$refWidth $gameEventNameWidth $gameEventTypeWidth
       $gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
+    grid-template-areas: "ref name type total-games";
     grid-column-gap: grt.$columnGap;
   }
 
-  route-link.game-event-card {
-    @include grt.card;
+  route-link.card,
+  #legend {
     @include cardLegendGrid;
   }
 
-  .game-events-table-legend {
-    @include grt.cardPadding;
-    @include grt.legendDecoration;
-    @include cardLegendGrid;
-  }
+  @include grt.completeTableDecoration;
 }

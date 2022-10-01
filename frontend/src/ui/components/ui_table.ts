@@ -1,10 +1,10 @@
 import { Globals as g } from "../../infra/globals";
 
-import { GameEvent } from "../../models/game_event";
+import { TournamentOrLeague } from "../../models/game_event";
 import { GameRecord } from "../../models/game_record";
 import { Player } from "../../models/player";
 
-type TableElement = GameRecord | Player | GameEvent;
+type TableElement = GameRecord | Player | TournamentOrLeague;
 
 export default abstract class UiTable<
   T extends TableElement

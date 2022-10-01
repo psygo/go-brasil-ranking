@@ -4,11 +4,12 @@ import { RouteEnum } from "../../routing/router";
 
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
+import UiTable from "./ui_table";
 
-export default class GameEventsTable extends HTMLElement {
+export default class GameEventsTable extends UiTable<TournamentOrLeague> {
   static readonly tag: string = "game-events-table";
 
-  private getGameEvents = async (): Promise<void> => {
+  protected getData = async (): Promise<void> => {
     const queryString = `?de=${this.startAfter}`;
 
     const response = await fetch(
@@ -16,19 +17,14 @@ export default class GameEventsTable extends HTMLElement {
     );
 
     const json = await response.json();
-    this.gameEvents.push(...json["data"]["gameEvents"]);
+    this.data.push(...json["data"]["gameEvents"]);
   };
 
-  private readonly gameEvents: TournamentOrLeague[] = [];
-  private startAfter: number = 0;
-
-  constructor(public readonly title: string = "Eventos") {
-    super();
+  constructor(title: string = "Eventos") {
+    super(title);
   }
 
-  async connectedCallback() {
-    await this.getGameEvents();
-
+  protected prepareTable = (): void => {
     this.innerHTML += /*html*/ `
       <h2>
         <route-link href="${RouteEnum.gameEvents}">
@@ -36,7 +32,7 @@ export default class GameEventsTable extends HTMLElement {
         </route-link>
       </h2>
       
-      <div class="game-events-table-legend">
+      <div id="legend">
         <span>#</span>
         <span class="align-left">Nome</span>
         <span>Tipo</span>
@@ -44,43 +40,16 @@ export default class GameEventsTable extends HTMLElement {
         <span>Data de Início</span>
         <span>Data de Fim</span>
       </div>
-
-      <div id="game-events-table-cards"></div>
-
-      <div class="pagination"></div>
     `;
 
-    this.setCards();
-
-    this.setPagination();
-  }
-
-  private setPagination = (): void => {
-    const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
-
-    paginationDiv.innerHTML += /*html*/ `
-      <button class="next-page">+ Eventos</button>
-    `;
-
-    const nextPageButton: HTMLButtonElement =
-      this.querySelector("button.next-page")!;
-
-    nextPageButton.onclick = async (): Promise<void> => {
-      this.startAfter += g.queryLimit;
-
-      await this.getGameEvents();
-
-      this.setCards();
-    };
+    this.addHtmlCardLoaderPaginationDivs();
   };
 
-  private setCards = (): void => {
-    const cardsDiv: HTMLDivElement = this.querySelector(
-      "#game-events-table-cards"
-    )!;
-    const length = this.gameEvents.length;
+  protected setCards = (): void => {
+    const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
+    const length = this.data.length;
     for (let i = this.startAfter; i < length; i++) {
-      const gameEvent = this.gameEvents[i];
+      const gameEvent = this.data[i];
 
       const firstDate =
         gameEvent.dates.length === 0
@@ -95,7 +64,7 @@ export default class GameEventsTable extends HTMLElement {
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link
-          class="game-event-card"
+          class="card"
           id="${gameEvent.firebaseRef}"
           href="${RouteEnum.gameEvents}/${gameEvent.firebaseRef}">
             <span>${i + 1}</span>

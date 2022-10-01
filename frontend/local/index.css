@@ -177,14 +177,12 @@ game-records-table route-link.card[player-loses] {
   background-color: #ffe6e6;
 }
 
-game-events-table h2 {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-}
-game-events-table h2 route-link {
-  color: #005c00;
+game-events-table route-link.card,
+game-events-table #legend {
+  display: grid;
+  grid-template-columns: 30px 170px 75px 65px 90px 90px;
+  grid-template-areas: "ref name type total-games";
+  grid-column-gap: 10px;
 }
 game-events-table span:not(.align-left) {
   display: flex;
@@ -195,6 +193,15 @@ game-events-table .align-left {
   display: flex;
   justify-content: left;
   text-align: left;
+}
+game-events-table h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+game-events-table h2 route-link {
+  color: #005c00;
 }
 game-events-table .pagination {
   display: flex;
@@ -216,7 +223,29 @@ game-events-table .pagination button:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-events-table route-link.game-event-card {
+game-events-table .loader-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+game-events-table .loader-container .loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid green;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+game-events-table route-link.card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -229,36 +258,28 @@ game-events-table route-link.game-event-card {
   padding-right: 12px;
   margin-bottom: 10px;
   align-items: center;
-  display: grid;
-  grid-template-areas: "ref name type total-games";
-  grid-template-columns: 30px 170px 75px 65px 90px 90px;
-  grid-column-gap: 10px;
 }
-game-events-table route-link.game-event-card:hover {
+game-events-table route-link.card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-events-table route-link.game-event-card span[winner] {
+game-events-table route-link.card span[winner] {
   color: #005200;
 }
-game-events-table route-link.game-event-card span[loser] {
+game-events-table route-link.card span[loser] {
   color: #660000;
 }
-game-events-table route-link.game-event-card img {
+game-events-table route-link.card img {
   max-width: 70px;
   max-height: 70px;
   border-radius: 10px;
 }
-game-events-table .game-events-table-legend {
+game-events-table #legend {
   padding: 12px 8px;
   padding-right: 12px;
   align-items: center;
   margin-bottom: 10px;
   font-weight: bold;
-  display: grid;
-  grid-template-areas: "ref name type total-games";
-  grid-template-columns: 30px 170px 75px 65px 90px 90px;
-  grid-column-gap: 10px;
 }
 
 players-table route-link.card,
