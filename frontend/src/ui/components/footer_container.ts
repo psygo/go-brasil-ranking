@@ -1,7 +1,7 @@
 import { Globals as g } from "../../infra/globals";
 
 export default class Footer extends HTMLElement {
-  static readonly tag: string = "foot-er";
+  static readonly tag: string = "footer-container";
 
   constructor() {
     super();

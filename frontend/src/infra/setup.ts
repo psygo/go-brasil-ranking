@@ -8,7 +8,7 @@ import { firebaseConfig } from "./firebase_config";
 import { getRouter, Router } from "../routing/router";
 
 import Navbar from "../ui/components/navbar";
-import Footer from "../ui/components/foot-er";
+import Footer from "../ui/components/footer_container";
 import RouteLink from "../ui/components/route-link";
 
 import GameEventsTable from "../ui/components/game_events_table";

@@ -3,14 +3,12 @@
 footer {
   grid-area: footer;
 
-  foot-er {
+  footer-container {
     display: flex;
     justify-content: center;
 
     padding-bottom: 5px;
     padding-top: 10px;
-
-    background-color: darken(g.$bgColor, 5%);
 
     svg {
       width: 24px;

@@ -54,14 +54,13 @@ header nav-bar nav route-link {
 footer {
   grid-area: footer;
 }
-footer foot-er {
+footer footer-container {
   display: flex;
   justify-content: center;
   padding-bottom: 5px;
   padding-top: 10px;
-  background-color: #cacaca;
 }
-footer foot-er svg {
+footer footer-container svg {
   width: 24px;
   fill: #717171;
 }
