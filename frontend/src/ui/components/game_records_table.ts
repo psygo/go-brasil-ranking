@@ -23,8 +23,6 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     this.data.push(...json["data"]["gameRecords"]);
   };
 
-  protected readonly data: GameRecord[] = [];
-
   constructor(
     title: string = "Partidas",
     public readonly playerRef: FirebaseRef = ""
@@ -118,12 +116,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
               ${UiUtils.playerPicture(gameRecord.blackPlayer!.picture)}
             </span>
 
-            <route-link 
-              ${blackWins} 
-              href="${RouteEnum.players}/${gameRecord.blackRef}">
-                <span class="align-left">
-                  ${gameRecord.blackPlayer!.name}
-                </span>
+            <route-link href="${RouteEnum.players}/${gameRecord.blackRef}">
+              <span ${blackWins} class="align-left">
+                ${gameRecord.blackPlayer!.name}
+              </span>
             </route-link>
 
             <div>
@@ -134,7 +130,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
-            <span>
+            <span ${blackWins}>
               ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
             </span>
 
@@ -142,12 +138,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
               ${UiUtils.playerPicture(gameRecord.whitePlayer!.picture)}
             </span>
 
-            <route-link 
-              ${whiteWins} 
-              href="${RouteEnum.players}/${gameRecord.whiteRef}">
-                <span class="align-left">
-                  ${gameRecord.whitePlayer!.name}
-                </span>
+            <route-link href="${RouteEnum.players}/${gameRecord.whiteRef}">
+              <span ${whiteWins} class="align-left">
+                ${gameRecord.whitePlayer!.name}
+              </span>
             </route-link>
 
             <div>
@@ -156,7 +150,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
 
-            <span>
+            <span ${whiteWins}>
               ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaWhite)}
             </span>
 

@@ -24,9 +24,7 @@
 }
 
 @mixin playerLink {
-  route-link {
-    color: darken(blue, 30%);
-
+  span {
     &[winner] {
       color: darken(green, 9%);
     }
@@ -99,6 +97,17 @@ $pictureWidth: 70px;
   }
 }
 
+@mixin completeCardLegendDecoration {
+  route-link.card {
+    @include card;
+  }
+
+  #legend {
+    @include cardPadding;
+    @include legendDecoration;
+  }
+}
+
 $refWidth: 30px;
 $eloWidth: 60px;
 
@@ -151,11 +160,16 @@ $columnGap: 10px;
   }
 }
 
-game-records-table {
-  @include captionDecoration;
+@mixin completeTableDecoration {
   @include spanAlignment;
+  @include captionDecoration;
   @include pagination;
   @include loaderContainer;
+  @include completeCardLegendDecoration;
+}
+
+game-records-table {
+  @include completeTableDecoration;
 
   @mixin cardLegendGrid {
     $playerNameWidth: 85px;
@@ -182,10 +196,12 @@ game-records-table {
     grid-column-gap: $columnGap;
   }
 
-  route-link.card {
-    @include card;
+  route-link.card,
+  #legend {
     @include cardLegendGrid;
+  }
 
+  route-link.card {
     &[player-wins] {
       background-color: lighten(green, 70%);
     }
@@ -193,11 +209,5 @@ game-records-table {
     &[player-loses] {
       background-color: lighten(red, 45%);
     }
-  }
-
-  #legend {
-    @include cardLegendGrid;
-    @include cardPadding;
-    @include legendDecoration;
   }
 }

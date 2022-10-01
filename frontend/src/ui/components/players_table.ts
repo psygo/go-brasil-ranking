@@ -5,11 +5,12 @@ import Elo from "../../models/elo";
 import { Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
 import { paginationSlicer } from "../../infra/utils";
+import UiTable from "./ui_table";
 
-export default class PlayersTable extends HTMLElement {
+export default class PlayersTable extends UiTable<Player> {
   static readonly tag: string = "players-table";
 
-  private getPlayers = async (): Promise<void> => {
+  protected getData = async (): Promise<void> => {
     const isBrazilian =
       this.isBrazilian === undefined ? "" : `isBrazilian=${this.isBrazilian}`;
 
@@ -20,22 +21,24 @@ export default class PlayersTable extends HTMLElement {
     );
 
     const json = await response.json();
-    this.players.push(...json["data"]["players"]);
+    this.data.push(...json["data"]["players"]);
   };
 
-  private startAfter: number = 0;
-  private readonly players: Player[] = [];
-
   constructor(
-    public readonly title: string = "Jogadores",
+    title: string = "Jogadores",
     public readonly isBrazilian: boolean | undefined = undefined
   ) {
-    super();
+    super(title);
   }
 
-  async connectedCallback() {
-    await this.getPlayers();
+  async connectedCallback(): Promise<void> {
+    await super.connectedCallback();
 
+    const nextButton: HTMLButtonElement = this.querySelector("next-page")!;
+    nextButton.click();
+  }
+
+  protected prepareTable = (): void => {
     this.innerHTML += /*html*/ `
       <h2>
         <route-link href="${RouteEnum.players}">
@@ -43,7 +46,7 @@ export default class PlayersTable extends HTMLElement {
         </route-link>
       </h2>
       
-      <div id="players-table-legend">
+      <div id="legend">
         <span>#</span>
         <span>Foto</span>
         <span class="align-left">Nome</span>
@@ -53,48 +56,17 @@ export default class PlayersTable extends HTMLElement {
         <span>Data da Última Partida</span>
         <span>Número de Partidas</span>
       </div>
-
-      <div id="players-table-cards"></div>
-
-      <div class="pagination"></div>
     `;
 
-    this.setCards();
-
-    this.setPagination();
-
-    const nextPageButton: HTMLButtonElement =
-      this.querySelector("button.next-page")!;
-    nextPageButton.click();
-  }
-
-  private setPagination = (): void => {
-    const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
-
-    paginationDiv.innerHTML += /*html*/ `
-      <button class="next-page">+ Jogadores</button>
-    `;
-
-    const nextPageButton: HTMLButtonElement =
-      this.querySelector("button.next-page")!;
-
-    nextPageButton.onclick = async (): Promise<void> => {
-      this.startAfter += g.queryLimit;
-
-      await this.getPlayers();
-
-      this.setCards();
-    };
+    this.addHtmlCardLoaderPaginationDivs();
   };
 
   private i: number = 0;
   private lastElo: number = -10000;
 
-  private setCards = (): void => {
-    const cardsDiv: HTMLDivElement = this.querySelector(
-      "#players-table-cards"
-    )!;
-    const slicedPlayers = paginationSlicer(this.startAfter, this.players);
+  protected setCards = (): void => {
+    const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
+    const slicedPlayers = paginationSlicer(this.startAfter, this.data);
     for (const player of slicedPlayers) {
       if (player.elo !== this.lastElo) {
         this.i++;
@@ -105,7 +77,7 @@ export default class PlayersTable extends HTMLElement {
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link 
-          class="player-card" 
+          class="card" 
           id="${player.firebaseRef}"
           href="${RouteEnum.players}/${player.firebaseRef}">
             <span>${this.i}</span>

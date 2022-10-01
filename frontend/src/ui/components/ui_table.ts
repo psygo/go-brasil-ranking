@@ -9,13 +9,13 @@ type TableElement = GameRecord | Player | GameEvent;
 export default abstract class UiTable<
   T extends TableElement
 > extends HTMLElement {
-  protected abstract readonly data: T[];
+  protected readonly data: T[] = [];
 
   constructor(public readonly title: string, protected startAfter: number = 0) {
     super();
   }
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     this.prepareTable();
 
     await this.getData();

@@ -1,12 +1,8 @@
 @use "../components/game_records_table" as grt;
 
 players-table {
-  @include grt.spanAlignment;
-  @include grt.captionDecoration;
-  @include grt.pagination;
-
   @mixin cardLegendGrid {
-    $playerNameWidth: 175px;
+    $playerNameWidth: 155px;
     $playerCountriesWidth: 40px;
     $danKyuWidth: 45px;
     $lastGameDateWidth: 100px;
@@ -16,18 +12,17 @@ players-table {
     grid-template-columns:
       grt.$refWidth grt.$pictureWidth $playerNameWidth $playerCountriesWidth
       grt.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
-    grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
+    grid-template-areas:
+      "ref"
+      "player-picture player-name countries"
+      "elo dan-kyu last-game-date";
     grid-column-gap: grt.$columnGap;
   }
 
-  route-link.player-card {
-    @include grt.card;
+  route-link.card,
+  #legend {
     @include cardLegendGrid;
   }
 
-  #players-table-legend {
-    @include cardLegendGrid;
-    @include grt.cardPadding;
-    @include grt.legendDecoration;
-  }
+  @include grt.completeTableDecoration;
 }
