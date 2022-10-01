@@ -3,7 +3,7 @@ import { Globals as g } from "../../infra/globals";
 export default class AboutView extends HTMLElement {
   static readonly tag: string = "about-view";
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     document.title = "RBGo | Sobre";
 
     this.setContent();

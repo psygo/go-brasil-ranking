@@ -5,7 +5,7 @@ export default class RouteLink extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     if (this.href === "")
       this.href = this.getAttribute("href") ? this.getAttribute("href")! : "";
 

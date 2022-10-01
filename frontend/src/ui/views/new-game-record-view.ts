@@ -18,7 +18,7 @@ export default class NewGameRecordView extends HTMLElement {
     g.setup.initAuth();
   }
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     onAuthStateChanged(g.setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;

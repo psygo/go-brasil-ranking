@@ -4,9 +4,10 @@ import { RouteEnum } from "../routing/router";
 
 import { Country, getFlag } from "../models/country";
 import { Player } from "../models/player";
+import { HtmlString } from "../infra/utils";
 
 export namespace UiUtils {
-  export const allFlags = (countries: readonly Country[]): string =>
+  export const allFlags = (countries: readonly Country[]): HtmlString =>
     countries
       .map(
         (c) => /*html*/ `
@@ -17,7 +18,7 @@ export namespace UiUtils {
       )
       .reduce((pflag, cflag) => pflag + cflag);
 
-  export const lastGameLink = (player: Player): string => {
+  export const lastGameLink = (player: Player): HtmlString => {
     if (player.lastGame) {
       const lastGameDate = DateUtils.formatDate(new Date(player.lastGame.date));
 
@@ -31,7 +32,7 @@ export namespace UiUtils {
     } else return /*html*/ `<span class="centered">&mdash;</span>`;
   };
 
-  export const playerPicture = (picture: string | undefined): string =>
+  export const playerPicture = (picture: string | undefined): HtmlString =>
     !picture
       ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
       : /*html*/ `<img id="picture" src="${picture}"/>`;

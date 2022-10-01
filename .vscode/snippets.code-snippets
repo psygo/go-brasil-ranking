@@ -30,7 +30,7 @@
             "    super();",
             "  }",
             "",
-            "  connectedCallback() {",
+            "  connectedCallback(): void {",
             "    this.innerHTML = $1.html;",
             "  }",
             "}"

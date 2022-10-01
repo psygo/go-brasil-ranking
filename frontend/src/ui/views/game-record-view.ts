@@ -23,7 +23,7 @@ export default class GameRecordView extends HTMLElement {
     this.gameRecord = json["data"]["gameRecord"];
   };
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     await this.getGameRecord();
 
     if (this.gameRecord) {

@@ -17,7 +17,7 @@ export default class Navbar extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.innerHTML = Navbar.html;
   }
 }

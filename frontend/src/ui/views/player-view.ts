@@ -29,7 +29,7 @@ export default class PlayerView extends HTMLElement {
 
   private declare player: Player;
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     this.player = await this.getPlayer();
 
     document.title = `Jogador | ${this.player.name}`;

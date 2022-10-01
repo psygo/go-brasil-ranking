@@ -21,7 +21,7 @@ export default class GameEventView extends HTMLElement {
     this.gameEvent = json["data"]["gameEvent"];
   };
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     await this.getGameEvent();
 
     if (this.gameEvent) {

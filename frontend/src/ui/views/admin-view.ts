@@ -20,7 +20,7 @@ export default class AdminView extends HTMLElement {
     g.setup.initAuth();
   }
 
-  async connectedCallback() {
+  async connectedCallback(): Promise<void> {
     document.title = "RBGo | Admin";
 
     onAuthStateChanged(g.setup.auth!, (user) => {

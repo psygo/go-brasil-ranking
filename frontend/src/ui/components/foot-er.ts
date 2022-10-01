@@ -7,7 +7,7 @@ export default class Footer extends HTMLElement {
     super();
   }
 
-  connectedCallback() {
+  connectedCallback(): void {
     this.innerHTML = /*html*/ `
       <a href="${g.repoUrl}">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
