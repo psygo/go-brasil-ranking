@@ -6,11 +6,12 @@ import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 import { isTournamentOrLeague } from "../../models/game_event";
 import { UiUtils } from "../ui_utils";
+import UiTable from "./ui_table";
 
-export default class GameRecordsTable extends HTMLElement {
+export default class GameRecordsTable extends UiTable<GameRecord> {
   static readonly tag: string = "game-records-table";
 
-  private getGameRecords = async (): Promise<void> => {
+  protected getData = async (): Promise<void> => {
     const queryString =
       `?de=${this.startAfter}` + `&jogadorRef=${this.playerRef}`;
 
@@ -19,11 +20,11 @@ export default class GameRecordsTable extends HTMLElement {
     );
 
     const json = await response.json();
-    this.gameRecords.push(...json["data"]["gameRecords"]);
+    this.data.push(...json["data"]["gameRecords"]);
   };
 
-  private readonly gameRecords: GameRecord[] = [];
-  private startAfter: number = 0;
+  protected readonly data: GameRecord[] = [];
+  protected startAfter: number = 0;
 
   constructor(
     public readonly title: string = "Partidas",
@@ -34,7 +35,7 @@ export default class GameRecordsTable extends HTMLElement {
 
   private get playerName(): string | null {
     if (this.playerRef) {
-      const firstGame = this.gameRecords[0];
+      const firstGame = this.data[0];
       return firstGame.blackRef === this.playerRef
         ? firstGame.blackPlayer!.name
         : firstGame.whitePlayer!.name;
@@ -44,9 +45,9 @@ export default class GameRecordsTable extends HTMLElement {
   async connectedCallback() {
     this.prepareTable();
 
-    await this.getGameRecords();
+    await this.getData();
 
-    if (this.gameRecords.length > 0) {
+    if (this.data.length > 0) {
       this.toggleLoader();
 
       this.setCards();
@@ -102,12 +103,6 @@ export default class GameRecordsTable extends HTMLElement {
       `;
   };
 
-  private toggleLoader = (): void => {
-    const loaderDiv: HTMLDivElement = this.querySelector(".loader-container")!;
-    const loaderDivDisplay = loaderDiv.style.display;
-    loaderDiv.style.display = loaderDivDisplay === "none" ? "flex" : "none";
-  };
-
   private setPagination = (): void => {
     const paginationDiv: HTMLDivElement = this.querySelector(".pagination")!;
 
@@ -123,7 +118,7 @@ export default class GameRecordsTable extends HTMLElement {
 
       this.toggleLoader();
 
-      await this.getGameRecords();
+      await this.getData();
 
       this.toggleLoader();
 
@@ -135,9 +130,9 @@ export default class GameRecordsTable extends HTMLElement {
     const cardsDiv: HTMLDivElement = this.querySelector(
       "#game-records-table-cards"
     )!;
-    const length = this.gameRecords.length;
+    const length = this.data.length;
     for (let i = this.startAfter; i < length; i++) {
-      const gameRecord = this.gameRecords[i];
+      const gameRecord = this.data[i];
 
       const blackWins =
         gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
