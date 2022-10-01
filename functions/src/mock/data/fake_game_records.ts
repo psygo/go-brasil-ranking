@@ -648,7 +648,7 @@ export const dogempGames: readonly GameRecord[] = [
       whoWins: Color.White,
       difference: 4.5,
     },
-    sgf: fakeSgf1_empty,
+    sgf: fakeSgf2_fabricio_vs_philippe,
     gameEventRef: findFakeEventRef("DOGemP"),
   },
   {

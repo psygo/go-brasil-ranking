@@ -1,11 +1,65 @@
+@use "../components/game_records_table" as grt;
+
 game-record-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 20px;
+  grid-row-gap: 30px;
   justify-items: center;
 
   #glift {
     width: 500px;
     height: 500px;
+  }
+
+  #players-names {
+    display: grid;
+    grid-template-columns: 400px max-content 400px;
+    grid-template-rows: max-content;
+    grid-column-gap: 15px;
+    grid-template-areas: "black-name vs white-name";
+
+    h2 {
+      display: flex;
+      gap: 10px;
+
+      &#black {
+        justify-content: end;
+      }
+
+      &#white {
+        justify-content: start;
+      }
+    }
+  }
+
+  #card {
+    @include grt.spanAlignment;
+
+    @mixin cardLegendGrid {
+      display: grid;
+      grid-template-columns: grt.$dateWidth 80px 100px;
+      grid-column-gap: grt.$columnGap;
+      justify-items: center;
+    }
+
+    #legend {
+      @include cardLegendGrid;
+      @include grt.legendDecoration;
+      @include grt.cardPadding;
+    }
+
+    #content {
+      @include cardLegendGrid;
+      @include grt.card;
+    }
+
+    a#download {
+      padding: 8px;
+
+      border: 2px solid gray;
+      border-radius: 4px;
+
+      color: black;
+    }
   }
 }

@@ -19,8 +19,7 @@
 }
 
 @mixin cardPadding {
-  padding: 12px 8px;
-  padding-right: 12px;
+  padding: 10px 10px;
 }
 
 @mixin playerLink {
@@ -116,6 +115,7 @@ $pictureWidth: 70px;
 
 $refWidth: 30px;
 $eloWidth: 60px;
+$dateWidth: 110px;
 
 $columnGap: 10px;
 
@@ -183,7 +183,6 @@ game-records-table {
     $handicapWidth: 40px;
     $eloDeltaWidth: 40px;
     $resultWidth: 90px;
-    $dateWidth: 110px;
     $eventWidth: 100px;
 
     display: grid;
