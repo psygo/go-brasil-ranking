@@ -64,7 +64,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
         <span>Foto Preto</span>
         <span class="align-left">Preto</span>
         <span>País Preto</span>
-        <span>Compen-sação</span>
+        <span>Com-pensa-ção</span>
         <span>Elo</span>
         <span>Elo Dif</span>
         <span>Foto Branco</span>

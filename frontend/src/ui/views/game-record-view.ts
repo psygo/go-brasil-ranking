@@ -132,7 +132,7 @@ export default class GameRecordView extends HTMLElement {
         <div id="legend">
           <span>Elo Dif</span>
           <span>Elo</span>
-          <span>Compen-sação</span>
+          <span>Com-pensa-ção</span>
           <span>Data</span>
           <span>Resultado</span>
           <span>Baixar</span>
