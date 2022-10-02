@@ -30,6 +30,8 @@ export default class GameRecordView extends HTMLElement {
   };
 
   async connectedCallback(): Promise<void> {
+    document.title = "Partida";
+
     this.prepareGameRecordPage();
 
     await this.getGameRecord();
@@ -50,7 +52,7 @@ export default class GameRecordView extends HTMLElement {
     this.innerHTML += /*html*/ `
       <div id="players-names"></div>
       
-      <div id="game-record-card"></div>
+      <div id="card"></div>
 
       <div id="glift"></div>
     `;
@@ -122,7 +124,7 @@ export default class GameRecordView extends HTMLElement {
 
   private setGameRecordCard = (): void => {
     const gameRecordCardDiv: HTMLDivElement =
-      this.querySelector("#game-record-card")!;
+      this.querySelector("#card")!;
     const gameDate = new Date(this.gameRecord.date);
 
     const formattedDate = DateUtils.formatDate(gameDate);
@@ -135,43 +137,41 @@ export default class GameRecordView extends HTMLElement {
       this.gameRecord.result.whoWins === Color.White ? "winner" : "loser";
 
     gameRecordCardDiv.innerHTML = /*html*/ `
-      <div id="card">
-        <div id="legend">
-          <span>Elo Dif</span>
-          <span>Elo</span>
-          <span>Com-pensa-ção</span>
-          <span>Data</span>
-          <span>Resultado</span>
-          <span>Baixar</span>
-          <span>Evento</span>
-          <span>Elo</span>
-          <span>Elo Dif</span>
-        </div>
+      <div id="legend">
+        <span>Elo Dif</span>
+        <span>Elo</span>
+        <span>Com-pensa-ção</span>
+        <span>Data</span>
+        <span>Resultado</span>
+        <span>Baixar</span>
+        <span>Evento</span>
+        <span>Elo</span>
+        <span>Elo Dif</span>
+      </div>
 
-        <div id="content">
-          <span ${blackWins}>
-            ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaBlack)}
-          </span>
+      <div id="content">
+        <span ${blackWins}>
+          ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaBlack)}
+        </span>
 
-          <span>${this.gameRecord!.eloData!.atTheTimeBlackElo}</span>
+        <span>${this.gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
-          <span>${handicap}</span>
+        <span>${handicap}</span>
 
-          <span>${formattedDate}</span>
+        <span>${formattedDate}</span>
 
-          <span>${resultString(this.gameRecord.result)}</span>
+        <span>${resultString(this.gameRecord.result)}</span>
 
-          <a id="download">SGF</a>
+        <a id="download">SGF</a>
 
-          ${UiUtils.gameEventLink(this.gameRecord)}
-          
-          <span>${this.gameRecord!.eloData!.atTheTimeWhiteElo}</span>
+        ${UiUtils.gameEventLink(this.gameRecord)}
+        
+        <span>${this.gameRecord!.eloData!.atTheTimeWhiteElo}</span>
 
-          <span ${whiteWins}>
-            ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaWhite)}
-          </span>
-          
-        </div>
+        <span ${whiteWins}>
+          ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaWhite)}
+        </span>
+        
       </div>
     `;
 

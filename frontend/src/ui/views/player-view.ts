@@ -30,6 +30,8 @@ export default class PlayerView extends HTMLElement {
   private declare player: Player;
 
   async connectedCallback(): Promise<void> {
+    document.title = "Jogador";
+
     this.player = await this.getPlayer();
 
     document.title = `Jogador | ${this.player.name}`;

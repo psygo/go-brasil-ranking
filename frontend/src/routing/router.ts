@@ -20,7 +20,7 @@ export const getRouter = (): Router => {
   switch (envState) {
     case EnvState.dev:
       const router = DevRouter.singleInstance();
-      router.manualRouting("/partidas");
+      router.manualRouting("/eventos/6");
       return router;
     case EnvState.prod:
       return ProdRouter.singleInstance();

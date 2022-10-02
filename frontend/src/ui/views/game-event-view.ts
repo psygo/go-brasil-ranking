@@ -2,67 +2,89 @@ import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
 import { FirebaseRef } from "../../models/firebase_models";
-import { GameEventLeague, GameEventTournament } from "../../models/game_event";
+import { TournamentOrLeague } from "../../models/game_event";
+import { DateUtils } from "../../infra/date_utils";
 
 export default class GameEventView extends HTMLElement {
   static readonly tag: string = "game-event-view";
-
-  private declare gameEvent: GameEventTournament | GameEventLeague;
 
   constructor(public readonly gameEventRef: FirebaseRef) {
     super();
   }
 
+  private declare gameEvent: TournamentOrLeague;
+
   private getGameEvent = async (): Promise<void> => {
     const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameEvents}/${this.gameEventRef}`,
+      `${g.apiUrl}${RouteEnum.gameEvents}/${this.gameEventRef}`
     );
     const json = await response.json();
     this.gameEvent = json["data"]["gameEvent"];
   };
 
   async connectedCallback(): Promise<void> {
+    document.title = "Evento";
+
+    this.prepareGameEventPage();
+
     await this.getGameEvent();
 
     if (this.gameEvent) {
       document.title = `Evento | ${this.gameEvent.name}`;
 
       this.setGameEventPage();
-
-      // TODO2: Add players table with the participants
-      // TODO2: Add game records table with the games from the tournament
     }
   }
 
-  private setGameEventPage = (): void => {
-    this.innerHTML += /*html*/ `
-      <h2>${this.gameEvent.name}</h2>
+  private prepareGameEventPage = (): void => {
+    this.innerHTML = /*html*/ `
+      <div id="event-name"></div>
+
+      <div id="card"></div>
     `;
+  };
 
-    // if (this.gameEvent.type === GameEventTypes.tournament) {
-    //   this.innerHTML += /*html*/ `
-    //     <h4>Dias</h4>
-    //   `;
+  private setGameEventPage = (): void => {
+    this.setGameEventName();
+    this.setGameEventCard();
 
-    //   const dates = this.gameEvent.dates;
+    // TODO2: Add players table with the participants
+    // TODO2: Add game records table with the games from the tournament
+  };
 
-    //   for (let i = 0; i < dates.length; i++) {
-    //     const date = new Date(dates[i]);
-    //     this.innerHTML += /*html*/ `
-    //       <p>${DateUtils.formatDate(date)}</p>
-    //     `;
-    //   }
-    // } else if (this.gameEvent.type === GameEventTypes.league) {
-    //   const dateInit = DateUtils.formatDate(new Date(this.gameEvent.dateInit));
-    //   let dateEnd;
-    //   if (this.gameEvent.dateEnd) dateEnd = new Date(this.gameEvent.dateEnd);
+  private setGameEventName = (): void => {
+    const gameEventNameDiv: HTMLDivElement = this.querySelector("#event-name")!;
 
-    //   const dateEndFormatted = dateEnd ? DateUtils.formatDate(dateEnd) : "";
+    gameEventNameDiv.innerHTML = /*html*/ `
+       <h2>${this.gameEvent.name}</h2>
+     `;
+  };
 
-    //   dateEnd = this.innerHTML += /*html*/ `
-    //     <h4>Data de Início: ${dateInit}</h4>
-    //     <h4>Data de Fim: ${dateEndFormatted}</h4>
-    //   `;
-    // }
+  private setGameEventCard = (): void => {
+    const gameEventCardDiv: HTMLDivElement = this.querySelector("#card")!;
+
+    const dateLength = this.gameEvent.dates.length;
+    const formattedDateInit = DateUtils.formatDate(
+      new Date(this.gameEvent.dates[0])
+    );
+    const formattedDateEnd = DateUtils.formatDate(
+      new Date(this.gameEvent.dates[dateLength - 1])
+    );
+
+    // TODO2: Add total of participants
+
+    gameEventCardDiv.innerHTML = /*html*/ `
+      <div id="legend">
+        <span>Data de Início</span>
+        <span>Data de Fim</span>
+        <span>Total de Partidas</span>
+      </div>
+
+      <div id="content">
+        <span>${formattedDateInit}</span>
+        <span>${formattedDateEnd}</span>
+        <span>${this.gameEvent.gamesTotal}</span>
+      </div>
+    `;
   };
 }

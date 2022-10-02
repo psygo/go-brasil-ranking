@@ -644,6 +644,71 @@ game-record-view #card a#download {
   color: black;
 }
 
+game-event-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+  justify-items: center;
+}
+game-event-view #event-name h2 {
+  font-size: 2.2rem;
+}
+game-event-view #card span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-event-view #card .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+game-event-view #card #legend {
+  display: grid;
+  grid-template-columns: 110px 110px 80px;
+  grid-column-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+game-event-view #card #content {
+  display: grid;
+  grid-template-columns: 110px 110px 80px;
+  grid-column-gap: 10px;
+  justify-items: center;
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+game-event-view #card #content:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-event-view #card #content route-link {
+  color: #000066;
+}
+game-event-view #card #content span[winner] {
+  color: #005200;
+}
+game-event-view #card #content span[loser] {
+  color: #660000;
+}
+game-event-view #card #content img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+
 unknown-view {
   display: flex;
   justify-content: center;
