@@ -8,6 +8,7 @@ import { Color, GameRecord, resultString } from "../../models/game_record";
 import { UiUtils } from "../ui_utils";
 import Elo from "../../models/elo";
 import { DateUtils } from "../../infra/date_utils";
+import GameRecordsTable from "../components/game_records_table";
 
 declare const glift: any;
 
@@ -60,7 +61,13 @@ export default class GameRecordView extends HTMLElement {
     this.setGameRecordCard();
     this.addSgfDiagram();
 
-    // TODO2: Other games from both players in a table
+    this.append(
+      new GameRecordsTable(
+        "Partidas entre",
+        this.gameRecord.blackRef,
+        this.gameRecord.whiteRef
+      )
+    );
   };
 
   private setPlayersNames = (): void => {

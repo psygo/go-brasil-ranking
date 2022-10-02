@@ -1,12 +1,16 @@
+import { ExpressApiRoute, paginationSlicer } from "../../infra";
+
+import { gameRecordsCol } from "../../collections/game_records_col";
+
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
 import {
   DateEloData,
   GameRecord,
 } from "../../../../frontend/src/models/game_record";
-import { gameRecordsCol } from "../../collections/game_records_col";
-import { ExpressApiRoute, paginationSlicer } from "../../infra";
 
-const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
+const queryForPlayerGameRecords = async (
+  playerRef: FirebaseRef
+): Promise<GameRecord[]> => {
   const playerIsBlack = gameRecordsCol.col
     .where("blackRef", "==", playerRef)
     .orderBy("date", "desc")
@@ -16,10 +20,17 @@ const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
     .orderBy("date", "desc")
     .get();
 
-  const [snapsAsBlack, snapsAsWhite] = await Promise.all([
+  return await mergeAndOrderParallelBlackWhiteQueries(
     playerIsBlack,
-    playerIsWhite,
-  ]);
+    playerIsWhite
+  );
+};
+
+const mergeAndOrderParallelBlackWhiteQueries = async (
+  q1: Promise<FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData>>,
+  q2: Promise<FirebaseFirestore.QuerySnapshot<FirebaseFirestore.DocumentData>>
+): Promise<GameRecord[]> => {
+  const [snapsAsBlack, snapsAsWhite] = await Promise.all([q1, q2]);
 
   const playerAsBlack = snapsAsBlack.docs.map((g) => {
     const game = g.data() as GameRecord;
@@ -38,10 +49,28 @@ const queryForPlayersGameRecords = async (playerRef: FirebaseRef) => {
   return allPlayerGames;
 };
 
+const queryForPlayersGameRecords = async (
+  playerRef1: FirebaseRef,
+  playerRef2: FirebaseRef
+) => {
+  const blackWhite = gameRecordsCol.col
+    .where("blackRef", "==", playerRef1)
+    .where("whiteRef", "==", playerRef2)
+    .orderBy("date", "desc")
+    .get();
+  const whiteBlack = gameRecordsCol.col
+    .where("blackRef", "==", playerRef2)
+    .where("whiteRef", "==", playerRef1)
+    .orderBy("date", "desc")
+    .get();
+
+  return await mergeAndOrderParallelBlackWhiteQueries(blackWhite, whiteBlack);
+};
+
 const playerDateEloData = async (
   playerRef: FirebaseRef
 ): Promise<DateEloData[]> => {
-  const allPlayerGames = await queryForPlayersGameRecords(playerRef);
+  const allPlayerGames = await queryForPlayerGameRecords(playerRef);
 
   return allPlayerGames
     .map((g) => ({
@@ -61,23 +90,29 @@ const playerDateEloData = async (
 export const getGameRecords: ExpressApiRoute = async (req, res) => {
   try {
     const startAfter = parseInt(req.query.de as string);
-    const playerRef = req.query.jogadorRef as FirebaseRef;
+    const playerRef1 = req.query.jogadorRef1 as FirebaseRef;
+    const playerRef2 = req.query.jogadorRef2 as FirebaseRef;
     const dateElo = req.query["data-elo"];
 
     let gameRecords: GameRecord[] = [];
 
-    if (playerRef) {
+    if (playerRef1 && playerRef2) {
+      gameRecords = paginationSlicer(
+        startAfter,
+        await queryForPlayersGameRecords(playerRef1, playerRef2)
+      );
+    } else if (playerRef1) {
       if (dateElo) {
         res.status(200).send({
           status: "success",
           message: "Elos encontrados.",
-          data: { dateEloData: await playerDateEloData(playerRef) },
+          data: { dateEloData: await playerDateEloData(playerRef1) },
         });
         return;
       } else
         gameRecords = paginationSlicer(
           startAfter,
-          await queryForPlayersGameRecords(playerRef)
+          await queryForPlayerGameRecords(playerRef1)
         );
     } else {
       let gameRecordsSnaps = await gameRecordsCol.col

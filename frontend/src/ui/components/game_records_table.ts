@@ -13,8 +13,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   static readonly tag: string = "game-records-table";
 
   protected getData = async (): Promise<void> => {
-    const queryString =
-      `?de=${this.startAfter}` + `&jogadorRef=${this.playerRef}`;
+    let queryString = `?de=${this.startAfter}`;
+
+    if (this.playerRef1) queryString += `&jogadorRef1=${this.playerRef1}`;
+    if (this.playerRef2) queryString += `&jogadorRef2=${this.playerRef2}`;
 
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
@@ -26,26 +28,34 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
   constructor(
     title: string = "Partidas",
-    public readonly playerRef: FirebaseRef = ""
+    public readonly playerRef1: FirebaseRef = "",
+    public readonly playerRef2: FirebaseRef = ""
   ) {
     super(title);
   }
 
-  private get playerName(): string | null {
-    if (this.playerRef) {
+  private playerName(ref: FirebaseRef): string | null {
+    if (ref) {
       const firstGame = this.data[0];
-      return firstGame.blackRef === this.playerRef
+      return firstGame.blackRef === ref
         ? firstGame.blackPlayer!.name
         : firstGame.whitePlayer!.name;
     } else return null;
   }
 
   protected get caption(): HtmlString {
-    const titleSuffix = this.playerRef ? this.playerName : "";
-    return this.playerRef
+    const player1Name = this.playerName(this.playerRef1);
+    const player2Name = this.playerName(this.playerRef2);
+    return this.playerRef1 && this.playerRef2
       ? /*html*/ `
           <h2>
-            Partidas de ${titleSuffix}
+            Todas as Partidas entre ${player1Name} e ${player2Name}
+          </h2>
+      `
+      : this.playerRef1
+      ? /*html*/ `
+          <h2>
+            Todas Partidas de ${this.playerName}
           </h2>
         `
       : /*html*/ `
@@ -93,10 +103,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
       const gameDate = new Date(gameRecord.date);
 
       let winOrLossAttr = "";
-      if (this.playerRef)
+      if (this.playerRef1 && !this.playerRef2)
         if (
-          (blackWins === "winner" && this.playerRef === gameRecord.blackRef) ||
-          (whiteWins === "winner" && this.playerRef === gameRecord.whiteRef)
+          (blackWins === "winner" && this.playerRef1 === gameRecord.blackRef) ||
+          (whiteWins === "winner" && this.playerRef1 === gameRecord.whiteRef)
         )
           winOrLossAttr = "player-wins";
         else winOrLossAttr = "player-loses";
