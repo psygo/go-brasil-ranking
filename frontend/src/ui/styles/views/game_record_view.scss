@@ -13,14 +13,16 @@ game-record-view {
 
   #players-names {
     display: grid;
-    grid-template-columns: 400px max-content 400px;
+    grid-template-columns: 300px max-content max-content max-content max-content max-content 300px;
     grid-template-rows: max-content;
     grid-column-gap: 15px;
-    grid-template-areas: "black-name vs white-name";
+    grid-template-areas: "black-dot black-name black-picture vs white-picture white-name white-dot";
+    align-items: center;
 
     h2 {
       display: flex;
-      gap: 10px;
+      gap: 15px;
+      align-items: center;
 
       &#black {
         justify-content: end;
@@ -30,6 +32,13 @@ game-record-view {
         justify-content: start;
       }
     }
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+
+    @include grt.imgDecoration(90px);
   }
 
   #card {
@@ -56,7 +65,7 @@ game-record-view {
     a#download {
       padding: 8px;
 
-      border: 2px solid gray;
+      border: 2px solid lighten(black, 40%);
       border-radius: 4px;
 
       color: black;

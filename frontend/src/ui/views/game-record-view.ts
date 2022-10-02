@@ -51,7 +51,7 @@ export default class GameRecordView extends HTMLElement {
       
       <div id="game-record-card"></div>
 
-      <div id="glift" style="width=400px; height=400px"></div>
+      <div id="glift"></div>
     `;
   };
 
@@ -77,9 +77,33 @@ export default class GameRecordView extends HTMLElement {
     const whiteElo = new Elo(white.elo);
 
     playerNamesDiv.innerHTML = /*html*/ `
-      <h2 id="black">${blackElo.danKyuLevel()} ${blackFlags} ${black.name}</h2>
+      <h2 id="black">
+        ${blackElo.danKyuLevel()} ${blackFlags} ${black.name}
+      </h2>
+      ${UiUtils.playerPicture(this.gameRecord.blackPlayer!.picture)}
+      <svg>
+        <circle 
+          cx="25" 
+          cy="25" 
+          r="15" 
+          stroke="white" 
+          stroke-width="2.5" 
+          fill="black" />
+      </svg>
       <h2>vs</h2>
-      <h2 id="white">${white.name} ${whiteFlags} ${whiteElo.danKyuLevel()}</h2>
+      <svg>
+        <circle 
+          cx="25" 
+          cy="25" 
+          r="14.5" 
+          stroke="black" 
+          stroke-width="2.5" 
+          fill="white" />
+      </svg>
+      ${UiUtils.playerPicture(this.gameRecord.whitePlayer!.picture)}
+      <h2 id="white">
+        ${white.name} ${whiteFlags} ${whiteElo.danKyuLevel()}
+      </h2>
     `;
   };
 
@@ -93,7 +117,7 @@ export default class GameRecordView extends HTMLElement {
     gameRecordCardDiv.innerHTML = /*html*/ `
       <div id="card">
         <div id="legend">
-          <span>Dia</span>
+          <span>Data</span>
           <span>Resultado</span>
           <span>Baixar</span>
         </div>

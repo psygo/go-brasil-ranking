@@ -556,20 +556,31 @@ game-record-view #glift {
 }
 game-record-view #players-names {
   display: grid;
-  grid-template-columns: 400px max-content 400px;
+  grid-template-columns: 300px max-content max-content max-content max-content max-content 300px;
   grid-template-rows: max-content;
   grid-column-gap: 15px;
-  grid-template-areas: "black-name vs white-name";
+  grid-template-areas: "black-dot black-name black-picture vs white-picture white-name white-dot";
+  align-items: center;
 }
 game-record-view #players-names h2 {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+  align-items: center;
 }
 game-record-view #players-names h2#black {
   justify-content: end;
 }
 game-record-view #players-names h2#white {
   justify-content: start;
+}
+game-record-view #players-names svg {
+  width: 50px;
+  height: 50px;
+}
+game-record-view #players-names img {
+  max-width: 90px;
+  max-height: 90px;
+  border-radius: 10px;
 }
 game-record-view #card span:not(.align-left) {
   display: flex;
@@ -628,7 +639,7 @@ game-record-view #card #content img {
 }
 game-record-view #card a#download {
   padding: 8px;
-  border: 2px solid gray;
+  border: 2px solid #666666;
   border-radius: 4px;
   color: black;
 }
