@@ -117,8 +117,9 @@ $refWidth: 30px;
 $eloWidth: 60px;
 $eloDeltaWidth: 40px;
 $dateWidth: 110px;
-$handicapWidth: 40px;
+$handicapWidth: 50px;
 $eventWidth: 100px;
+$resultWidth: 90px;
 
 $columnGap: 10px;
 
@@ -183,7 +184,6 @@ game-records-table {
   @mixin cardLegendGrid {
     $playerNameWidth: 85px;
     $countryFlagsWidth: 60px;
-    $resultWidth: 90px;
 
     display: grid;
     grid-template-columns:

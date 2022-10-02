@@ -166,7 +166,7 @@ game-records-table #legend {
 game-records-table route-link.card,
 game-records-table #legend {
   display: grid;
-  grid-template-columns: 30px 70px 85px 60px 40px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
+  grid-template-columns: 30px 70px 85px 60px 50px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
   grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
 }
@@ -594,7 +594,7 @@ game-record-view #card .align-left {
 }
 game-record-view #card #legend {
   display: grid;
-  grid-template-columns: 40px 60px 40px 110px 80px 100px 100px 60px 40px;
+  grid-template-columns: 40px 60px 50px 110px 90px 100px 100px 60px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   align-items: center;
@@ -604,7 +604,7 @@ game-record-view #card #legend {
 }
 game-record-view #card #content {
   display: grid;
-  grid-template-columns: 40px 60px 40px 110px 80px 100px 100px 60px 40px;
+  grid-template-columns: 40px 60px 50px 110px 90px 100px 100px 60px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   margin-bottom: 35px;
