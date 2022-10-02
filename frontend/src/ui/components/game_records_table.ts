@@ -1,13 +1,13 @@
 import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
+import { HtmlString } from "../../infra/utils";
 
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
-import { isTournamentOrLeague } from "../../models/game_event";
+
 import { UiUtils } from "../ui_utils";
 import UiTable from "./ui_table";
-import { HtmlString } from "../../infra/utils";
 
 export default class GameRecordsTable extends UiTable<GameRecord> {
   static readonly tag: string = "game-records-table";
@@ -130,7 +130,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
             <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
             <span ${blackWins}>
-              ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
+              ${UiUtils.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
             </span>
 
             <span>
@@ -150,38 +150,16 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
             <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
 
             <span ${whiteWins}>
-              ${this.signedEloDelta(gameRecord!.eloData!.eloDeltaWhite)}
+              ${UiUtils.signedEloDelta(gameRecord!.eloData!.eloDeltaWhite)}
             </span>
 
             <span>${resultString(gameRecord.result)}</span>
 
             <span>${DateUtils.formatDate(gameDate)}</span>
             
-            ${this.gameEventLink(gameRecord)}
+            ${UiUtils.gameEventLink(gameRecord)}
         </route-link>
       `;
     }
-  };
-
-  private signedEloDelta = (n: number): string => {
-    return n === 0 ? n.toString() : n > 0 ? `+${n}` : n.toString();
-  };
-
-  private gameEventLink = (gameRecord: GameRecord) => {
-    let gameEvent = gameRecord.gameEvent?.type.toString();
-
-    let gameEventLink = /*html*/ `<span>${gameEvent}</span>`;
-
-    if (gameRecord.gameEvent && isTournamentOrLeague(gameRecord.gameEvent)) {
-      gameEvent = gameRecord.gameEvent.name;
-      gameEventLink = /*html*/ `
-        <route-link 
-          href="${RouteEnum.gameEvents}/${gameRecord.gameEventRef}">
-            <span>${gameRecord.gameEvent.name}</span>
-        </route-link>
-      `;
-    }
-
-    return gameEventLink;
   };
 }

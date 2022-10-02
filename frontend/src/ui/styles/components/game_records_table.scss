@@ -25,15 +25,15 @@
 @mixin playerLink {
   route-link {
     color: darken(blue, 30%);
+  }
 
-    span {
-      &[winner] {
-        color: darken(green, 9%);
-      }
+  span {
+    &[winner] {
+      color: darken(green, 9%);
+    }
 
-      &[loser] {
-        color: darken(red, 30%);
-      }
+    &[loser] {
+      color: darken(red, 30%);
     }
   }
 }
@@ -115,7 +115,10 @@ $pictureWidth: 70px;
 
 $refWidth: 30px;
 $eloWidth: 60px;
+$eloDeltaWidth: 40px;
 $dateWidth: 110px;
+$handicapWidth: 40px;
+$eventWidth: 100px;
 
 $columnGap: 10px;
 
@@ -180,10 +183,7 @@ game-records-table {
   @mixin cardLegendGrid {
     $playerNameWidth: 85px;
     $countryFlagsWidth: 60px;
-    $handicapWidth: 40px;
-    $eloDeltaWidth: 40px;
     $resultWidth: 90px;
-    $eventWidth: 100px;
 
     display: grid;
     grid-template-columns:

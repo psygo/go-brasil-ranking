@@ -3,7 +3,7 @@ import { RouteEnum } from "../../routing/router";
 import { EnvState, envState } from "../../infra/env";
 
 import { FirebaseRef } from "../../models/firebase_models";
-import { GameRecord, resultString } from "../../models/game_record";
+import { Color, GameRecord, resultString } from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
 import Elo from "../../models/elo";
@@ -80,7 +80,9 @@ export default class GameRecordView extends HTMLElement {
       <h2 id="black">
         ${blackElo.danKyuLevel()} ${blackFlags} ${black.name}
       </h2>
+
       ${UiUtils.playerPicture(this.gameRecord.blackPlayer!.picture)}
+
       <svg>
         <circle 
           cx="25" 
@@ -90,7 +92,9 @@ export default class GameRecordView extends HTMLElement {
           stroke-width="2.5" 
           fill="black" />
       </svg>
+
       <h2>vs</h2>
+
       <svg>
         <circle 
           cx="25" 
@@ -100,7 +104,9 @@ export default class GameRecordView extends HTMLElement {
           stroke-width="2.5" 
           fill="white" />
       </svg>
+
       ${UiUtils.playerPicture(this.gameRecord.whitePlayer!.picture)}
+
       <h2 id="white">
         ${white.name} ${whiteFlags} ${whiteElo.danKyuLevel()}
       </h2>
@@ -114,18 +120,50 @@ export default class GameRecordView extends HTMLElement {
 
     const formattedDate = DateUtils.formatDate(gameDate);
 
+    const handicap = this.gameRecord.handicap ? this.gameRecord.handicap : "0";
+
+    const blackWins =
+      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
+    const whiteWins =
+      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser";
+
     gameRecordCardDiv.innerHTML = /*html*/ `
       <div id="card">
         <div id="legend">
+          <span>Elo Dif</span>
+          <span>Elo</span>
+          <span>Compen-sação</span>
           <span>Data</span>
           <span>Resultado</span>
           <span>Baixar</span>
+          <span>Evento</span>
+          <span>Elo</span>
+          <span>Elo Dif</span>
         </div>
 
         <div id="content">
+          <span ${blackWins}>
+            ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaBlack)}
+          </span>
+
+          <span>${this.gameRecord!.eloData!.atTheTimeBlackElo}</span>
+
+          <span>${handicap}</span>
+
           <span>${formattedDate}</span>
+
           <span>${resultString(this.gameRecord.result)}</span>
+
           <a id="download">SGF</a>
+
+          ${UiUtils.gameEventLink(this.gameRecord)}
+          
+          <span>${this.gameRecord!.eloData!.atTheTimeWhiteElo}</span>
+
+          <span ${whiteWins}>
+            ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaWhite)}
+          </span>
+          
         </div>
       </div>
     `;

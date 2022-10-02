@@ -5,6 +5,8 @@ import { RouteEnum } from "../routing/router";
 import { Country, getFlag } from "../models/country";
 import { Player } from "../models/player";
 import { HtmlString } from "../infra/utils";
+import { GameRecord } from "../models/game_record";
+import { isTournamentOrLeague } from "../models/game_event";
 
 export namespace UiUtils {
   export const allFlags = (countries: readonly Country[]): HtmlString =>
@@ -36,4 +38,25 @@ export namespace UiUtils {
     !picture
       ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
       : /*html*/ `<img id="picture" src="${picture}"/>`;
+
+  export const signedEloDelta = (n: number): string =>
+    n === 0 ? n.toString() : n > 0 ? `+${n}` : n.toString();
+
+  export const gameEventLink = (gameRecord: GameRecord) => {
+    let gameEvent = gameRecord.gameEvent?.type.toString();
+
+    let gameEventLink = /*html*/ `<span>${gameEvent}</span>`;
+
+    if (gameRecord.gameEvent && isTournamentOrLeague(gameRecord.gameEvent)) {
+      gameEvent = gameRecord.gameEvent.name;
+      gameEventLink = /*html*/ `
+        <route-link 
+          href="${RouteEnum.gameEvents}/${gameRecord.gameEventRef}">
+            <span>${gameRecord.gameEvent.name}</span>
+        </route-link>
+      `;
+    }
+
+    return gameEventLink;
+  };
 }

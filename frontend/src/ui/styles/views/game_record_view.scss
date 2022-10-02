@@ -12,8 +12,10 @@ game-record-view {
   }
 
   #players-names {
+    $nameWidth: 290px;
+
     display: grid;
-    grid-template-columns: 300px max-content max-content max-content max-content max-content 300px;
+    grid-template-columns: $nameWidth max-content max-content max-content max-content max-content $nameWidth;
     grid-template-rows: max-content;
     grid-column-gap: 15px;
     grid-template-areas: "black-dot black-name black-picture vs white-picture white-name white-dot";
@@ -46,7 +48,10 @@ game-record-view {
 
     @mixin cardLegendGrid {
       display: grid;
-      grid-template-columns: grt.$dateWidth 80px 100px;
+      grid-template-columns:
+        grt.$eloDeltaWidth grt.$eloWidth
+        grt.$handicapWidth grt.$dateWidth 80px 100px grt.$eventWidth
+        grt.$eloWidth grt.$eloDeltaWidth;
       grid-column-gap: grt.$columnGap;
       justify-items: center;
     }

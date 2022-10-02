@@ -146,10 +146,10 @@ game-records-table route-link.card:hover {
 game-records-table route-link.card route-link {
   color: #000066;
 }
-game-records-table route-link.card route-link span[winner] {
+game-records-table route-link.card span[winner] {
   color: #005200;
 }
-game-records-table route-link.card route-link span[loser] {
+game-records-table route-link.card span[loser] {
   color: #660000;
 }
 game-records-table route-link.card img {
@@ -265,10 +265,10 @@ game-events-table route-link.card:hover {
 game-events-table route-link.card route-link {
   color: #000066;
 }
-game-events-table route-link.card route-link span[winner] {
+game-events-table route-link.card span[winner] {
   color: #005200;
 }
-game-events-table route-link.card route-link span[loser] {
+game-events-table route-link.card span[loser] {
   color: #660000;
 }
 game-events-table route-link.card img {
@@ -371,10 +371,10 @@ players-table route-link.card:hover {
 players-table route-link.card route-link {
   color: #000066;
 }
-players-table route-link.card route-link span[winner] {
+players-table route-link.card span[winner] {
   color: #005200;
 }
-players-table route-link.card route-link span[loser] {
+players-table route-link.card span[loser] {
   color: #660000;
 }
 players-table route-link.card img {
@@ -523,10 +523,10 @@ player-view #player-personal-card #player-personal-card-content:hover {
 player-view #player-personal-card #player-personal-card-content route-link {
   color: #000066;
 }
-player-view #player-personal-card #player-personal-card-content route-link span[winner] {
+player-view #player-personal-card #player-personal-card-content span[winner] {
   color: #005200;
 }
-player-view #player-personal-card #player-personal-card-content route-link span[loser] {
+player-view #player-personal-card #player-personal-card-content span[loser] {
   color: #660000;
 }
 player-view #player-personal-card #player-personal-card-content img {
@@ -556,7 +556,7 @@ game-record-view #glift {
 }
 game-record-view #players-names {
   display: grid;
-  grid-template-columns: 300px max-content max-content max-content max-content max-content 300px;
+  grid-template-columns: 290px max-content max-content max-content max-content max-content 290px;
   grid-template-rows: max-content;
   grid-column-gap: 15px;
   grid-template-areas: "black-dot black-name black-picture vs white-picture white-name white-dot";
@@ -594,7 +594,7 @@ game-record-view #card .align-left {
 }
 game-record-view #card #legend {
   display: grid;
-  grid-template-columns: 110px 80px 100px;
+  grid-template-columns: 40px 60px 40px 110px 80px 100px 100px 60px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   align-items: center;
@@ -604,7 +604,7 @@ game-record-view #card #legend {
 }
 game-record-view #card #content {
   display: grid;
-  grid-template-columns: 110px 80px 100px;
+  grid-template-columns: 40px 60px 40px 110px 80px 100px 100px 60px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   margin-bottom: 35px;
@@ -626,10 +626,10 @@ game-record-view #card #content:hover {
 game-record-view #card #content route-link {
   color: #000066;
 }
-game-record-view #card #content route-link span[winner] {
+game-record-view #card #content span[winner] {
   color: #005200;
 }
-game-record-view #card #content route-link span[loser] {
+game-record-view #card #content span[loser] {
   color: #660000;
 }
 game-record-view #card #content img {
