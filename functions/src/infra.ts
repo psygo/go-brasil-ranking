@@ -46,8 +46,9 @@ export const addFirebaseRef = <T extends RankingData>(
 ): T => ({ ...rankingData, firebaseRef: firebaseRef });
 
 export const mapDocsWithFirebaseRef = <T extends RankingData>(
-  doc: FirebaseFirestore.QueryDocumentSnapshot<FirebaseFirestore.DocumentData>
-): T => {
-  const rankingData = doc.data() as T;
-  return addFirebaseRef(rankingData, doc.id);
-};
+  docs: FirebaseFirestore.QueryDocumentSnapshot<FirebaseFirestore.DocumentData>[]
+): T[] =>
+  docs.map((doc) => {
+    const rankingData = doc.data() as T;
+    return addFirebaseRef<T>(rankingData, doc.id);
+  });

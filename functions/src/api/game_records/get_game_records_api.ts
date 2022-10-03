@@ -5,6 +5,7 @@ import {
   paginationSlicer,
   queryLimit,
 } from "../../infra";
+import { RankingData } from "../../../../frontend/src/infra/utils";
 
 import { gameRecordsCol } from "../../collections/game_records_col";
 
@@ -13,7 +14,6 @@ import {
   DateEloData,
   GameRecord,
 } from "../../../../frontend/src/models/game_record";
-import { RankingData } from "../../../../frontend/src/infra/utils";
 
 const queryForPlayerGameRecords = async (
   playerRef: FirebaseRef
@@ -41,8 +41,8 @@ const mergeParallelQueries = async <T extends RankingData>(
 ): Promise<T[]> => {
   const [snapsAsBlack, snapsAsWhite] = await Promise.all([q1, q2]);
 
-  const playerAsBlack = snapsAsBlack.docs.map(mapDocsWithFirebaseRef<T>);
-  const playerAsWhite = snapsAsWhite.docs.map(mapDocsWithFirebaseRef<T>);
+  const playerAsBlack = mapDocsWithFirebaseRef<T>(snapsAsBlack.docs);
+  const playerAsWhite = mapDocsWithFirebaseRef<T>(snapsAsWhite.docs);
 
   return [...playerAsBlack, ...playerAsWhite];
 };
@@ -132,13 +132,13 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 };
 
 const gameRecordsByDate = async (startAfter: number): Promise<GameRecord[]> => {
-  let gameRecordsSnaps = await gameRecordsCol.col
+  const gameRecordsSnaps = await gameRecordsCol.col
     .orderBy("date", "desc")
     .offset(startAfter)
     .limit(queryLimit)
     .get();
 
-  return gameRecordsSnaps.docs.map(mapDocsWithFirebaseRef<GameRecord>);
+  return mapDocsWithFirebaseRef<GameRecord>(gameRecordsSnaps.docs);
 };
 
 const gameRecordsFromSinglePlayer = async (
@@ -168,5 +168,5 @@ const gameRecordsFromEvent = async (
     .limit(queryLimit)
     .get();
 
-  return snapsGamesFromEvent.docs.map(mapDocsWithFirebaseRef<GameRecord>);
+  return mapDocsWithFirebaseRef<GameRecord>(snapsGamesFromEvent.docs);
 };
