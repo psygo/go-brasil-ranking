@@ -23,8 +23,9 @@ export const postGameRecord = async (
   firebaseRef?: FirebaseRef
 ): Promise<GameRecord> => {
   const black = (await playersCol.getWithRef(gameRecord.blackRef))! as _Player;
-  delete black.lastGame;
   const white = (await playersCol.getWithRef(gameRecord.whiteRef))! as _Player;
+
+  delete black.lastGame;
   delete white.lastGame;
 
   const blackElo = new Elo(black.elo);

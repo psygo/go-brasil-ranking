@@ -13,6 +13,7 @@ import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
 import {
   DateEloData,
   GameRecord,
+  _GameRecord,
 } from "../../../../frontend/src/models/game_record";
 
 const queryForPlayerGameRecords = async (

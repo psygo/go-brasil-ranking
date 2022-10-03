@@ -3,14 +3,13 @@ import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 import { GameEvent, GameEventRef } from "./game_event";
 import { Player } from "./player";
 
-interface _GameRecord extends FirebaseDoc {
+export interface _GameRecord extends FirebaseDoc {
   firebaseRef?: FirebaseRef;
   author?: Author;
   blackRef: FirebaseRef;
   blackPlayer?: Player;
   whiteRef: FirebaseRef;
   whitePlayer?: Player;
-  // TODO1: Readd Handicap handling to the Elo class
   handicap?: number;
   date: number;
   dateCreated?: number;

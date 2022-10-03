@@ -70,4 +70,5 @@ goBrasilRankingApp.post("/partidas/mock-populate", mockPopulateGameRecordsApi);
 
 export const goBrasilRanking = functions
   .region("southamerica-east1")
+  .runWith({ timeoutSeconds: 100, minInstances: 1, maxInstances: 10 })
   .https.onRequest(goBrasilRankingApp);
