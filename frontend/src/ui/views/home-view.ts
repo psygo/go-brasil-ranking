@@ -1,6 +1,6 @@
-import GameEventsTable from "../components/game_events_table";
-import GameRecordsTable from "../components/game_records_table";
 import PlayersTable from "../components/players_table";
+import GameRecordsTable from "../components/game_records_table";
+import GameEventsTable from "../components/game_events_table";
 
 export default class HomeView extends HTMLElement {
   static readonly tag: string = "home-view";
