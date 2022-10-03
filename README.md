@@ -16,7 +16,7 @@ No momento, a maneira mais agradável de se rodar algo localemente é abrir pelo
 - `cd frontend && npm run everything`
 - `cd functions && npm run everything`
 
-## Em Producao
+## Em Produção
 
 É preciso criar manualmente índices compostos para este aplicativo, o que só é possível manualmente com o Firebase. Seguem os índices necessários:
 
