@@ -1,17 +1,19 @@
 @use "../components/game_records_table" as grt;
 
+@use "../components/players_table" as pt;
+
+$gameEventTypeWidth: 75px;
+
 game-events-table {
   @mixin cardLegendGrid {
     $gameEventNameWidth: 170px;
-    $gameEventTypeWidth: 75px;
-    $gamesTotalWidth: 65px;
     $gameEventFirstDate: 90px;
     $gameEventLastDate: 90px;
 
     display: grid;
     grid-template-columns:
       grt.$refWidth $gameEventNameWidth $gameEventTypeWidth
-      $gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
+      pt.$gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
     grid-template-areas: "ref name type total-games";
     grid-column-gap: grt.$columnGap;
   }

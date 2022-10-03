@@ -1,14 +1,8 @@
 import { Globals as g } from "../../infra/globals";
-import { HtmlString } from "../../infra/utils";
-
-import { TournamentOrLeague } from "../../models/game_event";
-import { GameRecord } from "../../models/game_record";
-import { Player } from "../../models/player";
-
-type TableElement = GameRecord | Player | TournamentOrLeague;
+import { HtmlString, RankingData } from "../../infra/utils";
 
 export default abstract class UiTable<
-  T extends TableElement
+  T extends RankingData
 > extends HTMLElement {
   protected readonly data: T[] = [];
 

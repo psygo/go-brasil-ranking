@@ -18,6 +18,8 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     if (this.playerRef1) queryString += `&jogadorRef1=${this.playerRef1}`;
     if (this.playerRef2) queryString += `&jogadorRef2=${this.playerRef2}`;
 
+    if (this.eventRef) queryString += `&eventoRef=${this.eventRef}`;
+
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
     );
@@ -29,7 +31,8 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   constructor(
     title: string = "Partidas",
     public readonly playerRef1: FirebaseRef = "",
-    public readonly playerRef2: FirebaseRef = ""
+    public readonly playerRef2: FirebaseRef = "",
+    public readonly eventRef: FirebaseRef = ""
   ) {
     super(title);
   }

@@ -4,6 +4,7 @@ import { RouteEnum } from "../../routing/router";
 import { FirebaseRef } from "../../models/firebase_models";
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
+import GameRecordsTable from "../components/game_records_table";
 
 export default class GameEventView extends HTMLElement {
   static readonly tag: string = "game-event-view";
@@ -49,6 +50,10 @@ export default class GameEventView extends HTMLElement {
     this.setGameEventCard();
 
     // TODO2: Add players table with the participants
+    this.append(
+      new GameRecordsTable("Partidas do Evento", "", "", this.gameEventRef)
+    );
+
     // TODO2: Add game records table with the games from the tournament
   };
 
@@ -75,12 +80,14 @@ export default class GameEventView extends HTMLElement {
 
     gameEventCardDiv.innerHTML = /*html*/ `
       <div id="legend">
+        <span>Tipo</span>
         <span>Data de Início</span>
         <span>Data de Fim</span>
         <span>Total de Partidas</span>
       </div>
 
       <div id="content">
+        <span>${this.gameEvent.type}</span>
         <span>${formattedDateInit}</span>
         <span>${formattedDateEnd}</span>
         <span>${this.gameEvent.gamesTotal}</span>

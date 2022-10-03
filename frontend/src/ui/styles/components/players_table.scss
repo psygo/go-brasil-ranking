@@ -1,6 +1,6 @@
 @use "../components/game_records_table" as grt;
 
-$gamesTotalWidth: 80px;
+$gamesTotalWidth: 65px;
 
 players-table {
   @mixin cardLegendGrid {
