@@ -1,4 +1,8 @@
-import { ExpressApiRoute, paginationSlicer } from "../../infra";
+import {
+  ExpressApiRoute,
+  mapDocsWithFirebaseRef,
+  queryLimit,
+} from "../../infra";
 
 import { gameEventsCol } from "../../collections/game_events_col";
 
@@ -8,17 +12,15 @@ export const getGameEvents: ExpressApiRoute = async (req, res) => {
   try {
     const startAfter = parseInt(req.query.de as string);
 
-    const gameEventsQuery = gameEventsCol.col.orderBy("firstDate", "desc");
+    const gameEventsSnaps = await gameEventsCol.col
+      .orderBy("firstDate", "desc")
+      .offset(startAfter)
+      .limit(queryLimit)
+      .get();
 
-    const gameEventsSnaps = await gameEventsQuery.get();
-
-    const docs = paginationSlicer(startAfter, gameEventsSnaps.docs);
-
-    const gameEvents: TournamentOrLeague[] = [];
-    docs.forEach((gameEventDoc) => {
-      const gameEventNoRef = gameEventDoc.data() as TournamentOrLeague;
-      gameEvents.push({ ...gameEventNoRef, firebaseRef: gameEventDoc.id });
-    });
+    const gameEvents = mapDocsWithFirebaseRef<TournamentOrLeague>(
+      gameEventsSnaps.docs
+    );
 
     res.status(200).send({
       status: "success",

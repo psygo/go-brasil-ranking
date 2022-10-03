@@ -1,31 +1,29 @@
-import { Player } from "../../../../frontend/src/models/player";
+import {
+  ExpressApiRoute,
+  mapDocsWithFirebaseRef,
+  queryLimit,
+} from "../../infra";
+
 import { playersCol } from "../../collections/players_col";
-import { ExpressApiRoute, paginationSlicer } from "../../infra";
+
+import { Player } from "../../../../frontend/src/models/player";
 
 export const getPlayers: ExpressApiRoute = async (req, res) => {
   try {
     const startAfter = parseInt(req.query.de as string);
-    const onlyBrazilians =
-      req.query.somenteBrasileiros === undefined
-        ? undefined
-        : req.query.somenteBrasileiros
-        ? true
-        : false;
+    const onlyBrazilians = req.query.somenteBrasileiros ? true : false;
 
-    let playersQuery = playersCol.col.orderBy("elo", "desc");
+    let playersQuery = playersCol.col
+      .orderBy("elo", "desc")
+      .offset(startAfter)
+      .limit(queryLimit);
 
     if (onlyBrazilians)
       playersQuery = playersQuery.where("isBrazilian", "==", onlyBrazilians);
 
     const playersSnaps = await playersQuery.get();
 
-    const docs = paginationSlicer(startAfter, playersSnaps.docs);
-
-    const players: Player[] = [];
-    docs.forEach((playerDoc) => {
-      const playerNoRef = playerDoc.data() as Player;
-      players.push({ ...playerNoRef, firebaseRef: playerDoc.id });
-    });
+    const players = mapDocsWithFirebaseRef<Player>(playersSnaps.docs);
 
     res.status(200).send({
       status: "success",

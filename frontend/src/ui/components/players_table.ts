@@ -4,26 +4,31 @@ import { RouteEnum } from "../../routing/router";
 import Elo from "../../models/elo";
 import { Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
-import { HtmlString, inf, paginationSlicer } from "../../infra/utils";
+import { errorLog, HtmlString, inf, paginationSlicer } from "../../infra/utils";
 import UiTable from "./ui_table";
 
 export default class PlayersTable extends UiTable<Player> {
   static readonly tag: string = "players-table";
 
   protected getData = async (): Promise<void> => {
-    const onlyBrazilians =
-      this.onlyBrazilians === undefined
-        ? ""
-        : `somenteBrasileiros=${this.onlyBrazilians}`;
+    try {
+      const onlyBrazilians =
+        this.onlyBrazilians === undefined
+          ? ""
+          : `somenteBrasileiros=${this.onlyBrazilians}`;
 
-    const queryString = `?de=${this.startAfter}&${onlyBrazilians}`;
+      const queryString = `?de=${this.startAfter}&${onlyBrazilians}`;
 
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.players}${queryString}`
-    );
+      const response = await fetch(
+        `${g.apiUrl}${RouteEnum.players}${queryString}`
+      );
 
-    const json = await response.json();
-    this.data.push(...json["data"]["players"]);
+      const json = await response.json();
+      this.data.push(...json["data"]["players"]);
+    } catch (e) {
+      const error = e as Error;
+      errorLog(error, "Game Events' Table");
+    }
   };
 
   constructor(

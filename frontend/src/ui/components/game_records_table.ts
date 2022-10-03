@@ -1,7 +1,7 @@
 import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
-import { HtmlString } from "../../infra/utils";
+import { errorLog, HtmlString } from "../../infra/utils";
 
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
@@ -13,19 +13,24 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   static readonly tag: string = "game-records-table";
 
   protected getData = async (): Promise<void> => {
-    let queryString = `?de=${this.startAfter}`;
+    try {
+      let queryString = `?de=${this.startAfter}`;
 
-    if (this.playerRef1) queryString += `&jogadorRef1=${this.playerRef1}`;
-    if (this.playerRef2) queryString += `&jogadorRef2=${this.playerRef2}`;
+      if (this.playerRef1) queryString += `&jogadorRef1=${this.playerRef1}`;
+      if (this.playerRef2) queryString += `&jogadorRef2=${this.playerRef2}`;
 
-    if (this.eventRef) queryString += `&eventoRef=${this.eventRef}`;
+      if (this.eventRef) queryString += `&eventoRef=${this.eventRef}`;
 
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
-    );
+      const response = await fetch(
+        `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
+      );
 
-    const json = await response.json();
-    this.data.push(...json["data"]["gameRecords"]);
+      const json = await response.json();
+      this.data.push(...json["data"]["gameRecords"]);
+    } catch (e) {
+      const error = e as Error;
+      errorLog(error, "Game Events' Table");
+    }
   };
 
   constructor(

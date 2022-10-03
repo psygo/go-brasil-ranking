@@ -5,20 +5,25 @@ import { RouteEnum } from "../../routing/router";
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
 import UiTable from "./ui_table";
-import { HtmlString } from "../../infra/utils";
+import { errorLog, HtmlString } from "../../infra/utils";
 
 export default class GameEventsTable extends UiTable<TournamentOrLeague> {
   static readonly tag: string = "game-events-table";
 
   protected getData = async (): Promise<void> => {
-    const queryString = `?de=${this.startAfter}`;
+    try {
+      const queryString = `?de=${this.startAfter}`;
 
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameEvents}${queryString}`
-    );
+      const response = await fetch(
+        `${g.apiUrl}${RouteEnum.gameEvents}${queryString}`
+      );
 
-    const json = await response.json();
-    this.data.push(...json["data"]["gameEvents"]);
+      const json = await response.json();
+      this.data.push(...json["data"]["gameEvents"]);
+    } catch (e) {
+      const error = e as Error;
+      errorLog(error, "Game Events' Table");
+    }
   };
 
   constructor(title: string = "Eventos") {
