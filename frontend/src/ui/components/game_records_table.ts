@@ -42,10 +42,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     super(title);
   }
 
-  private playerName(ref: FirebaseRef): string | null {
-    if (ref) {
+  private playerName(firebaseRef: FirebaseRef): string | null {
+    if (firebaseRef) {
       const firstGame = this.data[0];
-      return firstGame.blackRef === ref
+      return firstGame.blackRef === firebaseRef
         ? firstGame.blackPlayer!.name
         : firstGame.whitePlayer!.name;
     } else return null;
@@ -63,7 +63,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
       : this.playerRef1
       ? /*html*/ `
           <h2>
-            Todas Partidas de ${this.playerName}
+            Todas Partidas de ${this.playerName(this.playerRef1)}
           </h2>
         `
       : /*html*/ `

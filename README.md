@@ -2,8 +2,8 @@
 
 Ferramentas utilizadas:
 
-- Vanila HTML/SCSS/TS, com uma ou outra biblioteca (ex. Chart.js), mas *sem frameworks*
-    - É um *SPA* (Single-Page Application)
+- Vanila HTML/SCSS/TS, com uma ou outra biblioteca (ex. Chart.js), mas _sem frameworks_
+  - É um _SPA_ (Single-Page Application)
 - Firebase (Servidor (Functions), Hospedagem, Autenticação e Banco de Dados (Firestore))
 
 ## Como rodar em desenvolvimento
@@ -15,3 +15,14 @@ No momento, a maneira mais agradável de se rodar algo localemente é abrir pelo
 - `sh scripts/firebase_emulators.sh`
 - `cd frontend && npm run everything`
 - `cd functions && npm run everything`
+
+## Em Producao
+
+É preciso criar manualmente índices compostos para este aplicativo, o que só é possível manualmente com o Firebase. Seguem os índices necessários:
+
+| Collection ID | Fields indexed                         | Query scope | Status  |
+| ------------- | -------------------------------------- | ----------- | ------- |
+| game_records  | whiteRef Ascending date Descending     | Collection  | Enabled |
+| players       | isBrazilian Ascending elo Descending   | Collection  | Enabled |
+| game_records  | gameEventRef Ascending date Descending | Collection  | Enabled |
+| game_records  | blackRef Ascending date Descending     | Collection  | Enabled |

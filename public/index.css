@@ -54,27 +54,17 @@ header nav-bar nav route-link {
 footer {
   grid-area: footer;
 }
-footer foot-er {
+footer footer-container {
   display: flex;
   justify-content: center;
   padding-bottom: 5px;
   padding-top: 10px;
-  background-color: #d4d4d4;
 }
-footer foot-er svg {
+footer footer-container svg {
   width: 24px;
   fill: #717171;
 }
 
-game-records-table h2 {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-}
-game-records-table h2 route-link {
-  color: #005c00;
-}
 game-records-table span:not(.align-left) {
   display: flex;
   justify-content: center;
@@ -84,6 +74,15 @@ game-records-table .align-left {
   display: flex;
   justify-content: left;
   text-align: left;
+}
+game-records-table h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+game-records-table h2 route-link {
+  color: #005c00;
 }
 game-records-table .pagination {
   display: flex;
@@ -97,16 +96,37 @@ game-records-table .pagination button {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
+  font-size: 1.6rem;
+  padding: 10px;
   cursor: pointer;
 }
 game-records-table .pagination button:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-game-records-table route-link.game-record-card {
+game-records-table .loader-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+game-records-table .loader-container .loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid green;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+game-records-table route-link.card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -115,137 +135,55 @@ game-records-table route-link.game-record-card {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  padding: 12px 8px;
-  padding-right: 12px;
+  padding: 10px 10px;
   margin-bottom: 10px;
   align-items: center;
+}
+game-records-table route-link.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-records-table route-link.card route-link {
+  color: #000066;
+}
+game-records-table route-link.card span[winner] {
+  color: #005200;
+}
+game-records-table route-link.card span[loser] {
+  color: #660000;
+}
+game-records-table route-link.card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+game-records-table #legend {
+  padding: 10px 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+game-records-table route-link.card,
+game-records-table #legend {
   display: grid;
   grid-template-columns: 30px 70px 85px 60px 40px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
   grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
   grid-column-gap: 10px;
 }
-game-records-table route-link.game-record-card:hover {
-  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
-  transform: translate3d(0px, -0.5px, 0px);
-}
-game-records-table route-link.game-record-card route-link {
-  color: #000066;
-}
-game-records-table route-link.game-record-card route-link[winner] {
-  color: #005200;
-}
-game-records-table route-link.game-record-card route-link[loser] {
-  color: #660000;
-}
-game-records-table route-link.game-record-card img {
-  max-width: 70px;
-  max-height: 70px;
-  border-radius: 10px;
-}
-game-records-table route-link.game-record-card[player-wins] {
+game-records-table route-link.card[player-wins] {
   background-color: #e6ffe6;
 }
-game-records-table route-link.game-record-card[player-loses] {
+game-records-table route-link.card[player-loses] {
   background-color: #ffe6e6;
 }
-game-records-table #game-records-table-legend {
-  display: grid;
-  grid-template-columns: 30px 70px 85px 60px 40px 60px 40px 70px 85px 60px 60px 40px 90px 110px 100px;
-  grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
-  grid-column-gap: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
-  align-items: center;
-  font-weight: bold;
-}
 
-game-events-table h2 {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 15px;
-  font-size: 1.8rem;
-}
-game-events-table h2 route-link {
-  color: #005c00;
-}
-game-events-table span:not(.align-left) {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-game-events-table .align-left {
-  display: flex;
-  justify-content: left;
-  text-align: left;
-}
-game-events-table .pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-}
-game-events-table .pagination button {
-  background: whitesmoke;
-  border: 3px solid #eee;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
-  transition: all 0.15s ease-in-out;
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
-  cursor: pointer;
-}
-game-events-table .pagination button:hover {
-  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
-  transform: translate3d(0px, -0.5px, 0px);
-}
-game-events-table route-link.game-event-card {
-  margin-bottom: 35px;
-  width: max-content;
-  background: whitesmoke;
-  border: 3px solid #eee;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
-  transition: all 0.15s ease-in-out;
-  font-size: 1.1rem;
-  padding: 12px 8px;
-  padding-right: 12px;
-  margin-bottom: 10px;
-  align-items: center;
+players-table route-link.card,
+players-table #legend {
   display: grid;
-  grid-template-areas: "ref name type total-games";
-  grid-template-columns: 30px 170px 75px 65px 90px 90px;
+  grid-template-columns: 30px 70px 155px 40px 60px 45px 100px 65px;
+  grid-template-areas: "ref" "player-picture player-name countries" "elo dan-kyu last-game-date";
   grid-column-gap: 10px;
 }
-game-events-table route-link.game-event-card:hover {
-  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
-  transform: translate3d(0px, -0.5px, 0px);
-}
-game-events-table route-link.game-event-card route-link {
-  color: #000066;
-}
-game-events-table route-link.game-event-card route-link[winner] {
-  color: #005200;
-}
-game-events-table route-link.game-event-card route-link[loser] {
-  color: #660000;
-}
-game-events-table route-link.game-event-card img {
-  max-width: 70px;
-  max-height: 70px;
-  border-radius: 10px;
-}
-game-events-table .game-events-table-legend {
-  padding: 12px 8px;
-  padding-right: 12px;
-  align-items: center;
-  font-weight: bold;
-  display: grid;
-  grid-template-areas: "ref name type total-games";
-  grid-template-columns: 30px 170px 75px 65px 90px 90px;
-  grid-column-gap: 10px;
-}
-
 players-table span:not(.align-left) {
   display: flex;
   justify-content: center;
@@ -277,16 +215,37 @@ players-table .pagination button {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  margin-bottom: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
+  font-size: 1.6rem;
+  padding: 10px;
   cursor: pointer;
 }
 players-table .pagination button:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-players-table route-link.player-card {
+players-table .loader-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+players-table .loader-container .loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid green;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+players-table route-link.card {
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -295,41 +254,138 @@ players-table route-link.player-card {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  padding: 12px 8px;
-  padding-right: 12px;
+  padding: 10px 10px;
   margin-bottom: 10px;
   align-items: center;
-  display: grid;
-  grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
-  grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
-  grid-column-gap: 10px;
 }
-players-table route-link.player-card:hover {
+players-table route-link.card:hover {
   box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
   transform: translate3d(0px, -0.5px, 0px);
 }
-players-table route-link.player-card route-link {
+players-table route-link.card route-link {
   color: #000066;
 }
-players-table route-link.player-card route-link[winner] {
+players-table route-link.card span[winner] {
   color: #005200;
 }
-players-table route-link.player-card route-link[loser] {
+players-table route-link.card span[loser] {
   color: #660000;
 }
-players-table route-link.player-card img {
+players-table route-link.card img {
   max-width: 70px;
   max-height: 70px;
   border-radius: 10px;
 }
-players-table #players-table-legend {
-  display: grid;
-  grid-template-columns: 30px 70px 175px 40px 60px 45px 100px 80px;
-  grid-template-areas: "ref player-picture player-name countries elo dan-kyu last-game-date";
-  grid-column-gap: 10px;
-  padding: 12px 8px;
-  padding-right: 12px;
+players-table #legend {
+  padding: 10px 10px;
   align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+game-events-table route-link.card,
+game-events-table #legend {
+  display: grid;
+  grid-template-columns: 30px 170px 75px 65px 90px 90px;
+  grid-template-areas: "ref name type total-games";
+  grid-column-gap: 10px;
+}
+game-events-table span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-events-table .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+game-events-table h2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+}
+game-events-table h2 route-link {
+  color: #005c00;
+}
+game-events-table .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+game-events-table .pagination button {
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  font-size: 1.6rem;
+  padding: 10px;
+  cursor: pointer;
+}
+game-events-table .pagination button:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-events-table .loader-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0;
+}
+game-events-table .loader-container .loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid green;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+game-events-table route-link.card {
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+game-events-table route-link.card:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-events-table route-link.card route-link {
+  color: #000066;
+}
+game-events-table route-link.card span[winner] {
+  color: #005200;
+}
+game-events-table route-link.card span[loser] {
+  color: #660000;
+}
+game-events-table route-link.card img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+game-events-table #legend {
+  padding: 10px 10px;
+  align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -456,8 +512,7 @@ player-view #player-personal-card #player-personal-card-content {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
   transition: all 0.15s ease-in-out;
   font-size: 1.1rem;
-  padding: 12px 8px;
-  padding-right: 12px;
+  padding: 10px 10px;
   margin-bottom: 10px;
   align-items: center;
 }
@@ -468,10 +523,10 @@ player-view #player-personal-card #player-personal-card-content:hover {
 player-view #player-personal-card #player-personal-card-content route-link {
   color: #000066;
 }
-player-view #player-personal-card #player-personal-card-content route-link[winner] {
+player-view #player-personal-card #player-personal-card-content span[winner] {
   color: #005200;
 }
-player-view #player-personal-card #player-personal-card-content route-link[loser] {
+player-view #player-personal-card #player-personal-card-content span[loser] {
   color: #660000;
 }
 player-view #player-personal-card #player-personal-card-content img {
@@ -484,20 +539,174 @@ player-view #player-personal-card #player-personal-card-legend {
   grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
   grid-column-gap: 10px;
   align-items: center;
+  margin-bottom: 10px;
   font-weight: bold;
-  padding: 12px 8px;
-  padding-right: 12px;
+  padding: 10px 10px;
 }
 
 game-record-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 20px;
+  grid-row-gap: 30px;
   justify-items: center;
 }
 game-record-view #glift {
   width: 500px;
   height: 500px;
+}
+game-record-view #players-names {
+  display: grid;
+  grid-template-columns: 290px max-content max-content max-content max-content max-content 290px;
+  grid-template-rows: max-content;
+  grid-column-gap: 15px;
+  grid-template-areas: "black-dot black-name black-picture vs white-picture white-name white-dot";
+  align-items: center;
+}
+game-record-view #players-names h2 {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+game-record-view #players-names h2#black {
+  justify-content: end;
+}
+game-record-view #players-names h2#white {
+  justify-content: start;
+}
+game-record-view #players-names svg {
+  width: 50px;
+  height: 50px;
+}
+game-record-view #players-names img {
+  max-width: 90px;
+  max-height: 90px;
+  border-radius: 10px;
+}
+game-record-view #card span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-record-view #card .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+game-record-view #card #legend {
+  display: grid;
+  grid-template-columns: 40px 60px 40px 110px 90px 100px 100px 60px 40px;
+  grid-column-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+game-record-view #card #content {
+  display: grid;
+  grid-template-columns: 40px 60px 40px 110px 90px 100px 100px 60px 40px;
+  grid-column-gap: 10px;
+  justify-items: center;
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+game-record-view #card #content:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-record-view #card #content route-link {
+  color: #000066;
+}
+game-record-view #card #content span[winner] {
+  color: #005200;
+}
+game-record-view #card #content span[loser] {
+  color: #660000;
+}
+game-record-view #card #content img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
+}
+game-record-view #card a#download {
+  padding: 8px;
+  border: 2px solid #666666;
+  border-radius: 4px;
+  color: black;
+}
+
+game-event-view {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 30px;
+  justify-items: center;
+}
+game-event-view #event-name h2 {
+  font-size: 2.2rem;
+}
+game-event-view #card span:not(.align-left) {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+game-event-view #card .align-left {
+  display: flex;
+  justify-content: left;
+  text-align: left;
+}
+game-event-view #card #legend {
+  display: grid;
+  grid-template-columns: 75px 110px 110px 65px;
+  grid-column-gap: 10px;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  padding: 10px 10px;
+}
+game-event-view #card #content {
+  display: grid;
+  grid-template-columns: 75px 110px 110px 65px;
+  grid-column-gap: 10px;
+  justify-items: center;
+  margin-bottom: 35px;
+  width: max-content;
+  background: whitesmoke;
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 1.1rem;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+game-event-view #card #content:hover {
+  box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+  transform: translate3d(0px, -0.5px, 0px);
+}
+game-event-view #card #content route-link {
+  color: #000066;
+}
+game-event-view #card #content span[winner] {
+  color: #005200;
+}
+game-event-view #card #content span[loser] {
+  color: #660000;
+}
+game-event-view #card #content img {
+  max-width: 70px;
+  max-height: 70px;
+  border-radius: 10px;
 }
 
 unknown-view {

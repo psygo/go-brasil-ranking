@@ -47,7 +47,7 @@ export default class PlayerView extends HTMLElement {
     const response = await fetch(
       `${g.apiUrl}${RouteEnum.gameRecords}` +
         `?data-elo=true` +
-        `&jogadorRef=${this.playerRef}`
+        `&jogadorRef1=${this.playerRef}`
     );
     const json = await response.json();
     const dateEloData = json["data"]["dateEloData"] as DateEloData[];

@@ -97,7 +97,7 @@ export const getGameRecords: ExpressApiRoute = async (req, res) => {
 
     const eventRef = req.query.eventoRef as FirebaseRef;
 
-    const dateElo = req.query["data-elo"];
+    const dateElo = req.query["data-elo"] ? true : false;
 
     let gameRecords: GameRecord[] = [];
 

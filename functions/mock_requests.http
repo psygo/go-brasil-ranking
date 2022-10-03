@@ -114,6 +114,10 @@ POST {{address}}/partidas/mock-populate
 
 POST {{address}}/mock-populate-everything
 
+### GET Players
+
+GET {{address}}/jogadores?de=0&somenteBrasileiros=true
+
 ################################################################################
 
 ## Other Stuff
@@ -137,5 +141,23 @@ GET {{addressReal}}
 ### Mock Real
 
 POST {{addressReal}}/mock-populate-everything
+
+## Create Indices on Firebase
+
+### GET Players
+
+GET {{addressReal}}/jogadores?de=0&somenteBrasileiros=true
+
+### GET Game Records / Date Elo
+
+GET {{addressReal}}/partidas?data-elo=true&jogadorRef1=54
+
+### GET Game Records / Player 1 and 2
+
+GET {{addressReal}}/partidas?de=0&jogadorRef1=53&jogadoreRef2=44
+
+### GET Game Records / EventRef
+
+GET {{addressReal}}/partidas?de=0&eventoRef=6
 
 ################################################################################

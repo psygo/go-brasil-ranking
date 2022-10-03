@@ -47,4 +47,4 @@ FIREBASE="."
 
 firebase deploy \
     --config ${FIREBASE}/firebase.json \
-    --only hosting
+    --only hosting,functions

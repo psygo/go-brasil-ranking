@@ -12,5 +12,5 @@ export namespace Globals {
     "http://localhost:4096/fanaro-firebase-lab/southamerica-east1/goBrasilRanking" :
     "https://southamerica-east1-fanaro-firebase-lab.cloudfunctions.net/goBrasilRanking";
 
-  export const repoUrl = "https://github.com/psygo/fanaro-firebase-lab";
+  export const repoUrl = "https://github.com/psygo/go-brasil-ranking";
 }
