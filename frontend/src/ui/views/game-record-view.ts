@@ -123,8 +123,7 @@ export default class GameRecordView extends HTMLElement {
   };
 
   private setGameRecordCard = (): void => {
-    const gameRecordCardDiv: HTMLDivElement =
-      this.querySelector("#card")!;
+    const gameRecordCardDiv: HTMLDivElement = this.querySelector("#card")!;
     const gameDate = new Date(this.gameRecord.date);
 
     const formattedDate = DateUtils.formatDate(gameDate);
@@ -202,7 +201,9 @@ export default class GameRecordView extends HTMLElement {
     gliftScript.type = "text/javascript";
     const gliftScriptName = "glift_1_1_2.min.js";
     gliftScript.src =
-      envState === EnvState.dev ? `/local/${gliftScriptName}` : gliftScriptName;
+      envState === EnvState.dev
+        ? `/local/${gliftScriptName}`
+        : `/${gliftScriptName}`;
     gliftScript.toggleAttribute("async");
 
     gliftScript.onload = () => {

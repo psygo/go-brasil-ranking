@@ -665,7 +665,7 @@ game-event-view #card .align-left {
 }
 game-event-view #card #legend {
   display: grid;
-  grid-template-columns: 75px 110px 110px 65px;
+  grid-template-columns: 75px 110px 110px 65px 65px;
   grid-column-gap: 10px;
   justify-items: center;
   align-items: center;
@@ -675,7 +675,7 @@ game-event-view #card #legend {
 }
 game-event-view #card #content {
   display: grid;
-  grid-template-columns: 75px 110px 110px 65px;
+  grid-template-columns: 75px 110px 110px 65px 65px;
   grid-column-gap: 10px;
   justify-items: center;
   margin-bottom: 35px;

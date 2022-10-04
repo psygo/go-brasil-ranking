@@ -38,7 +38,12 @@ const goBrasilRankingApp = express();
 goBrasilRankingApp.use(
   cors({
     origin: true,
-    // origin: [`http://localhost:${localPort}`, `http://127.0.0.1:${localPort}`],
+    // origin: [
+    //   `http://localhost:${localPort}`,
+    //   `http://127.0.0.1:${localPort}`,
+    //   "https://fanaro-firebase-lab.web.app/",
+    //   "https://fanaro-firebase-lab.firebaseapp.com/",
+    // ],
   })
 );
 

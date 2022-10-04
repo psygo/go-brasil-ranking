@@ -43,8 +43,8 @@ rm "${PUBLIC}/index_local.html"
 # 3. Deploying
 ################################################################################
 
-FIREBASE="."
+# FIREBASE="."
 
-firebase deploy \
-    --config ${FIREBASE}/firebase.json \
-    --only hosting,functions
+# firebase deploy \
+#     --config ${FIREBASE}/firebase.json \
+#     --only hosting
