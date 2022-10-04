@@ -1,20 +1,21 @@
-// import * as admin from "firebase-admin";
-
 import { gameEventsCol } from "../../collections/game_events_col";
 
 import { ExpressApiRoute, parseBody } from "../../infra";
 
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
-import { TournamentOrLeague } from "../../../../frontend/src/models/game_event";
+import {
+  GameEvent,
+  TournamentOrLeague,
+} from "../../../../frontend/src/models/game_event";
 
 export const postGameEvent = async (
   gameEvent: TournamentOrLeague,
   firebaseRef?: FirebaseRef
 ): Promise<TournamentOrLeague> => {
-  const gameEventOnDb = {
+  const gameEventOnDb: GameEvent = {
     ...gameEvent,
-    firstDate: gameEvent.dates[0],
     dateCreated: new Date().getTime(),
+    participants: [],
     gamesTotal: 0,
   };
 

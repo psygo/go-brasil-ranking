@@ -83,6 +83,7 @@ export default class GameEventView extends HTMLElement {
         <span>Data de Início</span>
         <span>Data de Fim</span>
         <span>Total de Partidas</span>
+        <span>Total de Partici-pantes</span>
       </div>
 
       <div id="content">
@@ -90,6 +91,7 @@ export default class GameEventView extends HTMLElement {
         <span>${formattedDateInit}</span>
         <span>${formattedDateEnd}</span>
         <span>${this.gameEvent.gamesTotal}</span>
+        <span>${this.gameEvent.participants!.length}</span>
       </div>
     `;
   };

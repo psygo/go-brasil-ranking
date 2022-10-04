@@ -22,7 +22,7 @@ game-event-view {
       grid-template-columns:
         get.$gameEventTypeWidth
         grt.$dateWidth grt.$dateWidth
-        pt.$gamesTotalWidth;
+        pt.$gamesTotalWidth pt.$gamesTotalWidth;
       grid-column-gap: grt.$columnGap;
       justify-items: center;
     }

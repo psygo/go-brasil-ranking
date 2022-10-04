@@ -98,7 +98,19 @@ const addGameEvent = async (gameRecord: GameRecord): Promise<GameRecord> => {
     const gameEvent = (await eventRef.get()).data() as TournamentOrLeague;
 
     if (gameEvent) {
-      await eventRef.update({ gamesTotal: gameEvent.gamesTotal! + 1 });
+      let participants = gameEvent.participants
+        ? [...gameEvent.participants]
+        : [];
+      if (!participants.includes(gameRecord.blackRef))
+        participants.push(gameRecord.blackRef);
+      if (!participants.includes(gameRecord.whiteRef))
+        participants.push(gameRecord.whiteRef);
+
+      await eventRef.update({
+        gamesTotal: gameEvent.gamesTotal! + 1,
+        participants: participants,
+      });
+
       return { ...gameRecord, gameEvent: gameEvent };
     } else return gameRecord;
   } else

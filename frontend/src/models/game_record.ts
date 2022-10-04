@@ -40,8 +40,10 @@ export type Sgf = Readonly<string>;
 
 interface _Result {
   whoWins: Color;
+  // TODO2: These should be enums...
   difference?: number;
   time?: boolean;
+  byReferee?: boolean;
 }
 type Result = Readonly<_Result>;
 
