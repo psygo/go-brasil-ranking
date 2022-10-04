@@ -49,7 +49,6 @@ export default class GameEventView extends HTMLElement {
     this.setGameEventName();
     this.setGameEventCard();
 
-    // TODO2: Add players table with the participants
     this.append(
       new GameRecordsTable("Partidas do Evento", "", "", this.gameEventRef)
     );
@@ -61,8 +60,8 @@ export default class GameEventView extends HTMLElement {
     const gameEventNameDiv: HTMLDivElement = this.querySelector("#event-name")!;
 
     gameEventNameDiv.innerHTML = /*html*/ `
-       <h2>${this.gameEvent.name}</h2>
-     `;
+      <h2>${this.gameEvent.name}</h2>
+    `;
   };
 
   private setGameEventCard = (): void => {

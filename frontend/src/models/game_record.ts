@@ -27,7 +27,7 @@ interface _EloData {
   atTheTimeWhiteElo: SerializedElo;
   eloDeltaWhite: SerializedEloDelta;
 }
-type EloData = Readonly<_EloData>;
+export type EloData = Readonly<_EloData>;
 
 interface _DateEloData {
   date: number;

@@ -1,4 +1,4 @@
-import { ExpressApiRoute, parseBody } from "../../infra";
+import { addFirebaseRef, ExpressApiRoute, parseBody } from "../../infra";
 
 import { gameRecordsCol } from "../../collections/game_records_col";
 import { playersCol } from "../../collections/players_col";
@@ -6,11 +6,12 @@ import { playersCol } from "../../collections/players_col";
 import {
   Color,
   doesThisColorWin,
+  EloData,
   GameRecord,
 } from "../../../../frontend/src/models/game_record";
 import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
 import Elo from "../../../../frontend/src/models/elo";
-import { _Player } from "../../../../frontend/src/models/player";
+import { Player, _Player } from "../../../../frontend/src/models/player";
 import { gameEventsCol } from "../../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
@@ -28,6 +29,34 @@ export const postGameRecord = async (
   delete black.lastGame;
   delete white.lastGame;
 
+  const eloData = await updateElo(black, white, gameRecord);
+
+  let gameRecordOnDb: GameRecord = {
+    ...gameRecord,
+    blackPlayer: black,
+    whitePlayer: white,
+    eloData: eloData,
+    dateCreated: new Date().getTime(),
+  };
+
+  gameRecordOnDb = await addGameEvent(gameRecordOnDb);
+
+  gameRecordOnDb = await addGameToDbAndAddFirebaseRef(
+    gameRecordOnDb,
+    firebaseRef
+  );
+
+  await updateLastGameForPlayer(gameRecord.blackRef, gameRecordOnDb);
+  await updateLastGameForPlayer(gameRecord.whiteRef, gameRecordOnDb);
+
+  return gameRecordOnDb;
+};
+
+const updateElo = async (
+  black: Player,
+  white: Player,
+  gameRecord: GameRecord
+): Promise<EloData> => {
   const blackElo = new Elo(black.elo);
   const whiteElo = new Elo(white.elo);
 
@@ -44,7 +73,6 @@ export const postGameRecord = async (
     Color.White
   );
 
-  // Update Players' Elos and Total Games
   await playersCol.updateWithRef(gameRecord.blackRef, {
     elo: blackElo.add(blackEloDelta).num,
     gamesTotal: black.gamesTotal! + 1,
@@ -54,60 +82,52 @@ export const postGameRecord = async (
     gamesTotal: white.gamesTotal! + 1,
   });
 
-  let gameRecordOnDb: GameRecord = {
-    ...gameRecord,
-    blackPlayer: black,
-    whitePlayer: white,
-    eloData: {
-      atTheTimeBlackElo: blackElo.serialize(),
-      eloDeltaBlack: blackEloDelta.serialize(),
-      atTheTimeWhiteElo: whiteElo.serialize(),
-      eloDeltaWhite: whiteEloDelta.serialize(),
-    },
-    dateCreated: new Date().getTime(),
+  return {
+    atTheTimeBlackElo: blackElo.serialize(),
+    eloDeltaBlack: blackEloDelta.serialize(),
+    atTheTimeWhiteElo: whiteElo.serialize(),
+    eloDeltaWhite: whiteEloDelta.serialize(),
   };
+};
 
-  // Update Games Event
-  let gameEvent: TournamentOrLeague;
-  if (
-    gameRecord?.gameEventRef &&
-    isTournamentOrLeagueRef(gameRecord.gameEventRef)
-  ) {
+const addGameEvent = async (gameRecord: GameRecord): Promise<GameRecord> => {
+  if (isTournamentOrLeagueRef(gameRecord.gameEventRef)) {
     const eventRefString = gameRecord.gameEventRef;
 
     const eventRef = gameEventsCol.col.doc(eventRefString);
-    gameEvent = (await eventRef.get()).data() as TournamentOrLeague;
+    const gameEvent = (await eventRef.get()).data() as TournamentOrLeague;
 
     if (gameEvent) {
       await eventRef.update({ gamesTotal: gameEvent.gamesTotal! + 1 });
-
-      gameRecordOnDb = { ...gameRecordOnDb, gameEvent: gameEvent };
-    }
-  } else if (!isTournamentOrLeagueRef(gameRecord.gameEventRef)) {
-    gameRecordOnDb = {
-      ...gameRecordOnDb,
+      return { ...gameRecord, gameEvent: gameEvent };
+    } else return gameRecord;
+  } else
+    return {
+      ...gameRecord,
       gameEvent: <OnlineOrLive>{ type: gameRecord.gameEventRef },
     };
-  }
+};
 
-  // Adding the Game and the FirebaseRef
-  if (!firebaseRef) {
-    const gameRecordRef = await gameRecordsCol.col.add(gameRecordOnDb);
-    gameRecordOnDb = { ...gameRecordOnDb, firebaseRef: gameRecordRef.id };
+const addGameToDbAndAddFirebaseRef = async (
+  gameRecord: GameRecord,
+  firebaseRef?: FirebaseRef
+): Promise<GameRecord> => {
+  if (firebaseRef) {
+    await gameRecordsCol.col.doc(firebaseRef).set(gameRecord);
+    return addFirebaseRef(gameRecord, firebaseRef);
   } else {
-    await gameRecordsCol.col.doc(firebaseRef).set(gameRecordOnDb);
-    gameRecordOnDb = { ...gameRecordOnDb, firebaseRef: firebaseRef };
+    const gameRecordRef = await gameRecordsCol.col.add(gameRecord);
+    return addFirebaseRef(gameRecord, gameRecordRef.id);
   }
+};
 
-  // Adding the Complete Game Record to Each Player
-  await playersCol.updateWithRef(gameRecord.blackRef, {
-    lastGame: gameRecordOnDb,
+const updateLastGameForPlayer = async (
+  playerRef: FirebaseRef,
+  lastGame: GameRecord
+): Promise<void> => {
+  await playersCol.updateWithRef(playerRef, {
+    lastGame: lastGame,
   });
-  await playersCol.updateWithRef(gameRecord.whiteRef, {
-    lastGame: gameRecordOnDb,
-  });
-
-  return gameRecordOnDb;
 };
 
 export const postGameRecordApi: ExpressApiRoute = async (req, res) => {
