@@ -160,4 +160,8 @@ GET {{addressReal}}/partidas?de=0&jogadorRef1=53&jogadoreRef2=44
 
 GET {{addressReal}}/partidas?de=0&eventoRef=6
 
+### GET Players / EventRef
+
+GET {{addressReal}}/jogadores?de=0&eventoRef=6
+
 ################################################################################

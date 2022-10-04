@@ -34,10 +34,11 @@ export const db = admin.firestore();
 
 const goBrasilRankingApp = express();
 
-const localPort = 8086;
+// const localPort = 8086;
 goBrasilRankingApp.use(
   cors({
-    origin: [`http://localhost:${localPort}`, `http://127.0.0.1:${localPort}`],
+    origin: true,
+    // origin: [`http://localhost:${localPort}`, `http://127.0.0.1:${localPort}`],
   })
 );
 

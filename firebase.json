@@ -22,7 +22,8 @@
     "rewrites": [
       {
         "source": "**",
-        "function": "goBrasilRanking"
+        "destination": "/index.html",
+        "region": "southamerica-east1"
       }
     ]
   },

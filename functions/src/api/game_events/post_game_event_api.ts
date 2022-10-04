@@ -15,6 +15,7 @@ export const postGameEvent = async (
   const gameEventOnDb: GameEvent = {
     ...gameEvent,
     dateCreated: new Date().getTime(),
+    firstDate: gameEvent.dates[0],
     participants: [],
     gamesTotal: 0,
   };

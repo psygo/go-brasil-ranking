@@ -75,8 +75,6 @@ export default class GameEventView extends HTMLElement {
       new Date(this.gameEvent.dates[dateLength - 1])
     );
 
-    // TODO2: Add total of participants
-
     gameEventCardDiv.innerHTML = /*html*/ `
       <div id="legend">
         <span>Tipo</span>
