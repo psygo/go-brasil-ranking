@@ -6,18 +6,18 @@ import { Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
 import { errorLog, HtmlString, inf, paginationSlicer } from "../../infra/utils";
 import UiTable from "./ui_table";
+import { FirebaseRef } from "../../models/firebase_models";
 
 export default class PlayersTable extends UiTable<Player> {
   static readonly tag: string = "players-table";
 
   protected getData = async (): Promise<void> => {
     try {
-      const onlyBrazilians =
-        this.onlyBrazilians === undefined
-          ? ""
-          : `somenteBrasileiros=${this.onlyBrazilians}`;
+      let queryString = `?de=${this.startAfter}`;
 
-      const queryString = `?de=${this.startAfter}&${onlyBrazilians}`;
+      if (this.onlyBrazilians)
+        queryString += `&somente-brasileiros=${this.onlyBrazilians}`;
+      if (this.eventRef) queryString += `&eventoRef=${this.eventRef}`;
 
       const response = await fetch(
         `${g.apiUrl}${RouteEnum.players}${queryString}`
@@ -33,7 +33,8 @@ export default class PlayersTable extends UiTable<Player> {
 
   constructor(
     title: string = "Jogadores",
-    public readonly onlyBrazilians: boolean | undefined = undefined
+    public readonly onlyBrazilians: boolean = false,
+    public readonly eventRef: FirebaseRef = ""
   ) {
     super(title);
   }

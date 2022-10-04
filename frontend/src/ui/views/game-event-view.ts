@@ -5,6 +5,7 @@ import { FirebaseRef } from "../../models/firebase_models";
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
 import GameRecordsTable from "../components/game_records_table";
+import PlayersTable from "../components/players_table";
 
 export default class GameEventView extends HTMLElement {
   static readonly tag: string = "game-event-view";
@@ -50,10 +51,9 @@ export default class GameEventView extends HTMLElement {
     this.setGameEventCard();
 
     this.append(
+      new PlayersTable("Participantes do Evento", false, this.gameEventRef),
       new GameRecordsTable("Partidas do Evento", "", "", this.gameEventRef)
     );
-
-    // TODO2: Add game records table with the games from the tournament
   };
 
   private setGameEventName = (): void => {

@@ -20,6 +20,8 @@ No momento, a maneira mais agradável de se rodar algo localemente é abrir pelo
 
 É preciso criar manualmente índices compostos para este aplicativo, o que só é possível manualmente com o Firebase. Seguem os índices necessários:
 
+> Tabela atualizada em: 03/10/2022
+
 | Collection ID | Fields indexed                         | Query scope | Status  |
 | ------------- | -------------------------------------- | ----------- | ------- |
 | game_records  | whiteRef Ascending date Descending     | Collection  | Enabled |
