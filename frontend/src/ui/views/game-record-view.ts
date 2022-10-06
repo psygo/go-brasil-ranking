@@ -197,33 +197,38 @@ export default class GameRecordView extends HTMLElement {
   };
 
   private addSgfDiagram = (): void => {
-    const gliftScript = document.createElement("script");
-    gliftScript.type = "text/javascript";
-    const gliftScriptName = "glift_1_1_2.min.js";
-    gliftScript.src =
-      envState === EnvState.dev
-        ? `/local/${gliftScriptName}`
-        : `/${gliftScriptName}`;
-    gliftScript.toggleAttribute("async");
+    if (!this.gameRecord.sgf) {
+      const gliftDiv: HTMLDivElement = this.querySelector("div#glift")!;
+      gliftDiv.style.display = "none";
+    } else {
+      const gliftScript = document.createElement("script");
+      gliftScript.type = "text/javascript";
+      const gliftScriptName = "glift_1_1_2.min.js";
+      gliftScript.src =
+        envState === EnvState.dev
+          ? `/local/${gliftScriptName}`
+          : `/${gliftScriptName}`;
+      gliftScript.toggleAttribute("async");
 
-    gliftScript.onload = () => {
-      try {
-        glift.create({
-          divId: "glift",
-          sgf: {
-            sgfString: this.gameRecord!.sgf,
-          },
-          display: {
-            theme: "DEPTH",
-            goBoardBackground: "images/purty_wood.png",
-            disableZoomForMobile: true,
-          },
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    };
+      gliftScript.onload = () => {
+        try {
+          glift.create({
+            divId: "glift",
+            sgf: {
+              sgfString: this.gameRecord!.sgf,
+            },
+            display: {
+              theme: "DEPTH",
+              goBoardBackground: "images/purty_wood.png",
+              disableZoomForMobile: true,
+            },
+          });
+        } catch (e) {
+          console.log(e);
+        }
+      };
 
-    document.head.appendChild(gliftScript);
+      document.head.appendChild(gliftScript);
+    }
   };
 }
