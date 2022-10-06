@@ -3,6 +3,18 @@ import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 import { GameEvent, GameEventRef } from "./game_event";
 import { Player } from "./player";
 
+export enum Hosts {
+  ogs = "https://online-go.com/",
+  pglatc = "https://pandanet-igs.com/system/sgfs/",
+}
+
+interface _Link {
+  complete?: string;
+  host?: string;
+  id?: string;
+}
+export type Link = Readonly<_Link>;
+
 export interface _GameRecord extends FirebaseDoc {
   firebaseRef?: FirebaseRef;
   author?: Author;
@@ -18,6 +30,7 @@ export interface _GameRecord extends FirebaseDoc {
   gameEventRef: GameEventRef;
   gameEvent?: GameEvent;
   eloData?: EloData;
+  links?: readonly Link[];
 }
 export type GameRecord = Readonly<_GameRecord>;
 

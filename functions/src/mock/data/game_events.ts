@@ -12,27 +12,7 @@ export const gameEvents: readonly TournamentOrLeague[] = [
   {
     type: GameEventTypes.league,
     name: "Pandanet Latin American Team Championship 2022",
-    dates: [new Date(2022, 0, 0).getTime(), new Date(2022, 30, 11).getTime()],
-  },
-  {
-    type: GameEventTypes.tournament,
-    name: "Copa do Brasil 2021",
-    dates: [new Date(2021, 8, 10).getTime(), new Date(2021, 8, 11).getTime()],
-  },
-  {
-    type: GameEventTypes.tournament,
-    name: "Copa do Brasil 2020",
-    dates: [new Date(2020, 8, 10).getTime(), new Date(2020, 8, 11).getTime()],
-  },
-  {
-    type: GameEventTypes.tournament,
-    name: "Copa do Brasil 2019",
-    dates: [new Date(2019, 8, 10).getTime(), new Date(2019, 8, 11).getTime()],
-  },
-  {
-    type: GameEventTypes.tournament,
-    name: "Copa do Brasil 2018",
-    dates: [new Date(2018, 8, 10).getTime(), new Date(2018, 8, 11).getTime()],
+    dates: [new Date(2022, 0, 29).getTime(), new Date(2022, 10, 10).getTime()],
   },
   {
     type: GameEventTypes.league,
