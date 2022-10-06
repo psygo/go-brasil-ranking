@@ -34,16 +34,9 @@ export const db = admin.firestore();
 
 const goBrasilRankingApp = express();
 
-// const localPort = 8086;
 goBrasilRankingApp.use(
   cors({
     origin: true,
-    // origin: [
-    //   `http://localhost:${localPort}`,
-    //   `http://127.0.0.1:${localPort}`,
-    //   "https://fanaro-firebase-lab.web.app/",
-    //   "https://fanaro-firebase-lab.firebaseapp.com/",
-    // ],
   })
 );
 
@@ -76,5 +69,5 @@ goBrasilRankingApp.post("/partidas/mock-populate", mockPopulateGameRecordsApi);
 
 export const goBrasilRanking = functions
   .region("southamerica-east1")
-  .runWith({ timeoutSeconds: 100, minInstances: 1, maxInstances: 10 })
+  .runWith({ maxInstances: 10 })
   .https.onRequest(goBrasilRankingApp);

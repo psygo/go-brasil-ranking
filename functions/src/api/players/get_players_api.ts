@@ -20,9 +20,12 @@ const playersFromEvent = async (
     await gameEventsCol.col.doc(eventRef).get()
   ).data() as TournamentOrLeague;
 
-  let players = [];
-  for (const playerRef of gameEvent.participants!)
-    players.push(await playersCol.getWithRef(playerRef));
+  let players: Player[] = [];
+  for (const playerRef of gameEvent.participants!) {
+    const playerDoc = await playersCol.col.doc(playerRef).get();
+    const player = playerDoc.data() as Player;
+    players.push({ ...player, firebaseRef: playerDoc.id });
+  }
 
   players.sort((p1, p2) => p2.elo - p1.elo);
 

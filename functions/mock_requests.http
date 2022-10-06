@@ -114,14 +114,6 @@ POST {{address}}/partidas/mock-populate
 
 POST {{address}}/mock-populate-everything
 
-### GET Players
-
-GET {{address}}/jogadores?de=0&somenteBrasileiros=true
-
-### GET Events
-
-GET {{address}}/eventos?de=0
-
 ################################################################################
 
 ## Other Stuff
@@ -131,6 +123,14 @@ GET {{address}}/eventos?de=0
 @game=10
 
 GET {{address}}/partidas/{{game}}?data-elo=true
+
+### GET Players
+
+GET {{address}}/jogadores?de=0&somenteBrasileiros=true
+
+### GET Events
+
+GET {{address}}/eventos?de=0
 
 ################################################################################
 

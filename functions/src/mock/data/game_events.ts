@@ -3,7 +3,7 @@ import {
   TournamentOrLeague,
 } from "../../../../frontend/src/models/game_event";
 
-export const fakeGameEvents: readonly TournamentOrLeague[] = [
+export const gameEvents: readonly TournamentOrLeague[] = [
   {
     type: GameEventTypes.tournament,
     name: "Copa do Brasil 2022",

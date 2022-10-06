@@ -1,15 +1,18 @@
 import { ExpressApiRoute } from "../infra";
 
-import { dogempGames } from "./data/fake_game_records";
-
 import { postGameRecord } from "../api/game_records/post_game_record_api";
 
 import { GameRecord } from "../../../frontend/src/models/game_record";
 
+import { dogempGames } from "./data/dogemp_game_records";
+import { copaDoBrasil2022 } from "./data/copa_do_brasil_2022_game_records";
+
 export const mockPopulateGameRecords = async (): Promise<GameRecord[]> => {
   let completeGameRecords: GameRecord[] = [];
-  for (let i = 0; i < dogempGames.length; i++) {
-    const fakeGameRecord = dogempGames[i];
+  const records = [...dogempGames, ...copaDoBrasil2022];
+  const length = records.length;
+  for (let i = 0; i < length; i++) {
+    const fakeGameRecord = records[i];
 
     const ref = i.toString();
 

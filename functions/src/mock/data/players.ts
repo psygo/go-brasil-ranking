@@ -63,7 +63,7 @@ import { pic_vanderson_rodrigues } from "./PicsBase64/pic_vanderson_rodrigues";
 import { pic_wang_feng } from "./PicsBase64/pic_wang_feng";
 import { pic_yuichiro_shimawaki } from "./PicsBase64/pic_yuichiro_shimawaki";
 
-export const fakePlayers: readonly Player[] = [
+export const players: readonly Player[] = [
   {
     name: "Adalberto Reis Duarte",
     nicks: [{ name: "Adalberto", server: GoServers.ogs }],
@@ -273,6 +273,15 @@ export const fakePlayers: readonly Player[] = [
     elo: 1700,
   },
   {
+    name: "Christian Spohn",
+    countries: [
+      {
+        name: CountryName.germany,
+      },
+    ],
+    elo: 1850,
+  },
+  {
     name: "Cícero de Melo Lucas",
     nicks: [{ name: "Musashi-san", server: GoServers.ogs }],
     countries: [
@@ -283,13 +292,13 @@ export const fakePlayers: readonly Player[] = [
     elo: 0,
   },
   {
-    name: "Christian Spohn",
+    name: "Cristiano Yuji Sato",
     countries: [
       {
-        name: CountryName.germany,
+        name: CountryName.brazil,
       },
     ],
-    elo: 1400,
+    elo: 1750,
   },
   {
     name: "Cristiane Amaral Bertolino",
@@ -405,6 +414,15 @@ export const fakePlayers: readonly Player[] = [
     elo: 1750,
   },
   {
+    name: "Felipe Bottega Diniz",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 2050,
+  },
+  {
     name: "Felipe Herman van Riemsdijk",
     nicks: [{ name: "riemsdijk", server: GoServers.ogs }],
     email: "fh.vanriemsdijk@gmail.com",
@@ -466,7 +484,7 @@ export const fakePlayers: readonly Player[] = [
     elo: 1900,
   },
   {
-    name: "Gabriel Marcondes de Catilho",
+    name: "Gabriel Marcondes de Castilho",
     picture: pic_gabriel_castilho,
     countries: [
       {
@@ -582,6 +600,24 @@ export const fakePlayers: readonly Player[] = [
     elo: 1800,
   },
   {
+    name: "Kisho Kawahara",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 1850,
+  },
+  {
+    name: "Kunio Yoshida",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 1950,
+  },
+  {
     name: "Laércio Pereira",
     nicks: [{ name: "laercioskt", server: GoServers.ogs }],
     picture: pic_laercio_pereira,
@@ -617,6 +653,15 @@ export const fakePlayers: readonly Player[] = [
     elo: 1300,
   },
   {
+    name: "Lívia Aiko de Toledo",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1000,
+  },
+  {
     name: "Lucas Cristovam",
     nicks: [{ name: "lukeverso", server: GoServers.ogs }],
     picture: pic_lucas_cristovam,
@@ -628,6 +673,15 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 900,
+  },
+  {
+    name: "Lucas Torrisi",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1750,
   },
   {
     name: "Lúcio Picanço",
@@ -664,6 +718,42 @@ export const fakePlayers: readonly Player[] = [
     elo: 1200,
   },
   {
+    name: "Matao Kumao",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 1950,
+  },
+  {
+    name: "Masayasu Kihara",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 2050,
+  },
+  {
+    name: "Mitsuyuki Shintaku",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 2150,
+  },
+  {
+    name: "Mieko Murai",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1650,
+  },
+  {
     name: "Murilo Oliveira",
     picture: pic_murilo_oliveira,
     countries: [
@@ -686,6 +776,24 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 1500,
+  },
+  {
+    name: "Nicholas Jun de Toledo",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1000,
+  },
+  {
+    name: "Osamu Murai",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 2050,
   },
   {
     name: "Patricia Bongiorno",
@@ -820,6 +928,15 @@ export const fakePlayers: readonly Player[] = [
     elo: 600,
   },
   {
+    name: "Shuji Hashimoto",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 2050,
+  },
+  {
     name: "Simão Gonçalves",
     nicks: [{ name: "TsukeShinogi", server: GoServers.ogs }],
     picture: pic_simao_goncalves,
@@ -845,7 +962,7 @@ export const fakePlayers: readonly Player[] = [
     elo: 700,
   },
   {
-    name: "Thiago Augusto",
+    name: "Thiago Augusto da Silva",
     picture: pic_thiago_augusto,
     countries: [
       {
@@ -867,6 +984,15 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2100,
+  },
+  {
+    name: "Tsuneo Koike",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 1750,
   },
   {
     name: "Vanderson da Silva Rodrigues",
@@ -896,6 +1022,26 @@ export const fakePlayers: readonly Player[] = [
     elo: 2400,
   },
   {
+    name: "Sung Wan Nam",
+    countries: [
+      {
+        name: CountryName.brazil,
+      },
+    ],
+    elo: 1750,
+  },
+  {
+    name: "Yoshito Yoshitake",
+    countries: [
+      {
+        name: CountryName.brazil,
+        state: BrazilianState.sp,
+        city: "São Paulo",
+      },
+    ],
+    elo: 2050,
+  },
+  {
     name: "Yuichiro Shimawaki",
     picture: pic_yuichiro_shimawaki,
     countries: [
@@ -904,5 +1050,14 @@ export const fakePlayers: readonly Player[] = [
       },
     ],
     elo: 2600,
+  },
+  {
+    name: "Yukio Hiramatsu",
+    countries: [
+      {
+        name: CountryName.japan,
+      },
+    ],
+    elo: 2150,
   },
 ];
