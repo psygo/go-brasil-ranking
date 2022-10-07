@@ -42,6 +42,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 1",
   },
   {
     blackRef: findPlayerRef("Hélcio Alexandre Pacheco"),
@@ -81,6 +82,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 1",
   },
   {
     blackRef: findPlayerRef("Ricardo Miyashiro"),
@@ -116,6 +118,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 1",
   },
   // ***************************************************************************
   // R2 | Brasil vs Chile
@@ -130,6 +133,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 2",
   },
   {
     blackRef: findPlayerRef("Francisco González"),
@@ -141,6 +145,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 2",
   },
   {
     blackRef: findPlayerRef("Hélcio Alexandre Pacheco"),
@@ -152,6 +157,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 2",
   },
   // ***************************************************************************
   // R3 | Brasil vs Venezuela
@@ -166,6 +172,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 3",
   },
   {
     blackRef: findPlayerRef("Thiago Augusto da Silva"),
@@ -177,6 +184,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 3",
   },
   {
     blackRef: findPlayerRef("Diego Guerrero"),
@@ -188,6 +196,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 3",
   },
   // ***************************************************************************
   // R4 | Brasil vs Costa Rica
@@ -202,6 +211,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 4",
   },
   {
     blackRef: findPlayerRef("Adrian Villalta-Cerdas"),
@@ -213,6 +223,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 4",
   },
   {
     blackRef: findPlayerRef("Gabriel Marcondes de Castilho"),
@@ -224,6 +235,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 4",
   },
   // ***************************************************************************
   // R5 | Brasil vs México
@@ -238,6 +250,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 5",
   },
   {
     blackRef: findPlayerRef("Carlos Daniel Santiago López"),
@@ -249,6 +262,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 5",
   },
   {
     blackRef: findPlayerRef("Gabriel Marcondes de Castilho"),
@@ -260,6 +274,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 5",
   },
   // ***************************************************************************
   // R6 | Brasil vs Colômbia
@@ -274,6 +289,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 6",
   },
   {
     blackRef: findPlayerRef("Alexandre Amaro"),
@@ -285,6 +301,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 6",
   },
   {
     blackRef: findPlayerRef("Juan Samper"),
@@ -296,6 +313,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 6",
   },
   // ***************************************************************************
   // R7 | Brasil vs Argentina
@@ -310,6 +328,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 7",
   },
   {
     blackRef: findPlayerRef("Santiago Andres Tabares"),
@@ -321,6 +340,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 7",
   },
   {
     blackRef: findPlayerRef("Hélcio Alexandre Pacheco"),
@@ -332,6 +352,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 7",
   },
   // ***************************************************************************
   // R8 | Brasil vs Cuba
@@ -346,6 +367,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 8",
   },
   {
     blackRef: findPlayerRef("Rafael Alejandro Torres Puebla"),
@@ -357,6 +379,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 8",
   },
   {
     blackRef: findPlayerRef("Hélcio Alexandre Pacheco"),
@@ -368,5 +391,6 @@ export const pglatc_2022: readonly GameRecord[] = [
     gameEventRef: findEventRef(
       "Pandanet Latin American Team Championship 2022"
     ),
+    additionalInfo: "Rodada 8",
   },
 ];

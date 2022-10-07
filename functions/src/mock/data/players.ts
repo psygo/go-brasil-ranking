@@ -404,7 +404,7 @@ export const players: readonly Player[] = [
     elo: 2150,
   },
   {
-    name: "Diego Guerreto",
+    name: "Diego Guerrero",
     nicks: [{ name: "dguerrero", server: GoServers.pandanet }],
     countries: [
       {
@@ -572,7 +572,7 @@ export const players: readonly Player[] = [
         name: CountryName.argentina,
       },
     ],
-    elo: 2500,
+    elo: 2600,
   },
   {
     name: "Francisco González",

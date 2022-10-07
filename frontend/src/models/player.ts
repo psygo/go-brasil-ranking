@@ -16,6 +16,7 @@ export interface _Player extends FirebaseDoc {
   author?: Author;
   gamesTotal?: number;
   lastGame?: GameRecord;
+  additionalInfo?: string;
 }
 export type Player = Readonly<_Player>;
 

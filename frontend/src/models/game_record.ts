@@ -31,6 +31,7 @@ export interface _GameRecord extends FirebaseDoc {
   gameEvent?: GameEvent;
   eloData?: EloData;
   links?: readonly Link[];
+  additionalInfo?: string;
 }
 export type GameRecord = Readonly<_GameRecord>;
 

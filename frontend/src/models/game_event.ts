@@ -31,6 +31,7 @@ interface _TournamentLeagueBase extends _GameEventBase {
   firstDate?: number;
   link?: string;
   dateCreated?: number;
+  description?: string;
   gamesTotal?: number;
   participants?: readonly FirebaseRef[];
 }

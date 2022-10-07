@@ -11,12 +11,14 @@ export const gameEvents: readonly TournamentOrLeague[] = [
   },
   {
     type: GameEventTypes.league,
-    name: "Pandanet Latin American Team Championship 2022",
+    name: "PGLATC 2022",
+    description: "Pandanet Latin American Team Championship 2022",
     dates: [new Date(2022, 0, 29).getTime(), new Date(2022, 10, 10).getTime()],
   },
   {
     type: GameEventTypes.league,
     name: "DOGemP",
+    description: "Dojo Online de Go em Português",
     dates: [new Date(2021, 10, 10).getTime(), new Date(2022, 2, 10).getTime()],
   },
 ];
