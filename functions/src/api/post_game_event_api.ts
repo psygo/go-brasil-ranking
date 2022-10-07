@@ -1,12 +1,12 @@
-import { gameEventsCol } from "../../collections/game_events_col";
+import { gameEventsCol } from "../collections/game_events_col";
 
-import { ExpressApiRoute, parseBody } from "../../infra";
+import { ExpressApiRoute, parseBody } from "../infra";
 
-import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
+import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import {
   GameEvent,
   TournamentOrLeague,
-} from "../../../../frontend/src/models/game_event";
+} from "../../../frontend/src/models/game_event";
 
 export const postGameEvent = async (
   gameEvent: TournamentOrLeague,

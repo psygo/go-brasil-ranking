@@ -4,11 +4,11 @@ import * as functions from "firebase-functions";
 import cors from "cors";
 import express from "express";
 
-import { home } from "./api/others/home_api";
+import { home } from "./api/home_api";
 
-import { postPlayerApi } from "./api/players/post_player_api";
-import { postGameEventApi } from "./api/game_events/post_game_event_api";
-import { postGameRecordApi } from "./api/game_records/post_game_record_api";
+import { postGameEventApi } from "./api/post_game_event_api";
+import { postGameRecordApi } from "./api/post_game_record_api";
+import { postPlayerApi } from "./api/post_player_api";
 
 import { validateFirebaseIdToken } from "./middleware/auth";
 

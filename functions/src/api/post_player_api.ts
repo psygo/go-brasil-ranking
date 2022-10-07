@@ -1,8 +1,10 @@
-import { CountryName } from "../../../../frontend/src/models/country";
-import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
-import { Player } from "../../../../frontend/src/models/player";
-import { playersCol } from "../../collections/players_col";
-import { ExpressApiRoute, parseBody } from "../../infra";
+import { ExpressApiRoute, parseBody } from "../infra";
+
+import { playersCol } from "../collections/players_col";
+
+import { CountryName } from "../../../frontend/src/models/country";
+import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
+import { Player } from "../../../frontend/src/models/player";
 
 export const postPlayer = async (
   player: Player,

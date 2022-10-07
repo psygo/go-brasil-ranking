@@ -1,23 +1,23 @@
-import { addFirebaseRef, ExpressApiRoute, parseBody } from "../../infra";
+import { addFirebaseRef, ExpressApiRoute, parseBody } from "../infra";
 
-import { gameRecordsCol } from "../../collections/game_records_col";
-import { playersCol } from "../../collections/players_col";
+import { gameRecordsCol } from "../collections/game_records_col";
+import { playersCol } from "../collections/players_col";
 
 import {
   Color,
   doesThisColorWin,
   EloData,
   GameRecord,
-} from "../../../../frontend/src/models/game_record";
-import { FirebaseRef } from "../../../../frontend/src/models/firebase_models";
-import Elo from "../../../../frontend/src/models/elo";
-import { Player, _Player } from "../../../../frontend/src/models/player";
-import { gameEventsCol } from "../../collections/game_events_col";
+} from "../../../frontend/src/models/game_record";
+import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
+import Elo from "../../../frontend/src/models/elo";
+import { Player, _Player } from "../../../frontend/src/models/player";
+import { gameEventsCol } from "../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
   OnlineOrLive,
   TournamentOrLeague,
-} from "../../../../frontend/src/models/game_event";
+} from "../../../frontend/src/models/game_event";
 
 export const postGameRecord = async (
   gameRecord: GameRecord,

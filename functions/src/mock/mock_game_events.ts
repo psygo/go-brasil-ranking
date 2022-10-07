@@ -3,7 +3,7 @@ import { ExpressApiRoute } from "../infra";
 import { gameEvents } from "./data/game_events";
 
 import { GameEvent } from "../../../frontend/src/models/game_event";
-import { postGameEvent } from "../api/game_events/post_game_event_api";
+import { postGameEvent } from "../api/post_game_event_api";
 
 export const mockPopulateGameEvents = async (): Promise<GameEvent[]> => {
   const fakeGameEventsWithFirebaseRef: GameEvent[] = [];

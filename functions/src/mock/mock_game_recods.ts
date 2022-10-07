@@ -1,6 +1,6 @@
 import { ExpressApiRoute } from "../infra";
 
-import { postGameRecord } from "../api/game_records/post_game_record_api";
+import { postGameRecord } from "../api/post_game_record_api";
 
 import { GameRecord } from "../../../frontend/src/models/game_record";
 

@@ -3,7 +3,7 @@ import { ExpressApiRoute } from "../infra";
 import { Player } from "../../../frontend/src/models/player";
 
 import { players } from "./data/players";
-import { postPlayer } from "../api/players/post_player_api";
+import { postPlayer } from "../api/post_player_api";
 
 export const mockPopulatePlayers = async (): Promise<Player[]> => {
   const fakePlayersWithFirebaseRef: Player[] = [];
