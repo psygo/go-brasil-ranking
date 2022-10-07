@@ -36,11 +36,12 @@ route-link:hover {
 }
 
 main {
-  grid-area: main;
-
   max-width: 1200px;
 
   margin: 0 auto;
   margin-bottom: 50px;
+
   padding-top: $mainPaddingTop;
+  padding-left: 20px;
+  padding-right: 20px;
 }

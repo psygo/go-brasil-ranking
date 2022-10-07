@@ -11,6 +11,7 @@ import { Color, GameRecord, resultString } from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
 import GameRecordsTable from "../components/game_records_table";
+import { RouteEnum } from "../../routing/router";
 
 declare const glift: any;
 
@@ -84,6 +85,11 @@ export default class GameRecordView extends HTMLElement {
     const black = this.gameRecord.blackPlayer!;
     const white = this.gameRecord.whitePlayer!;
 
+    const blackWins =
+      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
+    const whiteWins =
+      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser";
+
     const blackFlags = UiUtils.allFlags(black.countries);
     const whiteFlags = UiUtils.allFlags(white.countries);
 
@@ -91,9 +97,13 @@ export default class GameRecordView extends HTMLElement {
     const whiteElo = new Elo(white.elo);
 
     playerNamesDiv.innerHTML = /*html*/ `
-      <h2 id="black">
-        ${blackElo.danKyuLevel()} ${blackFlags} ${black.name}
-      </h2>
+      <route-link href="${RouteEnum.players}/${this.gameRecord.blackRef}">
+        <h2 id="black">
+          ${blackElo.danKyuLevel()}
+          ${blackFlags}
+          <span ${blackWins}>${black.name}</span>
+        </h2>
+      </route-link>
 
       ${UiUtils.playerPicture(this.gameRecord.blackPlayer!.picture)}
 
@@ -121,9 +131,13 @@ export default class GameRecordView extends HTMLElement {
 
       ${UiUtils.playerPicture(this.gameRecord.whitePlayer!.picture)}
 
-      <h2 id="white">
-        ${white.name} ${whiteFlags} ${whiteElo.danKyuLevel()}
-      </h2>
+      <route-link href="${RouteEnum.players}/${this.gameRecord.whiteRef}">
+        <h2 id="white">
+          <span ${whiteWins}>${white.name}</span>
+          ${whiteFlags}
+          ${whiteElo.danKyuLevel()}
+        </h2>
+      </route-link>
     `;
   };
 

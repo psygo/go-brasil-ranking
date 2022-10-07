@@ -41,6 +41,8 @@ game-record-view {
     }
 
     @include tu.imgDecoration(90px);
+
+    @include tu.playerLink;
   }
 
   #card {

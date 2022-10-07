@@ -29,11 +29,12 @@ route-link:hover {
 }
 
 main {
-  grid-area: main;
   max-width: 1200px;
   margin: 0 auto;
   margin-bottom: 50px;
   padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 header {
@@ -502,7 +503,7 @@ player-view #player-personal-card .align-left {
 }
 player-view #player-personal-card #player-personal-card-content {
   display: grid;
-  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
+  grid-template-columns: minmax(80px, max-content) 55px 70px 60px 60px 60px 120px;
   grid-column-gap: 10px;
   margin-bottom: 35px;
   width: max-content;
@@ -536,7 +537,7 @@ player-view #player-personal-card #player-personal-card-content img {
 }
 player-view #player-personal-card #player-personal-card-legend {
   display: grid;
-  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
+  grid-template-columns: minmax(80px, max-content) 55px 70px 60px 60px 60px 120px;
   grid-column-gap: 10px;
   align-items: center;
   margin-bottom: 10px;
@@ -581,6 +582,15 @@ game-record-view #players-names img {
   max-width: 90px;
   max-height: 90px;
   border-radius: 10px;
+}
+game-record-view #players-names route-link {
+  color: #000066;
+}
+game-record-view #players-names span[winner] {
+  color: #005200;
+}
+game-record-view #players-names span[loser] {
+  color: #660000;
 }
 game-record-view #card span:not(.align-left) {
   display: flex;
