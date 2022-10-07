@@ -1,3 +1,8 @@
+import {
+  DocumentData,
+  QueryDocumentSnapshot,
+} from "firebase/firestore";
+import { FirebaseRef } from "../models/firebase_models";
 import { TournamentOrLeague } from "../models/game_event";
 import { GameRecord } from "../models/game_record";
 import { Player } from "../models/player";
@@ -22,3 +27,16 @@ export const errorLog = (error: Error, title: string = ""): void => {
   console.log(`Error Stack: ${error.stack}`);
   console.log("----------------------------------------------------------");
 };
+
+export const addFirebaseRef = <T extends RankingData>(
+  rankingData: T,
+  firebaseRef: FirebaseRef
+): T => ({ ...rankingData, firebaseRef: firebaseRef });
+
+export const mapDocsWithFirebaseRef = <T extends RankingData>(
+  docs: QueryDocumentSnapshot<DocumentData>[]
+): T[] =>
+  docs.map((doc) => {
+    const rankingData = doc.data() as T;
+    return addFirebaseRef<T>(rankingData, doc.id);
+  });

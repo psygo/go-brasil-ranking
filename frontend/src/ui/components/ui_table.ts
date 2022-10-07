@@ -1,3 +1,5 @@
+import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+
 import { Globals as g } from "../../infra/globals";
 import { HtmlString, RankingData } from "../../infra/utils";
 
@@ -5,7 +7,9 @@ export default abstract class UiTable<
   T extends RankingData
 > extends HTMLElement {
   protected readonly data: T[] = [];
+  protected declare lastVisible: QueryDocumentSnapshot<DocumentData>;
 
+  // TODO2: Eliminate startAfter after refactoring the tables
   constructor(public readonly title: string, protected startAfter: number = 0) {
     super();
   }
@@ -26,6 +30,12 @@ export default abstract class UiTable<
   }
 
   protected abstract getData(): Promise<void>;
+
+  protected resetLastVisible = (
+    docs: QueryDocumentSnapshot<DocumentData>[]
+  ): void => {
+    this.lastVisible = docs[docs.length - 1];
+  };
 
   protected toggleLoader = (): void => {
     const loaderDiv: HTMLDivElement = this.querySelector(".loader-container")!;

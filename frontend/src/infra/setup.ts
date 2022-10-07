@@ -1,11 +1,18 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Auth, connectAuthEmulator, getAuth } from "firebase/auth";
+import {
+  connectFirestoreEmulator,
+  Firestore,
+  getFirestore,
+} from "firebase/firestore";
 
 import { EnvState, envState } from "./env";
 
 import { firebaseConfig } from "./firebase_config";
 
 import { getRouter, Router } from "../routing/router";
+
+import { errorLog } from "./utils";
 
 import Navbar from "../ui/components/navbar";
 import Footer from "../ui/components/footer_container";
@@ -36,15 +43,17 @@ export default class Setup {
   private readonly _router: Router = getRouter();
 
   private app: FirebaseApp | null = null;
-  auth: Auth | null = null;
 
   private constructor() {
     this.define();
+    this.initDb();
   }
 
   get router(): Router {
     return this._router;
   }
+
+  declare auth: Auth;
 
   initAuth = (): void => {
     try {
@@ -58,11 +67,23 @@ export default class Setup {
         });
     } catch (error) {
       const e = error as Error;
-      console.log(`Name: ${e.name}`);
-      console.log(`Message: ${e.message}`);
-      console.log(`Cause: ${e.cause}`);
-      console.log(`Stack: ${e.stack}`);
-      console.log(`Full Error: ${e}`);
+      errorLog(e, "Init Auth");
+    }
+  };
+
+  declare db: Firestore;
+
+  private initDb = (): void => {
+    try {
+      if (!this.app) this.app = initializeApp(firebaseConfig);
+
+      if (!this.db) this.db = getFirestore(this.app);
+
+      if (envState === EnvState.dev)
+        connectFirestoreEmulator(this.db, "localhost", 8075);
+    } catch (error) {
+      const e = error as Error;
+      errorLog(e, "Init DB");
     }
   };
 
