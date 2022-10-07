@@ -1,5 +1,4 @@
 import { Globals as g } from "../../infra/globals";
-import { RouteEnum } from "../../routing/router";
 
 import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_models";
@@ -12,7 +11,7 @@ import { DateEloData } from "../../models/game_record";
 import { DateUtils } from "../../infra/date_utils";
 import { CountryName } from "../../models/country";
 import { doc, getDoc } from "firebase/firestore";
-import { addFirebaseRef } from "../../infra/utils";
+import { addFirebaseRef, getPlayerGameRecords } from "../../infra/utils";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -43,14 +42,26 @@ export default class PlayerView extends HTMLElement {
     this.appendChild(new GameRecordsTable("Partidas", this.playerRef));
   }
 
+  private getPlayerDateEloData = async (): Promise<DateEloData[]> => {
+    const allPlayerGames = await getPlayerGameRecords(this.playerRef);
+
+    return allPlayerGames
+      .map((g) => ({
+        date: g.date,
+        atTheTimeElo:
+          this.playerRef === g.blackRef
+            ? g.eloData!.atTheTimeBlackElo
+            : g.eloData!.atTheTimeWhiteElo,
+        eloDelta:
+          this.playerRef === g.blackRef
+            ? g.eloData!.eloDeltaBlack
+            : g.eloData!.eloDeltaWhite,
+      }))
+      .reverse();
+  };
+
   private setGraph = async (): Promise<void> => {
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameRecords}` +
-        `?data-elo=true` +
-        `&jogadorRef1=${this.playerRef}`
-    );
-    const json = await response.json();
-    const dateEloData = json["data"]["dateEloData"] as DateEloData[];
+    const dateEloData = await this.getPlayerDateEloData();
 
     if (dateEloData.length > 0) {
       const dateData = ["Início"].concat(

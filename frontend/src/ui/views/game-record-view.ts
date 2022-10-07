@@ -1,15 +1,16 @@
+import { doc, getDoc } from "firebase/firestore";
+
+import { DateUtils } from "../../infra/date_utils";
 import { Globals as g } from "../../infra/globals";
 import { EnvState, envState } from "../../infra/env";
+import { addFirebaseRef } from "../../infra/utils";
 
+import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
-import Elo from "../../models/elo";
-import { DateUtils } from "../../infra/date_utils";
 import GameRecordsTable from "../components/game_records_table";
-import { doc, getDoc } from "firebase/firestore";
-import { addFirebaseRef } from "../../infra/utils";
 
 declare const glift: any;
 

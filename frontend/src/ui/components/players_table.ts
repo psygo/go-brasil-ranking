@@ -53,6 +53,8 @@ export default class PlayersTable extends UiTable<Player> {
       .participants!;
 
     let players: Player[] = [];
+    // TODO2: this needs to be paginated somehow...
+    //        If the ordered is preset, it's easy
     for (const participantRef of participantsRefs) {
       const participantDoc = await getDoc(doc(g.db, "players", participantRef));
       const participant = participantDoc.data() as Player;

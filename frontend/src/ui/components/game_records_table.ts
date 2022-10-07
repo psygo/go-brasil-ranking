@@ -1,10 +1,31 @@
+import {
+  collection,
+  getDocs,
+  limit,
+  orderBy,
+  query,
+  startAfter,
+  where,
+} from "firebase/firestore";
+
 import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
-import { errorLog, HtmlString } from "../../infra/utils";
+import {
+  errorLog,
+  getPlayerGameRecords,
+  HtmlString,
+  mergeParallelQueries,
+  orderByDate,
+} from "../../infra/utils";
 
 import { FirebaseRef } from "../../models/firebase_models";
-import { Color, GameRecord, resultString } from "../../models/game_record";
+import {
+  Color,
+  // DateEloData,
+  GameRecord,
+  resultString,
+} from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
 import UiTable from "./ui_table";
@@ -12,21 +33,67 @@ import UiTable from "./ui_table";
 export default class GameRecordsTable extends UiTable<GameRecord> {
   static readonly tag: string = "game-records-table";
 
+  private getAllGameRecords = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(g.db, "game_records"),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible),
+        limit(g.queryLimit)
+      )
+    );
+  };
+
+  private getGameRecordsFromEvent = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(g.db, "game_records"),
+        where("gameEventRef", "==", this.eventRef),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible),
+        limit(g.queryLimit)
+      )
+    );
+  };
+
+  private getPlayersGameRecords = async (): Promise<void> => {
+    // TODO1: Pagination...
+    const playerIsBlack = getDocs(
+      query(
+        collection(g.db, "game_records"),
+        where("blackRef", "==", this.playerRef1),
+        where("whiteRef", "==", this.playerRef2),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible),
+        limit(g.queryLimit)
+      )
+    );
+    const playerIsWhite = getDocs(
+      query(
+        collection(g.db, "game_records"),
+        where("blackRef", "==", this.playerRef2),
+        where("whiteRef", "==", this.playerRef1),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible),
+        limit(g.queryLimit)
+      )
+    );
+
+    const allGames = await mergeParallelQueries(playerIsBlack, playerIsWhite);
+
+    orderByDate(allGames);
+
+    this.data.push(...allGames);
+  };
+
   protected getData = async (): Promise<void> => {
     try {
-      let queryString = `?de=${this.startAfter}`;
-
-      if (this.playerRef1) queryString += `&jogadorRef1=${this.playerRef1}`;
-      if (this.playerRef2) queryString += `&jogadorRef2=${this.playerRef2}`;
-
-      if (this.eventRef) queryString += `&eventoRef=${this.eventRef}`;
-
-      const response = await fetch(
-        `${g.apiUrl}${RouteEnum.gameRecords}${queryString}`
-      );
-
-      const json = await response.json();
-      this.data.push(...json["data"]["gameRecords"]);
+      if (this.playerRef1 && this.playerRef2)
+        await this.getPlayersGameRecords();
+      else if (this.playerRef1)
+        this.data.push(...(await getPlayerGameRecords(this.playerRef1)));
+      else if (this.eventRef) await this.getGameRecordsFromEvent();
+      else await this.getAllGameRecords();
     } catch (e) {
       const error = e as Error;
       errorLog(error, "Game Events' Table");
