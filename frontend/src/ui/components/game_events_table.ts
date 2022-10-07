@@ -1,6 +1,5 @@
 import {
   collection,
-  getDocs,
   limit,
   orderBy,
   query,
@@ -14,30 +13,21 @@ import { RouteEnum } from "../../routing/router";
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
 import UiTable from "./ui_table";
-import {
-  errorLog,
-  HtmlString,
-  mapDocsWithFirebaseRef,
-} from "../../infra/utils";
+import { errorLog, HtmlString } from "../../infra/utils";
 
 export default class GameEventsTable extends UiTable<TournamentOrLeague> {
   static readonly tag: string = "game-events-table";
 
   protected getData = async (): Promise<void> => {
     try {
-      const q = query(
-        collection(g.db, "game_events"),
-        orderBy("firstDate", "desc"),
-        startAfter(this.lastVisible ? this.lastVisible : {}),
-        limit(g.queryLimit)
+      await this.firestoreQuery(
+        query(
+          collection(g.db, "game_events"),
+          orderBy("firstDate", "desc"),
+          startAfter(this.lastVisible),
+          limit(g.queryLimit)
+        )
       );
-      const snaps = await getDocs(q);
-
-      this.resetLastVisible(snaps.docs);
-
-      const gameEvents = mapDocsWithFirebaseRef<TournamentOrLeague>(snaps.docs);
-
-      this.data.push(...gameEvents);
     } catch (e) {
       const error = e as Error;
       errorLog(error, "Game Events' Table");

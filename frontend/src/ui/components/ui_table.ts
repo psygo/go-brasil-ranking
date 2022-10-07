@@ -1,13 +1,22 @@
-import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
+import {
+  DocumentData,
+  getDocs,
+  Query,
+  QueryDocumentSnapshot,
+} from "firebase/firestore";
 
 import { Globals as g } from "../../infra/globals";
-import { HtmlString, RankingData } from "../../infra/utils";
+import {
+  HtmlString,
+  mapDocsWithFirebaseRef,
+  RankingData,
+} from "../../infra/utils";
 
 export default abstract class UiTable<
   T extends RankingData
 > extends HTMLElement {
   protected readonly data: T[] = [];
-  protected declare lastVisible: QueryDocumentSnapshot<DocumentData>;
+  private declare _lastVisible: QueryDocumentSnapshot<DocumentData>;
 
   // TODO2: Eliminate startAfter after refactoring the tables
   constructor(public readonly title: string, protected startAfter: number = 0) {
@@ -31,10 +40,24 @@ export default abstract class UiTable<
 
   protected abstract getData(): Promise<void>;
 
+  protected get lastVisible(): QueryDocumentSnapshot<DocumentData> | {} {
+    return this._lastVisible ? this._lastVisible : {};
+  }
+
   protected resetLastVisible = (
     docs: QueryDocumentSnapshot<DocumentData>[]
   ): void => {
-    this.lastVisible = docs[docs.length - 1];
+    this._lastVisible = docs[docs.length - 1];
+  };
+
+  protected firestoreQuery = async (q: Query<DocumentData>): Promise<void> => {
+    const snaps = await getDocs(q);
+
+    this.resetLastVisible(snaps.docs);
+
+    const docsWithRef = mapDocsWithFirebaseRef<T>(snaps.docs);
+
+    this.data.push(...docsWithRef);
   };
 
   protected toggleLoader = (): void => {

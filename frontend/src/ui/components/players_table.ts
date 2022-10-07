@@ -1,3 +1,14 @@
+import {
+  startAfter,
+  collection,
+  orderBy,
+  query,
+  limit,
+  where,
+  getDoc,
+  doc,
+} from "firebase/firestore";
+
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
@@ -7,24 +18,58 @@ import { UiUtils } from "../ui_utils";
 import { errorLog, HtmlString, inf, paginationSlicer } from "../../infra/utils";
 import UiTable from "./ui_table";
 import { FirebaseRef } from "../../models/firebase_models";
+import { TournamentOrLeague } from "../../models/game_event";
 
 export default class PlayersTable extends UiTable<Player> {
   static readonly tag: string = "players-table";
 
+  private getAllPlayers = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(g.db, "players"),
+        orderBy("elo", "desc"),
+        startAfter(this.lastVisible),
+        limit(g.queryLimit)
+      )
+    );
+  };
+
+  private getOnlyBrazilians = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(g.db, "players"),
+        where("isBrazilian", "==", true),
+        orderBy("elo", "desc"),
+        startAfter(this.lastVisible),
+        limit(g.queryLimit)
+      )
+    );
+  };
+
+  private getFromEvent = async (): Promise<void> => {
+    const eventDoc = await getDoc(doc(g.db, "game_events", this.eventRef));
+
+    const participantsRefs = (eventDoc.data() as TournamentOrLeague)
+      .participants!;
+
+    let players: Player[] = [];
+    for (const participantRef of participantsRefs) {
+      const participantDoc = await getDoc(doc(g.db, "players", participantRef));
+      const participant = participantDoc.data() as Player;
+      players.push({ ...participant, firebaseRef: participantDoc.id });
+    }
+
+    // TODO2: The ordering of the players should be preset
+    players.sort((p1, p2) => p2.elo - p1.elo);
+
+    this.data.push(...players);
+  };
+
   protected getData = async (): Promise<void> => {
     try {
-      let queryString = `?de=${this.startAfter}`;
-
-      if (this.onlyBrazilians)
-        queryString += `&somente-brasileiros=${this.onlyBrazilians}`;
-      if (this.eventRef) queryString += `&eventoRef=${this.eventRef}`;
-
-      const response = await fetch(
-        `${g.apiUrl}${RouteEnum.players}${queryString}`
-      );
-
-      const json = await response.json();
-      this.data.push(...json["data"]["players"]);
+      if (this.eventRef) await this.getFromEvent();
+      else if (this.onlyBrazilians) await this.getOnlyBrazilians();
+      else await this.getAllPlayers();
     } catch (e) {
       const error = e as Error;
       errorLog(error, "Game Events' Table");
