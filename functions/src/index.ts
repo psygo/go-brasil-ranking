@@ -11,7 +11,6 @@ import { postPlayerApi } from "./api/players/post_player_api";
 import { postGameEventApi } from "./api/game_events/post_game_event_api";
 
 import { getGameRecords } from "./api/game_records/get_game_records_api";
-import { getGameRecord } from "./api/game_records/get_game_record_api";
 import { postGameRecordApi } from "./api/game_records/post_game_record_api";
 
 import { validateFirebaseIdToken } from "./middleware/auth";
@@ -40,7 +39,6 @@ goBrasilRankingApp.get("/", home);
 
 // 3. Game Records
 goBrasilRankingApp.get("/partidas", getGameRecords);
-goBrasilRankingApp.get("/partidas/:gameRecordId", getGameRecord);
 
 // 4. Only for Admins
 goBrasilRankingApp.use("*/novo", validateFirebaseIdToken);

@@ -1,5 +1,4 @@
 import { Globals as g } from "../../infra/globals";
-import { RouteEnum } from "../../routing/router";
 import { EnvState, envState } from "../../infra/env";
 
 import { FirebaseRef } from "../../models/firebase_models";
@@ -9,6 +8,8 @@ import { UiUtils } from "../ui_utils";
 import Elo from "../../models/elo";
 import { DateUtils } from "../../infra/date_utils";
 import GameRecordsTable from "../components/game_records_table";
+import { doc, getDoc } from "firebase/firestore";
+import { addFirebaseRef } from "../../infra/utils";
 
 declare const glift: any;
 
@@ -22,11 +23,14 @@ export default class GameRecordView extends HTMLElement {
   }
 
   private getGameRecord = async (): Promise<void> => {
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameRecords}/${this.gameRecordRef}`
+    const playerDoc = await getDoc(
+      doc(g.db, "game_records", this.gameRecordRef)
     );
-    const json = await response.json();
-    this.gameRecord = json["data"]["gameRecord"];
+
+    this.gameRecord = addFirebaseRef(
+      playerDoc.data() as GameRecord,
+      playerDoc.id
+    );
   };
 
   async connectedCallback(): Promise<void> {
