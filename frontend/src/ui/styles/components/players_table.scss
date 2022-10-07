@@ -1,4 +1,4 @@
-@use "../components/game_records_table" as grt;
+@use "../components/table_utils" as tu;
 
 $gamesTotalWidth: 65px;
 
@@ -11,13 +11,13 @@ players-table {
 
     display: grid;
     grid-template-columns:
-      grt.$refWidth grt.$pictureWidth $playerNameWidth $playerCountriesWidth
-      grt.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
+      tu.$refWidth tu.$pictureWidth $playerNameWidth $playerCountriesWidth
+      tu.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
     grid-template-areas:
       "ref"
       "player-picture player-name countries"
       "elo dan-kyu last-game-date";
-    grid-column-gap: grt.$columnGap;
+    grid-column-gap: tu.$columnGap;
   }
 
   route-link.card,
@@ -25,5 +25,5 @@ players-table {
     @include cardLegendGrid;
   }
 
-  @include grt.completeTableDecoration;
+  @include tu.completeTableDecoration;
 }

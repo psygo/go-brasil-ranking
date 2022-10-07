@@ -1,0 +1,179 @@
+@mixin cardDecoration {
+  background: whitesmoke;
+
+  border: 3px solid #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+  transition: all 0.15s ease-in-out;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    transform: translate3d(0px, -0.5px, 0px);
+  }
+
+  font-size: 1.1rem;
+}
+
+@mixin cardMargin {
+  margin-bottom: 10px;
+}
+
+@mixin cardPadding {
+  padding: 10px 10px;
+}
+
+@mixin playerLink {
+  route-link {
+    color: darken(blue, 30%);
+  }
+
+  span {
+    &[winner] {
+      color: darken(green, 9%);
+    }
+
+    &[loser] {
+      color: darken(red, 30%);
+    }
+  }
+}
+
+@mixin rankingTable {
+  margin-bottom: 35px;
+
+  width: max-content;
+}
+
+@mixin captionDecoration {
+  h2 {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 15px;
+
+    font-size: 1.8rem;
+
+    route-link {
+      color: darken(green, 7%);
+    }
+  }
+}
+
+$pictureWidth: 70px;
+
+@mixin imgDecoration($width) {
+  img {
+    max-width: $width;
+    max-height: $width;
+    border-radius: 10px;
+  }
+}
+
+@mixin card {
+  @include rankingTable;
+  @include cardDecoration;
+  @include cardPadding;
+  @include cardMargin;
+  @include playerLink;
+  @include imgDecoration($pictureWidth);
+
+  align-items: center;
+}
+
+@mixin legendDecoration {
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  font-weight: bold;
+}
+
+@mixin spanAlignment {
+  span:not(.align-left) {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .align-left {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+  }
+}
+
+@mixin completeCardLegendDecoration {
+  route-link.card {
+    @include card;
+  }
+
+  #legend {
+    @include cardPadding;
+    @include legendDecoration;
+  }
+}
+
+$refWidth: 30px;
+$eloWidth: 60px;
+$eloDeltaWidth: 40px;
+$dateWidth: 110px;
+$handicapWidth: 40px;
+$eventWidth: 100px;
+$resultWidth: 90px;
+
+$columnGap: 10px;
+
+@mixin pagination {
+  .pagination {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 30px;
+
+    button {
+      @include cardDecoration;
+
+      font-size: 1.6rem;
+
+      padding: 10px;
+
+      cursor: pointer;
+    }
+  }
+}
+
+@mixin loaderContainer {
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    margin: 20px 0;
+
+    .loader {
+      border: 10px solid #f3f3f3;
+      border-top: 10px solid green;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+@mixin completeTableDecoration {
+  @include spanAlignment;
+  @include captionDecoration;
+  @include pagination;
+  @include loaderContainer;
+  @include completeCardLegendDecoration;
+}

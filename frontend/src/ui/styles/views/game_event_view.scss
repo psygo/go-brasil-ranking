@@ -1,4 +1,5 @@
-@use "../components/game_records_table" as grt;
+@use "../components/table_utils" as tu;
+
 @use "../components/game_events_table" as get;
 @use "../components/players_table" as pt;
 
@@ -15,27 +16,27 @@ game-event-view {
   }
 
   #card {
-    @include grt.spanAlignment;
+    @include tu.spanAlignment;
 
     @mixin cardLegendGrid {
       display: grid;
       grid-template-columns:
         get.$gameEventTypeWidth
-        grt.$dateWidth grt.$dateWidth
+        tu.$dateWidth tu.$dateWidth
         pt.$gamesTotalWidth pt.$gamesTotalWidth;
-      grid-column-gap: grt.$columnGap;
+      grid-column-gap: tu.$columnGap;
       justify-items: center;
     }
 
     #legend {
       @include cardLegendGrid;
-      @include grt.legendDecoration;
-      @include grt.cardPadding;
+      @include tu.legendDecoration;
+      @include tu.cardPadding;
     }
 
     #content {
       @include cardLegendGrid;
-      @include grt.card;
+      @include tu.card;
     }
   }
 }

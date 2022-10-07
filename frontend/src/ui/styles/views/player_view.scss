@@ -1,6 +1,6 @@
 @use "../globals" as g;
 
-@use "../components/game_records_table" as grt;
+@use "../components/table_utils" as tu;
 
 player-view {
   display: grid;
@@ -28,7 +28,7 @@ player-view {
       max-width: 500px;
       max-height: 225px;
 
-      @include grt.cardDecoration;
+      @include tu.cardDecoration;
       background-color: whitesmoke;
 
       padding: 15px 20px;
@@ -41,27 +41,27 @@ player-view {
     align-items: center;
     gap: 15px;
 
-    @include grt.imgDecoration(100px);
+    @include tu.imgDecoration(100px);
   }
 
   #player-personal-card {
-    @include grt.spanAlignment;
+    @include tu.spanAlignment;
 
     @mixin cardLegendGrid {
       display: grid;
       grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
-      grid-column-gap: grt.$columnGap;
+      grid-column-gap: tu.$columnGap;
     }
 
     #player-personal-card-content {
       @include cardLegendGrid;
-      @include grt.card;
+      @include tu.card;
     }
 
     #player-personal-card-legend {
       @include cardLegendGrid;
-      @include grt.legendDecoration;
-      @include grt.cardPadding;
+      @include tu.legendDecoration;
+      @include tu.cardPadding;
     }
   }
 }

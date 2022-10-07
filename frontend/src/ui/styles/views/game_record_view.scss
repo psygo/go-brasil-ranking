@@ -1,4 +1,4 @@
-@use "../components/game_records_table" as grt;
+@use "../components/table_utils" as tu;
 
 game-record-view {
   display: grid;
@@ -40,33 +40,33 @@ game-record-view {
       height: 50px;
     }
 
-    @include grt.imgDecoration(90px);
+    @include tu.imgDecoration(90px);
   }
 
   #card {
-    @include grt.spanAlignment;
-    
+    @include tu.spanAlignment;
+
     @mixin cardLegendGrid {
       $downloadWidth: 100px;
 
       display: grid;
       grid-template-columns:
-        grt.$eloDeltaWidth grt.$eloWidth
-        grt.$handicapWidth grt.$dateWidth grt.$resultWidth $downloadWidth grt.$eventWidth
-        grt.$eloWidth grt.$eloDeltaWidth;
-      grid-column-gap: grt.$columnGap;
+        tu.$eloDeltaWidth tu.$eloWidth
+        tu.$handicapWidth tu.$dateWidth tu.$resultWidth $downloadWidth tu.$eventWidth
+        tu.$eloWidth tu.$eloDeltaWidth;
+      grid-column-gap: tu.$columnGap;
       justify-items: center;
     }
 
     #legend {
       @include cardLegendGrid;
-      @include grt.legendDecoration;
-      @include grt.cardPadding;
+      @include tu.legendDecoration;
+      @include tu.cardPadding;
     }
 
     #content {
       @include cardLegendGrid;
-      @include grt.card;
+      @include tu.card;
     }
 
     a#download {

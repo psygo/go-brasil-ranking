@@ -1,4 +1,4 @@
-@use "../components/game_records_table" as grt;
+@use "../components/table_utils" as tu;
 
 @use "../components/players_table" as pt;
 
@@ -12,10 +12,10 @@ game-events-table {
 
     display: grid;
     grid-template-columns:
-      grt.$refWidth $gameEventNameWidth $gameEventTypeWidth
+      tu.$refWidth $gameEventNameWidth $gameEventTypeWidth
       pt.$gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
     grid-template-areas: "ref name type total-games";
-    grid-column-gap: grt.$columnGap;
+    grid-column-gap: tu.$columnGap;
   }
 
   route-link.card,
@@ -23,5 +23,5 @@ game-events-table {
     @include cardLegendGrid;
   }
 
-  @include grt.completeTableDecoration;
+  @include tu.completeTableDecoration;
 }
