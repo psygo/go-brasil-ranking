@@ -9,7 +9,6 @@ import { home } from "./api/others/home_api";
 import { getPlayer } from "./api/players/get_player_api";
 import { postPlayerApi } from "./api/players/post_player_api";
 
-import { getGameEvent } from "./api/game_events/get_game_event_api";
 import { postGameEventApi } from "./api/game_events/post_game_event_api";
 
 import { getGameRecords } from "./api/game_records/get_game_records_api";
@@ -42,9 +41,6 @@ goBrasilRankingApp.get("/", home);
 
 // 1. Players
 goBrasilRankingApp.get("/jogadores/:playerId", getPlayer);
-
-// 2. Game Events
-goBrasilRankingApp.get("/eventos/:gameEventId", getGameEvent);
 
 // 3. Game Records
 goBrasilRankingApp.get("/partidas", getGameRecords);

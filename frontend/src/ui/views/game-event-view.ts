@@ -1,9 +1,12 @@
+import { doc, getDoc } from "firebase/firestore";
+
 import { Globals as g } from "../../infra/globals";
-import { RouteEnum } from "../../routing/router";
+import { DateUtils } from "../../infra/date_utils";
+import { addFirebaseRef } from "../../infra/utils";
 
 import { FirebaseRef } from "../../models/firebase_models";
 import { TournamentOrLeague } from "../../models/game_event";
-import { DateUtils } from "../../infra/date_utils";
+
 import GameRecordsTable from "../components/game_records_table";
 import PlayersTable from "../components/players_table";
 
@@ -17,11 +20,12 @@ export default class GameEventView extends HTMLElement {
   private declare gameEvent: TournamentOrLeague;
 
   private getGameEvent = async (): Promise<void> => {
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.gameEvents}/${this.gameEventRef}`
+    const eventDoc = await getDoc(doc(g.db, "game_events", this.gameEventRef));
+
+    this.gameEvent = addFirebaseRef(
+      eventDoc.data() as TournamentOrLeague,
+      eventDoc.id
     );
-    const json = await response.json();
-    this.gameEvent = json["data"]["gameEvent"];
   };
 
   async connectedCallback(): Promise<void> {
