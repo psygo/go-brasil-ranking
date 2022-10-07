@@ -4,9 +4,9 @@ import { gameEventsCol } from "../collections/game_events_col";
 import { gameRecordsCol } from "../collections/game_records_col";
 import { playersCol } from "../collections/players_col";
 
-import { mockPopulateGameEvents } from "./mock_game_events";
-import { mockPopulateGameRecords } from "./mock_game_recods";
-import { mockPopulatePlayers } from "./mock_players";
+import { populateGameEvents } from "./populate_game_events";
+import { populateGameRecords } from "./populate_game_recods";
+import { populatePlayers } from "./populate_players";
 
 const deleteEverything = async (): Promise<void> => {
   await playersCol.deleteEverything();
@@ -14,13 +14,13 @@ const deleteEverything = async (): Promise<void> => {
   await gameRecordsCol.deleteEverything();
 };
 
-export const mockPopulateEverythingApi: ExpressApiRoute = async (_, res) => {
+export const populateEverythingApi: ExpressApiRoute = async (_, res) => {
   try {
     await deleteEverything();
 
-    await mockPopulatePlayers();
-    await mockPopulateGameEvents();
-    await mockPopulateGameRecords();
+    await populatePlayers();
+    await populateGameEvents();
+    await populateGameRecords();
 
     res.status(200).send({
       status: "success",

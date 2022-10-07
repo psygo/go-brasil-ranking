@@ -2,8 +2,9 @@ import {
   Color,
   GameRecord,
   Hosts,
-} from "../../../../frontend/src/models/game_record";
-import { findEventRef, findPlayerRef } from "./fake_game_records";
+} from "../../../frontend/src/models/game_record";
+
+import { findEventRef, findPlayerRef } from "../infra";
 
 export const pglatc_2022: readonly GameRecord[] = [
   // ***************************************************************************

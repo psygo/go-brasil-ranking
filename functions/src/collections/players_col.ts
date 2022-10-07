@@ -1,7 +1,8 @@
+import Col from "./col";
+
 import { JsonInterface } from "../../../frontend/src/infra/serializable";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import { Player } from "../../../frontend/src/models/player";
-import Col from "./col";
 
 class PlayersCol extends Col {
   readonly colName = "players";

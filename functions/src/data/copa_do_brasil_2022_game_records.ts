@@ -1,6 +1,5 @@
-import { Color, GameRecord } from "../../../../frontend/src/models/game_record";
-
-import { findEventRef, findPlayerRef } from "./fake_game_records";
+import { Color, GameRecord } from "../../../frontend/src/models/game_record";
+import { findEventRef, findPlayerRef } from "../infra";
 
 export const copaDoBrasil2022: readonly GameRecord[] = [
   {

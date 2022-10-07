@@ -2,9 +2,9 @@ import {
   Color,
   GameRecord,
   Hosts,
-} from "../../../../frontend/src/models/game_record";
+} from "../../../frontend/src/models/game_record";
 
-import { findEventRef, findPlayerRef } from "./fake_game_records";
+import { findEventRef, findPlayerRef } from "../infra";
 
 export const dogempGames: readonly GameRecord[] = [
   // ***************************************************************************

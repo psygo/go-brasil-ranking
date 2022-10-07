@@ -1,8 +1,8 @@
 import {
   BrazilianState,
   CountryName,
-} from "../../../../frontend/src/models/country";
-import { GoServers, Player } from "../../../../frontend/src/models/player";
+} from "../../../frontend/src/models/country";
+import { GoServers, Player } from "../../../frontend/src/models/player";
 import { pic_aaron_alvarado } from "./PicsBase64/pic_aaron_alvarado";
 import { pic_adrian_villalta_cerdas } from "./PicsBase64/pic_adrian_villalta_cerdas";
 

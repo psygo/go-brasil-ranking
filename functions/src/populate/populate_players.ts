@@ -2,28 +2,28 @@ import { ExpressApiRoute } from "../infra";
 
 import { Player } from "../../../frontend/src/models/player";
 
-import { players } from "./data/players";
+import { players } from "../data/players";
 import { postPlayer } from "../api/post_player_api";
 
-export const mockPopulatePlayers = async (): Promise<Player[]> => {
-  const fakePlayersWithFirebaseRef: Player[] = [];
+export const populatePlayers = async (): Promise<Player[]> => {
+  const playersWithFirebaseRef: Player[] = [];
 
   const length = players.length;
   for (let i = 0; i < length; i++) {
-    const fakePlayer = players[i];
+    const player = players[i];
     const ref = i.toString();
 
-    const fakePlayerOnDb = await postPlayer(fakePlayer, ref);
+    const playerOnDb = await postPlayer(player, ref);
 
-    fakePlayersWithFirebaseRef.push(fakePlayerOnDb);
+    playersWithFirebaseRef.push(playerOnDb);
   }
 
-  return fakePlayersWithFirebaseRef;
+  return playersWithFirebaseRef;
 };
 
-export const mockPopulatePlayersApi: ExpressApiRoute = async (_, res) => {
+export const populatePlayersApi: ExpressApiRoute = async (_, res) => {
   try {
-    const players = await mockPopulatePlayers();
+    const players = await populatePlayers();
 
     res.status(200).send({
       status: "Successo",

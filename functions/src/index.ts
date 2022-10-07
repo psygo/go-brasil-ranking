@@ -13,10 +13,10 @@ import { postPlayerApi } from "./api/post_player_api";
 import { validateFirebaseIdToken } from "./middleware/auth";
 
 import { ifDev } from "./middleware/if_dev";
-import { mockPopulatePlayersApi } from "./mock/mock_players";
-import { mockPopulateGameRecordsApi } from "./mock/mock_game_recods";
-import { mockPopulateGameEventsApi } from "./mock/mock_game_events";
-import { mockPopulateEverythingApi } from "./mock/mock_everything";
+import { populatePlayersApi } from "./populate/populate_players";
+import { populateGameRecordsApi } from "./populate/populate_game_recods";
+import { populateGameEventsApi } from "./populate/populate_game_events";
+import { populateEverythingApi } from "./populate/populate_everything";
 
 import { firebaseConfig } from "../../frontend/src/infra/firebase_config";
 
@@ -42,10 +42,10 @@ goBrasilRankingApp.post("/partidas/novo", postGameRecordApi);
 
 // 2. Mocking
 goBrasilRankingApp.use(ifDev);
-goBrasilRankingApp.post("/mock-populate-everything", mockPopulateEverythingApi);
-goBrasilRankingApp.post("/jogadores/mock-populate", mockPopulatePlayersApi);
-goBrasilRankingApp.post("/eventos/mock-populate", mockPopulateGameEventsApi);
-goBrasilRankingApp.post("/partidas/mock-populate", mockPopulateGameRecordsApi);
+goBrasilRankingApp.post("/mock-populate-everything", populateEverythingApi);
+goBrasilRankingApp.post("/jogadores/mock-populate", populatePlayersApi);
+goBrasilRankingApp.post("/eventos/mock-populate", populateGameEventsApi);
+goBrasilRankingApp.post("/partidas/mock-populate", populateGameRecordsApi);
 
 export const goBrasilRanking = functions
   .region("southamerica-east1")

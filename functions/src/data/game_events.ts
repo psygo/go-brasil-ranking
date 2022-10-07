@@ -1,7 +1,7 @@
 import {
   GameEventTypes,
   TournamentOrLeague,
-} from "../../../../frontend/src/models/game_event";
+} from "../../../frontend/src/models/game_event";
 
 export const gameEvents: readonly TournamentOrLeague[] = [
   {
