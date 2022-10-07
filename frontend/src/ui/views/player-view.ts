@@ -11,6 +11,8 @@ import { Chart, registerables } from "chart.js";
 import { DateEloData } from "../../models/game_record";
 import { DateUtils } from "../../infra/date_utils";
 import { CountryName } from "../../models/country";
+import { doc, getDoc } from "firebase/firestore";
+import { addFirebaseRef } from "../../infra/utils";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -19,12 +21,10 @@ export default class PlayerView extends HTMLElement {
     super();
   }
 
-  private getPlayer = async (): Promise<Player> => {
-    const response = await fetch(
-      `${g.apiUrl}${RouteEnum.players}/${this.playerRef}`
-    );
-    const json = await response.json();
-    return json["data"]["player"];
+  private getPlayer = async (): Promise<void> => {
+    const playerDoc = await getDoc(doc(g.db, "players", this.playerRef));
+
+    this.player = addFirebaseRef(playerDoc.data() as Player, playerDoc.id);
   };
 
   private declare player: Player;
@@ -32,7 +32,7 @@ export default class PlayerView extends HTMLElement {
   async connectedCallback(): Promise<void> {
     document.title = "Jogador";
 
-    this.player = await this.getPlayer();
+    await this.getPlayer();
 
     document.title = `Jogador | ${this.player.name}`;
 
