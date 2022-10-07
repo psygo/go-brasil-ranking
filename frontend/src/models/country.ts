@@ -13,21 +13,26 @@ export const getFlag = (cn: CountryName): CountryFlag => {
 };
 
 export enum CountryName {
-  brazil = "Brasil",
   angola = "Angola",
   argentina = "Argentina",
+  brazil = "Brasil",
   canada = "Canadá",
+  chile = "Chile",
   colombia = "Colombia",
+  costa_rica = "Costa Rica",
+  cuba = "Cuba",
   france = "França",
   germany = "Germany",
   israel = "Israel",
   italy = "Itália",
   japan = "Japão",
   mexico = "México",
+  peru = "Peru",
   portugal = "Portugal",
   romania = "Romênia",
   taiwan = "Taiwan",
   usa = "EUA",
+  venezuela = "Venezuela",
 }
 
 export const countryNameFromString = (cString: string): CountryName =>
@@ -43,17 +48,22 @@ export enum CountryFlag {
   argentina = "🇦🇷",
   brazil = "🇧🇷",
   canada = "🇨🇦",
+  chile = "🇨🇱",
   colombia = "🇨🇴",
+  costa_rica = "🇨🇷",
+  cuba = "🇨🇺",
   france = "🇫🇷",
   germany = "🇩🇪",
   israel = "🇮🇱",
   italy = "🇮🇹",
   japan = "🇯🇵",
   mexico = "🇲🇽",
+  peru = "🇵🇪",
   portugal = "🇵🇹",
   romania = "🇷🇴",
   taiwan = "🇹🇼",
   usa = "🇺🇸",
+  venezuela = "🇻🇪",
 }
 
 export enum BrazilianState {
