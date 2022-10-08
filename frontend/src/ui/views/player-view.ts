@@ -44,6 +44,8 @@ export default class PlayerView extends HTMLElement {
 
   private getPlayerDateEloData = async (): Promise<DateEloData[]> => {
     const allPlayerGames = await getPlayerGameRecords(this.playerRef);
+    // TODO2: This data should be in the player itself,
+    //        when posting the game record...
 
     return allPlayerGames
       .map((g) => ({

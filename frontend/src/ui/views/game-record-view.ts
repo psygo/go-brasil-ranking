@@ -154,6 +154,10 @@ export default class GameRecordView extends HTMLElement {
     const whiteWins =
       this.gameRecord.result.whoWins === Color.White ? "winner" : "loser";
 
+    const sgfButton = this.gameRecord.sgf
+      ? /*html*/ `<a id="download">SGF</a>`
+      : /*html*/ `<span>&mdash;</span>`;
+
     gameRecordCardDiv.innerHTML = /*html*/ `
       <div id="legend">
         <span>Elo Dif</span>
@@ -180,7 +184,7 @@ export default class GameRecordView extends HTMLElement {
 
         <span>${resultString(this.gameRecord.result)}</span>
 
-        <a id="download">SGF</a>
+        ${sgfButton} 
 
         ${UiUtils.gameEventLink(this.gameRecord)}
         
@@ -193,7 +197,7 @@ export default class GameRecordView extends HTMLElement {
       </div>
     `;
 
-    this.setDownloadButton();
+    if (this.gameRecord.sgf) this.setDownloadButton();
   };
 
   private setDownloadButton = (): void => {

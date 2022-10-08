@@ -6,6 +6,7 @@ import { Player } from "./player";
 export enum Hosts {
   ogs = "https://online-go.com/",
   pglatc = "https://pandanet-igs.com/system/sgfs/",
+  ai_sensei = "https://ai-sensei.com/game/",
 }
 
 interface _Link {
