@@ -21,8 +21,6 @@ export const postPlayer = async (
     gamesTotal: 0,
   };
 
-  if (player.picture) playerOnDb = { ...playerOnDb, picture: player.picture };
-
   if (!firebaseRef) {
     const playerRef = await playersCol.col.add(playerOnDb);
     playerOnDb = { ...playerOnDb, firebaseRef: playerRef.id };

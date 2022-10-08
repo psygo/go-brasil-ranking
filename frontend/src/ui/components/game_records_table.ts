@@ -170,10 +170,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     for (let i = this.startAfter; i < length; i++) {
       const gameRecord = this.data[i];
 
-      const blackWins =
-        gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
-      const whiteWins =
-        gameRecord.result.whoWins === Color.White ? "winner" : "loser";
+      const [blackWins, whiteWins] = [
+        gameRecord.result.whoWins === Color.Black ? "winner" : "loser",
+        gameRecord.result.whoWins === Color.White ? "winner" : "loser",
+      ];
 
       const gameDate = new Date(gameRecord.date);
 
