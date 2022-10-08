@@ -8,10 +8,10 @@ firebase emulators:start &
 
 cd frontend || exit
 
-npm run everything &
+npm run dev &
 
 # 3. Functions
 
 cd ../functions || exit
 
-npm run everything
+npm run dev

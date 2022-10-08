@@ -3,10 +3,12 @@
         //   0. General Stuff
         ".gitignore": false,
         "README.md": false,
+        "public/": true,
         //
         //   1. JS | TS | Packages
         "**/dist/": true,
-        "**/index.js": false,
+        "**/index.js": true,
+        "**/index.js.map": true,
         "**/node_modules/": true,
         "**/package-lock.json": true,
         "**/tsconfig.tsbuildinfo": true,
