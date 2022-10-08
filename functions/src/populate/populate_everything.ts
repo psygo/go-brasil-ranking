@@ -1,18 +1,10 @@
 import { ExpressApiRoute } from "../infra";
 
-import { gameEventsCol } from "../collections/game_events_col";
-import { gameRecordsCol } from "../collections/game_records_col";
-import { playersCol } from "../collections/players_col";
+import { deleteEverything } from "../cols";
 
 import { populateGameEvents } from "./populate_game_events";
 import { populateGameRecords } from "./populate_game_recods";
 import { populatePlayers } from "./populate_players";
-
-const deleteEverything = async (): Promise<void> => {
-  await playersCol.deleteEverything();
-  await gameEventsCol.deleteEverything();
-  await gameRecordsCol.deleteEverything();
-};
 
 export const populateEverythingApi: ExpressApiRoute = async (_, res) => {
   try {

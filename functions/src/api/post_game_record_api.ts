@@ -1,7 +1,6 @@
 import { addFirebaseRef, ExpressApiRoute, parseBody } from "../infra";
 
-import { gameRecordsCol } from "../collections/game_records_col";
-import { playersCol } from "../collections/players_col";
+import { gameEventsCol, gameRecordsCol, playersCol } from "../cols";
 
 import {
   Color,
@@ -12,7 +11,6 @@ import {
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import Elo from "../../../frontend/src/models/elo";
 import { Player, _Player } from "../../../frontend/src/models/player";
-import { gameEventsCol } from "../collections/game_events_col";
 import {
   isTournamentOrLeagueRef,
   OnlineOrLive,
@@ -23,8 +21,12 @@ export const postGameRecord = async (
   gameRecord: GameRecord,
   firebaseRef?: FirebaseRef
 ): Promise<GameRecord> => {
-  const black = (await playersCol.getWithRef(gameRecord.blackRef))! as _Player;
-  const white = (await playersCol.getWithRef(gameRecord.whiteRef))! as _Player;
+  const black = (
+    await playersCol.col.doc(gameRecord.blackRef).get()
+  ).data()! as _Player;
+  const white = (
+    await playersCol.col.doc(gameRecord.whiteRef).get()
+  ).data()! as _Player;
 
   delete black.lastGame;
   delete white.lastGame;
@@ -73,11 +75,11 @@ const updateElo = async (
     Color.White
   );
 
-  await playersCol.updateWithRef(gameRecord.blackRef, {
+  await playersCol.col.doc(gameRecord.blackRef).update({
     elo: blackElo.add(blackEloDelta).num,
     gamesTotal: black.gamesTotal! + 1,
   });
-  await playersCol.updateWithRef(gameRecord.whiteRef, {
+  await playersCol.col.doc(gameRecord.whiteRef).update({
     elo: whiteElo.add(whiteEloDelta).num,
     gamesTotal: white.gamesTotal! + 1,
   });
@@ -137,7 +139,7 @@ const updateLastGameForPlayer = async (
   playerRef: FirebaseRef,
   lastGame: GameRecord
 ): Promise<void> => {
-  await playersCol.updateWithRef(playerRef, {
+  await playersCol.col.doc(playerRef).update({
     lastGame: lastGame,
   });
 };

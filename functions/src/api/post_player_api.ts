@@ -1,6 +1,6 @@
 import { ExpressApiRoute, parseBody } from "../infra";
 
-import { playersCol } from "../collections/players_col";
+import { playersCol } from "../cols";
 
 import { CountryName } from "../../../frontend/src/models/country";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";

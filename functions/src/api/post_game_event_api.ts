@@ -1,6 +1,6 @@
-import { gameEventsCol } from "../collections/game_events_col";
-
 import { ExpressApiRoute, parseBody } from "../infra";
+
+import { gameEventsCol } from "../cols";
 
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import {
