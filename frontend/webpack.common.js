@@ -1,11 +1,7 @@
 "use strict";
 
-const path = require("path");
-
 module.exports = {
-  mode: "development",
   entry: "./src/index.ts",
-  devtool: "inline-source-map",
   module: {
     rules: [
       {
@@ -17,10 +13,6 @@ module.exports = {
   },
   resolve: {
     extensions: [".ts"],
-  },
-  output: {
-    filename: "index.js",
-    path: path.resolve(__dirname, "./local/"),
   },
   watchOptions: {
     ignored: ["./firebase-debug.log", "./firestore-debug.log"],

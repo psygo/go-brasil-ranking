@@ -2,8 +2,6 @@
 **/node_modules/
 **/dist/
 **/index.js
+**/index.js.map
 **/tsconfig.tsbuildinfo
 **/*.log
-
-# Firebase
-**/.firebase/
