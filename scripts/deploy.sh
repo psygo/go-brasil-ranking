@@ -1,50 +1,84 @@
-#!/bin/sh
+#!/bin/bash
+
+toggleEnv() {
+    local ENV_PATH="frontend/src/infra"
+
+    local FROM
+    local TO
+    if [ "$1" == "prod" ]; then
+        FROM="dev"
+        TO="prod"
+    elif [ "$1" == "dev" ]; then
+        FROM="prod"
+        TO="dev"
+    fi
+
+    mv "${ENV_PATH}/env.ts" "${ENV_PATH}/env_dev.ts"
+
+    sed "s/EnvState\.${FROM}/EnvState\.${TO}/g" \
+        "${ENV_PATH}/env_dev.ts" \
+        >"${ENV_PATH}/env.ts"
+
+    rm "${ENV_PATH}/env_dev.ts"
+}
 
 ################################################################################
-# 1. Changing to Prod
+# 1. Changing the Global Variable to Production
 ################################################################################
 
-ENV_PATH="frontend/src/infra"
-
-mv "${ENV_PATH}/env.ts" "${ENV_PATH}/env_dev.ts"
-
-sed 's/EnvState\.dev/EnvState\.prod/g' "${ENV_PATH}/env_dev.ts" \
-    >"${ENV_PATH}/env.ts"
-    
-rm "${ENV_PATH}/env_dev.ts"
+toggleEnv prod
 
 ################################################################################
-# 2. Compiling Frontend
+# 2. Copying the Local Development into the Public Folder
 ################################################################################
-
-# cd frontend || exit
-
-################################################################################
-# 2. Hosting
-################################################################################
-
-LOCAL="frontend/local"
-PUBLIC="public"
 
 rm -r "./public/"
 
-cp -r "${LOCAL}" .
+cp -r "frontend/local/" .
 
 mv "./local/" "./public/"
 
-mv "${PUBLIC}/index.html" "${PUBLIC}/index_local.html"
+mv "./public/index.html" "./public/index_local.html"
 
-sed 's/\/local//g' "${PUBLIC}/index_local.html" \
-    >"${PUBLIC}/index.html"
+sed 's/\/local//g' "./public/index_local.html" \
+    >"./public/index.html"
 
-rm "${PUBLIC}/index_local.html"
+rm "./public/index_local.html"
 
 ################################################################################
-# 3. Deploying
+# 3. Compiling Frontend in Production
 ################################################################################
 
-# FIREBASE="."
+cd frontend || exit 1
 
-# firebase deploy \
-#     --config ${FIREBASE}/firebase.json \
-#     --only hosting
+sh scripts/prod.sh
+
+cd ..
+
+################################################################################
+# 4. Compiling Functions in Production
+################################################################################
+
+cd functions || exit 2
+
+sh scripts/prod.sh
+
+cd ..
+
+################################################################################
+# 5. Deploying
+################################################################################
+
+firebase deploy \
+    --config ./firebase.json \
+    --only hosting
+
+################################################################################
+# 6. Changing the Global Variable Back to Development
+################################################################################
+
+toggleEnv dev
+
+################################################################################
+
+exit 0

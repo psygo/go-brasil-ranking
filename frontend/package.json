@@ -6,7 +6,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev": "sh ./scripts/dev.sh",
+    "dev": "bash ./scripts/dev.sh",
     "liveserver": "sh ./scripts/liveserver.sh",
     "sass": "sh ./scripts/sass.sh",
     "test": "sh ./scripts/test.sh",
