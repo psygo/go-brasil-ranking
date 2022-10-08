@@ -8,14 +8,13 @@ export default class HomeView extends HTMLElement {
   async connectedCallback(): Promise<void> {
     document.title = "Ranking Brasileiro de Go";
 
-    // TODO3: I have no idea why, but having the heaviest fetch last apparently
-    //        is the only way this doesn't error? I thought fetches were done in
-    //        parallel by default...
+    // I have no idea why, but having the heaviest fetch last apparently
+    // is the only way this doesn't error? I thought fetches were done in
+    // parallel by default...
     this.append(
-      new PlayersTable("Os 10 Melhores Brasileiros", true),
+      new PlayersTable("Os 10 Melhores Brasileiros", true)
       // new GameEventsTable("Eventos Recentes"),
       // new GameRecordsTable("Partidas Recentes")
     );
   }
 }
-

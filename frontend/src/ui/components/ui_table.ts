@@ -18,7 +18,6 @@ export default abstract class UiTable<
   protected readonly data: T[] = [];
   private declare _lastVisible: QueryDocumentSnapshot<DocumentData>;
 
-  // TODO2: Eliminate startAfter after refactoring the tables
   constructor(public readonly title: string, protected startAfter: number = 0) {
     super();
   }

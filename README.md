@@ -13,8 +13,8 @@ Há vários scripts em cada uma das pastas importantes, para agilizar e facilita
 No momento, a maneira mais agradável de se rodar algo localemente é abrir pelo menos 3 terminais e rodar:
 
 - `sh scripts/firebase_emulators.sh`
-- `cd frontend && npm run everything`
-- `cd functions && npm run everything`
+- `cd frontend && npm run dev`
+- `cd functions && npm run dev`
 
 ## Em Produção
 
