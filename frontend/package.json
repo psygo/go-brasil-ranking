@@ -6,12 +6,13 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "everything": "sh ./scripts/everything.sh",
+    "dev": "sh ./scripts/dev.sh",
     "liveserver": "sh ./scripts/liveserver.sh",
     "sass": "sh ./scripts/sass.sh",
     "test": "sh ./scripts/test.sh",
     "tsc": "sh ./scripts/tsc.sh",
-    "webpack": "sh ./scripts/webpack.sh"
+    "webpack": "sh ./scripts/webpack.sh",
+    "prod": "sh ./scripts/prod.sh"
   },
   "devDependencies": {
     "@types/chai": "^4.3.3",
