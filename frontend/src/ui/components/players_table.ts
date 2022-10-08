@@ -27,7 +27,7 @@ export default class PlayersTable extends UiTable<Player> {
     await this.firestoreQuery(
       query(
         collection(g.db, "players"),
-        orderBy("elo", "desc"),
+        orderBy("currentElo", "desc"),
         startAfter(this.lastVisible),
         limit(g.queryLimit)
       )
@@ -39,7 +39,7 @@ export default class PlayersTable extends UiTable<Player> {
       query(
         collection(g.db, "players"),
         where("isBrazilian", "==", true),
-        orderBy("elo", "desc"),
+        orderBy("currentElo", "desc"),
         startAfter(this.lastVisible),
         limit(g.queryLimit)
       )
@@ -62,7 +62,7 @@ export default class PlayersTable extends UiTable<Player> {
     }
 
     // TODO2: The ordering of the players should be preset
-    players.sort((p1, p2) => p2.elo - p1.elo);
+    players.sort((p1, p2) => p2.currentElo - p1.currentElo);
 
     this.data.push(...players);
   };
@@ -125,12 +125,12 @@ export default class PlayersTable extends UiTable<Player> {
     const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
     const slicedPlayers = paginationSlicer(this.startAfter, this.data);
     for (const player of slicedPlayers) {
-      if (player.elo !== this.lastElo) {
+      if (player.currentElo !== this.lastElo) {
         this.i++;
-        this.lastElo = player.elo;
+        this.lastElo = player.currentElo;
       }
 
-      const elo = new Elo(player.elo);
+      const elo = new Elo(player.currentElo);
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link 

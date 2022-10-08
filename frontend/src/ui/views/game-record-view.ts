@@ -93,8 +93,8 @@ export default class GameRecordView extends HTMLElement {
     const blackFlags = UiUtils.allFlags(black.countries);
     const whiteFlags = UiUtils.allFlags(white.countries);
 
-    const blackElo = new Elo(black.elo);
-    const whiteElo = new Elo(white.elo);
+    const blackElo = new Elo(black.currentElo);
+    const whiteElo = new Elo(white.currentElo);
 
     playerNamesDiv.innerHTML = /*html*/ `
       <route-link href="${RouteEnum.players}/${this.gameRecord.blackRef}">

@@ -16,9 +16,16 @@ export default abstract class UiTable<
   T extends RankingData
 > extends HTMLElement {
   protected readonly data: T[] = [];
+
+  /**
+   * This is used for internal pagination, when the data accumulates,
+   * not for pagination on queries.
+   */
+  protected startAfter: number = 0;
+
   private declare _lastVisible: QueryDocumentSnapshot<DocumentData>;
 
-  constructor(public readonly title: string, protected startAfter: number = 0) {
+  constructor(public readonly title: string) {
     super();
   }
 

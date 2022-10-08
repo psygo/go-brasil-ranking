@@ -7,7 +7,7 @@ import { Player } from "../../models/player";
 import GameRecordsTable from "../components/game_records_table";
 import { UiUtils } from "../ui_utils";
 import { Chart, registerables } from "chart.js";
-import { DateEloData } from "../../models/game_record";
+import { DateEloData } from "../../models/player";
 import { DateUtils } from "../../infra/date_utils";
 import { CountryName } from "../../models/country";
 import { doc, getDoc } from "firebase/firestore";
@@ -150,7 +150,7 @@ export default class PlayerView extends HTMLElement {
   };
 
   private setPlayerCard = (): void => {
-    const elo = new Elo(this.player.elo);
+    const elo = new Elo(this.player.currentElo);
 
     const email = this.player.email ? this.player.email : "&mdash;";
 

@@ -15,8 +15,10 @@ import { GameRecord } from "../models/game_record";
 import { Player } from "../models/player";
 import { Globals as g } from "./globals";
 
-export const paginationSlicer = (startAfter: number, list: any[]): any[] =>
-  list.slice(startAfter, startAfter + g.queryLimit);
+export const paginationSlicer = <T extends RankingData>(
+  startAfter: number,
+  list: T[]
+): T[] => list.slice(startAfter, startAfter + g.queryLimit);
 
 export const inf = 1e10;
 

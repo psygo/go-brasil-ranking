@@ -174,9 +174,9 @@ export default class NewPlayerView extends HTMLElement {
       const kb150 = 1.5 * 10e5;
       if (file!.size < kb150) {
         this.picture = fileReader.result as string;
-        console.log('here')
+        console.log("here");
         localStorage.setItem(`${this.name}`, this.picture);
-        console.log(localStorage)
+        console.log(localStorage);
       }
     };
 
@@ -241,7 +241,7 @@ export default class NewPlayerView extends HTMLElement {
       email: this.email,
       picture: this.picture,
       countries: this.completeCountries,
-      elo: this.elo,
+      currentElo: this.elo,
       author: {
         uid: this.currentUser!.uid!,
         name: this.currentUser!.displayName!,

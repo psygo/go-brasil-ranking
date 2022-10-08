@@ -93,7 +93,7 @@ export const players: readonly Player[] = [
         name: CountryName.peru,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Adalberto Reis Duarte",
@@ -104,7 +104,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.pa,
       },
     ],
-    elo: 2000,
+    currentElo: 2000,
   },
   {
     name: "Adrian Villalta-Cerdas",
@@ -115,7 +115,7 @@ export const players: readonly Player[] = [
         name: CountryName.costa_rica,
       },
     ],
-    elo: 1950,
+    currentElo: 1950,
   },
   {
     name: "Alexandre Amaro",
@@ -131,7 +131,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2450,
+    currentElo: 2450,
   },
   {
     name: "Amir Fragman",
@@ -150,7 +150,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2500,
+    currentElo: 2500,
   },
   {
     name: "Ana Maria Cavalcanti",
@@ -162,7 +162,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "André Barbosa",
@@ -172,7 +172,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Anivaldo Reis",
@@ -184,7 +184,7 @@ export const players: readonly Player[] = [
         city: "Fortaleza",
       },
     ],
-    elo: 800,
+    currentElo: 800,
   },
   {
     name: "Ariel Oliveira",
@@ -197,7 +197,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1050,
+    currentElo: 1050,
   },
   {
     name: "Audrey Luciano Filho",
@@ -210,7 +210,7 @@ export const players: readonly Player[] = [
         city: "Fortaleza",
       },
     ],
-    elo: 900,
+    currentElo: 900,
   },
   {
     name: "Augusto Cezar",
@@ -222,7 +222,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.rj,
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Avelio Sepúlveda",
@@ -233,7 +233,7 @@ export const players: readonly Player[] = [
         name: CountryName.chile,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Beatriz Bouchiglioni Neves",
@@ -246,7 +246,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1200,
+    currentElo: 1200,
   },
   {
     name: "Bruno Aragão Wahlbuhl Gonçalves",
@@ -258,7 +258,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1100,
+    currentElo: 1100,
   },
   {
     name: "Bruno Borchartt",
@@ -270,7 +270,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Caio Ribeiro Chagas",
@@ -282,7 +282,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.pr,
       },
     ],
-    elo: 1400,
+    currentElo: 1400,
   },
   {
     name: "Caio Sant Anna",
@@ -293,7 +293,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.pr,
       },
     ],
-    elo: 700,
+    currentElo: 700,
   },
   {
     name: "Carlos Daniel Santiago López",
@@ -304,7 +304,7 @@ export const players: readonly Player[] = [
         name: CountryName.mexico,
       },
     ],
-    elo: 1750,
+    currentElo: 1750,
   },
   {
     name: "Carlos Dutra",
@@ -316,7 +316,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Carlos Esteves",
@@ -328,7 +328,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.rj,
       },
     ],
-    elo: 600,
+    currentElo: 600,
   },
   {
     name: "Celso Siqueira Scaff",
@@ -340,7 +340,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1700,
+    currentElo: 1700,
   },
   {
     name: "Christian Spohn",
@@ -349,7 +349,7 @@ export const players: readonly Player[] = [
         name: CountryName.germany,
       },
     ],
-    elo: 1850,
+    currentElo: 1850,
   },
   {
     name: "Cícero de Melo Lucas",
@@ -359,7 +359,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 0,
+    currentElo: 0,
   },
   {
     name: "Cristiano Yuji Sato",
@@ -368,7 +368,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1750,
+    currentElo: 1750,
   },
   {
     name: "Cristiane Amaral Bertolino",
@@ -380,7 +380,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Daniel Makiya",
@@ -390,7 +390,7 @@ export const players: readonly Player[] = [
         name: CountryName.peru,
       },
     ],
-    elo: 1850,
+    currentElo: 1850,
   },
   {
     name: "David Pollitzer",
@@ -401,7 +401,7 @@ export const players: readonly Player[] = [
         name: CountryName.argentina,
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Diego Guerrero",
@@ -411,7 +411,7 @@ export const players: readonly Player[] = [
         name: CountryName.venezuela,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Diogo Barbosa",
@@ -424,7 +424,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1600,
+    currentElo: 1600,
   },
   {
     name: "Edivan José Junior",
@@ -437,7 +437,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2400,
+    currentElo: 2400,
   },
   {
     name: "Eduardo Takeuti",
@@ -450,7 +450,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1900,
+    currentElo: 1900,
   },
   {
     name: "Efraim Queiroz",
@@ -463,7 +463,7 @@ export const players: readonly Player[] = [
         city: "Brasília",
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Elias Bandeira Rodrigues Cardoso",
@@ -475,7 +475,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.rj,
       },
     ],
-    elo: 1900,
+    currentElo: 1900,
   },
   {
     name: "Emanuel Araújo",
@@ -488,7 +488,7 @@ export const players: readonly Player[] = [
         city: "Rio de Janeiro",
       },
     ],
-    elo: 1650,
+    currentElo: 1650,
   },
   {
     name: "Emiliano Alvarado Vargas",
@@ -499,7 +499,7 @@ export const players: readonly Player[] = [
         name: CountryName.mexico,
       },
     ],
-    elo: 1550,
+    currentElo: 1550,
   },
   {
     name: "Erendiro Pedro Sangueve",
@@ -510,7 +510,7 @@ export const players: readonly Player[] = [
         name: CountryName.angola,
       },
     ],
-    elo: 1400,
+    currentElo: 1400,
   },
   {
     name: "Fabrício Caluza Machado",
@@ -523,7 +523,7 @@ export const players: readonly Player[] = [
         city: "Curitiba",
       },
     ],
-    elo: 1750,
+    currentElo: 1750,
   },
   {
     name: "Felipe Bottega Diniz",
@@ -532,7 +532,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Felipe Herman van Riemsdijk",
@@ -549,7 +549,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Felipe Pait",
@@ -561,7 +561,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Fernando Aguilar",
@@ -572,7 +572,7 @@ export const players: readonly Player[] = [
         name: CountryName.argentina,
       },
     ],
-    elo: 2600,
+    currentElo: 2600,
   },
   {
     name: "Francisco González",
@@ -583,7 +583,7 @@ export const players: readonly Player[] = [
         name: CountryName.chile,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Francisco Motta",
@@ -596,7 +596,7 @@ export const players: readonly Player[] = [
         city: "Niterói",
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Gabriel Garcia",
@@ -606,7 +606,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 550,
+    currentElo: 550,
   },
   {
     name: "Gabriel Hissao Makio",
@@ -618,7 +618,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1900,
+    currentElo: 1900,
   },
   {
     name: "Gabriel Marcondes de Castilho",
@@ -631,7 +631,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1900,
+    currentElo: 1900,
   },
   {
     name: "Gabriel Ventura",
@@ -641,7 +641,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1600,
+    currentElo: 1600,
   },
   {
     name: "Guilherme Francisco de Souza Silva",
@@ -652,7 +652,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Guilherme Hatori",
@@ -664,7 +664,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Haruo Kitano",
@@ -676,7 +676,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Hélcio Alexandre Pacheco",
@@ -692,7 +692,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Hiro Okawa",
@@ -704,7 +704,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2200,
+    currentElo: 2200,
   },
   {
     name: "Ignacio Iglesis",
@@ -715,7 +715,7 @@ export const players: readonly Player[] = [
         name: CountryName.chile,
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Javier Gonzalez",
@@ -726,7 +726,7 @@ export const players: readonly Player[] = [
         name: CountryName.venezuela,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Jiéverson Maissiat",
@@ -739,7 +739,7 @@ export const players: readonly Player[] = [
         city: "Porto Alegre",
       },
     ],
-    elo: 1300,
+    currentElo: 1300,
   },
   {
     name: "Juan Burgos",
@@ -750,7 +750,7 @@ export const players: readonly Player[] = [
         name: CountryName.colombia,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Juan David Ramírez Jiménez",
@@ -761,7 +761,7 @@ export const players: readonly Player[] = [
         name: CountryName.colombia,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Juan Samper",
@@ -772,7 +772,7 @@ export const players: readonly Player[] = [
         name: CountryName.colombia,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Julio Melchert",
@@ -783,7 +783,7 @@ export const players: readonly Player[] = [
         name: CountryName.venezuela,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Julio Gabriel Otterback Pinheiro",
@@ -794,7 +794,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.mt,
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Juno Jo",
@@ -804,7 +804,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1800,
+    currentElo: 1800,
   },
   {
     name: "Kisho Kawahara",
@@ -813,7 +813,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 1850,
+    currentElo: 1850,
   },
   {
     name: "Kunio Yoshida",
@@ -822,7 +822,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 1950,
+    currentElo: 1950,
   },
   {
     name: "Laércio Pereira",
@@ -838,7 +838,7 @@ export const players: readonly Player[] = [
         city: "Curitiba",
       },
     ],
-    elo: 2000,
+    currentElo: 2000,
   },
   {
     name: "Laura Augustina Avram",
@@ -849,7 +849,7 @@ export const players: readonly Player[] = [
         name: CountryName.romania,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Leonardo Inomata",
@@ -860,7 +860,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1300,
+    currentElo: 1300,
   },
   {
     name: "Lívia Aiko de Toledo",
@@ -869,7 +869,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Lucas Cristovam",
@@ -882,7 +882,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 900,
+    currentElo: 900,
   },
   {
     name: "Lucas Torrisi",
@@ -891,7 +891,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1750,
+    currentElo: 1750,
   },
   {
     name: "Lúcio Picanço",
@@ -901,7 +901,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.ma,
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Luiz Sato",
@@ -913,7 +913,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.sp,
       },
     ],
-    elo: 2000,
+    currentElo: 2000,
   },
   {
     name: "Manuel Rodríguez",
@@ -924,7 +924,7 @@ export const players: readonly Player[] = [
         name: CountryName.costa_rica,
       },
     ],
-    elo: 800,
+    currentElo: 800,
   },
   {
     name: "Mario Aguero",
@@ -935,7 +935,7 @@ export const players: readonly Player[] = [
         name: CountryName.costa_rica,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Márton Divényi",
@@ -947,7 +947,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.rj,
       },
     ],
-    elo: 1200,
+    currentElo: 1200,
   },
   {
     name: "Matao Kumao",
@@ -956,7 +956,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 1950,
+    currentElo: 1950,
   },
   {
     name: "Masayasu Kihara",
@@ -965,7 +965,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Mitsuyuki Shintaku",
@@ -974,7 +974,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Mieko Murai",
@@ -983,7 +983,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1650,
+    currentElo: 1650,
   },
   {
     name: "Murilo Oliveira",
@@ -995,7 +995,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1400,
+    currentElo: 1400,
   },
   {
     name: "Nelson Kenzo Tamashiro",
@@ -1007,7 +1007,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Nicholas Jun de Toledo",
@@ -1016,7 +1016,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Olivier Mendieta",
@@ -1026,7 +1026,7 @@ export const players: readonly Player[] = [
         name: CountryName.mexico,
       },
     ],
-    elo: 1850,
+    currentElo: 1850,
   },
   {
     name: "Osamu Murai",
@@ -1035,7 +1035,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Patricia Bongiorno",
@@ -1047,7 +1047,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Pedro Regis",
@@ -1060,7 +1060,7 @@ export const players: readonly Player[] = [
         city: "Fortaleza",
       },
     ],
-    elo: 1000,
+    currentElo: 1000,
   },
   {
     name: "Philippe Fanaro",
@@ -1074,7 +1074,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Rachel Esteves",
@@ -1086,7 +1086,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.rj,
       },
     ],
-    elo: 600,
+    currentElo: 600,
   },
   {
     name: "Rafael Alejandro Torres Puebla",
@@ -1096,7 +1096,7 @@ export const players: readonly Player[] = [
         name: CountryName.cuba,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Rafael Leão",
@@ -1106,7 +1106,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1400,
+    currentElo: 1400,
   },
   {
     name: "Renan Pablo Cruz",
@@ -1118,7 +1118,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1800,
+    currentElo: 1800,
   },
   {
     name: "Ricardo Miyashiro",
@@ -1129,7 +1129,7 @@ export const players: readonly Player[] = [
         name: CountryName.peru,
       },
     ],
-    elo: 1950,
+    currentElo: 1950,
   },
   {
     name: "Rodrigo Braz",
@@ -1141,7 +1141,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1900,
+    currentElo: 1900,
   },
   {
     name: "Rodrigo Edelton Issa",
@@ -1153,7 +1153,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1300,
+    currentElo: 1300,
   },
   {
     name: "Roilan de la Torre",
@@ -1164,7 +1164,7 @@ export const players: readonly Player[] = [
         name: CountryName.cuba,
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
   {
     name: "Ronaldo Matayoshi",
@@ -1176,7 +1176,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2100,
+    currentElo: 2100,
   },
   {
     name: "Rui Malhado",
@@ -1187,7 +1187,7 @@ export const players: readonly Player[] = [
         name: CountryName.portugal,
       },
     ],
-    elo: 1700,
+    currentElo: 1700,
   },
   {
     name: "Samuel Karasin",
@@ -1199,7 +1199,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 600,
+    currentElo: 600,
   },
   {
     name: "Santiago Andres Tabares",
@@ -1210,7 +1210,7 @@ export const players: readonly Player[] = [
         name: CountryName.argentina,
       },
     ],
-    elo: 2250,
+    currentElo: 2250,
   },
   {
     name: "Shuji Hashimoto",
@@ -1219,7 +1219,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Simão Gonçalves",
@@ -1230,7 +1230,7 @@ export const players: readonly Player[] = [
         name: CountryName.portugal,
       },
     ],
-    elo: 2300,
+    currentElo: 2300,
   },
   {
     name: "Sophie Pagès",
@@ -1244,7 +1244,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 700,
+    currentElo: 700,
   },
   {
     name: "Sung Wan Nam",
@@ -1253,7 +1253,7 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
-    elo: 1750,
+    currentElo: 1750,
   },
   {
     name: "Thiago Augusto da Silva",
@@ -1266,7 +1266,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 1500,
+    currentElo: 1500,
   },
   {
     name: "Thiago Sinji Shimada Ramos",
@@ -1278,7 +1278,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2100,
+    currentElo: 2100,
   },
   {
     name: "Tsuneo Koike",
@@ -1287,7 +1287,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 1750,
+    currentElo: 1750,
   },
   {
     name: "Vanderson da Silva Rodrigues",
@@ -1299,7 +1299,7 @@ export const players: readonly Player[] = [
         state: BrazilianState.al,
       },
     ],
-    elo: 550,
+    currentElo: 550,
   },
   {
     name: "Wang Seng Feng",
@@ -1314,7 +1314,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2400,
+    currentElo: 2400,
   },
   {
     name: "Yordan Cruz",
@@ -1325,7 +1325,7 @@ export const players: readonly Player[] = [
         name: CountryName.cuba,
       },
     ],
-    elo: 2350,
+    currentElo: 2350,
   },
   {
     name: "Yoshito Yoshitake",
@@ -1336,7 +1336,7 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
-    elo: 2050,
+    currentElo: 2050,
   },
   {
     name: "Yuichiro Shimawaki",
@@ -1346,7 +1346,7 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 2600,
+    currentElo: 2600,
   },
   {
     name: "Yukio Hiramatsu",
@@ -1355,6 +1355,6 @@ export const players: readonly Player[] = [
         name: CountryName.japan,
       },
     ],
-    elo: 2150,
+    currentElo: 2150,
   },
 ];

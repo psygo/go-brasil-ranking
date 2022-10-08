@@ -11,7 +11,8 @@ export interface _Player extends FirebaseDoc {
   picture?: string;
   countries: readonly Country[];
   isBrazilian?: boolean;
-  elo: SerializedElo;
+  currentElo: SerializedElo;
+  eloHistory?: DateEloData[];
   dateCreated?: number;
   author?: Author;
   gamesTotal?: number;
@@ -19,6 +20,13 @@ export interface _Player extends FirebaseDoc {
   additionalInfo?: string;
 }
 export type Player = Readonly<_Player>;
+
+interface _DateEloData {
+  date: number;
+  atTheTimeElo: number;
+  eloDelta: number;
+}
+export type DateEloData = Readonly<_DateEloData>;
 
 export enum GoServers {
   ogs = "OGS",

@@ -10,7 +10,11 @@ import {
 } from "../../../frontend/src/models/game_record";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import Elo from "../../../frontend/src/models/elo";
-import { Player, _Player } from "../../../frontend/src/models/player";
+import {
+  DateEloData,
+  Player,
+  _Player,
+} from "../../../frontend/src/models/player";
 import {
   isTournamentOrLeagueRef,
   OnlineOrLive,
@@ -21,12 +25,14 @@ export const postGameRecord = async (
   gameRecord: GameRecord,
   firebaseRef?: FirebaseRef
 ): Promise<GameRecord> => {
-  const black = (
-    await playersCol.col.doc(gameRecord.blackRef).get()
-  ).data()! as _Player;
-  const white = (
-    await playersCol.col.doc(gameRecord.whiteRef).get()
-  ).data()! as _Player;
+  const [blackSnap, whiteSnap] = await Promise.all([
+    playersCol.col.doc(gameRecord.blackRef).get(),
+    playersCol.col.doc(gameRecord.whiteRef).get(),
+  ]);
+  const [black, white]: _Player[] = [
+    blackSnap.data() as _Player,
+    whiteSnap.data() as _Player,
+  ];
 
   delete black.lastGame;
   delete white.lastGame;
@@ -48,8 +54,10 @@ export const postGameRecord = async (
     firebaseRef
   );
 
-  await updateLastGameForPlayer(gameRecord.blackRef, gameRecordOnDb);
-  await updateLastGameForPlayer(gameRecord.whiteRef, gameRecordOnDb);
+  await Promise.all([
+    updateLastGameForPlayer(gameRecord.blackRef, gameRecordOnDb),
+    updateLastGameForPlayer(gameRecord.whiteRef, gameRecordOnDb),
+  ]);
 
   return gameRecordOnDb;
 };
@@ -59,37 +67,64 @@ const updateElo = async (
   white: Player,
   gameRecord: GameRecord
 ): Promise<EloData> => {
-  const blackElo = new Elo(black.elo);
-  const whiteElo = new Elo(white.elo);
+  const [blackElo, whiteElo]: Elo[] = [
+    new Elo(black.currentElo),
+    new Elo(white.currentElo),
+  ];
 
-  const blackEloDelta = blackElo.deltaFromGame(
-    whiteElo,
-    doesThisColorWin(Color.Black, gameRecord.result),
-    gameRecord.handicap ?? 0,
-    Color.Black
-  );
-  const whiteEloDelta = whiteElo.deltaFromGame(
-    blackElo,
-    doesThisColorWin(Color.White, gameRecord.result),
-    gameRecord.handicap ?? 0,
-    Color.White
-  );
+  const [blackEloDelta, whiteEloDelta]: Elo[] = [
+    blackElo.deltaFromGame(
+      whiteElo,
+      doesThisColorWin(Color.Black, gameRecord.result),
+      gameRecord.handicap ?? 0,
+      Color.Black
+    ),
+    whiteElo.deltaFromGame(
+      blackElo,
+      doesThisColorWin(Color.White, gameRecord.result),
+      gameRecord.handicap ?? 0,
+      Color.White
+    ),
+  ];
 
-  await playersCol.col.doc(gameRecord.blackRef).update({
-    elo: blackElo.add(blackEloDelta).num,
-    gamesTotal: black.gamesTotal! + 1,
-  });
-  await playersCol.col.doc(gameRecord.whiteRef).update({
-    elo: whiteElo.add(whiteEloDelta).num,
-    gamesTotal: white.gamesTotal! + 1,
-  });
-
-  return {
+  const eloData = {
     atTheTimeBlackElo: blackElo.serialize(),
     eloDeltaBlack: blackEloDelta.serialize(),
     atTheTimeWhiteElo: whiteElo.serialize(),
     eloDeltaWhite: whiteEloDelta.serialize(),
   };
+
+  const [dateEloBlack, dateEloWhite]: DateEloData[] = [
+    {
+      date: gameRecord.date,
+      atTheTimeElo: eloData.atTheTimeBlackElo,
+      eloDelta: eloData.eloDeltaBlack,
+    },
+    {
+      date: gameRecord.date,
+      atTheTimeElo: eloData.atTheTimeBlackElo,
+      eloDelta: eloData.eloDeltaBlack,
+    },
+  ];
+
+  await Promise.all([
+    playersCol.col.doc(gameRecord.blackRef).update({
+      currentElo: blackElo.add(blackEloDelta).num,
+      eloHistory: black.eloHistory
+        ? [...black.eloHistory, dateEloBlack]
+        : [dateEloBlack],
+      gamesTotal: black.gamesTotal! + 1,
+    }),
+    playersCol.col.doc(gameRecord.whiteRef).update({
+      currentElo: whiteElo.add(whiteEloDelta).num,
+      eloHistory: white.eloHistory
+        ? [...white.eloHistory, dateEloWhite]
+        : [dateEloWhite],
+      gamesTotal: white.gamesTotal! + 1,
+    }),
+  ]);
+
+  return eloData;
 };
 
 const addGameEvent = async (gameRecord: GameRecord): Promise<GameRecord> => {
