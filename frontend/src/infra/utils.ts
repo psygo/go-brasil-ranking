@@ -12,7 +12,7 @@ import {
 import { FirebaseRef } from "../models/firebase_models";
 import { TournamentOrLeague } from "../models/game_event";
 import { GameRecord } from "../models/game_record";
-import { Player } from "../models/player";
+import { Player, RebaseElo } from "../models/player";
 import { Globals as g } from "./globals";
 
 export const paginationSlicer = <T extends RankingData>(
@@ -64,8 +64,9 @@ export const mergeParallelQueries = async (
   return [...gameRecordsAsBlack, ...gameRecordsAsWhite];
 };
 
-export const orderByDate = (gameRecords: GameRecord[]): void => {
-  gameRecords.sort((g1, g2) => g2.date - g1.date);
+type WithDate = RebaseElo | GameRecord;
+export const orderByDate = (withDates: WithDate[]): void => {
+  withDates.sort((g1, g2) => g2.date - g1.date);
 };
 
 export const getPlayerGameRecords = async (

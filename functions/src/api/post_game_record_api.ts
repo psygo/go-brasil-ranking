@@ -11,6 +11,7 @@ import {
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import Elo from "../../../frontend/src/models/elo";
 import {
+  currentElo,
   DateEloData,
   Player,
   _Player,
@@ -67,10 +68,7 @@ const updateElo = async (
   white: Player,
   gameRecord: GameRecord
 ): Promise<EloData> => {
-  const [blackElo, whiteElo]: Elo[] = [
-    new Elo(black.currentElo),
-    new Elo(white.currentElo),
-  ];
+  const [blackElo, whiteElo]: Elo[] = [currentElo(black), currentElo(white)];
 
   const [blackEloDelta, whiteEloDelta]: Elo[] = [
     blackElo.deltaFromGame(
@@ -87,7 +85,7 @@ const updateElo = async (
     ),
   ];
 
-  const eloData = {
+  const eloData: EloData = {
     atTheTimeBlackElo: blackElo.serialize(),
     eloDeltaBlack: blackEloDelta.serialize(),
     atTheTimeWhiteElo: whiteElo.serialize(),
@@ -102,24 +100,18 @@ const updateElo = async (
     },
     {
       date: gameRecord.date,
-      atTheTimeElo: eloData.atTheTimeBlackElo,
-      eloDelta: eloData.eloDeltaBlack,
+      atTheTimeElo: eloData.atTheTimeWhiteElo,
+      eloDelta: eloData.eloDeltaWhite,
     },
   ];
 
   await Promise.all([
     playersCol.col.doc(gameRecord.blackRef).update({
-      currentElo: blackElo.add(blackEloDelta).num,
-      eloHistory: black.eloHistory
-        ? [...black.eloHistory, dateEloBlack]
-        : [dateEloBlack],
+      eloHistory: [...black.eloHistory!, dateEloBlack],
       gamesTotal: black.gamesTotal! + 1,
     }),
     playersCol.col.doc(gameRecord.whiteRef).update({
-      currentElo: whiteElo.add(whiteEloDelta).num,
-      eloHistory: white.eloHistory
-        ? [...white.eloHistory, dateEloWhite]
-        : [dateEloWhite],
+      eloHistory: [...white.eloHistory!, dateEloWhite],
       gamesTotal: white.gamesTotal! + 1,
     }),
   ]);

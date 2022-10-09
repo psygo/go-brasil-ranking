@@ -5,13 +5,13 @@ import { Globals as g } from "../../infra/globals";
 import { EnvState, envState } from "../../infra/env";
 import { addFirebaseRef } from "../../infra/utils";
 
-import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
 import GameRecordsTable from "../components/game_records_table";
 import { RouteEnum } from "../../routing/router";
+import { currentElo } from "../../models/player";
 
 declare const glift: any;
 
@@ -82,19 +82,22 @@ export default class GameRecordView extends HTMLElement {
     const playerNamesDiv: HTMLDivElement =
       this.querySelector("#players-names")!;
 
-    const black = this.gameRecord.blackPlayer!;
-    const white = this.gameRecord.whitePlayer!;
+    const [black, white] = [
+      this.gameRecord.blackPlayer!,
+      this.gameRecord.whitePlayer!,
+    ];
 
-    const blackWins =
-      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
-    const whiteWins =
-      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser";
+    const [blackWins, whiteWins] = [
+      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser",
+      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser",
+    ];
 
-    const blackFlags = UiUtils.allFlags(black.countries);
-    const whiteFlags = UiUtils.allFlags(white.countries);
+    const [blackFlags, whiteFlags] = [
+      UiUtils.allFlags(black.countries),
+      UiUtils.allFlags(white.countries),
+    ];
 
-    const blackElo = new Elo(black.currentElo);
-    const whiteElo = new Elo(white.currentElo);
+    const [blackElo, whiteElo] = [currentElo(black), currentElo(white)];
 
     playerNamesDiv.innerHTML = /*html*/ `
       <route-link href="${RouteEnum.players}/${this.gameRecord.blackRef}">
@@ -149,6 +152,7 @@ export default class GameRecordView extends HTMLElement {
 
     const handicap = this.gameRecord.handicap ? this.gameRecord.handicap : "0";
 
+    // TODO3: Repetitive with the fucntion above...
     const blackWins =
       this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
     const whiteWins =

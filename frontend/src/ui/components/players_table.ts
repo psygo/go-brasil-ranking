@@ -12,8 +12,7 @@ import {
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
-import Elo from "../../models/elo";
-import { Player } from "../../models/player";
+import { currentElo, Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
 import { errorLog, HtmlString, inf, paginationSlicer } from "../../infra/utils";
 import UiTable from "./ui_table";
@@ -62,7 +61,7 @@ export default class PlayersTable extends UiTable<Player> {
     }
 
     // TODO2: The ordering of the players should be preset
-    players.sort((p1, p2) => p2.currentElo - p1.currentElo);
+    players.sort((p1, p2) => currentElo(p2).num - currentElo(p1).num);
 
     this.data.push(...players);
   };
@@ -125,12 +124,12 @@ export default class PlayersTable extends UiTable<Player> {
     const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
     const slicedPlayers = paginationSlicer(this.startAfter, this.data);
     for (const player of slicedPlayers) {
-      if (player.currentElo !== this.lastElo) {
+      if (currentElo(player).num !== this.lastElo) {
         this.i++;
-        this.lastElo = player.currentElo;
+        this.lastElo = currentElo(player).num;
       }
 
-      const elo = new Elo(player.currentElo);
+      const elo = currentElo(player);
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link 

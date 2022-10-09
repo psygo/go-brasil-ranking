@@ -1,17 +1,17 @@
-import { Globals as g } from "../../infra/globals";
+import { doc, getDoc } from "firebase/firestore";
 
-import Elo from "../../models/elo";
+import { Chart, registerables } from "chart.js";
+
+import { Globals as g } from "../../infra/globals";
+import { addFirebaseRef } from "../../infra/utils";
+import { DateUtils } from "../../infra/date_utils";
+
+import { CountryName } from "../../models/country";
 import { FirebaseRef } from "../../models/firebase_models";
-import { Player } from "../../models/player";
+import { currentElo, Player } from "../../models/player";
 
 import GameRecordsTable from "../components/game_records_table";
 import { UiUtils } from "../ui_utils";
-import { Chart, registerables } from "chart.js";
-import { DateEloData } from "../../models/player";
-import { DateUtils } from "../../infra/date_utils";
-import { CountryName } from "../../models/country";
-import { doc, getDoc } from "firebase/firestore";
-import { addFirebaseRef, getPlayerGameRecords } from "../../infra/utils";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -37,99 +37,72 @@ export default class PlayerView extends HTMLElement {
 
     this.setPlayersPage();
 
-    await this.setGraph();
+    this.setGraph();
 
     this.appendChild(new GameRecordsTable("Partidas", this.playerRef));
   }
 
-  private getPlayerDateEloData = async (): Promise<DateEloData[]> => {
-    const allPlayerGames = await getPlayerGameRecords(this.playerRef);
-    // TODO2: This data should be in the player itself,
-    //        when posting the game record...
+  private setGraph = (): void => {
+    const eloHistory = this.player.eloHistory!;
 
-    return allPlayerGames
-      .map((g) => ({
-        date: g.date,
-        atTheTimeElo:
-          this.playerRef === g.blackRef
-            ? g.eloData!.atTheTimeBlackElo
-            : g.eloData!.atTheTimeWhiteElo,
-        eloDelta:
-          this.playerRef === g.blackRef
-            ? g.eloData!.eloDeltaBlack
-            : g.eloData!.eloDeltaWhite,
-      }))
-      .reverse();
-  };
+    const dateData = eloHistory.map((ded) =>
+      DateUtils.formatDate(new Date(ded.date))
+    );
+    const eloData = eloHistory.map((ded) =>
+      ded.eloDelta ? ded.atTheTimeElo + ded.eloDelta : ded.atTheTimeElo
+    );
 
-  private setGraph = async (): Promise<void> => {
-    const dateEloData = await this.getPlayerDateEloData();
+    Chart.register(...registerables);
+    const canvasDiv: HTMLDivElement = document.createElement("div");
+    canvasDiv.id = "graph";
+    canvasDiv.innerHTML = /*html*/ `<h2>Evolução Elo</h2>`;
+    const graphCanvas: HTMLCanvasElement = document.createElement("canvas");
+    canvasDiv.appendChild(graphCanvas);
+    this.appendChild(canvasDiv);
+    const ctx = graphCanvas.getContext("2d")!;
 
-    if (dateEloData.length > 0) {
-      const dateData = ["Início"].concat(
-        dateEloData.map((ded) => DateUtils.formatDate(new Date(ded.date)))
-      );
-
-      const eloData = dateEloData.map((ded) => ded.atTheTimeElo);
-
-      const length = dateEloData.length;
-      const lastElo = dateEloData[length - 1].atTheTimeElo;
-      const lastEloDelta = dateEloData[length - 1].eloDelta;
-
-      eloData.push(lastElo + lastEloDelta);
-
-      Chart.register(...registerables);
-      const canvasDiv: HTMLDivElement = document.createElement("div");
-      canvasDiv.id = "graph";
-      canvasDiv.innerHTML = /*html*/ `<h2>Evolução Elo</h2>`;
-      const graphCanvas: HTMLCanvasElement = document.createElement("canvas");
-      canvasDiv.appendChild(graphCanvas);
-      this.appendChild(canvasDiv);
-      const ctx = graphCanvas.getContext("2d")!;
-
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: dateData,
-          datasets: [
-            {
-              label: `Elo de ${this.player.name}`,
-              fill: true,
-              data: eloData,
-              backgroundColor: ["rgba(54, 162, 235, 0.2)"],
-              borderColor: ["rgba(54, 162, 235, 1)"],
-              borderWidth: 1.5,
-            },
-          ],
-        },
-        options: {
-          plugins: {
-            legend: {
-              display: false,
-            },
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: dateData,
+        datasets: [
+          {
+            label: `Elo de ${this.player.name}`,
+            fill: true,
+            data: eloData,
+            backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+            borderColor: ["rgba(54, 162, 235, 1)"],
+            borderWidth: 1.5,
           },
-          scales: {
-            x: {
-              ticks: {
-                autoSkip: false,
-                maxRotation: 45,
-                minRotation: 45,
-                font: {
-                  size: 15,
-                },
+        ],
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              autoSkip: false,
+              maxRotation: 45,
+              minRotation: 45,
+              font: {
+                size: 15,
               },
             },
-            y: {
-              ticks: {
-                font: {
-                  size: 16,
-                },
+          },
+          y: {
+            ticks: {
+              font: {
+                size: 16,
               },
             },
           },
         },
-      });
-    }
+      },
+    });
   };
 
   private setPlayersPage = (): void => {
@@ -150,7 +123,7 @@ export default class PlayerView extends HTMLElement {
   };
 
   private setPlayerCard = (): void => {
-    const elo = new Elo(this.player.currentElo);
+    const elo = currentElo(this.player);
 
     const email = this.player.email ? this.player.email : "&mdash;";
 

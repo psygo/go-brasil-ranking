@@ -40,9 +40,7 @@ export const pglatc_2022: readonly GameRecord[] = [
        riemsdijk 2d?: 568 Thank you for the game
       ];OS[ame2c][Azcopaec][Biro][CactiJuice][CRaGNABV][hissao][iiglesis][Kensai][moradito][NeZioT][psygo][TheNormann])
     `,
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 1",
   },
   {
@@ -80,9 +78,7 @@ export const pglatc_2022: readonly GameRecord[] = [
        ozeromirei done
       ];TW[ak][aj][ai][es][ec][fs][fd][gs][gr][gg][gf][ge][gd][hs][hg][hf][he][hd][ih][ig][if][ie][id][ji][jh][jg][jf][je][jd][kh][kg][kf][ke][kd][lh][lg][le][ld][mj][mi][mf][no][oo][sn][sm][sl]TB[as][ar][aq][ap][ao][ad][ac][ab][aa][br][bp][be][ba][ca][df][fo][fn][fm][fl][fk][go][gn][gm][gl][gk][ho][hn][ka][la][ma][nr][na][or][oh][oc][ob][oa][ps][pj][pi][pb][pa][qs][qr][qg][qb][qa][rs][rr][rg][ra][ss][sq][sa]OS[Azcopaec][Biro][CactiJuice][hissao][iiglesis][Kensai][Lqtestn][psygo][riemsdijk][Toto2])
     `,
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 1",
   },
   {
@@ -116,9 +112,7 @@ export const pglatc_2022: readonly GameRecord[] = [
        Harumasa done
       ];TW[ah][ag][bg][co][dn][ha][is][ir][ib][ia][js][jk][jb][ja][ks][kj][ki][ka][lr][li][la][mc][mb][ma][no][nb][na][oo][oc][oa][pd][pb][pa][qf][qe][qc][qa][ri][rh][re][rd][rc][rb][ra][sj][si][sh][sg][sf][se][sd][sc][sb][sa]TB[al][ac][ab][aa][bc][ba][cb][ds][da][es][er][eb][fl][fg][gm][gg][hg][hf][ig][jo][ok][oi][oh][ps][pr][pk][qs][qq][ql][rs][rr][rp][ss][sr][sq]OS[Azcopaec][Biro][CactiJuice][HelcioAlex][hissao][iiglesis][Lqtestn][Noriyuki73][Nuredin][psygo][riemsdijk])
     `,
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 1",
   },
   // ***************************************************************************
@@ -131,9 +125,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 2",
   },
   {
@@ -143,9 +135,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 2",
   },
   {
@@ -155,9 +145,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 2",
   },
   // ***************************************************************************
@@ -170,9 +158,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 3",
   },
   {
@@ -182,9 +168,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 3",
   },
   {
@@ -194,9 +178,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 3",
   },
   // ***************************************************************************
@@ -209,9 +191,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 4",
   },
   {
@@ -221,9 +201,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 4",
   },
   {
@@ -233,9 +211,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 4",
   },
   // ***************************************************************************
@@ -248,9 +224,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 5",
   },
   {
@@ -260,9 +234,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 5",
   },
   {
@@ -272,9 +244,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 5",
   },
   // ***************************************************************************
@@ -287,9 +257,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 6",
   },
   {
@@ -299,9 +267,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 6",
   },
   {
@@ -311,9 +277,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 6",
   },
   // ***************************************************************************
@@ -326,9 +290,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 7",
   },
   {
@@ -338,9 +300,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 7",
   },
   {
@@ -350,9 +310,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 7",
   },
   // ***************************************************************************
@@ -365,9 +323,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 8",
   },
   {
@@ -377,9 +333,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.White,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 8",
   },
   {
@@ -389,9 +343,7 @@ export const pglatc_2022: readonly GameRecord[] = [
     result: {
       whoWins: Color.Black,
     },
-    gameEventRef: findEventRef(
-      "Pandanet Latin American Team Championship 2022"
-    ),
+    gameEventRef: findEventRef("PGLATC 2022"),
     additionalInfo: "Rodada 8",
   },
 ];

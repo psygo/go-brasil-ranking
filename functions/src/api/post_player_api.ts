@@ -4,7 +4,11 @@ import { playersCol } from "../cols";
 
 import { CountryName } from "../../../frontend/src/models/country";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
-import { Player } from "../../../frontend/src/models/player";
+import {
+  DateEloData,
+  Player,
+  RebaseElo,
+} from "../../../frontend/src/models/player";
 
 export const postPlayer = async (
   player: Player,
@@ -14,8 +18,17 @@ export const postPlayer = async (
     (c) => c.name === CountryName.brazil
   );
 
+  const rebaseElos = player.rebaseElos as RebaseElo[];
+  rebaseElos.sort((p1, p2) => p2.date - p1.date);
+
+  const initialEloHistory: DateEloData[] = rebaseElos.map((re) => ({
+    date: re.date,
+    atTheTimeElo: re.elo,
+  }));
+
   let playerOnDb = {
     ...player,
+    eloHistory: initialEloHistory,
     isBrazilian: isBrazilian,
     dateCreated: new Date().getTime(),
     gamesTotal: 0,
