@@ -49,9 +49,7 @@ player-view {
 
     @mixin cardLegendGrid {
       display: grid;
-      grid-template-columns:
-        minmax(80px, max-content) 55px 70px
-        60px 60px 60px 120px;
+      grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
       grid-column-gap: tu.$columnGap;
     }
 

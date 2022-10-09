@@ -11,21 +11,10 @@ import {
 import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
-import {
-  errorLog,
-  getPlayerGameRecords,
-  HtmlString,
-  mergeParallelQueries,
-  orderByDate,
-} from "../../infra/utils";
+import { errorLog, HtmlString } from "../../infra/utils";
 
 import { FirebaseRef } from "../../models/firebase_models";
-import {
-  Color,
-  // DateEloData,
-  GameRecord,
-  resultString,
-} from "../../models/game_record";
+import { Color, GameRecord, resultString } from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
 import UiTable from "./ui_table";
@@ -64,7 +53,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
         where("blackRef", "==", this.playerRef1),
         where("whiteRef", "==", this.playerRef2),
         orderBy("date", "desc"),
-        startAfter(this.lastVisible),
+        startAfter(this.lastVisible1),
         limit(g.queryLimit)
       )
     );
@@ -74,29 +63,47 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
         where("blackRef", "==", this.playerRef2),
         where("whiteRef", "==", this.playerRef1),
         orderBy("date", "desc"),
-        startAfter(this.lastVisible),
+        startAfter(this.lastVisible2),
         limit(g.queryLimit)
       )
     );
 
-    const allGames = await mergeParallelQueries(playerIsBlack, playerIsWhite);
+    await this.mergeParallelQueries(playerIsBlack, playerIsWhite);
+  };
 
-    orderByDate(allGames);
+  private getPlayerGameRecords = async (): Promise<void> => {
+    const playerIsBlack = getDocs(
+      query(
+        collection(g.db, "game_records"),
+        where("blackRef", "==", this.playerRef1),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible1),
+        limit(g.queryLimit)
+      )
+    );
+    const playerIsWhite = getDocs(
+      query(
+        collection(g.db, "game_records"),
+        where("whiteRef", "==", this.playerRef1),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible2),
+        limit(g.queryLimit)
+      )
+    );
 
-    this.data.push(...allGames);
+    await this.mergeParallelQueries(playerIsBlack, playerIsWhite);
   };
 
   protected getData = async (): Promise<void> => {
     try {
       if (this.playerRef1 && this.playerRef2)
         await this.getPlayersGameRecords();
-      else if (this.playerRef1)
-        this.data.push(...(await getPlayerGameRecords(this.playerRef1)));
+      else if (this.playerRef1) await this.getPlayerGameRecords();
       else if (this.eventRef) await this.getGameRecordsFromEvent();
       else await this.getAllGameRecords();
     } catch (e) {
       const error = e as Error;
-      errorLog(error, "Game Events' Table");
+      errorLog(error, "Game Records' Table");
     }
   };
 

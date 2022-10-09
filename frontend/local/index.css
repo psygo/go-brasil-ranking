@@ -503,7 +503,7 @@ player-view #player-personal-card .align-left {
 }
 player-view #player-personal-card #player-personal-card-content {
   display: grid;
-  grid-template-columns: minmax(80px, max-content) 55px 70px 60px 60px 60px 120px;
+  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
   grid-column-gap: 10px;
   margin-bottom: 35px;
   width: max-content;
@@ -537,7 +537,7 @@ player-view #player-personal-card #player-personal-card-content img {
 }
 player-view #player-personal-card #player-personal-card-legend {
   display: grid;
-  grid-template-columns: minmax(80px, max-content) 55px 70px 60px 60px 60px 120px;
+  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
   grid-column-gap: 10px;
   align-items: center;
   margin-bottom: 10px;
