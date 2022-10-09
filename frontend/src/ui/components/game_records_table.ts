@@ -46,7 +46,6 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   };
 
   private getPlayersGameRecords = async (): Promise<void> => {
-    // TODO1: Pagination...
     const playerIsBlack = getDocs(
       query(
         collection(g.db, "game_records"),
