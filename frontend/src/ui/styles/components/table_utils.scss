@@ -144,7 +144,7 @@ $columnGap: 10px;
 
 @mixin loaderContainer {
   .loader-container {
-    display: flex;
+    display: none;
     justify-content: center;
     width: 100%;
 

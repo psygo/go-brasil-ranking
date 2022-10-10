@@ -34,6 +34,8 @@ export default abstract class UiTable<
 
     await this.getData();
 
+    this.toggleLoader();
+
     if (this.data.length > 0) {
       this.setLegend();
       this.setCaption();
@@ -66,10 +68,17 @@ export default abstract class UiTable<
 
   protected abstract getData(): Promise<void>;
 
-  protected toggleLoader = (): void => {
+  private downloading: boolean = false;
+
+  private toggleLoader = (): void => {
+    this.downloading = !this.downloading;
+
     const loaderDiv: HTMLDivElement = this.querySelector(".loader-container")!;
-    const loaderDivDisplay = loaderDiv.style.display;
-    loaderDiv.style.display = loaderDivDisplay === "none" ? "flex" : "none";
+    if (this.downloading)
+      setTimeout(() => {
+        loaderDiv.style.display = this.downloading ? "flex" : "none";
+      }, 500);
+    else loaderDiv.style.display = "none";
   };
 
   protected abstract get caption(): HtmlString;

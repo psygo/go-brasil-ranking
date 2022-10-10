@@ -180,23 +180,25 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     const player2Name = this.playerName(this.playerRef2);
     return this.playerRef1 && this.playerRef2
       ? /*html*/ `
-          <h2>
-            Todas as Partidas entre ${player1Name} e ${player2Name}
-          </h2>
+        <h2>
+          Todas as Partidas entre ${player1Name} e ${player2Name}
+        </h2>
       `
       : this.playerRef1
       ? /*html*/ `
-          <h2>
-            Todas Partidas de ${this.playerName(this.playerRef1)}
-          </h2>
-        `
+        <h2>
+          Todas Partidas de ${this.playerName(this.playerRef1)}
+        </h2>
+      `
+      : this.eventRef
+      ? /*html*/ `<h2>${this.title}</h2>`
       : /*html*/ `
-          <h2>
-            <route-link href="${RouteEnum.gameRecords}">
-              ${this.title}
-            </route-link>
-          </h2>
-        `;
+        <h2>
+          <route-link href="${RouteEnum.gameRecords}">
+            ${this.title}
+          </route-link>
+        </h2>
+      `;
   }
 
   protected get legend(): HtmlString {

@@ -58,6 +58,7 @@ export default class PlayersTable extends UiTable<Player> {
   private getFromEvent = async (): Promise<void> => {
     const eventDoc = await getDoc(doc(g.db, "game_events", this.eventRef));
     const event = eventDoc.data() as TournamentOrLeague;
+    this.gameEvent = event;
 
     const playersRefs = event.finalOrderingRefs
       ? event.finalOrderingRefs
@@ -88,6 +89,7 @@ export default class PlayersTable extends UiTable<Player> {
     this.data.push(...orderedPlayers);
   };
 
+  private declare gameEvent: TournamentOrLeague;
   private declare lastVisibleRef: FirebaseRef;
 
   protected getData = async (): Promise<void> => {
@@ -117,13 +119,15 @@ export default class PlayersTable extends UiTable<Player> {
   }
 
   protected get caption(): HtmlString {
-    return /*html*/ `
-      <h2>
-        <route-link href="${RouteEnum.players}">
-          ${this.title}
-        </route-link>
-      </h2>
-    `;
+    return this.gameEvent?.finalOrderingRefs
+      ? /*html*/ `<h2>Colocação Final</h2>`
+      : /*html*/ `
+        <h2>
+          <route-link href="${RouteEnum.players}">
+            ${this.title}
+          </route-link>
+        </h2>
+      `;
   }
 
   protected get legend(): HtmlString {

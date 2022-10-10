@@ -106,7 +106,7 @@ game-records-table .pagination button:hover {
   transform: translate3d(0px, -0.5px, 0px);
 }
 game-records-table .loader-container {
-  display: flex;
+  display: none;
   justify-content: center;
   width: 100%;
   margin: 20px 0;
@@ -225,7 +225,7 @@ players-table .pagination button:hover {
   transform: translate3d(0px, -0.5px, 0px);
 }
 players-table .loader-container {
-  display: flex;
+  display: none;
   justify-content: center;
   width: 100%;
   margin: 20px 0;
@@ -331,7 +331,7 @@ game-events-table .pagination button:hover {
   transform: translate3d(0px, -0.5px, 0px);
 }
 game-events-table .loader-container {
-  display: flex;
+  display: none;
   justify-content: center;
   width: 100%;
   margin: 20px 0;
