@@ -13,9 +13,6 @@ import {
 
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
-
-import { currentElo, Player } from "../../models/player";
-import { UiUtils } from "../ui_utils";
 import {
   errorLog,
   HtmlString,
@@ -23,9 +20,14 @@ import {
   mapDocsWithFirebaseRef,
   paginationSlicer,
 } from "../../infra/utils";
-import UiTable from "./ui_table";
+
+import Elo from "../../models/elo";
 import { FirebaseRef } from "../../models/firebase_models";
+import { Player } from "../../models/player";
 import { TournamentOrLeague } from "../../models/game_event";
+
+import { UiUtils } from "../ui_utils";
+import UiTable from "./ui_table";
 
 export default class PlayersTable extends UiTable<Player> {
   static readonly tag: string = "players-table";
@@ -146,12 +148,12 @@ export default class PlayersTable extends UiTable<Player> {
     const cardsDiv: HTMLDivElement = this.querySelector("#cards")!;
     const slicedPlayers = paginationSlicer(this.startAfter, this.data);
     for (const player of slicedPlayers) {
-      if (currentElo(player).num !== this.lastElo) {
+      if (player.currentElo! !== this.lastElo) {
         this.i++;
-        this.lastElo = currentElo(player).num;
+        this.lastElo = player.currentElo!;
       }
 
-      const elo = currentElo(player);
+      const elo = new Elo(player.currentElo!);
 
       cardsDiv.innerHTML += /*html*/ `
         <route-link 

@@ -1,11 +1,10 @@
-import { ExpressApiRoute, parseBody } from "../infra";
+import { currentElo, ExpressApiRoute, parseBody } from "../infra";
 
 import { playersCol } from "../cols";
 
 import { CountryName } from "../../../frontend/src/models/country";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import {
-  currentElo,
   DateEloData,
   Player,
   RebaseElo,
@@ -37,7 +36,7 @@ export const postPlayer = async (
 
   playerOnDb = {
     ...playerOnDb,
-    currentElo: currentElo(playerOnDb).serialize(),
+    currentElo: currentElo(initialEloHistory).serialize(),
   };
 
   if (!firebaseRef) {

@@ -38,18 +38,6 @@ export type DateEloData = Readonly<_DateEloData>;
 export const firstElo = (player: Player): Elo =>
   new Elo(player.eloHistory![0].atTheTimeElo);
 
-export const currentElo = (player: Player): Elo => {
-  const eloHistoryLength = player.eloHistory!.length;
-  const lastAtTheTimeElo = new Elo(
-    player.eloHistory![eloHistoryLength - 1].atTheTimeElo
-  );
-  const lastEloDeltaNum = player.eloHistory![eloHistoryLength - 1].eloDelta;
-
-  return lastEloDeltaNum
-    ? lastAtTheTimeElo.add(new Elo(lastEloDeltaNum))
-    : lastAtTheTimeElo;
-};
-
 export enum GoServers {
   ogs = "OGS",
   kgs = "KGS",

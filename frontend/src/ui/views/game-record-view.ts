@@ -4,14 +4,14 @@ import { DateUtils } from "../../infra/date_utils";
 import { Globals as g } from "../../infra/globals";
 import { EnvState, envState } from "../../infra/env";
 import { addFirebaseRef } from "../../infra/utils";
+import { RouteEnum } from "../../routing/router";
 
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
 
 import { UiUtils } from "../ui_utils";
 import GameRecordsTable from "../components/game_records_table";
-import { RouteEnum } from "../../routing/router";
-import { currentElo } from "../../models/player";
+import Elo from "../../models/elo";
 
 declare const glift: any;
 
@@ -87,17 +87,17 @@ export default class GameRecordView extends HTMLElement {
       this.gameRecord.whitePlayer!,
     ];
 
-    const [blackWins, whiteWins] = [
-      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser",
-      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser",
-    ];
+    const [blackWins, whiteWins] = this.blackWhiteWins;
 
     const [blackFlags, whiteFlags] = [
       UiUtils.allFlags(black.countries),
       UiUtils.allFlags(white.countries),
     ];
 
-    const [blackElo, whiteElo] = [currentElo(black), currentElo(white)];
+    const [blackElo, whiteElo] = [
+      new Elo(black.currentElo!),
+      new Elo(white.currentElo!),
+    ];
 
     playerNamesDiv.innerHTML = /*html*/ `
       <route-link href="${RouteEnum.players}/${this.gameRecord.blackRef}">
@@ -144,6 +144,13 @@ export default class GameRecordView extends HTMLElement {
     `;
   };
 
+  private get blackWhiteWins(): [string, string] {
+    return [
+      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser",
+      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser",
+    ];
+  }
+
   private setGameRecordCard = (): void => {
     const gameRecordCardDiv: HTMLDivElement = this.querySelector("#card")!;
     const gameDate = new Date(this.gameRecord.date);
@@ -152,11 +159,7 @@ export default class GameRecordView extends HTMLElement {
 
     const handicap = this.gameRecord.handicap ? this.gameRecord.handicap : "0";
 
-    // TODO3: Repetitive with the fucntion above...
-    const blackWins =
-      this.gameRecord.result.whoWins === Color.Black ? "winner" : "loser";
-    const whiteWins =
-      this.gameRecord.result.whoWins === Color.White ? "winner" : "loser";
+    const [blackWins, whiteWins] = this.blackWhiteWins;
 
     const sgfButton = this.gameRecord.sgf
       ? /*html*/ `<a id="download">SGF</a>`
@@ -211,8 +214,10 @@ export default class GameRecordView extends HTMLElement {
 
     const formattedDate = DateUtils.formatDate(gameDate).replaceAll("/", "-");
 
-    const blackName = this.gameRecord.blackPlayer!.name;
-    const whiteName = this.gameRecord.whitePlayer!.name;
+    const [blackName, whiteName] = [
+      this.gameRecord.blackPlayer!.name,
+      this.gameRecord.whitePlayer!.name,
+    ];
 
     const blob = new Blob([this.gameRecord.sgf!], {
       type: "text/plain;charset=utf-8",

@@ -8,10 +8,11 @@ import { DateUtils } from "../../infra/date_utils";
 
 import { CountryName } from "../../models/country";
 import { FirebaseRef } from "../../models/firebase_models";
-import { currentElo, Player } from "../../models/player";
+import { Player } from "../../models/player";
 
 import GameRecordsTable from "../components/game_records_table";
 import { UiUtils } from "../ui_utils";
+import Elo from "../../models/elo";
 
 export default class PlayerView extends HTMLElement {
   static readonly tag: string = "player-view";
@@ -122,7 +123,7 @@ export default class PlayerView extends HTMLElement {
   };
 
   private setPlayerCard = (): void => {
-    const elo = currentElo(this.player);
+    const elo = new Elo(this.player.currentElo!);
 
     const email = this.player.email ? this.player.email : "&mdash;";
 

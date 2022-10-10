@@ -1,7 +1,10 @@
 import { Request, Response, NextFunction } from "express";
 
 import { RankingData } from "../../frontend/src/infra/utils";
+
+import Elo from "../../frontend/src/models/elo";
 import { FirebaseRef } from "../../frontend/src/models/firebase_models";
+import { DateEloData } from "../../frontend/src/models/player";
 
 import { gameEvents } from "./data/game_events";
 import { players } from "./data/players";
@@ -28,3 +31,15 @@ export const findPlayerRef = (name: string): string =>
 // TODO3: Needs to be eliminated once we stop forcing indices...
 export const findEventRef = (name: string): string =>
   gameEvents.findIndex((gE) => gE.name.includes(name))!.toString();
+
+export const currentElo = (eloHistory: DateEloData[]): Elo => {
+  const eloHistoryLength = eloHistory.length;
+  const lastAtTheTimeElo = new Elo(
+    eloHistory[eloHistoryLength - 1].atTheTimeElo
+  );
+  const lastEloDeltaNum = eloHistory[eloHistoryLength - 1].eloDelta;
+
+  return lastEloDeltaNum
+    ? lastAtTheTimeElo.add(new Elo(lastEloDeltaNum))
+    : lastAtTheTimeElo;
+};
