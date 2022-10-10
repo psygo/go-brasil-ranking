@@ -34,6 +34,7 @@ interface _TournamentLeagueBase extends _GameEventBase {
   description?: string;
   gamesTotal?: number;
   participants?: readonly FirebaseRef[];
+  finalOrderingRefs?: readonly FirebaseRef[];
 }
 
 interface _GameEventTournament extends _TournamentLeagueBase {

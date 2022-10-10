@@ -7,6 +7,8 @@ import {
   where,
   getDoc,
   doc,
+  getDocs,
+  documentId,
 } from "firebase/firestore";
 
 import { Globals as g } from "../../infra/globals";
@@ -14,7 +16,13 @@ import { RouteEnum } from "../../routing/router";
 
 import { currentElo, Player } from "../../models/player";
 import { UiUtils } from "../ui_utils";
-import { errorLog, HtmlString, inf, paginationSlicer } from "../../infra/utils";
+import {
+  errorLog,
+  HtmlString,
+  inf,
+  mapDocsWithFirebaseRef,
+  paginationSlicer,
+} from "../../infra/utils";
 import UiTable from "./ui_table";
 import { FirebaseRef } from "../../models/firebase_models";
 import { TournamentOrLeague } from "../../models/game_event";
@@ -47,24 +55,38 @@ export default class PlayersTable extends UiTable<Player> {
 
   private getFromEvent = async (): Promise<void> => {
     const eventDoc = await getDoc(doc(g.db, "game_events", this.eventRef));
+    const event = eventDoc.data() as TournamentOrLeague;
 
-    const participantsRefs = (eventDoc.data() as TournamentOrLeague)
-      .participants!;
+    const playersRefs = event.finalOrderingRefs
+      ? event.finalOrderingRefs
+      : event.participants!;
 
-    let players: Player[] = [];
-    // TODO2: this needs to be paginated somehow...
-    //        If the ordered is preset, it's easy
-    for (const participantRef of participantsRefs) {
-      const participantDoc = await getDoc(doc(g.db, "players", participantRef));
-      const participant = participantDoc.data() as Player;
-      players.push({ ...participant, firebaseRef: participantDoc.id });
+    const paginatedPlayersRefs: FirebaseRef[] = playersRefs.slice(
+      this.startAfter,
+      this.startAfter + g.queryLimit
+    );
+
+    const playersDocs = await getDocs(
+      query(
+        collection(g.db, "players"),
+        where(documentId(), "in", paginatedPlayersRefs)
+      )
+    );
+
+    this.lastVisibleRef = paginatedPlayersRefs[g.queryLimit - 1];
+
+    const players = mapDocsWithFirebaseRef<Player>(playersDocs.docs);
+
+    let orderedPlayers = [];
+    for (const ref of paginatedPlayersRefs) {
+      const player = players.find((p) => p.firebaseRef === ref)!;
+      orderedPlayers.push(player);
     }
 
-    // TODO2: The ordering of the players should be preset
-    players.sort((p1, p2) => currentElo(p2).num - currentElo(p1).num);
-
-    this.data.push(...players);
+    this.data.push(...orderedPlayers);
   };
+
+  private declare lastVisibleRef: FirebaseRef;
 
   protected getData = async (): Promise<void> => {
     try {
@@ -73,7 +95,7 @@ export default class PlayersTable extends UiTable<Player> {
       else await this.getAllPlayers();
     } catch (e) {
       const error = e as Error;
-      errorLog(error, "Game Events' Table");
+      errorLog(error, "Players' Table");
     }
   };
 

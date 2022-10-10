@@ -1,9 +1,12 @@
 import {
   collection,
+  DocumentData,
   getDocs,
   limit,
   orderBy,
   query,
+  QueryDocumentSnapshot,
+  QuerySnapshot,
   startAfter,
   where,
 } from "firebase/firestore";
@@ -11,7 +14,11 @@ import {
 import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
-import { errorLog, HtmlString } from "../../infra/utils";
+import {
+  errorLog,
+  HtmlString,
+  mapDocsWithFirebaseRef,
+} from "../../infra/utils";
 
 import { FirebaseRef } from "../../models/firebase_models";
 import { Color, GameRecord, resultString } from "../../models/game_record";
@@ -69,6 +76,50 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
     await this.mergeParallelQueries(playerIsBlack, playerIsWhite);
   };
+
+  private mergeParallelQueries = async (
+    q1: Promise<QuerySnapshot<DocumentData>>,
+    q2: Promise<QuerySnapshot<DocumentData>>
+  ): Promise<void> => {
+    const [snapsAsBlack, snapsAsWhite] = await Promise.all([q1, q2]);
+
+    const [gameRecordsAsBlack, gameRecordsAsWhite] = [
+      mapDocsWithFirebaseRef<GameRecord>(snapsAsBlack.docs),
+      mapDocsWithFirebaseRef<GameRecord>(snapsAsWhite.docs),
+    ];
+
+    const allGames = [...gameRecordsAsBlack, ...gameRecordsAsWhite];
+
+    allGames.sort((g1, g2) => {
+      if ("date" in g1 && "date" in g2) return g2.date - g1.date;
+      else return 0;
+    });
+
+    const slicedGames = allGames.slice(0, 5);
+
+    slicedGames.reverse();
+
+    for (const docBlack of snapsAsBlack.docs)
+      for (const g of slicedGames)
+        if (docBlack.id === g.firebaseRef) this._lastVisible1 = docBlack;
+    for (const docWhite of snapsAsWhite.docs)
+      for (const g of slicedGames)
+        if (docWhite.id === g.firebaseRef) this._lastVisible2 = docWhite;
+
+    slicedGames.reverse();
+
+    this.data.push(...slicedGames);
+  };
+
+  private declare _lastVisible1: QueryDocumentSnapshot<DocumentData>;
+  private declare _lastVisible2: QueryDocumentSnapshot<DocumentData>;
+
+  private get lastVisible1(): QueryDocumentSnapshot<DocumentData> | {} {
+    return this._lastVisible1 ? this._lastVisible2 : {};
+  }
+  private get lastVisible2(): QueryDocumentSnapshot<DocumentData> | {} {
+    return this._lastVisible2 ? this._lastVisible2 : {};
+  }
 
   private getPlayerGameRecords = async (): Promise<void> => {
     const playerIsBlack = getDocs(

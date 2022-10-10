@@ -21,8 +21,10 @@ export const addFirebaseRef = <T extends RankingData>(
   firebaseRef: FirebaseRef
 ): T => ({ ...rankingData, firebaseRef: firebaseRef });
 
+// TODO3: Needs to be eliminated once we stop forcing indices...
 export const findPlayerRef = (name: string): string =>
   players.findIndex((p) => p.name.includes(name))!.toString();
 
+// TODO3: Needs to be eliminated once we stop forcing indices...
 export const findEventRef = (name: string): string =>
   gameEvents.findIndex((gE) => gE.name.includes(name))!.toString();

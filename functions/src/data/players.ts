@@ -1302,7 +1302,7 @@ export const players: readonly Player[] = [
     rebaseElos: [{ date: new Date(2022, 9, 10).getTime(), elo: 550 }],
   },
   {
-    name: "Wang Seng Feng",
+    name: "Wang Sen Feng",
     picture: pic_wang_feng,
     countries: [
       {

@@ -67,7 +67,6 @@ export default class PlayerView extends HTMLElement {
         labels: dateData,
         datasets: [
           {
-            label: `Elo de ${this.player.name}`,
             fill: true,
             data: eloData,
             backgroundColor: ["rgba(54, 162, 235, 0.2)"],

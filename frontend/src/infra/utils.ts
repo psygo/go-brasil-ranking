@@ -5,7 +5,7 @@ import { Globals as g } from "./globals";
 import { FirebaseRef } from "../models/firebase_models";
 import { TournamentOrLeague } from "../models/game_event";
 import { GameRecord } from "../models/game_record";
-import { Player, RebaseElo } from "../models/player";
+import { Player } from "../models/player";
 
 export const paginationSlicer = <T extends RankingData>(
   startAfter: number,
@@ -22,10 +22,10 @@ export const errorLog = (error: Error, title: string = ""): void => {
   console.log("----------------------------------------------------------");
   console.log(title);
   console.log();
-  console.log(`Error Name: ${error.name}`);
-  console.log(`Error Message: ${error.message}`);
-  console.log(`Error Cause: ${error.cause}`);
-  console.log(`Error Stack: ${error.stack}`);
+  console.error(`Error Name: ${error.name}`);
+  console.error(`Error Message: ${error.message}`);
+  console.error(`Error Cause: ${error.cause}`);
+  console.error(`Error Stack: ${error.stack}`);
   console.log("----------------------------------------------------------");
 };
 

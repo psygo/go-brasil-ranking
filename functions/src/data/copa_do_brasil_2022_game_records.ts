@@ -4,7 +4,7 @@ import { findEventRef, findPlayerRef } from "../infra";
 export const copaDoBrasil2022: readonly GameRecord[] = [
   {
     blackRef: findPlayerRef("Gabriel Marcondes de Castilho"),
-    whiteRef: findPlayerRef("Wang Seng Feng"),
+    whiteRef: findPlayerRef("Wang Sen Feng"),
     date: new Date(2022, 8, 10).getTime(),
     result: {
       whoWins: Color.White,
@@ -12,7 +12,7 @@ export const copaDoBrasil2022: readonly GameRecord[] = [
     gameEventRef: findEventRef("Copa do Brasil 2022"),
   },
   {
-    blackRef: findPlayerRef("Wang Seng Feng"),
+    blackRef: findPlayerRef("Wang Sen Feng"),
     whiteRef: findPlayerRef("Yoshito Yoshitake"),
     date: new Date(2022, 8, 10).getTime(),
     result: {
@@ -21,7 +21,7 @@ export const copaDoBrasil2022: readonly GameRecord[] = [
     gameEventRef: findEventRef("Copa do Brasil 2022"),
   },
   {
-    blackRef: findPlayerRef("Wang Seng Feng"),
+    blackRef: findPlayerRef("Wang Sen Feng"),
     whiteRef: findPlayerRef("Hélcio Alexandre Pacheco"),
     date: new Date(2022, 8, 10).getTime(),
     result: {
@@ -31,7 +31,7 @@ export const copaDoBrasil2022: readonly GameRecord[] = [
   },
   {
     blackRef: findPlayerRef("Yukio Hiramatsu"),
-    whiteRef: findPlayerRef("Wang Seng Feng"),
+    whiteRef: findPlayerRef("Wang Sen Feng"),
     date: new Date(2022, 8, 10).getTime(),
     result: {
       whoWins: Color.White,
@@ -40,7 +40,7 @@ export const copaDoBrasil2022: readonly GameRecord[] = [
   },
   {
     blackRef: findPlayerRef("Mitsuyuki Shintaku"),
-    whiteRef: findPlayerRef("Wang Seng Feng"),
+    whiteRef: findPlayerRef("Wang Sen Feng"),
     date: new Date(2022, 8, 10).getTime(),
     result: {
       whoWins: Color.White,
@@ -49,7 +49,7 @@ export const copaDoBrasil2022: readonly GameRecord[] = [
   },
   {
     blackRef: findPlayerRef("Felipe Herman van Riemsdijk"),
-    whiteRef: findPlayerRef("Wang Seng Feng"),
+    whiteRef: findPlayerRef("Wang Sen Feng"),
     date: new Date(2022, 8, 10).getTime(),
     result: {
       whoWins: Color.White,

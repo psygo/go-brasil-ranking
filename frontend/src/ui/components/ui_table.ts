@@ -3,7 +3,6 @@ import {
   getDocs,
   Query,
   QueryDocumentSnapshot,
-  QuerySnapshot,
 } from "firebase/firestore";
 
 import { Globals as g } from "../../infra/globals";
@@ -43,52 +42,10 @@ export default abstract class UiTable<
     }
   }
 
-  protected mergeParallelQueries = async (
-    q1: Promise<QuerySnapshot<DocumentData>>,
-    q2: Promise<QuerySnapshot<DocumentData>>
-  ): Promise<void> => {
-    const [snapsAsBlack, snapsAsWhite] = await Promise.all([q1, q2]);
-
-    const [gameRecordsAsBlack, gameRecordsAsWhite] = [
-      mapDocsWithFirebaseRef<T>(snapsAsBlack.docs),
-      mapDocsWithFirebaseRef<T>(snapsAsWhite.docs),
-    ];
-
-    const allGames = [...gameRecordsAsBlack, ...gameRecordsAsWhite];
-
-    allGames.sort((g1, g2) => {
-      if ("date" in g1 && "date" in g2) return g2.date - g1.date;
-      else return 0;
-    });
-
-    const slicedGames = allGames.slice(0, 5);
-
-    slicedGames.reverse();
-
-    for (const docBlack of snapsAsBlack.docs)
-      for (const g of slicedGames)
-        if (docBlack.id === g.firebaseRef) this._lastVisible1 = docBlack;
-    for (const docWhite of snapsAsWhite.docs)
-      for (const g of slicedGames)
-        if (docWhite.id === g.firebaseRef) this._lastVisible2 = docWhite;
-
-    slicedGames.reverse();
-
-    this.data.push(...slicedGames);
-  };
-
   private declare _lastVisible: QueryDocumentSnapshot<DocumentData>;
-  private declare _lastVisible1: QueryDocumentSnapshot<DocumentData>;
-  private declare _lastVisible2: QueryDocumentSnapshot<DocumentData>;
 
   protected get lastVisible(): QueryDocumentSnapshot<DocumentData> | {} {
     return this._lastVisible ? this._lastVisible : {};
-  }
-  protected get lastVisible1(): QueryDocumentSnapshot<DocumentData> | {} {
-    return this._lastVisible1 ? this._lastVisible2 : {};
-  }
-  protected get lastVisible2(): QueryDocumentSnapshot<DocumentData> | {} {
-    return this._lastVisible2 ? this._lastVisible2 : {};
   }
 
   protected resetLastVisible = (
@@ -154,7 +111,7 @@ export default abstract class UiTable<
     nextPageButton.onclick = async (): Promise<void> => {
       this.startAfter += g.queryLimit;
 
-      this.toggleLoader();
+      setTimeout(this.toggleLoader, 1000);
 
       await this.getData();
 
