@@ -5,6 +5,7 @@ import { playersCol } from "../cols";
 import { CountryName } from "../../../frontend/src/models/country";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import {
+  currentElo,
   DateEloData,
   Player,
   RebaseElo,
@@ -26,12 +27,17 @@ export const postPlayer = async (
     atTheTimeElo: re.elo,
   }));
 
-  let playerOnDb = {
+  let playerOnDb: Player = {
     ...player,
     eloHistory: initialEloHistory,
     isBrazilian: isBrazilian,
     dateCreated: new Date().getTime(),
     gamesTotal: 0,
+  };
+
+  playerOnDb = {
+    ...playerOnDb,
+    currentElo: currentElo(playerOnDb).serialize(),
   };
 
   if (!firebaseRef) {

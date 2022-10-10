@@ -111,7 +111,7 @@ export default abstract class UiTable<
     nextPageButton.onclick = async (): Promise<void> => {
       this.startAfter += g.queryLimit;
 
-      setTimeout(this.toggleLoader, 1000);
+      this.toggleLoader();
 
       await this.getData();
 

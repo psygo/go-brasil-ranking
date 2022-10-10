@@ -11,6 +11,7 @@ export interface _Player extends FirebaseDoc {
   picture?: string;
   countries: readonly Country[];
   isBrazilian?: boolean;
+  currentElo?: SerializedElo;
   rebaseElos: readonly RebaseElo[];
   eloHistory?: readonly DateEloData[];
   dateCreated?: number;
