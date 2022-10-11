@@ -13,7 +13,7 @@ export interface _Player extends FirebaseDoc {
   isBrazilian?: boolean;
   currentElo?: SerializedElo;
   rebaseElos: readonly RebaseElo[];
-  eloHistory?: readonly DateEloData[];
+  eloHistory?: readonly EloHistory[];
   dateCreated?: number;
   author?: Author;
   gamesTotal?: number;
@@ -28,12 +28,13 @@ interface _RebaseElo {
 }
 export type RebaseElo = Readonly<_RebaseElo>;
 
-interface _DateEloData {
+interface _EloHistory {
   date: number;
   atTheTimeElo: SerializedElo;
   eloDelta?: SerializedElo;
+  forced?: boolean;
 }
-export type DateEloData = Readonly<_DateEloData>;
+export type EloHistory = Readonly<_EloHistory>;
 
 export enum GoServers {
   ogs = "OGS",

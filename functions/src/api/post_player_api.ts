@@ -4,7 +4,7 @@ import { playersCol } from "../cols";
 
 import { CountryName } from "../../../frontend/src/models/country";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
-import { DateEloData, Player } from "../../../frontend/src/models/player";
+import { EloHistory, Player } from "../../../frontend/src/models/player";
 
 export const postPlayer = async (
   player: Player,
@@ -19,7 +19,7 @@ export const postPlayer = async (
     (p1, p2) => p1.date - p2.date
   );
 
-  const initialEloHistory: DateEloData[] = reorederedRebaseElos.map((re) => ({
+  const initialEloHistory: EloHistory[] = reorederedRebaseElos.map((re) => ({
     date: re.date,
     atTheTimeElo: re.elo,
   }));
