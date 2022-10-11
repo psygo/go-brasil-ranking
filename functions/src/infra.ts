@@ -37,11 +37,9 @@ export const dateSorter = <T extends { date: number }>(
   return desc ? -coeff : coeff;
 };
 
-// TODO3: Needs to be eliminated once we stop forcing indices...
 export const findPlayerRef = (name: string): string =>
   players.findIndex((p) => p.name.includes(name))!.toString();
 
-// TODO3: Needs to be eliminated once we stop forcing indices...
 export const findEventRef = (name: string): string =>
   gameEvents.findIndex((gE) => gE.name.includes(name))!.toString();
 
