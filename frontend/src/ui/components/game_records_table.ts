@@ -15,6 +15,7 @@ import { Globals as g } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
 import {
+  dateSorter,
   errorLog,
   HtmlString,
   mapDocsWithFirebaseRef,
@@ -90,10 +91,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
     const allGames = [...gameRecordsAsBlack, ...gameRecordsAsWhite];
 
-    allGames.sort((g1, g2) => {
-      if ("date" in g1 && "date" in g2) return g2.date - g1.date;
-      else return 0;
-    });
+    allGames.sort((g1, g2) => dateSorter(g1, g2, true));
 
     const slicedGames = allGames.slice(0, 5);
 

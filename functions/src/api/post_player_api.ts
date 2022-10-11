@@ -1,4 +1,4 @@
-import { ExpressApiRoute, lastElo, parseBody } from "../infra";
+import { dateSorter, ExpressApiRoute, lastElo, parseBody } from "../infra";
 
 import { playersCol } from "../cols";
 
@@ -15,9 +15,7 @@ export const postPlayer = async (
   );
 
   const { rebaseElos, ...playerNoRebaseElos } = player;
-  const reorederedRebaseElos = [...rebaseElos].sort(
-    (p1, p2) => p1.date - p2.date
-  );
+  const reorederedRebaseElos = [...rebaseElos].sort(dateSorter);
 
   const initialEloHistory: EloHistory[] = reorederedRebaseElos.map((re) => ({
     date: re.date,

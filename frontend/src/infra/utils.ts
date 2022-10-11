@@ -29,6 +29,19 @@ export const errorLog = (error: Error, title: string = ""): void => {
   console.log("----------------------------------------------------------");
 };
 
+// TODO3: Zero idea why, but having this specific function in only one place 
+// doesn't work, otherwise the whole project errors in a weird fashion. This is
+// currently copied in 3 different places.
+export const dateSorter = <T extends { date: number }>(
+  dateAble1: T,
+  dateAble2: T,
+  desc: boolean = false
+): number => {
+  const [d1, d2] = [new Date(dateAble1.date), new Date(dateAble2.date)];
+  const coeff = d1 > d2 ? 1 : d1 < d2 ? -1 : 0;
+  return desc ? -coeff : coeff;
+};
+
 export const addFirebaseRef = <T extends RankingData>(
   rankingData: T,
   firebaseRef: FirebaseRef

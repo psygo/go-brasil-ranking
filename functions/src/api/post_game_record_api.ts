@@ -1,5 +1,6 @@
 import {
   addFirebaseRef,
+  dateSorter,
   eloAtTheTime,
   ExpressApiRoute,
   lastElo,
@@ -125,8 +126,8 @@ const updateElo = async (
     [...white.eloHistory!, dateEloWhite],
   ];
 
-  newBlackEloHistory.sort((h1, h2) => h1.date - h2.date);
-  newWhiteEloHistory.sort((h1, h2) => h1.date - h2.date);
+  newBlackEloHistory.sort(dateSorter);
+  newWhiteEloHistory.sort(dateSorter);
 
   await Promise.all([
     playersCol.col.doc(gameRecord.blackRef).update({
