@@ -31,6 +31,7 @@ export interface _GameRecord extends FirebaseDoc {
   gameEventRef: GameEventRef;
   gameEvent?: GameEvent;
   eloData?: EloData;
+  forcedElos?: ForcedElos;
   links?: readonly Link[];
   additionalInfo?: string;
 }
@@ -43,6 +44,12 @@ interface _EloData {
   eloDeltaWhite: SerializedEloDelta;
 }
 export type EloData = Readonly<_EloData>;
+
+interface _ForcedElos {
+  blackElo: SerializedElo;
+  whiteElo: SerializedElo;
+}
+export type ForcedElos = Readonly<_ForcedElos>;
 
 export type Sgf = Readonly<string>;
 

@@ -1,7 +1,8 @@
 import {
   addFirebaseRef,
-  currentElo,
+  eloAtTheTime,
   ExpressApiRoute,
+  lastElo,
   parseBody,
 } from "../infra";
 
@@ -73,9 +74,14 @@ const updateElo = async (
   gameRecord: GameRecord
 ): Promise<EloData> => {
   const [blackElo, whiteElo]: Elo[] = [
-    new Elo(black.currentElo!),
-    new Elo(white.currentElo!),
+    eloAtTheTime(black.eloHistory!, new Date(gameRecord.date)),
+    eloAtTheTime(white.eloHistory!, new Date(gameRecord.date)),
   ];
+
+  console.log(black.name);
+  console.log(white.name);
+  console.log(`Black Elo: ${blackElo}`);
+  console.log(`White Elo: ${whiteElo}`);
 
   const [blackEloDelta, whiteEloDelta]: Elo[] = [
     blackElo.deltaFromGame(
@@ -117,15 +123,18 @@ const updateElo = async (
     [...white.eloHistory!, dateEloWhite],
   ];
 
+  newBlackEloHistory.sort((h1, h2) => h1.date - h2.date);
+  newWhiteEloHistory.sort((h1, h2) => h1.date - h2.date);
+
   await Promise.all([
     playersCol.col.doc(gameRecord.blackRef).update({
       eloHistory: newBlackEloHistory,
-      currentElo: currentElo(newBlackEloHistory).serialize(),
+      currentElo: lastElo(newBlackEloHistory).serialize(),
       gamesTotal: black.gamesTotal! + 1,
     }),
     playersCol.col.doc(gameRecord.whiteRef).update({
       eloHistory: newWhiteEloHistory,
-      currentElo: currentElo(newWhiteEloHistory).serialize(),
+      currentElo: lastElo(newWhiteEloHistory).serialize(),
       gamesTotal: white.gamesTotal! + 1,
     }),
   ]);

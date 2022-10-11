@@ -32,7 +32,26 @@ export const findPlayerRef = (name: string): string =>
 export const findEventRef = (name: string): string =>
   gameEvents.findIndex((gE) => gE.name.includes(name))!.toString();
 
-export const currentElo = (eloHistory: DateEloData[]): Elo => {
+export const eloAtTheTime = (
+  eloHistory: readonly DateEloData[],
+  currentDate: Date = new Date()
+): Elo => {
+  let atTheTimeElo: Elo;
+  let eloDeltaNum: Elo | undefined;
+
+  const reversedEloHistory = [...eloHistory].reverse();
+  for (const h of reversedEloHistory) {
+    if (currentDate >= new Date(h.date)) {
+      atTheTimeElo = new Elo(h.atTheTimeElo);
+      if (h.eloDelta) eloDeltaNum = new Elo(h.eloDelta);
+      break;
+    }
+  }
+
+  return eloDeltaNum ? atTheTimeElo!.add(eloDeltaNum) : atTheTimeElo!;
+};
+
+export const lastElo = (eloHistory: DateEloData[]): Elo => {
   const eloHistoryLength = eloHistory.length;
   const lastAtTheTimeElo = new Elo(
     eloHistory[eloHistoryLength - 1].atTheTimeElo

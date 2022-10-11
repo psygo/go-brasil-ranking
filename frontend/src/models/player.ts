@@ -1,5 +1,5 @@
 import { Country } from "./country";
-import Elo, { SerializedElo } from "./elo";
+import { SerializedElo } from "./elo";
 import { Author, FirebaseDoc, FirebaseRef } from "./firebase_models";
 import { GameRecord } from "./game_record";
 
@@ -34,9 +34,6 @@ interface _DateEloData {
   eloDelta?: SerializedElo;
 }
 export type DateEloData = Readonly<_DateEloData>;
-
-export const firstElo = (player: Player): Elo =>
-  new Elo(player.eloHistory![0].atTheTimeElo);
 
 export enum GoServers {
   ogs = "OGS",

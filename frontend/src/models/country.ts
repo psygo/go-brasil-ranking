@@ -18,7 +18,7 @@ export enum CountryName {
   brazil = "Brasil",
   canada = "Canadá",
   chile = "Chile",
-  colombia = "Colombia",
+  colombia = "Colômbia",
   costa_rica = "Costa Rica",
   cuba = "Cuba",
   france = "França",

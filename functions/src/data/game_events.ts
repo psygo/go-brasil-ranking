@@ -56,4 +56,9 @@ export const gameEvents: readonly TournamentOrLeague[] = [
     description: "Dojo Online de Go em Português",
     dates: [new Date(2021, 10, 10).getTime(), new Date(2022, 2, 10).getTime()],
   },
+  {
+    type: GameEventTypes.tournament,
+    name: "Copa do Brasil 2018",
+    dates: [new Date(2018, 8, 10).getTime(), new Date(2018, 8, 11).getTime()],
+  },
 ];
