@@ -1,6 +1,6 @@
 import * as chai from "chai";
 
-import { dateSorter, paginationSlicer } from "../infra/utils";
+import { addFirebaseRef, dateSorter, paginationSlicer } from "../infra/utils";
 
 import { GameEventTypes, TournamentOrLeague } from "../models/game_event";
 
@@ -40,6 +40,25 @@ describe("Pagination", () => {
     ];
 
     chai.expect(paginationSlicer(0, events).length).equal(5);
+  });
+});
+
+describe("Firebase Ref", () => {
+  it("addFirebaseRef", () => {
+    const event: TournamentOrLeague = {
+      type: GameEventTypes.tournament,
+      name: "Comp 1",
+      dates: [new Date(2022, 0, 29).getTime()],
+    };
+
+    const eventWithRef = addFirebaseRef(event, "0");
+
+    chai.expect(eventWithRef).to.deep.equal({
+      firebaseRef: "0",
+      type: GameEventTypes.tournament,
+      name: "Comp 1",
+      dates: [new Date(2022, 0, 29).getTime()],
+    });
   });
 });
 

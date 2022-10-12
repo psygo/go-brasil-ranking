@@ -5,16 +5,16 @@ import { TournamentOrLeague } from "../models/game_event";
 import { GameRecord } from "../models/game_record";
 import { Player } from "../models/player";
 
-export const paginationSlicer = <T extends RankingData>(
-  startAfter: number,
-  list: T[]
-): T[] => list.slice(startAfter, startAfter + 5);
-
 export const inf = 1e10;
 
 export type HtmlString = string;
 
 export type RankingData = GameRecord | Player | TournamentOrLeague;
+
+export const paginationSlicer = <T extends RankingData>(
+  startAfter: number,
+  list: T[]
+): T[] => list.slice(startAfter, startAfter + 5);
 
 export const tableErrorLog = (error: Error, title: string = ""): void => {
   console.log("----------------------------------------------------------");
@@ -27,7 +27,10 @@ export const tableErrorLog = (error: Error, title: string = ""): void => {
   console.log("----------------------------------------------------------");
 };
 
-export const dateSorter = <T extends { date: number }>(
+interface DateAble {
+  date: number;
+}
+export const dateSorter = <T extends DateAble>(
   dateAble1: T,
   dateAble2: T,
   desc: boolean = false
