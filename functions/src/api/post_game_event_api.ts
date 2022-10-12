@@ -1,4 +1,4 @@
-import { ExpressApiRoute, parseBody } from "../infra";
+import { ExpressApiRoute, parseBody, postRankingData } from "../infra";
 
 import { gameEventsCol } from "../cols";
 
@@ -16,13 +16,7 @@ export const postGameEvent = async (
 ): Promise<TournamentOrLeague> => {
   const gameEventOnDb: GameEvent = processGameEvent(gameEvent);
 
-  if (!firebaseRef) {
-    const gameEventRef = await gameEventsCol.col.add(gameEventOnDb);
-    return { ...gameEventOnDb, firebaseRef: gameEventRef.id };
-  } else {
-    await gameEventsCol.col.doc(firebaseRef).set(gameEventOnDb);
-    return { ...gameEventOnDb, firebaseRef: firebaseRef };
-  }
+  return await postRankingData(gameEventsCol, gameEventOnDb, firebaseRef);
 };
 
 export const postGameEventApi: ExpressApiRoute = async (req, res) => {

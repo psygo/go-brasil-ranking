@@ -21,10 +21,7 @@ describe("Process Game Event", () => {
 
     chai.expect(processedEvent.dateCreated).to.be.closeTo(now, 100);
 
-    const processEventCopy = { ...processedEvent };
-    delete processEventCopy.dateCreated;
-
-    chai.expect(processedEvent).to.deep.equal({
+    chai.expect(processedEvent).to.deep.equal(<TournamentOrLeague>{
       ...event,
       dateCreated: processedEvent.dateCreated,
       firstDate: new Date(2022, 2, 10).getTime(),

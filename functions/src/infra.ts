@@ -1,10 +1,27 @@
 import { Request, Response, NextFunction } from "express";
+import { addFirebaseRef, RankingData } from "../../frontend/src/infra/utils";
 
 import Elo from "../../frontend/src/models/elo";
+import { FirebaseRef } from "../../frontend/src/models/firebase_models";
 import { EloHistory } from "../../frontend/src/models/player";
+import CollectionWrapper from "./cols";
 
 import { gameEvents } from "./data/game_events";
 import { players } from "./data/players";
+
+export const postRankingData = async <T extends RankingData>(
+  collectionWrapper: CollectionWrapper,
+  data: T,
+  firebaseRef?: FirebaseRef
+): Promise<T> => {
+  if (!firebaseRef) {
+    const ref = await collectionWrapper.col.add(data);
+    return addFirebaseRef(data, ref.id);
+  } else {
+    await collectionWrapper.col.doc(firebaseRef).set(data);
+    return addFirebaseRef(data, firebaseRef);
+  }
+};
 
 export type ExpressApiRoute = (req: Request, res: Response) => Promise<void>;
 export type ExpressNexFunction = (

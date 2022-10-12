@@ -1,47 +1,19 @@
-import { ExpressApiRoute, lastElo, parseBody } from "../infra";
+import { ExpressApiRoute, parseBody, postRankingData } from "../infra";
 
 import { playersCol } from "../cols";
 
-import { CountryName } from "../../../frontend/src/models/country";
+import { processPlayer } from "./process_player";
+
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
-import { EloHistory, Player } from "../../../frontend/src/models/player";
-import { dateSorter } from "../../../frontend/src/infra/utils";
+import { Player } from "../../../frontend/src/models/player";
 
 export const postPlayer = async (
   player: Player,
   firebaseRef?: FirebaseRef
 ): Promise<Player> => {
-  const isBrazilian = player.countries.some(
-    (c) => c.name === CountryName.brazil
-  );
+  const playerOnDb = processPlayer(player);
 
-  const { rebaseElos, ...playerNoRebaseElos } = player;
-  const reorederedRebaseElos = [...rebaseElos].sort(dateSorter);
-
-  const initialEloHistory: EloHistory[] = reorederedRebaseElos.map((re) => ({
-    date: re.date,
-    atTheTimeElo: re.elo,
-  }));
-
-  let playerOnDb: Player = {
-    ...playerNoRebaseElos,
-    rebaseElos: reorederedRebaseElos,
-    eloHistory: initialEloHistory,
-    currentElo: lastElo(initialEloHistory).serialize(),
-    isBrazilian: isBrazilian,
-    dateCreated: new Date().getTime(),
-    gamesTotal: 0,
-  };
-
-  if (!firebaseRef) {
-    const playerRef = await playersCol.col.add(playerOnDb);
-    playerOnDb = { ...playerOnDb, firebaseRef: playerRef.id };
-  } else {
-    await playersCol.col.doc(firebaseRef).set(playerOnDb);
-    playerOnDb = { ...playerOnDb, firebaseRef: firebaseRef };
-  }
-
-  return playerOnDb;
+  return await postRankingData(playersCol, playerOnDb, firebaseRef);
 };
 
 export const postPlayerApi: ExpressApiRoute = async (req, res) => {

@@ -8,7 +8,7 @@ export const deleteEverything = async (): Promise<void> => {
   await gameRecordsCol.deleteEverything();
 };
 
-export default abstract class Col {
+export default abstract class CollectionWrapper {
   protected abstract readonly colName: FirebaseRef;
 
   get col() {
@@ -20,19 +20,19 @@ export default abstract class Col {
   };
 }
 
-class PlayersCol extends Col {
+class PlayersCol extends CollectionWrapper {
   readonly colName = "players";
 }
 
 export const playersCol = new PlayersCol();
 
-class GameRecordsCol extends Col {
+class GameRecordsCol extends CollectionWrapper {
   readonly colName = "game_records";
 }
 
 export const gameRecordsCol = new GameRecordsCol();
 
-class GameEventsCol extends Col {
+class GameEventsCol extends CollectionWrapper {
   readonly colName = "game_events";
 }
 
