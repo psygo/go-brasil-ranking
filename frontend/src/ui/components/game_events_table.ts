@@ -13,7 +13,7 @@ import { RouteEnum } from "../../routing/router";
 import { TournamentOrLeague } from "../../models/game_event";
 import { DateUtils } from "../../infra/date_utils";
 import UiTable from "./ui_table";
-import { errorLog, HtmlString } from "../../infra/utils";
+import { tableErrorLog, HtmlString } from "../../infra/utils";
 
 export default class GameEventsTable extends UiTable<TournamentOrLeague> {
   static readonly tag: string = "game-events-table";
@@ -30,7 +30,7 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
       );
     } catch (e) {
       const error = e as Error;
-      errorLog(error, "Game Events' Table");
+      tableErrorLog(error, "Game Events' Table");
     }
   };
 

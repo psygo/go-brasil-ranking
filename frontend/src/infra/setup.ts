@@ -12,7 +12,7 @@ import { firebaseConfig } from "./firebase_config";
 
 import { getRouter, Router } from "../routing/router";
 
-import { errorLog } from "./utils";
+import { tableErrorLog } from "./utils";
 
 import Navbar from "../ui/components/navbar";
 import Footer from "../ui/components/footer_container";
@@ -67,7 +67,7 @@ export default class Setup {
         });
     } catch (error) {
       const e = error as Error;
-      errorLog(e, "Init Auth");
+      tableErrorLog(e, "Init Auth");
     }
   };
 
@@ -83,7 +83,7 @@ export default class Setup {
         connectFirestoreEmulator(this.db, "localhost", 8075);
     } catch (error) {
       const e = error as Error;
-      errorLog(e, "Init DB");
+      tableErrorLog(e, "Init DB");
     }
   };
 

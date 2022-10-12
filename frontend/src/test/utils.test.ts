@@ -1,5 +1,50 @@
 import * as chai from "chai";
 
+import { paginationSlicer } from "../infra/utils";
+
+import { GameEventTypes, TournamentOrLeague } from "../models/game_event";
+
+describe("Pagination", () => {
+  it("Pagination Slicer", () => {
+    const events: TournamentOrLeague[] = [
+      {
+        type: GameEventTypes.tournament,
+        name: "Comp 1",
+        dates: [new Date(2022, 0, 29).getTime()],
+      },
+      {
+        type: GameEventTypes.league,
+        name: "Comp 2",
+        dates: [new Date(2022, 0, 29).getTime()],
+      },
+      {
+        type: GameEventTypes.league,
+        name: "Comp 3",
+        dates: [new Date(2022, 0, 29).getTime()],
+      },
+      {
+        type: GameEventTypes.league,
+        name: "Comp 4",
+        dates: [new Date(2022, 0, 29).getTime()],
+      },
+      {
+        type: GameEventTypes.league,
+        name: "Comp 5",
+        dates: [new Date(2022, 0, 29).getTime()],
+      },
+      {
+        type: GameEventTypes.league,
+        name: "Comp 6",
+        dates: [new Date(2022, 0, 29).getTime()],
+      },
+    ];
+    
+    expect(paginationSlicer(0, events)).toEqual(5)
+
+    // chai.expect(paginationSlicer(0, events).length).equal(5);
+  });
+});
+
 // TODO3: Zero idea why, but having this specific function in only one place
 // doesn't work, otherwise the whole project errors in a weird fashion. This is
 // currently copied in 3 different places.

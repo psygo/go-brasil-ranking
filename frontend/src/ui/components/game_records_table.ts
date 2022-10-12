@@ -16,7 +16,7 @@ import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
 import {
   dateSorter,
-  errorLog,
+  tableErrorLog,
   HtmlString,
   mapDocsWithFirebaseRef,
 } from "../../infra/utils";
@@ -151,7 +151,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
       else await this.getAllGameRecords();
     } catch (e) {
       const error = e as Error;
-      errorLog(error, "Game Records' Table");
+      tableErrorLog(error, "Game Records' Table");
     }
   };
 

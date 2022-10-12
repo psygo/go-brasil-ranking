@@ -18,7 +18,7 @@ export type HtmlString = string;
 
 export type RankingData = GameRecord | Player | TournamentOrLeague;
 
-export const errorLog = (error: Error, title: string = ""): void => {
+export const tableErrorLog = (error: Error, title: string = ""): void => {
   console.log("----------------------------------------------------------");
   console.log(title);
   console.log();

@@ -14,7 +14,7 @@ import {
 import { Globals as g } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 import {
-  errorLog,
+  tableErrorLog,
   HtmlString,
   inf,
   mapDocsWithFirebaseRef,
@@ -99,7 +99,7 @@ export default class PlayersTable extends UiTable<Player> {
       else await this.getAllPlayers();
     } catch (e) {
       const error = e as Error;
-      errorLog(error, "Players' Table");
+      tableErrorLog(error, "Players' Table");
     }
   };
 
