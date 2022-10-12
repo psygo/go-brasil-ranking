@@ -5,7 +5,7 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { Globals as g } from "../../infra/globals";
+import { setup } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
@@ -17,13 +17,13 @@ export default class AdminView extends HTMLElement {
   constructor() {
     super();
 
-    g.setup.initAuth();
+    setup.initAuth();
   }
 
   async connectedCallback(): Promise<void> {
     document.title = "RBGo | Admin";
 
-    onAuthStateChanged(g.setup.auth!, (user) => {
+    onAuthStateChanged(setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;
         this.alreadySignedIn();
@@ -67,7 +67,7 @@ export default class AdminView extends HTMLElement {
     button.onclick = async (e) => {
       e.preventDefault();
 
-      await signOut(g.setup.auth!);
+      await signOut(setup.auth!);
     };
   };
 
@@ -111,7 +111,7 @@ export default class AdminView extends HTMLElement {
 
     try {
       const cred = await signInWithEmailAndPassword(
-        g.setup.auth!,
+        setup.auth!,
         username,
         password
       );

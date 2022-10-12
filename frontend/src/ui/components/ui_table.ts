@@ -5,7 +5,7 @@ import {
   QueryDocumentSnapshot,
 } from "firebase/firestore";
 
-import { Globals as g } from "../../infra/globals";
+import { queryLimit } from "../../infra/globals";
 import {
   HtmlString,
   mapDocsWithFirebaseRef,
@@ -118,7 +118,7 @@ export default abstract class UiTable<
       this.querySelector("button.next-page")!;
 
     nextPageButton.onclick = async (): Promise<void> => {
-      this.startAfter += g.queryLimit;
+      this.startAfter += queryLimit;
 
       this.toggleLoader();
 

@@ -1,13 +1,12 @@
 import { onAuthStateChanged, User } from "firebase/auth";
 
-import { Globals as g } from "../../infra/globals";
-
 import { RouteEnum } from "../../routing/router";
 
 import {
   gameEventTypeFromString,
   GameEventTypes,
 } from "../../models/game_event";
+import { apiUrl, router, setup } from "../../infra/globals";
 
 export default class NewGameEventView extends HTMLElement {
   static readonly tag: string = "new-game-event-view";
@@ -17,15 +16,15 @@ export default class NewGameEventView extends HTMLElement {
   constructor() {
     super();
 
-    g.setup.initAuth();
+    setup.initAuth();
   }
 
   async connectedCallback(): Promise<void> {
-    onAuthStateChanged(g.setup.auth!, (user) => {
+    onAuthStateChanged(setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;
         this.setNewGameEventForm();
-      } else g.router.manualRouting(RouteEnum.admin);
+      } else router.manualRouting(RouteEnum.admin);
     });
   }
 
@@ -191,7 +190,7 @@ export default class NewGameEventView extends HTMLElement {
 
     const userIdToken = await this.currentUser?.getIdToken();
 
-    const res = await fetch(`${g.apiUrl}${RouteEnum.gameEvents}/novo`, {
+    const res = await fetch(`${apiUrl}${RouteEnum.gameEvents}/novo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

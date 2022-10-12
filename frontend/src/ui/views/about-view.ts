@@ -1,4 +1,4 @@
-import { Globals as g } from "../../infra/globals";
+import { repoUrl } from "../../infra/globals";
 
 export default class AboutView extends HTMLElement {
   static readonly tag: string = "about-view";
@@ -121,7 +121,7 @@ export default class AboutView extends HTMLElement {
               O RBGo é um projeto em código aberto, ou seja, a infraestrutura é
               inspecionável por qualquer um. Se você quiser e puder acrescentar
               ou melhorar alguma funcionalidade é só 
-                <a href="${g.repoUrl}">
+                <a href="${repoUrl}">
                   adicionar um <i>pull request</i> no Github.
                 </a>
               Caso você tenha alguma sugestão de funcionalidade mas não consiga

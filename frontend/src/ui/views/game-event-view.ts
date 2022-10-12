@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 
-import { Globals as g } from "../../infra/globals";
+import { db } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { addFirebaseRef } from "../../infra/utils";
 
@@ -20,7 +20,7 @@ export default class GameEventView extends HTMLElement {
   private declare gameEvent: TournamentOrLeague;
 
   private getGameEvent = async (): Promise<void> => {
-    const eventDoc = await getDoc(doc(g.db, "game_events", this.gameEventRef));
+    const eventDoc = await getDoc(doc(db, "game_events", this.gameEventRef));
 
     this.gameEvent = addFirebaseRef(
       eventDoc.data() as TournamentOrLeague,

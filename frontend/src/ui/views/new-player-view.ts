@@ -1,7 +1,5 @@
 import { onAuthStateChanged, User } from "firebase/auth";
 
-import { Globals as g } from "../../infra/globals";
-
 import { RouteEnum } from "../../routing/router";
 
 import {
@@ -12,6 +10,7 @@ import {
   countryNameFromString,
 } from "../../models/country";
 import { Player } from "../../models/player";
+import { apiUrl, router, setup } from "../../infra/globals";
 
 export default class NewPlayerView extends HTMLElement {
   static readonly tag: string = "new-player-view";
@@ -21,15 +20,15 @@ export default class NewPlayerView extends HTMLElement {
   constructor() {
     super();
 
-    g.setup.initAuth();
+    setup.initAuth();
   }
 
   async connectedCallback(): Promise<void> {
-    onAuthStateChanged(g.setup.auth!, (user) => {
+    onAuthStateChanged(setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;
         this.setNewPlayerForm();
-      } else g.router.manualRouting(RouteEnum.admin);
+      } else router.manualRouting(RouteEnum.admin);
     });
   }
 
@@ -251,7 +250,7 @@ export default class NewPlayerView extends HTMLElement {
 
     const userIdToken = await this.currentUser!.getIdToken();
 
-    const res = await fetch(`${g.apiUrl}${RouteEnum.players}/novo`, {
+    const res = await fetch(`${apiUrl}${RouteEnum.players}/novo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

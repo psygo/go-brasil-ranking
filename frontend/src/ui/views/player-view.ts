@@ -2,7 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { Chart, registerables } from "chart.js";
 
-import { Globals as g } from "../../infra/globals";
+import { db } from "../../infra/globals";
 import { addFirebaseRef } from "../../infra/utils";
 import { DateUtils } from "../../infra/date_utils";
 
@@ -22,7 +22,7 @@ export default class PlayerView extends HTMLElement {
   }
 
   private getPlayer = async (): Promise<void> => {
-    const playerDoc = await getDoc(doc(g.db, "players", this.playerRef));
+    const playerDoc = await getDoc(doc(db, "players", this.playerRef));
 
     this.player = addFirebaseRef(playerDoc.data() as Player, playerDoc.id);
   };

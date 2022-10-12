@@ -11,7 +11,7 @@ import {
   documentId,
 } from "firebase/firestore";
 
-import { Globals as g } from "../../infra/globals";
+import { db, queryLimit } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 import {
   tableErrorLog,
@@ -35,10 +35,10 @@ export default class PlayersTable extends UiTable<Player> {
   private getAllPlayers = async (): Promise<void> => {
     await this.firestoreQuery(
       query(
-        collection(g.db, "players"),
+        collection(db, "players"),
         orderBy("currentElo", "desc"),
         startAfter(this.lastVisible),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
   };
@@ -46,17 +46,17 @@ export default class PlayersTable extends UiTable<Player> {
   private getOnlyBrazilians = async (): Promise<void> => {
     await this.firestoreQuery(
       query(
-        collection(g.db, "players"),
+        collection(db, "players"),
         where("isBrazilian", "==", true),
         orderBy("currentElo", "desc"),
         startAfter(this.lastVisible),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
   };
 
   private getFromEvent = async (): Promise<void> => {
-    const eventDoc = await getDoc(doc(g.db, "game_events", this.eventRef));
+    const eventDoc = await getDoc(doc(db, "game_events", this.eventRef));
     const event = eventDoc.data() as TournamentOrLeague;
     this.gameEvent = event;
 
@@ -66,17 +66,17 @@ export default class PlayersTable extends UiTable<Player> {
 
     const paginatedPlayersRefs: FirebaseRef[] = playersRefs.slice(
       this.startAfter,
-      this.startAfter + g.queryLimit
+      this.startAfter + queryLimit
     );
 
     const playersDocs = await getDocs(
       query(
-        collection(g.db, "players"),
+        collection(db, "players"),
         where(documentId(), "in", paginatedPlayersRefs)
       )
     );
 
-    this.lastVisibleRef = paginatedPlayersRefs[g.queryLimit - 1];
+    this.lastVisibleRef = paginatedPlayersRefs[queryLimit - 1];
 
     const players = mapDocsWithFirebaseRef<Player>(playersDocs.docs);
 

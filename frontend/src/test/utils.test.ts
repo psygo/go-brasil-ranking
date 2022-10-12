@@ -1,6 +1,6 @@
 import * as chai from "chai";
 
-import { paginationSlicer } from "../infra/utils";
+import { dateSorter, paginationSlicer } from "../infra/utils";
 
 import { GameEventTypes, TournamentOrLeague } from "../models/game_event";
 
@@ -38,25 +38,10 @@ describe("Pagination", () => {
         dates: [new Date(2022, 0, 29).getTime()],
       },
     ];
-    
-    expect(paginationSlicer(0, events)).toEqual(5)
 
-    // chai.expect(paginationSlicer(0, events).length).equal(5);
+    chai.expect(paginationSlicer(0, events).length).equal(5);
   });
 });
-
-// TODO3: Zero idea why, but having this specific function in only one place
-// doesn't work, otherwise the whole project errors in a weird fashion. This is
-// currently copied in 3 different places.
-const dateSorter = <T extends { date: number }>(
-  dateAble1: T,
-  dateAble2: T,
-  desc: boolean = false
-): number => {
-  const [d1, d2] = [new Date(dateAble1.date), new Date(dateAble2.date)];
-  const coeff = d1 > d2 ? 1 : d1 < d2 ? -1 : 0;
-  return desc ? -coeff : coeff;
-};
 
 describe("Date Sorter", () => {
   it("Positive Dates", () => {

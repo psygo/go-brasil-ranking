@@ -6,7 +6,7 @@ import {
   startAfter,
 } from "firebase/firestore";
 
-import { Globals as g } from "../../infra/globals";
+import { db, queryLimit } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
@@ -22,10 +22,10 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
     try {
       await this.firestoreQuery(
         query(
-          collection(g.db, "game_events"),
+          collection(db, "game_events"),
           orderBy("firstDate", "desc"),
           startAfter(this.lastVisible),
-          limit(g.queryLimit)
+          limit(queryLimit)
         )
       );
     } catch (e) {

@@ -1,3 +1,3 @@
-import { Globals } from "./infra/globals";
+import { setup } from "./infra/globals";
 
-Globals.setup;
+setup;

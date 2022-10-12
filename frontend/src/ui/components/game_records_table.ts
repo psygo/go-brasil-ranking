@@ -11,7 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 
-import { Globals as g } from "../../infra/globals";
+import { db, queryLimit } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
 import {
@@ -33,10 +33,10 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   private getAllGameRecords = async (): Promise<void> => {
     await this.firestoreQuery(
       query(
-        collection(g.db, "game_records"),
+        collection(db, "game_records"),
         orderBy("date", "desc"),
         startAfter(this.lastVisible),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
   };
@@ -44,11 +44,11 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   private getGameRecordsFromEvent = async (): Promise<void> => {
     await this.firestoreQuery(
       query(
-        collection(g.db, "game_records"),
+        collection(db, "game_records"),
         where("gameEventRef", "==", this.eventRef),
         orderBy("date", "desc"),
         startAfter(this.lastVisible),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
   };
@@ -56,22 +56,22 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   private getPlayersGameRecords = async (): Promise<void> => {
     const playerIsBlack = getDocs(
       query(
-        collection(g.db, "game_records"),
+        collection(db, "game_records"),
         where("blackRef", "==", this.playerRef1),
         where("whiteRef", "==", this.playerRef2),
         orderBy("date", "desc"),
         startAfter(this.lastVisible1),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
     const playerIsWhite = getDocs(
       query(
-        collection(g.db, "game_records"),
+        collection(db, "game_records"),
         where("blackRef", "==", this.playerRef2),
         where("whiteRef", "==", this.playerRef1),
         orderBy("date", "desc"),
         startAfter(this.lastVisible2),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
 
@@ -122,20 +122,20 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   private getPlayerGameRecords = async (): Promise<void> => {
     const playerIsBlack = getDocs(
       query(
-        collection(g.db, "game_records"),
+        collection(db, "game_records"),
         where("blackRef", "==", this.playerRef1),
         orderBy("date", "desc"),
         startAfter(this.lastVisible1),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
     const playerIsWhite = getDocs(
       query(
-        collection(g.db, "game_records"),
+        collection(db, "game_records"),
         where("whiteRef", "==", this.playerRef1),
         orderBy("date", "desc"),
         startAfter(this.lastVisible2),
-        limit(g.queryLimit)
+        limit(queryLimit)
       )
     );
 

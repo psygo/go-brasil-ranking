@@ -1,7 +1,5 @@
 import { DocumentData, QueryDocumentSnapshot } from "firebase/firestore";
 
-import { Globals as g } from "./globals";
-
 import { FirebaseRef } from "../models/firebase_models";
 import { TournamentOrLeague } from "../models/game_event";
 import { GameRecord } from "../models/game_record";
@@ -10,7 +8,7 @@ import { Player } from "../models/player";
 export const paginationSlicer = <T extends RankingData>(
   startAfter: number,
   list: T[]
-): T[] => list.slice(startAfter, startAfter + g.queryLimit);
+): T[] => list.slice(startAfter, startAfter + 5);
 
 export const inf = 1e10;
 
@@ -29,9 +27,6 @@ export const tableErrorLog = (error: Error, title: string = ""): void => {
   console.log("----------------------------------------------------------");
 };
 
-// TODO3: Zero idea why, but having this specific function in only one place 
-// doesn't work, otherwise the whole project errors in a weird fashion. This is
-// currently copied in 3 different places.
 export const dateSorter = <T extends { date: number }>(
   dateAble1: T,
   dateAble2: T,

@@ -1,11 +1,4 @@
-import {
-  addFirebaseRef,
-  dateSorter,
-  eloAtTheTime,
-  ExpressApiRoute,
-  lastElo,
-  parseBody,
-} from "../infra";
+import { eloAtTheTime, ExpressApiRoute, lastElo, parseBody } from "../infra";
 
 import { gameEventsCol, gameRecordsCol, playersCol } from "../cols";
 
@@ -27,6 +20,7 @@ import {
   OnlineOrLive,
   TournamentOrLeague,
 } from "../../../frontend/src/models/game_event";
+import { addFirebaseRef, dateSorter } from "../../../frontend/src/infra/utils";
 
 export const postGameRecord = async (
   gameRecord: GameRecord,

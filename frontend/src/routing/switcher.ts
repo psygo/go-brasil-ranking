@@ -1,5 +1,5 @@
 import { Route, RouteEnum, Router } from "./router";
-import { Globals as g } from "../infra/globals";
+import { router } from "../infra/globals";
 
 import AboutView from "../ui/views/about-view";
 import GameRecordView from "../ui/views/game-record-view";
@@ -17,7 +17,7 @@ import NewGameRecordView from "../ui/views/new-game-record-view";
 import UnknownView from "../ui/views/unknown-view";
 
 export default class Switcher {
-  protected readonly router: Router = g.router;
+  protected readonly router: Router = router;
 
   constructor(public readonly currentRoute: Route = RouteEnum.home) {}
 

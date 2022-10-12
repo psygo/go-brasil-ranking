@@ -1,7 +1,6 @@
 import { onAuthStateChanged, User } from "firebase/auth";
 
-import { Globals as g } from "../../infra/globals";
-
+import { apiUrl, router, setup } from "../../infra/globals";
 import { RouteEnum } from "../../routing/router";
 
 import { Color, colorFromString, GameRecord } from "../../models/game_record";
@@ -15,15 +14,15 @@ export default class NewGameRecordView extends HTMLElement {
   constructor() {
     super();
 
-    g.setup.initAuth();
+    setup.initAuth();
   }
 
   async connectedCallback(): Promise<void> {
-    onAuthStateChanged(g.setup.auth!, (user) => {
+    onAuthStateChanged(setup.auth!, (user) => {
       if (user) {
         this.currentUser = user;
         this.setNewGameRecordForm();
-      } else g.router.manualRouting(RouteEnum.admin);
+      } else router.manualRouting(RouteEnum.admin);
     });
   }
 
@@ -226,7 +225,7 @@ export default class NewGameRecordView extends HTMLElement {
 
       const userIdToken = await this.currentUser?.getIdToken();
 
-      const res = await fetch(`${g.apiUrl}${RouteEnum.gameRecords}/novo`, {
+      const res = await fetch(`${apiUrl}${RouteEnum.gameRecords}/novo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

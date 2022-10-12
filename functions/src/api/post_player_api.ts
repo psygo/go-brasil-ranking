@@ -1,10 +1,11 @@
-import { dateSorter, ExpressApiRoute, lastElo, parseBody } from "../infra";
+import { ExpressApiRoute, lastElo, parseBody } from "../infra";
 
 import { playersCol } from "../cols";
 
 import { CountryName } from "../../../frontend/src/models/country";
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import { EloHistory, Player } from "../../../frontend/src/models/player";
+import { dateSorter } from "../../../frontend/src/infra/utils";
 
 export const postPlayer = async (
   player: Player,

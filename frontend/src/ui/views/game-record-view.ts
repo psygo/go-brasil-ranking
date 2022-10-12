@@ -1,7 +1,7 @@
 import { doc, getDoc } from "firebase/firestore";
 
+import { db } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
-import { Globals as g } from "../../infra/globals";
 import { EnvState, envState } from "../../infra/env";
 import { addFirebaseRef } from "../../infra/utils";
 import { RouteEnum } from "../../routing/router";
@@ -25,9 +25,7 @@ export default class GameRecordView extends HTMLElement {
   }
 
   private getGameRecord = async (): Promise<void> => {
-    const playerDoc = await getDoc(
-      doc(g.db, "game_records", this.gameRecordRef)
-    );
+    const playerDoc = await getDoc(doc(db, "game_records", this.gameRecordRef));
 
     this.gameRecord = addFirebaseRef(
       playerDoc.data() as GameRecord,
