@@ -1,4 +1,10 @@
-import { eloAtTheTime, ExpressApiRoute, lastElo, parseBody } from "../infra";
+import {
+  eloAtTheTime,
+  ExpressApiRoute,
+  lastElo,
+  parseBody,
+  postRankingData,
+} from "../infra";
 
 import { gameEventsCol, gameRecordsCol, playersCol } from "../cols";
 
@@ -20,7 +26,7 @@ import {
   OnlineOrLive,
   TournamentOrLeague,
 } from "../../../frontend/src/models/game_event";
-import { addFirebaseRef, dateSorter } from "../../../frontend/src/infra/utils";
+import { dateSorter } from "../../../frontend/src/infra/utils";
 
 export const postGameRecord = async (
   gameRecord: GameRecord,
@@ -50,7 +56,8 @@ export const postGameRecord = async (
 
   gameRecordOnDb = await addGameEvent(gameRecordOnDb);
 
-  gameRecordOnDb = await addGameToDbAndAddFirebaseRef(
+  gameRecordOnDb = await postRankingData(
+    gameRecordsCol,
     gameRecordOnDb,
     firebaseRef
   );
@@ -167,19 +174,6 @@ const addGameEvent = async (gameRecord: GameRecord): Promise<GameRecord> => {
       ...gameRecord,
       gameEvent: <OnlineOrLive>{ type: gameRecord.gameEventRef },
     };
-};
-
-const addGameToDbAndAddFirebaseRef = async (
-  gameRecord: GameRecord,
-  firebaseRef?: FirebaseRef
-): Promise<GameRecord> => {
-  if (firebaseRef) {
-    await gameRecordsCol.col.doc(firebaseRef).set(gameRecord);
-    return addFirebaseRef(gameRecord, firebaseRef);
-  } else {
-    const gameRecordRef = await gameRecordsCol.col.add(gameRecord);
-    return addFirebaseRef(gameRecord, gameRecordRef.id);
-  }
 };
 
 const updateLastGameForPlayer = async (
