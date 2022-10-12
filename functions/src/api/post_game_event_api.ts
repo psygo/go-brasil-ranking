@@ -2,6 +2,8 @@ import { ExpressApiRoute, parseBody } from "../infra";
 
 import { gameEventsCol } from "../cols";
 
+import { processGameEvent } from "./process_game_event";
+
 import { FirebaseRef } from "../../../frontend/src/models/firebase_models";
 import {
   GameEvent,
@@ -12,13 +14,7 @@ export const postGameEvent = async (
   gameEvent: TournamentOrLeague,
   firebaseRef?: FirebaseRef
 ): Promise<TournamentOrLeague> => {
-  const gameEventOnDb: GameEvent = {
-    ...gameEvent,
-    dateCreated: new Date().getTime(),
-    firstDate: gameEvent.dates[0],
-    participants: [],
-    gamesTotal: 0,
-  };
+  const gameEventOnDb: GameEvent = processGameEvent(gameEvent);
 
   if (!firebaseRef) {
     const gameEventRef = await gameEventsCol.col.add(gameEventOnDb);
