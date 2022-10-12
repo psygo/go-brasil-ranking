@@ -55,9 +55,7 @@ describe("Firebase Ref", () => {
 
     chai.expect(eventWithRef).to.deep.equal({
       firebaseRef: "0",
-      type: GameEventTypes.tournament,
-      name: "Comp 1",
-      dates: [new Date(2022, 0, 29).getTime()],
+      ...event,
     });
   });
 });
