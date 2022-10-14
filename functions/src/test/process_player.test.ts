@@ -38,6 +38,23 @@ describe("Process Player", () => {
 
     chai.expect(processedPlayer).to.deep.equal(<Player>{
       ...player,
+      searchableName: [
+        "p",
+        "ph",
+        "phi",
+        "phil",
+        "phili",
+        "philip",
+        "philipp",
+        "philippe",
+        "philippe ",
+        "philippe f",
+        "philippe fa",
+        "philippe fan",
+        "philippe fana",
+        "philippe fanar",
+        "philippe fanaro",
+      ],
       rebaseElos: [
         { date: new Date(2017, 9, 10).getTime(), elo: 2050 },
         { date: new Date(2021, 9, 0).getTime(), elo: 2150 },

@@ -70,3 +70,14 @@ export const lastElo = (eloHistory: EloHistory[]): Elo => {
     ? lastAtTheTimeElo.add(new Elo(lastEloDeltaNum))
     : lastAtTheTimeElo;
 };
+
+export const generateSearchableArrayFromString = (s: string): string[] => {
+  const searchableArray = [];
+  const length = s.length;
+  const lowerS = s.toLowerCase();
+
+  for (let i = 1; i < length + 1; i++)
+    searchableArray.push(lowerS.substring(0, i));
+
+  return searchableArray;
+};

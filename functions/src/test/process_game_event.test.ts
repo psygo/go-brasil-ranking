@@ -23,6 +23,7 @@ describe("Process Game Event", () => {
 
     chai.expect(processedEvent).to.deep.equal(<TournamentOrLeague>{
       ...event,
+      searchableName: ["c", "co", "com", "comp", "comp ", "comp 1"],
       dateCreated: processedEvent.dateCreated,
       firstDate: new Date(2022, 2, 10).getTime(),
       participants: [],

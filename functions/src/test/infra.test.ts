@@ -1,7 +1,11 @@
 import * as chai from "chai";
 
 import { EloHistory } from "../../../frontend/src/models/player";
-import { eloAtTheTime, lastElo } from "../infra";
+import {
+  eloAtTheTime,
+  generateSearchableArrayFromString,
+  lastElo,
+} from "../infra";
 
 describe("eloAtTheTime", () => {
   it("Past", () => {
@@ -79,5 +83,24 @@ describe("lastElo", () => {
     ];
 
     chai.expect(lastElo(eloHistory).serialize()).equal(2150);
+  });
+});
+
+describe("Searchable Array", () => {
+  it("Philippe", () => {
+    const name = "Philippe";
+
+    chai
+      .expect(generateSearchableArrayFromString(name))
+      .to.deep.equal([
+        "p",
+        "ph",
+        "phi",
+        "phil",
+        "phili",
+        "philip",
+        "philipp",
+        "philippe",
+      ]);
   });
 });

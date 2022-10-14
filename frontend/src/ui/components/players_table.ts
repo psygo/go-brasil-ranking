@@ -96,9 +96,12 @@ export default class PlayersTable extends UiTable<Player> {
     await this.firestoreQuery(
       query(
         collection(db, "players"),
-        where("name", "<=", this.playerNameSearch + "\uf8ff"),
-        where("name", ">=", this.playerNameSearch),
-        orderBy("name", "asc"),
+        where(
+          "searchableName",
+          "array-contains",
+          this.playerNameSearch.toLowerCase()
+        ),
+        orderBy("name", "desc"),
         startAfter(this.lastVisible),
         limit(queryLimit)
       )

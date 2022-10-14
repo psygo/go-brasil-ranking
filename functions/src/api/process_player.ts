@@ -1,4 +1,4 @@
-import { lastElo } from "../infra";
+import { generateSearchableArrayFromString, lastElo } from "../infra";
 
 import { CountryName } from "../../../frontend/src/models/country";
 import { EloHistory, Player } from "../../../frontend/src/models/player";
@@ -19,6 +19,7 @@ export const processPlayer = (player: Player): Player => {
 
   return {
     ...playerNoRebaseElos,
+    searchableName: generateSearchableArrayFromString(player.name),
     rebaseElos: reorederedRebaseElos,
     eloHistory: initialEloHistory,
     currentElo: lastElo(initialEloHistory).serialize(),

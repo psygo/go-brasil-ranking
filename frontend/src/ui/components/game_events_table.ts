@@ -4,6 +4,7 @@ import {
   orderBy,
   query,
   startAfter,
+  where,
 } from "firebase/firestore";
 
 import { db, queryLimit } from "../../infra/globals";
@@ -18,23 +19,47 @@ import { tableErrorLog, HtmlString } from "../../infra/utils";
 export default class GameEventsTable extends UiTable<TournamentOrLeague> {
   static readonly tag: string = "game-events-table";
 
+  private getAllGameEvents = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(db, "game_events"),
+        orderBy("firstDate", "desc"),
+        startAfter(this.lastVisible),
+        limit(queryLimit)
+      )
+    );
+  };
+
+  private getGameEventNameSearch = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(db, "game_events"),
+        where(
+          "searchableName",
+          "array-contains",
+          this.gameEventNameSearch.toLowerCase()
+        ),
+        orderBy("name", "desc"),
+        startAfter(this.lastVisible),
+        limit(queryLimit)
+      )
+    );
+  };
+
   protected getData = async (): Promise<void> => {
     try {
-      await this.firestoreQuery(
-        query(
-          collection(db, "game_events"),
-          orderBy("firstDate", "desc"),
-          startAfter(this.lastVisible),
-          limit(queryLimit)
-        )
-      );
+      if (this.gameEventNameSearch) await this.getGameEventNameSearch();
+      else await this.getAllGameEvents();
     } catch (e) {
       const error = e as Error;
       tableErrorLog(error, "Game Events' Table");
     }
   };
 
-  constructor(title: string = "Eventos") {
+  constructor(
+    title: string = "Eventos",
+    public readonly gameEventNameSearch: string = ""
+  ) {
     super(title);
   }
 

@@ -1,3 +1,5 @@
+import GameEventsTable from "../components/game_events_table";
+import GameRecordsTable from "../components/game_records_table";
 import PlayersTable from "../components/players_table";
 
 export default class SearchView extends HTMLElement {
@@ -39,9 +41,25 @@ export default class SearchView extends HTMLElement {
       const searchResultDiv: HTMLDivElement =
         this.querySelector("div#search-result")!;
 
-      searchResultDiv.replaceChildren(
-        new PlayersTable("", false, "", this.searchInput.value)
-      );
+      switch (this.select.value) {
+        case "playerName":
+          searchResultDiv.replaceChildren(
+            new PlayersTable("", false, "", this.searchInput.value)
+          );
+          break;
+        case "date":
+          searchResultDiv.replaceChildren(
+            new GameRecordsTable("", "", "", "", this.searchInput.valueAsDate!)
+          );
+          break;
+        case "eventName":
+          searchResultDiv.replaceChildren(
+            new GameEventsTable("", this.searchInput.value)
+          );
+          break;
+        default:
+          throw new Error("No value for this selection.");
+      }
     };
   }
 

@@ -11,7 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 
-import { db, queryLimit } from "../../infra/globals";
+import { dayInMs, db, queryLimit } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { RouteEnum } from "../../routing/router";
 import {
@@ -142,9 +142,24 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     await this.mergeParallelQueries(playerIsBlack, playerIsWhite);
   };
 
+  private getGameRecordsFromDate = async (): Promise<void> => {
+    console.log(this.date!.getTime());
+    await this.firestoreQuery(
+      query(
+        collection(db, "game_records"),
+        where("date", ">=", this.date!.getTime() - dayInMs),
+        where("date", "<=", this.date!.getTime() + dayInMs),
+        orderBy("date", "desc"),
+        startAfter(this.lastVisible),
+        limit(queryLimit)
+      )
+    );
+  };
+
   protected getData = async (): Promise<void> => {
     try {
-      if (this.playerRef1 && this.playerRef2)
+      if (this.date) await this.getGameRecordsFromDate();
+      else if (this.playerRef1 && this.playerRef2)
         await this.getPlayersGameRecords();
       else if (this.playerRef1) await this.getPlayerGameRecords();
       else if (this.eventRef) await this.getGameRecordsFromEvent();
@@ -159,7 +174,8 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     title: string = "Partidas",
     public readonly playerRef1: FirebaseRef = "",
     public readonly playerRef2: FirebaseRef = "",
-    public readonly eventRef: FirebaseRef = ""
+    public readonly eventRef: FirebaseRef = "",
+    public readonly date?: Date
   ) {
     super(title);
   }

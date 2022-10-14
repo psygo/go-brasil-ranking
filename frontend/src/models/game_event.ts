@@ -27,6 +27,7 @@ export type GameEventLive = Readonly<_GameEventLive>;
 interface _TournamentLeagueBase extends _GameEventBase {
   firebaseRef?: FirebaseRef;
   name: string;
+  searchableName?: string[];
   dates: readonly number[];
   firstDate?: number;
   link?: string;
