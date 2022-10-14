@@ -1,0 +1,6 @@
+@use "../components/form_utils" as fu;
+
+search-view {
+   @include fu.form; 
+   @include fu.formButton; 
+}

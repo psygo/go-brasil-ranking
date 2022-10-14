@@ -117,7 +117,9 @@ export default abstract class UiTable<
     const nextPageButton: HTMLButtonElement =
       this.querySelector("button.next-page")!;
 
-    nextPageButton.onclick = async (): Promise<void> => {
+    nextPageButton.onclick = async (evt: Event): Promise<void> => {
+      evt.preventDefault();
+
       this.startAfter += queryLimit;
 
       this.toggleLoader();

@@ -9,12 +9,13 @@ import GameEventsView from "../ui/views/game-events-view";
 import HomeView from "../ui/views/home-view";
 import PlayerView from "../ui/views/player-view";
 import PlayersView from "../ui/views/players-view";
+import SearchView from "../ui/views/search-view";
+import UnknownView from "../ui/views/unknown-view";
 
 import AdminView from "../ui/views/admin-view";
 import NewPlayerView from "../ui/views/new-player-view";
 import NewGameEventView from "../ui/views/new-game-event-view";
 import NewGameRecordView from "../ui/views/new-game-record-view";
-import UnknownView from "../ui/views/unknown-view";
 
 export default class Switcher {
   protected readonly router: Router = router;
@@ -41,6 +42,9 @@ export default class Switcher {
         break;
       case RouteEnum.about:
         new AboutSwitcher().switch();
+        break;
+      case RouteEnum.search:
+        new SearchSwitcher().switch();
         break;
       case RouteEnum.admin:
         new AdminSwitcher().switch();
@@ -102,6 +106,12 @@ class GameEventsSwitcher extends Switcher {
 class AboutSwitcher extends Switcher {
   switch = (): void => {
     this.mainElement.replaceChildren(new AboutView());
+  };
+}
+
+class SearchSwitcher extends Switcher {
+  switch = (): void => {
+    this.mainElement.replaceChildren(new SearchView());
   };
 }
 

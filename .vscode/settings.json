@@ -6,8 +6,8 @@
         "public/": true,
         //
         //   1. JS | TS | Packages
-        "**/dist/": false,
-        "**/index.js": false,
+        "**/dist/": true,
+        "**/index.js": true,
         "**/index.js.map": true,
         "**/node_modules/": true,
         "**/package-lock.json": true,

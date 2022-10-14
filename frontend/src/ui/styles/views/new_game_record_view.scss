@@ -1,6 +1,6 @@
-@use "admin_view" as av;
+@use "../components/form_utils" as fu;
 
 new-game-record-view {
-  @include av.form;
-  @include av.formReturnMsg;
+  @include fu.form;
+  @include fu.formReturnMsg;
 }

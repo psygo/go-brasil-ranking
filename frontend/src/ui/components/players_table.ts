@@ -92,9 +92,23 @@ export default class PlayersTable extends UiTable<Player> {
   private declare gameEvent: TournamentOrLeague;
   private declare lastVisibleRef: FirebaseRef;
 
+  private getPlayerNameSearch = async (): Promise<void> => {
+    await this.firestoreQuery(
+      query(
+        collection(db, "players"),
+        where("name", "<=", this.playerNameSearch + "\uf8ff"),
+        where("name", ">=", this.playerNameSearch),
+        orderBy("name", "asc"),
+        startAfter(this.lastVisible),
+        limit(queryLimit)
+      )
+    );
+  };
+
   protected getData = async (): Promise<void> => {
     try {
-      if (this.eventRef) await this.getFromEvent();
+      if (this.playerNameSearch) await this.getPlayerNameSearch();
+      else if (this.eventRef) await this.getFromEvent();
       else if (this.onlyBrazilians) await this.getOnlyBrazilians();
       else await this.getAllPlayers();
     } catch (e) {
@@ -106,7 +120,8 @@ export default class PlayersTable extends UiTable<Player> {
   constructor(
     title: string = "Jogadores",
     public readonly onlyBrazilians: boolean = false,
-    public readonly eventRef: FirebaseRef = ""
+    public readonly eventRef: FirebaseRef = "",
+    public readonly playerNameSearch: string = ""
   ) {
     super(title);
   }

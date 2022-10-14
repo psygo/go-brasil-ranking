@@ -154,7 +154,7 @@ const addGameEvent = async (gameRecord: GameRecord): Promise<GameRecord> => {
     const gameEvent = (await eventRef.get()).data() as TournamentOrLeague;
 
     if (gameEvent) {
-      let participants = gameEvent.participants
+      const participants = gameEvent.participants
         ? [...gameEvent.participants]
         : [];
       if (!participants.includes(gameRecord.blackRef))

@@ -1,115 +1,8 @@
-@mixin formButton {
-  button {
-    width: max-content;
-
-    margin-top: 10px;
-    padding: 7px 10px;
-
-    font-size: 1.1rem;
-
-    border-radius: 0.3rem;
-    border: 1px solid gray;
-  }
-}
-
-@mixin formFieldsetDecoration {
-  border: 0;
-}
-
-@mixin formLabel {
-  label {
-    height: 10px;
-    padding-left: 1px;
-  }
-}
-
-@mixin formInputSelect {
-  input,
-  select {
-    height: 35px;
-    width: 290px;
-
-    font-size: 1.1rem;
-
-    border-radius: 0.3rem;
-    border: 1px solid gray;
-
-    &:focus-visible {
-      outline: darken(blue, 10%) solid 1.5px;
-    }
-  }
-
-  input {
-    padding-left: 10px;
-    padding-right: 10px;
-    
-    &[type="file"] {
-      border: 0;
-      padding-left: 1px;
-    }
-  }
-
-  select {
-    padding-left: 5px;
-    padding-right: 5px;
-  }
-}
-
-@mixin formGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 25px;
-}
-
-@mixin fieldsetGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 20px;
-}
-
-@mixin multiSelect {
-  div.multi-select {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-row-gap: 10px;
-  }
-}
-
-@mixin form {
-  form {
-    @include formGrid;
-    @include formButton;
-
-    font-size: 1.15rem;
-    margin-top: 30px;
-
-    fieldset {
-      @include fieldsetGrid;
-      @include formFieldsetDecoration;
-      @include formLabel;
-      @include formInputSelect;
-      @include multiSelect;
-    }
-  }
-}
-
-@mixin routeLinkDecoration {
-  route-link {
-    color: darken(green, 10%);
-  }
-}
-
-@mixin formReturnMsg {
-  div#return-msg {
-    margin-top: 30px;
-
-    @include routeLinkDecoration;
-  }
-}
+@use "../components/form_utils" as fu;
 
 admin-view {
   &[signed-in="false"] {
-    @include form;
+    @include fu.form;
   }
 
   &[signed-in="true"] {
@@ -118,8 +11,8 @@ admin-view {
     grid-template-rows: max-content max-content max-content;
     grid-template-areas: "msg" "sign-out-button" "add-new-links";
 
-    @include formButton;
-    @include formReturnMsg;
+    @include fu.formButton;
+    @include fu.formReturnMsg;
 
     p {
       margin-top: 40px;
@@ -141,7 +34,7 @@ admin-view {
           margin-bottom: 7px;
         }
 
-        @include routeLinkDecoration;
+        @include fu.routeLinkDecoration;
       }
     }
   }
