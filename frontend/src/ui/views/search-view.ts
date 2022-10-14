@@ -35,33 +35,37 @@ export default class SearchView extends HTMLElement {
     `;
 
     this.select.onclick = this.selectType;
-    this.form.onsubmit = (evt: Event): void => {
-      evt.preventDefault();
+    this.select.click();
 
-      const searchResultDiv: HTMLDivElement =
-        this.querySelector("div#search-result")!;
-
-      switch (this.select.value) {
-        case "playerName":
-          searchResultDiv.replaceChildren(
-            new PlayersTable("", false, "", this.searchInput.value)
-          );
-          break;
-        case "date":
-          searchResultDiv.replaceChildren(
-            new GameRecordsTable("", "", "", "", this.searchInput.valueAsDate!)
-          );
-          break;
-        case "eventName":
-          searchResultDiv.replaceChildren(
-            new GameEventsTable("", this.searchInput.value)
-          );
-          break;
-        default:
-          throw new Error("No value for this selection.");
-      }
-    };
+    this.form.onsubmit = this.onSubmit;
   }
+
+  private onSubmit = (evt: Event): void => {
+    evt.preventDefault();
+
+    const searchResultDiv: HTMLDivElement =
+      this.querySelector("div#search-result")!;
+
+    switch (this.select.value) {
+      case "playerName":
+        searchResultDiv.replaceChildren(
+          new PlayersTable("", false, "", this.searchInput.value)
+        );
+        break;
+      case "date":
+        searchResultDiv.replaceChildren(
+          new GameRecordsTable("", "", "", "", this.searchInput.valueAsDate!)
+        );
+        break;
+      case "eventName":
+        searchResultDiv.replaceChildren(
+          new GameEventsTable("", this.searchInput.value)
+        );
+        break;
+      default:
+        throw new Error("No value for this selection.");
+    }
+  };
 
   private get form(): HTMLFormElement {
     return this.querySelector("form")!;
@@ -86,7 +90,6 @@ export default class SearchView extends HTMLElement {
         searchInput.type = "text";
         break;
       case "date":
-        searchInput.placeholder = "01-01-2022";
         searchInput.type = "date";
         break;
       case "eventName":

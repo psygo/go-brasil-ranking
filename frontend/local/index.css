@@ -51,6 +51,11 @@ header nav-bar nav {
 header nav-bar nav route-link {
   color: #f9f9f9;
 }
+header nav-bar nav route-link svg {
+  padding-top: 2px;
+  width: 18px;
+  fill: white;
+}
 
 footer {
   grid-area: footer;
@@ -719,6 +724,10 @@ game-event-view #card #content img {
   border-radius: 10px;
 }
 
+search-view {
+  display: grid;
+  justify-items: center;
+}
 search-view form {
   display: grid;
   grid-template-columns: 1fr;

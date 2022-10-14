@@ -16,6 +16,12 @@ header {
 
       route-link {
         color: g.$lightFontColor;
+
+        svg {
+          padding-top: 2px;
+          width: 18px;
+          fill: lighten(g.$lightFontColor, 50%);
+        }
       }
     }
   }
