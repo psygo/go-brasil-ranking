@@ -21,10 +21,11 @@ body {
   background-color: $bgColor;
 
   min-height: 100vh;
+
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 42px 1fr auto;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: 42px 1fr;
+  grid-template-areas: "header" "main";
 }
 
 a {
@@ -37,11 +38,10 @@ route-link:hover {
 
 main {
   max-width: 1200px;
-
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin: auto;
 
   padding-top: $mainPaddingTop;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
 }

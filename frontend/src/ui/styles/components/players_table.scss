@@ -3,26 +3,38 @@
 $gamesTotalWidth: 65px;
 
 players-table {
-  @mixin cardLegendGrid {
-    $playerNameWidth: 155px;
-    $playerCountriesWidth: 40px;
-    $danKyuWidth: 45px;
-    $lastGameDateWidth: 100px;
+  $playerNameWidth: 155px;
+  $playerCountriesWidth: 40px;
+  $danKyuWidth: 45px;
+  $lastGameDateWidth: 100px;
 
+  @mixin cardLegendGrid {
     display: grid;
     grid-template-columns:
       tu.$refWidth tu.$pictureWidth $playerNameWidth $playerCountriesWidth
       tu.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
-    grid-template-areas:
-      "ref"
-      "player-picture player-name countries"
-      "elo dan-kyu last-game-date";
     grid-column-gap: tu.$columnGap;
+  }
+
+  @mixin cardLegendGridMobile {
+    $playerNameWidthSmaller: 100px;
+
+    display: grid;
+    grid-template-columns:
+      tu.$refWidth tu.$pictureWidth $playerNameWidthSmaller $playerCountriesWidth
+      tu.$eloWidth $danKyuWidth;
+    grid-column-gap: tu.$columnGap;
+  }
+
+  @media (max-width: 1200px) {
+    .non-mobile {
+      display: none !important;
+    }
   }
 
   route-link.card,
   #legend {
-    @include cardLegendGrid;
+    @include cardLegendGridMobile;
   }
 
   @include tu.completeTableDecoration;

@@ -3,9 +3,13 @@
 footer {
   grid-area: footer;
 
+  position: relative;
+  bottom: 0;
+  
   footer-container {
     display: flex;
     justify-content: center;
+    width: 100vw;
 
     padding-bottom: 5px;
     padding-top: 10px;

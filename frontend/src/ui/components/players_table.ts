@@ -157,8 +157,8 @@ export default class PlayersTable extends UiTable<Player> {
         <span>País</span>
         <span>Elo</span>
         <span>Dan Kyu</span>
-        <span>Data da Última Partida</span>
-        <span>Número de Partidas</span>
+        <span class="non-mobile">Data da Última Partida</span>
+        <span class="non-mobile">Número de Partidas</span>
       </div>
     `;
   }
@@ -199,9 +199,9 @@ export default class PlayersTable extends UiTable<Player> {
 
             <span>${elo.danKyuLevel()}</span>
             
-            ${UiUtils.lastGameLink(player)}
+            <div class="non-mobile">${UiUtils.lastGameLink(player)}</div>
             
-            <span>${player.gamesTotal}</span>
+            <div class="non-mobile"><span>${player.gamesTotal}</span></div>
         </route-link>
       `;
     }

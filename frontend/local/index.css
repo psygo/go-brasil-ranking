@@ -16,8 +16,8 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 42px 1fr auto;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: 42px 1fr;
+  grid-template-areas: "header" "main";
 }
 
 a {
@@ -30,11 +30,11 @@ route-link:hover {
 
 main {
   max-width: 1200px;
-  margin: 0 auto;
-  margin-bottom: 50px;
+  margin: auto;
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 20px;
 }
 
 header {
@@ -42,6 +42,7 @@ header {
   background-color: green;
   font-size: 1.1rem;
   padding-left: 15px;
+  padding-right: 15px;
   padding-top: 10px;
 }
 header nav-bar nav {
@@ -59,10 +60,13 @@ header nav-bar nav route-link svg {
 
 footer {
   grid-area: footer;
+  position: relative;
+  bottom: 0;
 }
 footer footer-container {
   display: flex;
   justify-content: center;
+  width: 100vw;
   padding-bottom: 5px;
   padding-top: 10px;
 }
@@ -183,11 +187,15 @@ game-records-table route-link.card[player-loses] {
   background-color: #ffe6e6;
 }
 
+@media (max-width: 1200px) {
+  players-table .non-mobile {
+    display: none !important;
+  }
+}
 players-table route-link.card,
 players-table #legend {
   display: grid;
-  grid-template-columns: 30px 70px 155px 40px 60px 45px 100px 65px;
-  grid-template-areas: "ref" "player-picture player-name countries" "elo dan-kyu last-game-date";
+  grid-template-columns: 30px 70px 100px 40px 60px 45px;
   grid-column-gap: 10px;
 }
 players-table span:not(.align-left) {
@@ -548,6 +556,12 @@ player-view #player-personal-card #player-personal-card-legend {
   margin-bottom: 10px;
   font-weight: bold;
   padding: 10px 10px;
+}
+
+players-view {
+  display: flex;
+  justify-items: center;
+  justify-content: center;
 }
 
 game-record-view {
