@@ -1,27 +1,42 @@
-@use "../components/table_utils" as tu;
+@use "../globals.scss" as g;
 
+@use "../components/table_utils" as tu;
 @use "../components/players_table" as pt;
 
 $gameEventTypeWidth: 75px;
 
 game-events-table {
-  @mixin cardLegendGrid {
-    $gameEventNameWidth: 170px;
-    $gameEventFirstDate: 90px;
-    $gameEventLastDate: 90px;
+  $gameEventNameWidth: 160px;
+  $gameEventFirstDate: 90px;
+  $gameEventLastDate: 90px;
 
+  @mixin cardLegendGridDesktop {
     display: grid;
     grid-template-columns:
       tu.$refWidth $gameEventNameWidth $gameEventTypeWidth
       pt.$gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
-    grid-template-areas: "ref name type total-games";
     grid-column-gap: tu.$columnGap;
   }
 
   route-link.card,
   #legend {
-    @include cardLegendGrid;
+    @include cardLegendGridDesktop;
   }
 
   @include tu.completeTableDecoration;
+
+  @media (max-width: g.$desktopWidth) {
+    @mixin cardLegendGridMobile {
+      display: grid;
+      grid-template-columns:
+        tu.$refWidth $gameEventNameWidth $gameEventTypeWidth
+        $gameEventFirstDate;
+      grid-column-gap: tu.$columnGap;
+    }
+
+    route-link.card,
+    #legend {
+      @include cardLegendGridMobile;
+    }
+  }
 }

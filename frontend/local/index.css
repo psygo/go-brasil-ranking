@@ -173,6 +173,11 @@ game-records-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
+@media (max-width: 1200px) {
+  game-records-table .non-mobile {
+    display: none !important;
+  }
+}
 game-records-table route-link.card,
 game-records-table #legend {
   display: grid;
@@ -292,22 +297,23 @@ players-table #legend {
   font-weight: bold;
 }
 @media (max-width: 1200px) {
+  players-table .non-mobile {
+    display: none !important;
+  }
+}
+@media (max-width: 1200px) {
   players-table route-link.card,
 players-table #legend {
     display: grid;
     grid-template-columns: 15px 70px 75px 40px 30px 35px;
     grid-column-gap: 10px;
   }
-  players-table .non-mobile {
-    display: none !important;
-  }
 }
 
 game-events-table route-link.card,
 game-events-table #legend {
   display: grid;
-  grid-template-columns: 15px 170px 75px 65px 90px 90px;
-  grid-template-areas: "ref name type total-games";
+  grid-template-columns: 15px 160px 75px 65px 90px 90px;
   grid-column-gap: 10px;
 }
 game-events-table span:not(.align-left) {
@@ -407,6 +413,19 @@ game-events-table #legend {
   align-items: center;
   margin-bottom: 10px;
   font-weight: bold;
+}
+@media (max-width: 1200px) {
+  game-events-table .non-mobile {
+    display: none !important;
+  }
+}
+@media (max-width: 1200px) {
+  game-events-table route-link.card,
+game-events-table #legend {
+    display: grid;
+    grid-template-columns: 15px 160px 75px 90px;
+    grid-column-gap: 10px;
+  }
 }
 
 about-view {

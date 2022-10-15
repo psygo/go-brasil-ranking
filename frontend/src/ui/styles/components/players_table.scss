@@ -1,3 +1,5 @@
+@use "../globals.scss" as g;
+
 @use "../components/table_utils" as tu;
 
 $gamesTotalWidth: 65px;
@@ -7,7 +9,7 @@ players-table {
   $danKyuWidth: 35px;
   $lastGameDateWidth: 100px;
 
-  @mixin cardLegendGrid {
+  @mixin cardLegendGridDesktop {
     display: grid;
     grid-template-columns:
       tu.$refWidth tu.$pictureWidth tu.$playerNameWidth $playerCountriesWidth
@@ -17,14 +19,13 @@ players-table {
 
   route-link.card,
   #legend {
-    @include cardLegendGrid;
+    @include cardLegendGridDesktop;
   }
 
   @include tu.completeTableDecoration;
 
-  @media (max-width: 1200px) {
+  @media (max-width: g.$desktopWidth) {
     @mixin cardLegendGridMobile {
-
       display: grid;
       grid-template-columns:
         tu.$refWidth tu.$pictureWidth tu.$playerNameWidth
@@ -35,10 +36,6 @@ players-table {
     route-link.card,
     #legend {
       @include cardLegendGridMobile;
-    }
-
-    .non-mobile {
-      display: none !important;
     }
   }
 }

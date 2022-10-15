@@ -79,9 +79,9 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
         <span>#</span>
         <span class="align-left">Nome</span>
         <span>Tipo</span>
-        <span>Total de Partidas</span>
+        <span class="non-mobile">Total de Partidas</span>
         <span>Data de Início</span>
-        <span>Data de Fim</span>
+        <span class="non-mobile">Data de Fim</span>
       </div>
     `;
   }
@@ -117,11 +117,11 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
             
             <span>${gameEvent.type}</span>
             
-            <span>${gameEvent.gamesTotal}</span>
+            <span class="non-mobile">${gameEvent.gamesTotal}</span>
             
             <span>${firstDate}</span>
 
-            <span>${lastDate}</span>
+            <span class="non-mobile">${lastDate}</span>
         </route-link>
       `;
     }

@@ -1,5 +1,7 @@
+@use "../globals.scss" as g;
+
 players-view {
-  @media (min-width: 1200px) {
+  @media (min-width: g.$desktopWidth) {
     display: flex;
     justify-items: center;
     justify-content: center;
