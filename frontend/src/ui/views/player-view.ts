@@ -85,7 +85,8 @@ export default class PlayerView extends HTMLElement {
         scales: {
           x: {
             ticks: {
-              autoSkip: false,
+              autoSkip: true,
+              maxTicksLimit: 12,
               maxRotation: 45,
               minRotation: 45,
               font: {
@@ -145,8 +146,8 @@ export default class PlayerView extends HTMLElement {
           <span>Cidade</span>
           <span>Elo</span>
           <span>Dan Kyu</span>
-          <span>Número de Partidas</span>
-          <span>Data da Última Partida</span>
+          <span># de Partidas</span>
+          <span>Última Partida</span>
         </div>
 
         <div id="player-personal-card-content">

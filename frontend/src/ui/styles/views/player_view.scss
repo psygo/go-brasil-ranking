@@ -5,7 +5,7 @@
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 155px 350px 1fr;
+  grid-template-rows: 100px 255px 350px 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "elo-graph" "game-records";
   justify-items: center;
@@ -25,8 +25,8 @@ player-view {
     }
 
     canvas {
-      max-width: 500px;
-      max-height: 225px;
+      max-width: 350px;
+      max-height: 350px;
 
       @include tu.cardDecoration;
       background-color: whitesmoke;
@@ -46,11 +46,17 @@ player-view {
 
   #player-personal-card {
     @include tu.spanAlignment;
+    
+    margin-left: -40px;
+    
+    display: flex;
+    flex-direction: row;
 
     @mixin cardLegendGrid {
       display: grid;
-      grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
-      grid-column-gap: tu.$columnGap;
+      // grid-template-rows: 240px 55px 70px 60px 60px 60px 120px;
+      grid-template-columns: 1fr;
+      grid-row-gap: tu.$columnGap;
     }
 
     #player-personal-card-content {

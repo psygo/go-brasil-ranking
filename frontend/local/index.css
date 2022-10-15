@@ -241,6 +241,12 @@ players-table #legend {
   grid-template-columns: 15px 70px 75px 40px 40px 35px 100px 65px;
   grid-column-gap: 10px;
 }
+@media (max-width: 1000px) {
+  players-table route-link.card,
+players-table #legend {
+    grid-template-columns: 15px 70px 75px 40px 40px 35px;
+  }
+}
 players-table span:not(.align-left) {
   display: flex;
   justify-content: center;
@@ -344,20 +350,18 @@ players-table #legend {
     display: none !important;
   }
 }
-@media (max-width: 1000px) {
-  players-table route-link.card,
-players-table #legend {
-    display: grid;
-    grid-template-columns: 15px 70px 75px 40px 40px 35px;
-    grid-column-gap: 10px;
-  }
-}
 
 game-events-table route-link.card,
 game-events-table #legend {
   display: grid;
   grid-template-columns: 15px 160px 75px 65px 90px 90px;
   grid-column-gap: 10px;
+}
+@media (max-width: 1000px) {
+  game-events-table route-link.card,
+game-events-table #legend {
+    grid-template-columns: 15px 160px 75px 90px;
+  }
 }
 game-events-table span:not(.align-left) {
   display: flex;
@@ -462,14 +466,6 @@ game-events-table #legend {
     display: none !important;
   }
 }
-@media (max-width: 1000px) {
-  game-events-table route-link.card,
-game-events-table #legend {
-    display: grid;
-    grid-template-columns: 15px 160px 75px 90px;
-    grid-column-gap: 10px;
-  }
-}
 
 about-view {
   display: flex;
@@ -535,7 +531,7 @@ home-view {
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 155px 350px 1fr;
+  grid-template-rows: 100px 255px 350px 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "elo-graph" "game-records";
   justify-items: center;
@@ -553,8 +549,8 @@ player-view #graph h2 {
   font-size: 1.8rem;
 }
 player-view #graph canvas {
-  max-width: 500px;
-  max-height: 225px;
+  max-width: 350px;
+  max-height: 350px;
   background: whitesmoke;
   border: 3px solid #eee;
   border-radius: 5px;
@@ -579,6 +575,11 @@ player-view #name img {
   max-height: 100px;
   border-radius: 10px;
 }
+player-view #player-personal-card {
+  margin-left: -40px;
+  display: flex;
+  flex-direction: row;
+}
 player-view #player-personal-card span:not(.align-left) {
   display: flex;
   justify-content: center;
@@ -591,8 +592,8 @@ player-view #player-personal-card .align-left {
 }
 player-view #player-personal-card #player-personal-card-content {
   display: grid;
-  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
-  grid-column-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;
@@ -625,8 +626,8 @@ player-view #player-personal-card #player-personal-card-content img {
 }
 player-view #player-personal-card #player-personal-card-legend {
   display: grid;
-  grid-template-columns: 240px 55px 70px 60px 60px 60px 120px;
-  grid-column-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
   align-items: center;
   margin-bottom: 10px;
   font-weight: bold;

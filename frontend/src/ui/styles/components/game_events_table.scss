@@ -10,33 +10,24 @@ game-events-table {
   $gameEventFirstDate: 90px;
   $gameEventLastDate: 90px;
 
-  @mixin cardLegendGridDesktop {
+  @mixin cardLegendGrid {
     display: grid;
     grid-template-columns:
       tu.$refWidth $gameEventNameWidth $gameEventTypeWidth
       pt.$gamesTotalWidth $gameEventFirstDate $gameEventLastDate;
     grid-column-gap: tu.$columnGap;
+
+    @media (max-width: g.$desktopWidth) {
+      grid-template-columns:
+        tu.$refWidth $gameEventNameWidth $gameEventTypeWidth
+        $gameEventFirstDate;
+    }
   }
 
   route-link.card,
   #legend {
-    @include cardLegendGridDesktop;
+    @include cardLegendGrid;
   }
 
   @include tu.completeTableDecoration;
-
-  @media (max-width: g.$desktopWidth) {
-    @mixin cardLegendGridMobile {
-      display: grid;
-      grid-template-columns:
-        tu.$refWidth $gameEventNameWidth $gameEventTypeWidth
-        $gameEventFirstDate;
-      grid-column-gap: tu.$columnGap;
-    }
-
-    route-link.card,
-    #legend {
-      @include cardLegendGridMobile;
-    }
-  }
 }
