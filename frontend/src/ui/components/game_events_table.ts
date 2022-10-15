@@ -75,14 +75,12 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
 
   protected get legend(): HtmlString {
     return /*html*/ `
-      <div id="legend">
-        <span>#</span>
-        <span class="align-left">Nome</span>
-        <span>Tipo</span>
-        <span class="non-mobile">Total de Partidas</span>
-        <span>Data de Início</span>
-        <span class="non-mobile">Data de Fim</span>
-      </div>
+      <span>#</span>
+      <span class="align-left">Nome</span>
+      <span>Tipo</span>
+      <span class="non-mobile">Total de Partidas</span>
+      <span>Data de Início</span>
+      <span class="non-mobile">Data de Fim</span>
     `;
   }
 

@@ -150,16 +150,14 @@ export default class PlayersTable extends UiTable<Player> {
 
   protected get legend(): HtmlString {
     return /*html*/ `
-      <div id="legend">
-        <span>#</span>
-        <span>Foto</span>
-        <span class="align-left">Nome</span>
-        <span>País</span>
-        <span>Elo</span>
-        <span>Dan Kyu</span>
-        <span class="non-mobile">Data da Última Partida</span>
-        <span class="non-mobile">Número de Partidas</span>
-      </div>
+      <span>#</span>
+      <span>Foto</span>
+      <span class="align-left">Nome</span>
+      <span>País</span>
+      <span>Elo</span>
+      <span>Dan Kyu</span>
+      <span class="non-mobile">Data da Última Partida</span>
+      <span class="non-mobile">Número de Partidas</span>
     `;
   }
 

@@ -46,15 +46,14 @@ player-view {
 
   #player-personal-card {
     @include tu.spanAlignment;
-    
+
     margin-left: -40px;
-    
+
     display: flex;
     flex-direction: row;
 
     @mixin cardLegendGrid {
       display: grid;
-      // grid-template-rows: 240px 55px 70px 60px 60px 60px 120px;
       grid-template-columns: 1fr;
       grid-row-gap: tu.$columnGap;
     }

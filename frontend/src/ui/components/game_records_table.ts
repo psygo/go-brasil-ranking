@@ -194,15 +194,13 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     const player2Name = this.playerName(this.playerRef2);
     return this.playerRef1 && this.playerRef2
       ? /*html*/ `
-        <h2>
-          Todas as Partidas entre ${player1Name} e ${player2Name}
-        </h2>
+        <h2>Todas as Partidas entre</h2>
+        <h2>${player1Name} e ${player2Name}</h2>
       `
       : this.playerRef1
       ? /*html*/ `
-        <h2>
-          Todas Partidas de ${this.playerName(this.playerRef1)}
-        </h2>
+        <h2>Todas as Partidas de</h2>
+        <h2>${this.playerName(this.playerRef1)}</h2>
       `
       : this.eventRef
       ? /*html*/ `<h2>${this.title}</h2>`
@@ -217,28 +215,29 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
 
   protected get legend(): HtmlString {
     return /*html*/ `
-      <div id="legend">
-        <span class="non-mobile">#</span>
-        <div class="player">
-          <span>Foto Preto</span>
-          <span class="align-left">Preto</span>
-          <span>País Preto</span>
-          <span>Elo</span>
-          <span>Elo Dif</span>
-        </div>
-        <div class="player">
-          <span>Foto Branco</span>
-          <span class="align-left">Branco</span>
-          <span>País Branco</span>
-          <span>Elo</span>
-          <span>Elo Dif</span>
-        </div>
-        <div class="meta">
-          <span class="non-mobile">Com-pensa-ção</span>
-          <span class="non-mobile">Resul-tado</span>
-          <span>Data</span>
-          <span>Evento</span>
-        </div>
+      <span class="non-mobile">#</span>
+
+      <div class="player">
+        <span>Foto Preto</span>
+        <span class="align-left">Preto</span>
+        <span>País Preto</span>
+        <span>Elo</span>
+        <span>Elo Dif</span>
+      </div>
+
+      <div class="player">
+        <span>Foto Branco</span>
+        <span class="align-left">Branco</span>
+        <span>País Branco</span>
+        <span>Elo</span>
+        <span>Elo Dif</span>
+      </div>
+
+      <div class="meta">
+        <span class="non-mobile">Com-pensa-ção</span>
+        <span class="non-mobile">Resul-tado</span>
+        <span>Data</span>
+        <span>Evento</span>
       </div>
     `;
   }

@@ -84,17 +84,23 @@ export default abstract class UiTable<
   protected abstract get caption(): HtmlString;
 
   private setCaption = (): void => {
-    this.innerHTML = this.caption + this.innerHTML;
+    const captionDiv: HTMLDivElement = this.querySelector("#caption")!;
+    captionDiv.innerHTML = this.caption;
   };
 
   protected abstract get legend(): HtmlString;
 
   private setLegend = (): void => {
-    this.innerHTML = this.legend + this.innerHTML;
+    const legendDiv: HTMLDivElement = this.querySelector("#legend")!;
+    legendDiv.innerHTML = this.legend;
   };
 
   protected prepareTable = (): void => {
     this.innerHTML += /*html*/ `
+      <div id="caption"></div>
+
+      <div id="legend"></div>
+
       <div id="cards"></div>
 
       <div class="loader-container">

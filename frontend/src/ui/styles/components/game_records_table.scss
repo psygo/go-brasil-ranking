@@ -74,6 +74,7 @@ game-records-table {
     @include cardLegendGrid;
   }
 
+
   @media (max-width: g.$desktopWidth) {
     #legend {
       display: none;

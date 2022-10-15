@@ -55,9 +55,16 @@
 
     font-size: 1.8rem;
 
+    max-width: 400px;
+    text-align: center;
+
     route-link {
       color: darken(green, 7%);
     }
+  }
+
+  route-link {
+    margin: 0 auto;
   }
 }
 

@@ -90,9 +90,14 @@ game-records-table h2 {
   justify-content: center;
   margin-bottom: 15px;
   font-size: 1.8rem;
+  max-width: 400px;
+  text-align: center;
 }
 game-records-table h2 route-link {
   color: #005c00;
+}
+game-records-table route-link {
+  margin: 0 auto;
 }
 game-records-table .pagination {
   display: flex;
@@ -262,9 +267,14 @@ players-table h2 {
   justify-content: center;
   margin-bottom: 15px;
   font-size: 1.8rem;
+  max-width: 400px;
+  text-align: center;
 }
 players-table h2 route-link {
   color: #005c00;
+}
+players-table route-link {
+  margin: 0 auto;
 }
 players-table .pagination {
   display: flex;
@@ -378,9 +388,14 @@ game-events-table h2 {
   justify-content: center;
   margin-bottom: 15px;
   font-size: 1.8rem;
+  max-width: 400px;
+  text-align: center;
 }
 game-events-table h2 route-link {
   color: #005c00;
+}
+game-events-table route-link {
+  margin: 0 auto;
 }
 game-events-table .pagination {
   display: flex;
