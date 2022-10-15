@@ -235,7 +235,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
         </div>
         <div class="meta">
           <span class="non-mobile">Com-pensa-ção</span>
-          <span>Resultado</span>
+          <span class="non-mobile">Resul-tado</span>
           <span>Data</span>
           <span>Evento</span>
         </div>
@@ -322,7 +322,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
             <div class="meta">
               <span class="non-mobile">${handicap}</span>
 
-              <span class="who-wins">${resultString(gameRecord.result)}</span>
+              <span class="non-mobile">${resultString(gameRecord.result)}</span>
 
               <span>${DateUtils.formatDate(gameDate)}</span>
               

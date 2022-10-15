@@ -60,12 +60,12 @@ game-records-table {
     align-items: center;
 
     @media (max-width: g.$desktopWidth) {
-      .who-wins {
-        margin-left: -17.5px;
-      }
-      
+      grid-template-columns: tu.$dateWidth tu.$eventWidth !important;
+      grid-column-gap: 4 * tu.$columnGap !important;
+
       border-top: 1px solid black;
-      padding-top: 5px;
+      padding-top: 12.5px;
+      padding-bottom: 5px;
     }
   }
 

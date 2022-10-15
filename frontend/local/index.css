@@ -29,7 +29,7 @@ route-link:hover {
 }
 
 main {
-  max-width: 1050px;
+  max-width: 1000px;
   margin: auto;
   padding-top: 20px;
   padding-left: 10px;
@@ -173,7 +173,7 @@ game-records-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   game-records-table .non-mobile {
     display: none !important;
   }
@@ -186,27 +186,27 @@ game-records-table .player {
 }
 game-records-table .meta {
   display: grid;
-  grid-template-columns: 40px 90px 110px 100px;
+  grid-template-columns: 40px 60px 90px 100px;
   grid-column-gap: 10px;
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   game-records-table .meta {
+    grid-template-columns: 90px 100px !important;
+    grid-column-gap: 40px !important;
     border-top: 1px solid black;
-    padding-top: 5px;
-  }
-  game-records-table .meta .who-wins {
-    margin-left: -17.5px;
+    padding-top: 12.5px;
+    padding-bottom: 5px;
   }
 }
 game-records-table route-link.card,
 game-records-table #legend {
   display: grid;
-  grid-template-columns: 15px 305px 305px 370px;
+  grid-template-columns: 15px 305px 305px 320px;
   grid-column-gap: 10px;
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   game-records-table route-link.card,
 game-records-table #legend {
     display: grid;
@@ -217,13 +217,13 @@ game-records-table #legend {
   game-records-table route-link.card .meta,
 game-records-table #legend .meta {
     display: grid;
-    grid-template-columns: 90px 110px 100px;
+    grid-template-columns: 60px 90px 100px;
     grid-column-gap: 10px;
     justify-content: center;
     align-items: center;
   }
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   game-records-table #legend {
     display: none;
   }
@@ -339,12 +339,12 @@ players-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   players-table .non-mobile {
     display: none !important;
   }
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   players-table route-link.card,
 players-table #legend {
     display: grid;
@@ -457,12 +457,12 @@ game-events-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   game-events-table .non-mobile {
     display: none !important;
   }
 }
-@media (max-width: 1050px) {
+@media (max-width: 1000px) {
   game-events-table route-link.card,
 game-events-table #legend {
     display: grid;
@@ -633,7 +633,7 @@ player-view #player-personal-card #player-personal-card-legend {
   padding: 10px 10px;
 }
 
-@media (min-width: 1050px) {
+@media (min-width: 1000px) {
   players-view {
     display: flex;
     justify-items: center;
@@ -700,7 +700,7 @@ game-record-view #card .align-left {
 }
 game-record-view #card #legend {
   display: grid;
-  grid-template-columns: 40px 40px 40px 110px 90px 100px 100px 40px 40px;
+  grid-template-columns: 40px 40px 40px 90px 60px 100px 100px 40px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   align-items: center;
@@ -710,7 +710,7 @@ game-record-view #card #legend {
 }
 game-record-view #card #content {
   display: grid;
-  grid-template-columns: 40px 40px 40px 110px 90px 100px 100px 40px 40px;
+  grid-template-columns: 40px 40px 40px 90px 60px 100px 100px 40px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   margin-bottom: 35px;
@@ -771,7 +771,7 @@ game-event-view #card .align-left {
 }
 game-event-view #card #legend {
   display: grid;
-  grid-template-columns: 75px 110px 110px 65px 65px;
+  grid-template-columns: 75px 90px 90px 65px 65px;
   grid-column-gap: 10px;
   justify-items: center;
   align-items: center;
@@ -781,7 +781,7 @@ game-event-view #card #legend {
 }
 game-event-view #card #content {
   display: grid;
-  grid-template-columns: 75px 110px 110px 65px 65px;
+  grid-template-columns: 75px 90px 90px 65px 65px;
   grid-column-gap: 10px;
   justify-items: center;
   margin-bottom: 35px;
