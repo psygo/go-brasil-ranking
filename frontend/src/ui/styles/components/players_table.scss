@@ -5,14 +5,13 @@
 $gamesTotalWidth: 65px;
 
 players-table {
-  $playerCountriesWidth: 40px;
   $danKyuWidth: 35px;
   $lastGameDateWidth: 100px;
 
   @mixin cardLegendGridDesktop {
     display: grid;
     grid-template-columns:
-      tu.$refWidth tu.$pictureWidth tu.$playerNameWidth $playerCountriesWidth
+      tu.$refWidth tu.$pictureWidthHeight tu.$playerNameWidth tu.$countryFlagsWidth
       tu.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
     grid-column-gap: tu.$columnGap;
   }
@@ -28,8 +27,8 @@ players-table {
     @mixin cardLegendGridMobile {
       display: grid;
       grid-template-columns:
-        tu.$refWidth tu.$pictureWidth tu.$playerNameWidth
-        $playerCountriesWidth tu.$eloWidth $danKyuWidth;
+        tu.$refWidth tu.$pictureWidthHeight tu.$playerNameWidth
+        tu.$countryFlagsWidth tu.$eloWidth $danKyuWidth;
       grid-column-gap: tu.$columnGap;
     }
 

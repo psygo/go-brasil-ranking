@@ -1,30 +1,83 @@
+@use "../globals.scss" as g;
+
 @use "../components/table_utils" as tu;
 
 game-records-table {
   @include tu.completeTableDecoration;
 
   @mixin cardLegendGrid {
-    $countryFlagsWidth: 60px;
+    $playerFullWidth: tu.$pictureWidthHeight + tu.$playerNameWidth +
+      tu.$countryFlagsWidth + tu.$eloWidth + tu.$eloDeltaWidth + 4 *
+      tu.$columnGap;
+    $metaWidth: tu.$handicapWidth + tu.$resultWidth + tu.$dateWidth +
+      tu.$eventWidth + 3 * tu.$columnGap;
+
+    @media (max-width: g.$desktopWidth) {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: minmax(min-content, tu.$pictureWidthHeight);
+      grid-row-gap: tu.$columnGap;
+
+      .meta {
+        display: grid;
+        grid-template-columns:
+          tu.$resultWidth tu.$dateWidth
+          tu.$eventWidth;
+        grid-column-gap: tu.$columnGap;
+
+        justify-content: center;
+        align-items: center;
+      }
+    }
 
     display: grid;
     grid-template-columns:
       tu.$refWidth
-      tu.$pictureWidth tu.$playerNameWidth $countryFlagsWidth tu.$handicapWidth
-      tu.$eloWidth tu.$eloDeltaWidth
-      tu.$pictureWidth tu.$playerNameWidth $countryFlagsWidth
-      tu.$eloWidth tu.$eloDeltaWidth
-      tu.$resultWidth tu.$dateWidth tu.$eventWidth;
-    grid-template-areas:
-      "ref"
-      "black-pic black country-flags handicapWidth elo-black elo-delta-black"
-      "white-pic white country-flags elo-white elo-delta-white"
-      "result date event";
+      $playerFullWidth
+      $playerFullWidth
+      $metaWidth;
     grid-column-gap: tu.$columnGap;
+  }
+
+  .player {
+    display: grid;
+    grid-template-columns:
+      tu.$pictureWidthHeight tu.$playerNameWidth
+      tu.$countryFlagsWidth tu.$eloWidth tu.$eloDeltaWidth;
+    grid-column-gap: tu.$columnGap;
+
+    align-items: center;
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns:
+      tu.$handicapWidth tu.$resultWidth tu.$dateWidth
+      tu.$eventWidth;
+    grid-column-gap: tu.$columnGap;
+
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: g.$desktopWidth) {
+      .who-wins {
+        margin-left: -17.5px;
+      }
+      
+      border-top: 1px solid black;
+      padding-top: 5px;
+    }
   }
 
   route-link.card,
   #legend {
     @include cardLegendGrid;
+  }
+
+  @media (max-width: g.$desktopWidth) {
+    #legend {
+      display: none;
+    }
   }
 
   route-link.card {

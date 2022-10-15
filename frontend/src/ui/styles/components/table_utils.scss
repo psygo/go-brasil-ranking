@@ -61,7 +61,7 @@
   }
 }
 
-$pictureWidth: 70px;
+$pictureWidthHeight: 70px;
 
 @mixin imgDecoration($width) {
   img {
@@ -77,7 +77,7 @@ $pictureWidth: 70px;
   @include cardPadding;
   @include cardMargin;
   @include playerLink;
-  @include imgDecoration($pictureWidth);
+  @include imgDecoration($pictureWidthHeight);
 
   align-items: center;
 }
@@ -117,7 +117,8 @@ $pictureWidth: 70px;
 
 $playerNameWidth: 75px;
 $refWidth: 15px;
-$eloWidth: 30px;
+$countryFlagsWidth: 40px;
+$eloWidth: 40px;
 $eloDeltaWidth: 40px;
 $dateWidth: 110px;
 $handicapWidth: 40px;

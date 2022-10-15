@@ -218,21 +218,27 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   protected get legend(): HtmlString {
     return /*html*/ `
       <div id="legend">
-        <span>#</span>
-        <span>Foto Preto</span>
-        <span class="align-left">Preto</span>
-        <span>País Preto</span>
-        <span>Com-pensa-ção</span>
-        <span>Elo</span>
-        <span>Elo Dif</span>
-        <span>Foto Branco</span>
-        <span class="align-left">Branco</span>
-        <span>País Branco</span>
-        <span>Elo</span>
-        <span>Elo Dif</span>
-        <span>Resultado</span>
-        <span>Data</span>
-        <span>Evento</span>
+        <span class="non-mobile">#</span>
+        <div class="player">
+          <span>Foto Preto</span>
+          <span class="align-left">Preto</span>
+          <span>País Preto</span>
+          <span>Elo</span>
+          <span>Elo Dif</span>
+        </div>
+        <div class="player">
+          <span>Foto Branco</span>
+          <span class="align-left">Branco</span>
+          <span>País Branco</span>
+          <span>Elo</span>
+          <span>Elo Dif</span>
+        </div>
+        <div class="meta">
+          <span class="non-mobile">Com-pensa-ção</span>
+          <span>Resultado</span>
+          <span>Data</span>
+          <span>Evento</span>
+        </div>
       </div>
     `;
   }
@@ -267,55 +273,61 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
           id="${gameRecord.firebaseRef}"
           href="${RouteEnum.gameRecords}/${gameRecord.firebaseRef}"
           ${winOrLossAttr}>
-            <span>${i + 1}</span>
+            <span class="non-mobile">${i + 1}</span>
 
-            <span>
-              ${UiUtils.playerPicture(gameRecord.blackPlayer!.picture)}
-            </span>
-
-            <route-link href="${RouteEnum.players}/${gameRecord.blackRef}">
-              <span ${blackWins} class="align-left">
-                ${gameRecord.blackPlayer!.name}
+            <div class="player">
+              <span>
+                ${UiUtils.playerPicture(gameRecord.blackPlayer!.picture)}
               </span>
-            </route-link>
 
-            <div>
-              ${UiUtils.allFlags(gameRecord.blackPlayer!.countries)}
-            </div>
-            
-            <span>${handicap}</span>
+              <route-link href="${RouteEnum.players}/${gameRecord.blackRef}">
+                <span ${blackWins} class="align-left">
+                  ${gameRecord.blackPlayer!.name}
+                </span>
+              </route-link>
 
-            <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
+              <div>
+                ${UiUtils.allFlags(gameRecord.blackPlayer!.countries)}
+              </div>
 
-            <span ${blackWins}>
-              ${UiUtils.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
-            </span>
+              <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
 
-            <span>
-              ${UiUtils.playerPicture(gameRecord.whitePlayer!.picture)}
-            </span>
-
-            <route-link href="${RouteEnum.players}/${gameRecord.whiteRef}">
-              <span ${whiteWins} class="align-left">
-                ${gameRecord.whitePlayer!.name}
+              <span ${blackWins}>
+                ${UiUtils.signedEloDelta(gameRecord!.eloData!.eloDeltaBlack)}
               </span>
-            </route-link>
-
-            <div>
-              ${UiUtils.allFlags(gameRecord.whitePlayer!.countries)}
             </div>
 
-            <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
+            <div class="player">
+              <span>
+                ${UiUtils.playerPicture(gameRecord.whitePlayer!.picture)}
+              </span>
 
-            <span ${whiteWins}>
-              ${UiUtils.signedEloDelta(gameRecord!.eloData!.eloDeltaWhite)}
-            </span>
+              <route-link href="${RouteEnum.players}/${gameRecord.whiteRef}">
+                <span ${whiteWins} class="align-left">
+                  ${gameRecord.whitePlayer!.name}
+                </span>
+              </route-link>
 
-            <span>${resultString(gameRecord.result)}</span>
+              <div>
+                ${UiUtils.allFlags(gameRecord.whitePlayer!.countries)}
+              </div>
 
-            <span>${DateUtils.formatDate(gameDate)}</span>
-            
-            ${UiUtils.gameEventLink(gameRecord)}
+              <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>
+
+              <span ${whiteWins}>
+                ${UiUtils.signedEloDelta(gameRecord!.eloData!.eloDeltaWhite)}
+              </span>
+            </div>
+
+            <div class="meta">
+              <span class="non-mobile">${handicap}</span>
+
+              <span class="who-wins">${resultString(gameRecord.result)}</span>
+
+              <span>${DateUtils.formatDate(gameDate)}</span>
+              
+              ${UiUtils.gameEventLink(gameRecord)}
+            </div>
         </route-link>
       `;
     }

@@ -29,7 +29,7 @@ route-link:hover {
 }
 
 main {
-  max-width: 1200px;
+  max-width: 1050px;
   margin: auto;
   padding-top: 20px;
   padding-left: 10px;
@@ -173,17 +173,60 @@ game-records-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1050px) {
   game-records-table .non-mobile {
     display: none !important;
+  }
+}
+game-records-table .player {
+  display: grid;
+  grid-template-columns: 70px 75px 40px 40px 40px;
+  grid-column-gap: 10px;
+  align-items: center;
+}
+game-records-table .meta {
+  display: grid;
+  grid-template-columns: 40px 90px 110px 100px;
+  grid-column-gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1050px) {
+  game-records-table .meta {
+    border-top: 1px solid black;
+    padding-top: 5px;
+  }
+  game-records-table .meta .who-wins {
+    margin-left: -17.5px;
   }
 }
 game-records-table route-link.card,
 game-records-table #legend {
   display: grid;
-  grid-template-columns: 15px 70px 75px 60px 40px 30px 40px 70px 75px 60px 30px 40px 90px 110px 100px;
-  grid-template-areas: "ref" "black-pic black country-flags handicapWidth elo-black elo-delta-black" "white-pic white country-flags elo-white elo-delta-white" "result date event";
+  grid-template-columns: 15px 305px 305px 370px;
   grid-column-gap: 10px;
+}
+@media (max-width: 1050px) {
+  game-records-table route-link.card,
+game-records-table #legend {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(min-content, 70px);
+    grid-row-gap: 10px;
+  }
+  game-records-table route-link.card .meta,
+game-records-table #legend .meta {
+    display: grid;
+    grid-template-columns: 90px 110px 100px;
+    grid-column-gap: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media (max-width: 1050px) {
+  game-records-table #legend {
+    display: none;
+  }
 }
 game-records-table route-link.card[player-wins] {
   background-color: #e6ffe6;
@@ -195,7 +238,7 @@ game-records-table route-link.card[player-loses] {
 players-table route-link.card,
 players-table #legend {
   display: grid;
-  grid-template-columns: 15px 70px 75px 40px 30px 35px 100px 65px;
+  grid-template-columns: 15px 70px 75px 40px 40px 35px 100px 65px;
   grid-column-gap: 10px;
 }
 players-table span:not(.align-left) {
@@ -296,16 +339,16 @@ players-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1050px) {
   players-table .non-mobile {
     display: none !important;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1050px) {
   players-table route-link.card,
 players-table #legend {
     display: grid;
-    grid-template-columns: 15px 70px 75px 40px 30px 35px;
+    grid-template-columns: 15px 70px 75px 40px 40px 35px;
     grid-column-gap: 10px;
   }
 }
@@ -414,12 +457,12 @@ game-events-table #legend {
   margin-bottom: 10px;
   font-weight: bold;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1050px) {
   game-events-table .non-mobile {
     display: none !important;
   }
 }
-@media (max-width: 1200px) {
+@media (max-width: 1050px) {
   game-events-table route-link.card,
 game-events-table #legend {
     display: grid;
@@ -590,7 +633,7 @@ player-view #player-personal-card #player-personal-card-legend {
   padding: 10px 10px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1050px) {
   players-view {
     display: flex;
     justify-items: center;
@@ -657,7 +700,7 @@ game-record-view #card .align-left {
 }
 game-record-view #card #legend {
   display: grid;
-  grid-template-columns: 40px 30px 40px 110px 90px 100px 100px 30px 40px;
+  grid-template-columns: 40px 40px 40px 110px 90px 100px 100px 40px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   align-items: center;
@@ -667,7 +710,7 @@ game-record-view #card #legend {
 }
 game-record-view #card #content {
   display: grid;
-  grid-template-columns: 40px 30px 40px 110px 90px 100px 100px 30px 40px;
+  grid-template-columns: 40px 40px 40px 110px 90px 100px 100px 40px 40px;
   grid-column-gap: 10px;
   justify-items: center;
   margin-bottom: 35px;
