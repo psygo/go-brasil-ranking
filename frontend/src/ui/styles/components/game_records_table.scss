@@ -4,15 +4,14 @@ game-records-table {
   @include tu.completeTableDecoration;
 
   @mixin cardLegendGrid {
-    $playerNameWidth: 85px;
     $countryFlagsWidth: 60px;
 
     display: grid;
     grid-template-columns:
       tu.$refWidth
-      tu.$pictureWidth $playerNameWidth $countryFlagsWidth tu.$handicapWidth
+      tu.$pictureWidth tu.$playerNameWidth $countryFlagsWidth tu.$handicapWidth
       tu.$eloWidth tu.$eloDeltaWidth
-      tu.$pictureWidth $playerNameWidth $countryFlagsWidth
+      tu.$pictureWidth tu.$playerNameWidth $countryFlagsWidth
       tu.$eloWidth tu.$eloDeltaWidth
       tu.$resultWidth tu.$dateWidth tu.$eventWidth;
     grid-template-areas:

@@ -3,39 +3,42 @@
 $gamesTotalWidth: 65px;
 
 players-table {
-  $playerNameWidth: 155px;
   $playerCountriesWidth: 40px;
-  $danKyuWidth: 45px;
+  $danKyuWidth: 35px;
   $lastGameDateWidth: 100px;
 
   @mixin cardLegendGrid {
     display: grid;
     grid-template-columns:
-      tu.$refWidth tu.$pictureWidth $playerNameWidth $playerCountriesWidth
+      tu.$refWidth tu.$pictureWidth tu.$playerNameWidth $playerCountriesWidth
       tu.$eloWidth $danKyuWidth $lastGameDateWidth $gamesTotalWidth;
     grid-column-gap: tu.$columnGap;
   }
 
-  @mixin cardLegendGridMobile {
-    $playerNameWidthSmaller: 100px;
-
-    display: grid;
-    grid-template-columns:
-      tu.$refWidth tu.$pictureWidth $playerNameWidthSmaller $playerCountriesWidth
-      tu.$eloWidth $danKyuWidth;
-    grid-column-gap: tu.$columnGap;
+  route-link.card,
+  #legend {
+    @include cardLegendGrid;
   }
 
+  @include tu.completeTableDecoration;
+
   @media (max-width: 1200px) {
+    @mixin cardLegendGridMobile {
+
+      display: grid;
+      grid-template-columns:
+        tu.$refWidth tu.$pictureWidth tu.$playerNameWidth
+        $playerCountriesWidth tu.$eloWidth $danKyuWidth;
+      grid-column-gap: tu.$columnGap;
+    }
+
+    route-link.card,
+    #legend {
+      @include cardLegendGridMobile;
+    }
+
     .non-mobile {
       display: none !important;
     }
   }
-
-  route-link.card,
-  #legend {
-    @include cardLegendGridMobile;
-  }
-
-  @include tu.completeTableDecoration;
 }
