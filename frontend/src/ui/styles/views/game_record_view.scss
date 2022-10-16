@@ -1,3 +1,5 @@
+@use "../globals.scss" as g;
+
 @use "../components/table_utils" as tu;
 
 game-record-view {
@@ -12,26 +14,42 @@ game-record-view {
   }
 
   #players-names {
-    $nameWidth: 290px;
+    @include tu.imgDecoration(90px);
+    @include tu.playerLink;
 
-    display: grid;
-    grid-template-columns: $nameWidth max-content max-content max-content max-content max-content $nameWidth;
-    grid-template-rows: max-content;
-    grid-column-gap: 15px;
-    grid-template-areas: "black-dot black-name black-picture vs white-picture white-name white-dot";
-    align-items: center;
+    $gap: 15px;
 
-    h2 {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+
+    #black,
+    #white {
+      display: grid;
+      grid-template-columns: 50px max-content;
+      grid-column-gap: $gap;
+      grid-row-gap: $gap;
+
+      align-items: center;
+    }
+
+    route-link {
       display: flex;
-      gap: 15px;
+      gap: $gap;
+
+      display: grid;
+      grid-template-columns: 90px 150px max-content max-content;
+      grid-column-gap: $gap;
+
       align-items: center;
 
-      &#black {
-        justify-content: end;
+      span {
+        font-size: 1.2rem;
+        font-weight: bold;
       }
 
-      &#white {
-        justify-content: start;
+      img {
+        margin: 0 auto;
       }
     }
 
@@ -39,10 +57,6 @@ game-record-view {
       width: 50px;
       height: 50px;
     }
-
-    @include tu.imgDecoration(90px);
-
-    @include tu.playerLink;
   }
 
   #card {

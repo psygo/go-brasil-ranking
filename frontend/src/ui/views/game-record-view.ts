@@ -98,47 +98,43 @@ export default class GameRecordView extends HTMLElement {
     ];
 
     playerNamesDiv.innerHTML = /*html*/ `
-      <route-link href="${RouteEnum.players}/${this.gameRecord.blackRef}">
-        <h2 id="black">
-          ${blackElo.danKyuLevel()}
-          ${blackFlags}
+      <div id="black">
+        <svg>
+          <circle 
+            cx="25" 
+            cy="25" 
+            r="15" 
+            stroke="white" 
+            stroke-width="2.5" 
+            fill="black" />
+        </svg>
+
+        <route-link href="${RouteEnum.players}/${this.gameRecord.blackRef}">
+          ${UiUtils.playerPicture(this.gameRecord.blackPlayer!.picture)}
           <span ${blackWins}>${black.name}</span>
-        </h2>
-      </route-link>
+          ${blackFlags}
+          <span>${blackElo.danKyuLevel()}</span>
+        </route-link>
+      </div>
 
-      ${UiUtils.playerPicture(this.gameRecord.blackPlayer!.picture)}
+      <div id="white">
+        <svg>
+          <circle 
+            cx="25" 
+            cy="25" 
+            r="14.5" 
+            stroke="black" 
+            stroke-width="2.5" 
+            fill="white" />
+        </svg>
 
-      <svg>
-        <circle 
-          cx="25" 
-          cy="25" 
-          r="15" 
-          stroke="white" 
-          stroke-width="2.5" 
-          fill="black" />
-      </svg>
-
-      <h2>vs</h2>
-
-      <svg>
-        <circle 
-          cx="25" 
-          cy="25" 
-          r="14.5" 
-          stroke="black" 
-          stroke-width="2.5" 
-          fill="white" />
-      </svg>
-
-      ${UiUtils.playerPicture(this.gameRecord.whitePlayer!.picture)}
-
-      <route-link href="${RouteEnum.players}/${this.gameRecord.whiteRef}">
-        <h2 id="white">
+        <route-link href="${RouteEnum.players}/${this.gameRecord.whiteRef}">
+          ${UiUtils.playerPicture(this.gameRecord.whitePlayer!.picture)}
           <span ${whiteWins}>${white.name}</span>
           ${whiteFlags}
-          ${whiteElo.danKyuLevel()}
-        </h2>
-      </route-link>
+          <span>${whiteElo.danKyuLevel()}</span>
+        </route-link>
+      </div>
     `;
   };
 
