@@ -140,7 +140,7 @@ export default class PlayerView extends HTMLElement {
 
     this.innerHTML += /*html*/ `
       <div id="player-personal-card">
-        <div id="player-personal-card-legend">
+        <div id="legend">
           <span>Email</span>
           <span>Estado</span>
           <span>Cidade</span>
@@ -150,7 +150,7 @@ export default class PlayerView extends HTMLElement {
           <span>Última Partida</span>
         </div>
 
-        <div id="player-personal-card-content">
+        <div id="content">
           <route-link href="mailto:${this.player.email}">
             <span>${email}</span>
           </route-link>

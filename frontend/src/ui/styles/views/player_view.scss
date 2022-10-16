@@ -47,7 +47,7 @@ player-view {
   #player-personal-card {
     @include tu.spanAlignment;
 
-    margin-left: -40px;
+    margin-left: -80px;
 
     display: flex;
     flex-direction: row;
@@ -58,15 +58,19 @@ player-view {
       grid-row-gap: tu.$columnGap;
     }
 
-    #player-personal-card-content {
+    #content {
       @include cardLegendGrid;
       @include tu.card;
     }
 
-    #player-personal-card-legend {
+    #legend {
       @include cardLegendGrid;
       @include tu.legendDecoration;
       @include tu.cardPadding;
+
+      span {
+        justify-content: end;
+      }
     }
   }
 }
