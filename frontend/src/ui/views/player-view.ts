@@ -6,7 +6,7 @@ import { db } from "../../infra/globals";
 import { addFirebaseRef } from "../../infra/utils";
 import { DateUtils } from "../../infra/date_utils";
 
-import { CountryName } from "../../models/country";
+import { getFlag } from "../../models/country";
 import { FirebaseRef } from "../../models/firebase_models";
 import { Player } from "../../models/player";
 
@@ -107,7 +107,7 @@ export default class PlayerView extends HTMLElement {
   };
 
   private setPlayersPage = (): void => {
-    const countryFlags = UiUtils.allFlags(this.player.countries);
+    const countryFlags = UiUtils.allFlags(this.player.nationalities);
 
     const picture = this.player.picture
       ? /*html*/ `<img src="${this.player.picture}"/>`
@@ -128,24 +128,40 @@ export default class PlayerView extends HTMLElement {
 
     const email = this.player.email ? this.player.email : "&mdash;";
 
-    const firstCountry = this.player.countries[0];
-    const brState =
-      firstCountry.name === CountryName.brazil
-        ? this.player.countries[0].state
-        : "&mdash;";
-    const brCity =
-      firstCountry.name === CountryName.brazil
-        ? this.player.countries[0].city
-        : "&mdash;";
+    let [statesOfOrigin, citiesOfOrigin] = ["", ""];
+    for (const c of this.player.nationalities) {
+      if (c.state)
+        statesOfOrigin += statesOfOrigin.length > 0 ? ", " + c.state : c.state;
+      if (c.city)
+        citiesOfOrigin += citiesOfOrigin.length > 0 ? ", " + c.city : c.city;
+    }
+
+    const countryLivingIn = this.player.livingIn?.name
+      ? getFlag(this.player.livingIn!.name)
+      : "&mdash;";
+    const stateLivingIn = this.player.livingIn?.state
+      ? this.player.livingIn!.state
+      : "&mdash;";
+    const cityLivingIn = this.player.livingIn?.city
+      ? this.player.livingIn!.city
+      : "&mdash;";
 
     this.innerHTML += /*html*/ `
       <div id="player-personal-card">
         <div id="legend">
           <span>Email</span>
-          <span>Estado</span>
-          <span>Cidade</span>
+
+          <span>Nacionalidade(s)</span>
+          <span>Estado(s) de Origem</span>
+          <span>Cidade(s) de Origem</span>
+
+          <span>País onde Mora</span>
+          <span>Estado onde Mora</span>
+          <span>Cidade Onde Mora</span>
+
           <span>Elo</span>
           <span>Dan Kyu</span>
+
           <span># de Partidas</span>
           <span>Última Partida</span>
         </div>
@@ -154,10 +170,20 @@ export default class PlayerView extends HTMLElement {
           <route-link href="mailto:${this.player.email}">
             <span>${email}</span>
           </route-link>
-          <span>${brState}</span>
-          <span>${brCity}</span>
+
+          <div id="nationalities">
+            ${UiUtils.allFlags(this.player.nationalities)}
+          </div>
+          <span>${statesOfOrigin}</span>
+          <span>${citiesOfOrigin}</span>
+
+          <span>${countryLivingIn}</span>
+          <span>${stateLivingIn}</span>
+          <span>${cityLivingIn}</span>
+
           <span>${elo.num}</span>
           <span>${elo.danKyuLevel(true)}</span>
+
           <span>${this.player.gamesTotal}</span>
           <span>${UiUtils.lastGameLink(this.player)}</span>
         </div>

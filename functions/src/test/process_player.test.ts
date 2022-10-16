@@ -17,7 +17,7 @@ describe("Process Player", () => {
       email: "philippefanaro@gmail.com",
       nicks: [{ name: "psygo", server: GoServers.ogs }],
       picture: pic_philippe_fanaro,
-      countries: [
+      nationalities: [
         {
           name: CountryName.brazil,
           state: BrazilianState.sp,

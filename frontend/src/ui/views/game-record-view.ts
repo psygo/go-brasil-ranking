@@ -88,8 +88,8 @@ export default class GameRecordView extends HTMLElement {
     const [blackWins, whiteWins] = this.blackWhiteWins;
 
     const [blackFlags, whiteFlags] = [
-      UiUtils.allFlags(black.countries),
-      UiUtils.allFlags(white.countries),
+      UiUtils.allFlags(black.nationalities),
+      UiUtils.allFlags(white.nationalities),
     ];
 
     const [blackElo, whiteElo] = [

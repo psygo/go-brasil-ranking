@@ -10,7 +10,8 @@ export interface _Player extends FirebaseDoc {
   email?: string;
   nicks?: readonly Nick[];
   picture?: string;
-  countries: readonly Country[];
+  nationalities: readonly Country[];
+  livingIn?: Country;
   isBrazilian?: boolean;
   currentElo?: SerializedElo;
   rebaseElos: readonly RebaseElo[];

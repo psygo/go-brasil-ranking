@@ -88,7 +88,7 @@ export const players: readonly Player[] = [
     name: "Aaron Alvarado",
     nicks: [{ name: "Lqtestn", server: GoServers.pandanet }],
     picture: pic_aaron_alvarado,
-    countries: [
+    nationalities: [
       {
         name: CountryName.peru,
       },
@@ -98,7 +98,7 @@ export const players: readonly Player[] = [
   {
     name: "Adalberto Reis Duarte",
     nicks: [{ name: "Adalberto", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.pa,
@@ -110,7 +110,7 @@ export const players: readonly Player[] = [
     name: "Adrian Villalta-Cerdas",
     nicks: [{ name: "adrianvc", server: GoServers.pandanet }],
     picture: pic_adrian_villalta_cerdas,
-    countries: [
+    nationalities: [
       {
         name: CountryName.costa_rica,
       },
@@ -124,13 +124,17 @@ export const players: readonly Player[] = [
       { name: "vogalinha", server: GoServers.pandanet },
     ],
     picture: pic_alexandre_amaro,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
         city: "São Paulo",
       },
     ],
+    livingIn: {
+      name: CountryName.taiwan,
+      city: "Taipei",
+    },
     rebaseElos: [{ date: new Date(2021, 9, 0).getTime(), elo: 2450 }],
   },
   {
@@ -140,9 +144,10 @@ export const players: readonly Player[] = [
       { name: "wade", server: GoServers.ogs },
       { name: "Wade", server: GoServers.pandanet },
     ],
-    countries: [
+    nationalities: [
       {
         name: CountryName.israel,
+        city: "Tel Aviv",
       },
       {
         name: CountryName.brazil,
@@ -150,12 +155,16 @@ export const players: readonly Player[] = [
         city: "São Paulo",
       },
     ],
+    livingIn: {
+      name: CountryName.israel,
+      city: "Tel Aviv",
+    },
     rebaseElos: [{ date: new Date(2021, 9, 0).getTime(), elo: 2500 }],
   },
   {
     name: "Ana Maria Cavalcanti",
     picture: pic_ana_maria_cavalcanti,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -167,7 +176,7 @@ export const players: readonly Player[] = [
   {
     name: "André Barbosa",
     nicks: [{ name: "seupera", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -177,7 +186,7 @@ export const players: readonly Player[] = [
   {
     name: "Anivaldo Reis",
     nicks: [{ name: "seupera", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.ce,
@@ -190,7 +199,7 @@ export const players: readonly Player[] = [
     name: "Ariel Oliveira",
     nicks: [{ name: "GOiano", server: GoServers.ogs }],
     picture: pic_ariel_oliveira,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.df,
@@ -203,7 +212,7 @@ export const players: readonly Player[] = [
     name: "Audrey Luciano Filho",
     nicks: [{ name: "AudreyLucianoFilho", server: GoServers.ogs }],
     picture: pic_audrey_luciano_filho,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.ce,
@@ -216,7 +225,7 @@ export const players: readonly Player[] = [
     name: "Augusto Cezar",
     nicks: [{ name: "AugustoCezar", server: GoServers.ogs }],
     picture: pic_augusto_cezar,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -228,7 +237,7 @@ export const players: readonly Player[] = [
     name: "Avelio Sepúlveda",
     nicks: [{ name: "ave", server: GoServers.pandanet }],
     picture: pic_avelio_sepulveda,
-    countries: [
+    nationalities: [
       {
         name: CountryName.chile,
       },
@@ -239,7 +248,7 @@ export const players: readonly Player[] = [
     name: "Beatriz Bouchiglioni Neves",
     nicks: [{ name: "BeatrizBouchiglioniNeves", server: GoServers.ogs }],
     picture: pic_beatriz_neves,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -251,7 +260,7 @@ export const players: readonly Player[] = [
   {
     name: "Bruno Aragão Wahlbuhl Gonçalves",
     picture: pic_bruno_aragao,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -263,20 +272,25 @@ export const players: readonly Player[] = [
   {
     name: "Bruno Borchartt",
     picture: pic_bruno_borchartt,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
         city: "São Paulo",
       },
     ],
+    livingIn: {
+      name: CountryName.brazil,
+      state: BrazilianState.pr,
+      city: "Curitiba",
+    },
     rebaseElos: [{ date: new Date(2021, 9, 0).getTime(), elo: 2150 }],
   },
   {
     name: "Caio Ribeiro Chagas",
     picture: pic_caio_chagas,
     nicks: [{ name: "cchagas", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.pr,
@@ -287,7 +301,7 @@ export const players: readonly Player[] = [
   {
     name: "Caio Sant Anna",
     nicks: [{ name: "caio_csan", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.pr,
@@ -299,7 +313,7 @@ export const players: readonly Player[] = [
     name: "Carlos Daniel Santiago López",
     nicks: [{ name: "moradito", server: GoServers.pandanet }],
     picture: pic_carlos_santiago_lopez,
-    countries: [
+    nationalities: [
       {
         name: CountryName.mexico,
       },
@@ -309,7 +323,7 @@ export const players: readonly Player[] = [
   {
     name: "Carlos Dutra",
     picture: pic_carlos_dutra,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -322,7 +336,7 @@ export const players: readonly Player[] = [
     name: "Carlos Esteves",
     nicks: [{ name: "carlos.prog91", server: GoServers.ogs }],
     picture: pic_carlos_esteves,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -333,7 +347,7 @@ export const players: readonly Player[] = [
   {
     name: "Celso Siqueira Scaff",
     picture: pic_celso_scaff,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -344,7 +358,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Christian Spohn",
-    countries: [
+    nationalities: [
       {
         name: CountryName.germany,
       },
@@ -354,7 +368,7 @@ export const players: readonly Player[] = [
   {
     name: "Cícero de Melo Lucas",
     nicks: [{ name: "Musashi-san", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -363,7 +377,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Cristiano Yuji Sato",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -373,7 +387,7 @@ export const players: readonly Player[] = [
   {
     name: "Cristiane Amaral Bertolino",
     picture: pic_cristiane_bertolino,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -385,7 +399,7 @@ export const players: readonly Player[] = [
   {
     name: "Daniel Makiya",
     nicks: [{ name: "ozeromirei", server: GoServers.pandanet }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.peru,
       },
@@ -396,7 +410,7 @@ export const players: readonly Player[] = [
     name: "David Pollitzer",
     nicks: [{ name: "dvdpo", server: GoServers.pandanet }],
     picture: pic_david_pollitzer,
-    countries: [
+    nationalities: [
       {
         name: CountryName.argentina,
       },
@@ -406,7 +420,7 @@ export const players: readonly Player[] = [
   {
     name: "Diego Guerrero",
     nicks: [{ name: "dguerrero", server: GoServers.pandanet }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.venezuela,
       },
@@ -417,7 +431,7 @@ export const players: readonly Player[] = [
     name: "Diogo Barbosa",
     nicks: [{ name: "Diogo Barbosa", server: GoServers.ogs }],
     picture: pic_diogo_barbosa,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -430,7 +444,7 @@ export const players: readonly Player[] = [
     name: "Edivan José Junior",
     nicks: [{ name: "juniorcloud7", server: GoServers.ogs }],
     picture: pic_edivan,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -443,7 +457,7 @@ export const players: readonly Player[] = [
     name: "Eduardo Takeuti",
     nicks: [{ name: "edu4ever", server: GoServers.ogs }],
     picture: pic_eduardo_takeuti,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -456,7 +470,7 @@ export const players: readonly Player[] = [
     name: "Efraim Queiroz",
     nicks: [{ name: "efraimqe", server: GoServers.ogs }],
     picture: pic_efraim_queiroz,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.df,
@@ -469,7 +483,7 @@ export const players: readonly Player[] = [
     name: "Elias Bandeira Rodrigues Cardoso",
     nicks: [{ name: "elias.rodriguescardoso", server: GoServers.ogs }],
     picture: pic_elias_rodrigues,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -481,7 +495,7 @@ export const players: readonly Player[] = [
     name: "Emanuel Araújo",
     nicks: [{ name: "Cactus Juice", server: GoServers.ogs }],
     picture: pic_emanuel_araujo,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -494,7 +508,7 @@ export const players: readonly Player[] = [
     name: "Emiliano Alvarado Vargas",
     nicks: [{ name: "Pichiciego", server: GoServers.pandanet }],
     picture: pic_emiliano_alvarado_vargas,
-    countries: [
+    nationalities: [
       {
         name: CountryName.mexico,
       },
@@ -505,7 +519,7 @@ export const players: readonly Player[] = [
     name: "Erendiro Pedro Sangueve",
     nicks: [{ name: "AfricanGrimReaper", server: GoServers.ogs }],
     picture: pic_eren_sangueve,
-    countries: [
+    nationalities: [
       {
         name: CountryName.angola,
       },
@@ -516,7 +530,7 @@ export const players: readonly Player[] = [
     name: "Fabrício Caluza Machado",
     nicks: [{ name: "Fabrício", server: GoServers.ogs }],
     picture: pic_fabricio_caluza,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.pr,
@@ -527,7 +541,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Felipe Bottega Diniz",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -542,7 +556,7 @@ export const players: readonly Player[] = [
     ],
     email: "fh.vanriemsdijk@gmail.com",
     picture: pic_felipe_riemsdijk,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -554,7 +568,7 @@ export const players: readonly Player[] = [
   {
     name: "Felipe Pait",
     picture: pic_felipe_pait,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -567,7 +581,7 @@ export const players: readonly Player[] = [
     name: "Fernando Aguilar",
     nicks: [{ name: "Fernando", server: GoServers.pandanet }],
     picture: pic_fernando_aguilar,
-    countries: [
+    nationalities: [
       {
         name: CountryName.argentina,
       },
@@ -578,7 +592,7 @@ export const players: readonly Player[] = [
     name: "Francisco González",
     nicks: [{ name: "kamelo", server: GoServers.pandanet }],
     picture: pic_francisco_gonzalez,
-    countries: [
+    nationalities: [
       {
         name: CountryName.chile,
       },
@@ -589,7 +603,7 @@ export const players: readonly Player[] = [
     name: "Francisco Motta",
     nicks: [{ name: "ChicoMotta", server: GoServers.ogs }],
     picture: pic_chico_motta,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -601,7 +615,7 @@ export const players: readonly Player[] = [
   {
     name: "Gabriel Garcia",
     nicks: [{ name: "PutzGrila", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -611,7 +625,7 @@ export const players: readonly Player[] = [
   {
     name: "Gabriel Hissao Makio",
     picture: pic_gabriel_makio,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -624,7 +638,7 @@ export const players: readonly Player[] = [
     name: "Gabriel Marcondes de Castilho",
     nicks: [{ name: "Zentryl", server: GoServers.pandanet }],
     picture: pic_gabriel_castilho,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -636,7 +650,7 @@ export const players: readonly Player[] = [
   {
     name: "Gabriel Ventura",
     nicks: [{ name: "Pedepano", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -647,7 +661,7 @@ export const players: readonly Player[] = [
     name: "Guilherme Francisco de Souza Silva",
     nicks: [{ name: "XIKO", server: GoServers.ogs }],
     picture: pic_guilherme_francisco,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -657,7 +671,7 @@ export const players: readonly Player[] = [
   {
     name: "Guilherme Hatori",
     picture: pic_guilherme_hatori,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -669,7 +683,7 @@ export const players: readonly Player[] = [
   {
     name: "Haruo Kitano",
     picture: pic_haruo_kitano,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -685,7 +699,7 @@ export const players: readonly Player[] = [
       { name: "HelcioAlex", server: GoServers.pandanet },
     ],
     picture: pic_helcio_pacheco,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -697,7 +711,7 @@ export const players: readonly Player[] = [
   {
     name: "Hiro Okawa",
     picture: pic_hiro_okawa,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -710,7 +724,7 @@ export const players: readonly Player[] = [
     name: "Ignacio Iglesis",
     nicks: [{ name: "iiglesis", server: GoServers.pandanet }],
     picture: pic_ignacio_iglesis,
-    countries: [
+    nationalities: [
       {
         name: CountryName.chile,
       },
@@ -721,7 +735,7 @@ export const players: readonly Player[] = [
     name: "Javier Gonzalez",
     nicks: [{ name: "pantaleon", server: GoServers.pandanet }],
     picture: pic_javier_gonzalez,
-    countries: [
+    nationalities: [
       {
         name: CountryName.venezuela,
       },
@@ -732,7 +746,7 @@ export const players: readonly Player[] = [
     name: "Jiéverson Maissiat",
     nicks: [{ name: "jieverson", server: GoServers.ogs }],
     picture: pic_jieverson_maissiat,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rs,
@@ -745,7 +759,7 @@ export const players: readonly Player[] = [
     name: "Juan Burgos",
     nicks: [{ name: "Abduct", server: GoServers.pandanet }],
     picture: pic_juan_burgos,
-    countries: [
+    nationalities: [
       {
         name: CountryName.colombia,
       },
@@ -756,7 +770,7 @@ export const players: readonly Player[] = [
     name: "Juan David Ramírez Jiménez",
     nicks: [{ name: "Judaraji", server: GoServers.pandanet }],
     picture: pic_juan_david_ramirez_jimenez,
-    countries: [
+    nationalities: [
       {
         name: CountryName.colombia,
       },
@@ -767,7 +781,7 @@ export const players: readonly Player[] = [
     name: "Juan Samper",
     nicks: [{ name: "Sampi", server: GoServers.pandanet }],
     picture: pic_juan_samper,
-    countries: [
+    nationalities: [
       {
         name: CountryName.colombia,
       },
@@ -778,7 +792,7 @@ export const players: readonly Player[] = [
     name: "Julio Melchert",
     nicks: [{ name: "Astarte", server: GoServers.pandanet }],
     picture: pic_julio_melchert,
-    countries: [
+    nationalities: [
       {
         name: CountryName.venezuela,
       },
@@ -788,7 +802,7 @@ export const players: readonly Player[] = [
   {
     name: "Julio Gabriel Otterback Pinheiro",
     nicks: [{ name: "bodlike", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.mt,
@@ -799,7 +813,7 @@ export const players: readonly Player[] = [
   {
     name: "Juno Jo",
     picture: pic_juno_jo,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -808,7 +822,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Kisho Kawahara",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -817,7 +831,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Kunio Yoshida",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -831,7 +845,7 @@ export const players: readonly Player[] = [
       { name: "laercioskt", server: GoServers.pandanet },
     ],
     picture: pic_laercio_pereira,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.pr,
@@ -844,7 +858,7 @@ export const players: readonly Player[] = [
     name: "Laura Augustina Avram",
     nicks: [{ name: "balaura", server: GoServers.ogs }],
     picture: pic_laura_avram,
-    countries: [
+    nationalities: [
       {
         name: CountryName.romania,
       },
@@ -853,7 +867,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Leonardo Inomata",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -864,7 +878,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Lívia Aiko de Toledo",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -875,7 +889,7 @@ export const players: readonly Player[] = [
     name: "Lucas Cristovam",
     nicks: [{ name: "lukeverso", server: GoServers.ogs }],
     picture: pic_lucas_cristovam,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -886,7 +900,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Lucas Torrisi",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -895,7 +909,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Lúcio Picanço",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.ma,
@@ -907,7 +921,7 @@ export const players: readonly Player[] = [
     name: "Luiz Sato",
     nicks: [{ name: "biruta", server: GoServers.ogs }],
     picture: pic_luiz_sato,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -919,7 +933,7 @@ export const players: readonly Player[] = [
     name: "Manuel Rodríguez",
     nicks: [{ name: "merflezz", server: GoServers.pandanet }],
     picture: pic_manuel_rodriguez,
-    countries: [
+    nationalities: [
       {
         name: CountryName.costa_rica,
       },
@@ -930,7 +944,7 @@ export const players: readonly Player[] = [
     name: "Mario Aguero",
     nicks: [{ name: "dankenzon", server: GoServers.pandanet }],
     picture: pic_mario_aguero,
-    countries: [
+    nationalities: [
       {
         name: CountryName.costa_rica,
       },
@@ -941,7 +955,7 @@ export const players: readonly Player[] = [
     name: "Márton Divényi",
     nicks: [{ name: "MartDiv", server: GoServers.ogs }],
     picture: pic_marton_divenyi,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -951,7 +965,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Matao Kumao",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -960,7 +974,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Masayasu Kihara",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -969,7 +983,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Mitsuyuki Shintaku",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -978,7 +992,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Mieko Murai",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -988,7 +1002,7 @@ export const players: readonly Player[] = [
   {
     name: "Murilo Oliveira",
     picture: pic_murilo_oliveira,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1000,7 +1014,7 @@ export const players: readonly Player[] = [
   {
     name: "Nelson Kenzo Tamashiro",
     picture: pic_nelson_kenzo,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1011,7 +1025,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Nicholas Jun de Toledo",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -1021,7 +1035,7 @@ export const players: readonly Player[] = [
   {
     name: "Olivier Mendieta",
     nicks: [{ name: "Olirion30", server: GoServers.pandanet }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.mexico,
       },
@@ -1030,7 +1044,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Osamu Murai",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -1040,7 +1054,7 @@ export const players: readonly Player[] = [
   {
     name: "Patricia Bongiorno",
     picture: pic_patricia_bongiorno,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1053,7 +1067,7 @@ export const players: readonly Player[] = [
     name: "Pedro Regis",
     nicks: [{ name: "Lunps422", server: GoServers.ogs }],
     picture: pic_pedro_regis,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.ce,
@@ -1067,13 +1081,18 @@ export const players: readonly Player[] = [
     email: "philippefanaro@gmail.com",
     nicks: [{ name: "psygo", server: GoServers.ogs }],
     picture: pic_philippe_fanaro,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
         city: "São Paulo",
       },
     ],
+    livingIn: {
+      name: CountryName.brazil,
+      state: BrazilianState.sp,
+      city: "São Paulo",
+    },
     rebaseElos: [
       { date: new Date(2021, 9, 0).getTime(), elo: 2150 },
       { date: new Date(2017, 9, 10).getTime(), elo: 2050 },
@@ -1083,7 +1102,7 @@ export const players: readonly Player[] = [
     name: "Rachel Esteves",
     nicks: [{ name: "Rachel Esteves", server: GoServers.ogs }],
     picture: pic_rachel_esteves,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.rj,
@@ -1094,7 +1113,7 @@ export const players: readonly Player[] = [
   {
     name: "Rafael Alejandro Torres Puebla",
     nicks: [{ name: "RafaCUBA", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.cuba,
       },
@@ -1104,7 +1123,7 @@ export const players: readonly Player[] = [
   {
     name: "Rafael Leão",
     picture: pic_rafael_leao,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -1114,7 +1133,7 @@ export const players: readonly Player[] = [
   {
     name: "Renan Pablo Cruz",
     picture: pic_renan_cruz,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1127,7 +1146,7 @@ export const players: readonly Player[] = [
     name: "Ricardo Miyashiro",
     nicks: [{ name: "Harumasa", server: GoServers.pandanet }],
     picture: pic_ricardo_miyashiro,
-    countries: [
+    nationalities: [
       {
         name: CountryName.peru,
       },
@@ -1137,7 +1156,7 @@ export const players: readonly Player[] = [
   {
     name: "Rodrigo Braz",
     picture: pic_rodrigo_braz,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1149,7 +1168,7 @@ export const players: readonly Player[] = [
   {
     name: "Rodrigo Edelton Issa",
     picture: pic_rodrigo_issa,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1162,7 +1181,7 @@ export const players: readonly Player[] = [
     name: "Roilan de la Torre",
     nicks: [{ name: "Roilancuba", server: GoServers.pandanet }],
     picture: pic_roilan_de_la_torre,
-    countries: [
+    nationalities: [
       {
         name: CountryName.cuba,
       },
@@ -1172,7 +1191,7 @@ export const players: readonly Player[] = [
   {
     name: "Ronaldo Matayoshi",
     picture: pic_ronaldo_matayoshi,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1185,7 +1204,7 @@ export const players: readonly Player[] = [
     name: "Rui Malhado",
     nicks: [{ name: "Phelan", server: GoServers.ogs }],
     picture: pic_rui_malhado,
-    countries: [
+    nationalities: [
       {
         name: CountryName.portugal,
       },
@@ -1195,7 +1214,7 @@ export const players: readonly Player[] = [
   {
     name: "Samuel Karasin",
     nicks: [{ name: "Samkar69", server: GoServers.ogs }],
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1208,7 +1227,7 @@ export const players: readonly Player[] = [
     name: "Santiago Andres Tabares",
     nicks: [{ name: "Petete", server: GoServers.pandanet }],
     picture: pic_santiago_tabares,
-    countries: [
+    nationalities: [
       {
         name: CountryName.argentina,
       },
@@ -1217,7 +1236,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Shuji Hashimoto",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -1228,7 +1247,7 @@ export const players: readonly Player[] = [
     name: "Simão Gonçalves",
     nicks: [{ name: "TsukeShinogi", server: GoServers.ogs }],
     picture: pic_simao_goncalves,
-    countries: [
+    nationalities: [
       {
         name: CountryName.portugal,
       },
@@ -1239,7 +1258,7 @@ export const players: readonly Player[] = [
     name: "Sophie Pagès",
     nicks: [{ name: "cixidetroy", server: GoServers.ogs }],
     picture: pic_sophie_pages,
-    countries: [
+    nationalities: [
       {
         name: CountryName.france,
       },
@@ -1247,11 +1266,15 @@ export const players: readonly Player[] = [
         name: CountryName.brazil,
       },
     ],
+    livingIn: {
+      name: CountryName.france,
+      city: "Grenoble",
+    },
     rebaseElos: [{ date: new Date(2021, 9, 0).getTime(), elo: 700 }],
   },
   {
     name: "Sung Wan Nam",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
       },
@@ -1262,7 +1285,7 @@ export const players: readonly Player[] = [
     name: "Thiago Augusto da Silva",
     nicks: [{ name: "Hyde", server: GoServers.pandanet }],
     picture: pic_thiago_augusto,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1274,18 +1297,21 @@ export const players: readonly Player[] = [
   {
     name: "Thiago Sinji Shimada Ramos",
     picture: pic_thiago_ramos,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
         city: "São Paulo",
       },
     ],
+    livingIn: {
+      name: CountryName.japan,
+    },
     rebaseElos: [{ date: new Date(2021, 9, 0).getTime(), elo: 2100 }],
   },
   {
     name: "Tsuneo Koike",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -1294,7 +1320,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Hissao Uyama",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -1308,7 +1334,7 @@ export const players: readonly Player[] = [
     name: "Vanderson da Silva Rodrigues",
     nicks: [{ name: "vandito", server: GoServers.ogs }],
     picture: pic_vanderson_rodrigues,
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.al,
@@ -1319,7 +1345,7 @@ export const players: readonly Player[] = [
   {
     name: "Wang Sen Feng",
     picture: pic_wang_feng,
-    countries: [
+    nationalities: [
       {
         name: CountryName.taiwan,
       },
@@ -1335,7 +1361,7 @@ export const players: readonly Player[] = [
     name: "Yordan Cruz",
     nicks: [{ name: "Yordancub", server: GoServers.pandanet }],
     picture: pic_yordan_cruz,
-    countries: [
+    nationalities: [
       {
         name: CountryName.cuba,
       },
@@ -1344,7 +1370,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Yoshito Yoshitake",
-    countries: [
+    nationalities: [
       {
         name: CountryName.brazil,
         state: BrazilianState.sp,
@@ -1356,7 +1382,7 @@ export const players: readonly Player[] = [
   {
     name: "Yuichiro Shimawaki",
     picture: pic_yuichiro_shimawaki,
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },
@@ -1365,7 +1391,7 @@ export const players: readonly Player[] = [
   },
   {
     name: "Yukio Hiramatsu",
-    countries: [
+    nationalities: [
       {
         name: CountryName.japan,
       },

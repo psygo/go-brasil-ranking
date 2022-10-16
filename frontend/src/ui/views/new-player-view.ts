@@ -239,7 +239,7 @@ export default class NewPlayerView extends HTMLElement {
       name: this.name,
       email: this.email,
       picture: this.picture,
-      countries: this.completeCountries,
+      nationalities: this.completeCountries,
       rebaseElos: [{ date: new Date().getTime(), elo: this.elo }],
       author: {
         uid: this.currentUser!.uid!,

@@ -288,7 +288,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
               </route-link>
 
               <div>
-                ${UiUtils.allFlags(gameRecord.blackPlayer!.countries)}
+                ${UiUtils.allFlags(gameRecord.blackPlayer!.nationalities)}
               </div>
 
               <span>${gameRecord!.eloData!.atTheTimeBlackElo}</span>
@@ -310,7 +310,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
               </route-link>
 
               <div>
-                ${UiUtils.allFlags(gameRecord.whitePlayer!.countries)}
+                ${UiUtils.allFlags(gameRecord.whitePlayer!.nationalities)}
               </div>
 
               <span>${gameRecord!.eloData!.atTheTimeWhiteElo}</span>

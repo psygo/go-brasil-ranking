@@ -153,7 +153,7 @@ export default class PlayersTable extends UiTable<Player> {
       <span>#</span>
       <span>Foto</span>
       <span class="align-left">Nome</span>
-      <span>País</span>
+      <span>Nacio-nali-dade(s)</span>
       <span>Elo</span>
       <span>Dan Kyu</span>
       <span class="non-mobile">Data da Última Partida</span>
@@ -190,7 +190,7 @@ export default class PlayersTable extends UiTable<Player> {
             </route-link>
 
             <div>
-              ${UiUtils.allFlags(player.countries)}
+              ${UiUtils.allFlags(player.nationalities)}
             </div>
 
             <span>${elo.num}</span>

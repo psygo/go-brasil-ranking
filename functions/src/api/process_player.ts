@@ -5,7 +5,7 @@ import { EloHistory, Player } from "../../../frontend/src/models/player";
 import { dateSorter } from "../../../frontend/src/infra/utils";
 
 export const processPlayer = (player: Player): Player => {
-  const isBrazilian = player.countries.some(
+  const isBrazilian = player.nationalities.some(
     (c) => c.name === CountryName.brazil
   );
 

@@ -185,7 +185,7 @@ game-records-table #legend {
 }
 game-records-table .player {
   display: grid;
-  grid-template-columns: 70px 75px 40px 40px 40px;
+  grid-template-columns: 70px 80px 50px 40px 40px;
   grid-column-gap: 10px;
   align-items: center;
 }
@@ -208,7 +208,7 @@ game-records-table .meta {
 game-records-table route-link.card,
 game-records-table #legend {
   display: grid;
-  grid-template-columns: 15px 305px 305px 320px;
+  grid-template-columns: 15px 320px 320px 320px;
   grid-column-gap: 10px;
 }
 @media (max-width: 1050px) {
@@ -243,13 +243,13 @@ game-records-table route-link.card[player-loses] {
 players-table route-link.card,
 players-table #legend {
   display: grid;
-  grid-template-columns: 15px 70px 75px 40px 40px 35px 100px 65px;
+  grid-template-columns: 15px 70px 80px 50px 40px 35px 100px 65px;
   grid-column-gap: 10px;
 }
 @media (max-width: 1050px) {
   players-table route-link.card,
 players-table #legend {
-    grid-template-columns: 15px 70px 75px 40px 40px 35px;
+    grid-template-columns: 15px 70px 80px 50px 40px 35px;
   }
 }
 players-table span:not(.align-left) {
@@ -546,7 +546,7 @@ home-view {
 player-view {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 255px 350px 1fr;
+  grid-template-rows: 100px 500px 350px 1fr;
   grid-row-gap: 20px;
   grid-template-areas: "name" "metadata" "elo-graph" "game-records";
   justify-items: center;
@@ -638,6 +638,11 @@ player-view #player-personal-card #content img {
   max-width: 70px;
   max-height: 70px;
   border-radius: 10px;
+}
+player-view #player-personal-card #content #nationalities {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
 }
 player-view #player-personal-card #legend {
   display: grid;
