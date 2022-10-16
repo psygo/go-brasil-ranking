@@ -88,7 +88,7 @@ game-records-table .align-left {
 game-records-table h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 1.8rem;
   max-width: 400px;
   text-align: center;
@@ -265,7 +265,7 @@ players-table .align-left {
 players-table h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 1.8rem;
   max-width: 400px;
   text-align: center;
@@ -386,7 +386,7 @@ game-events-table .align-left {
 game-events-table h2 {
   display: flex;
   justify-content: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 1.8rem;
   max-width: 400px;
   text-align: center;
@@ -716,6 +716,11 @@ game-record-view #players-names svg {
   width: 50px;
   height: 50px;
 }
+game-record-view #card {
+  margin-left: -40px;
+  display: flex;
+  flex-direction: row;
+}
 game-record-view #card span:not(.align-left) {
   display: flex;
   justify-content: center;
@@ -728,19 +733,20 @@ game-record-view #card .align-left {
 }
 game-record-view #card #legend {
   display: grid;
-  grid-template-columns: 40px 40px 40px 90px 60px 100px 100px 40px 40px;
-  grid-column-gap: 10px;
-  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
   align-items: center;
   margin-bottom: 10px;
   font-weight: bold;
   padding: 10px 10px;
 }
+game-record-view #card #legend span {
+  justify-content: end;
+}
 game-record-view #card #content {
   display: grid;
-  grid-template-columns: 40px 40px 40px 90px 60px 100px 100px 40px 40px;
-  grid-column-gap: 10px;
-  justify-items: center;
+  grid-template-columns: 1fr;
+  grid-row-gap: 10px;
   margin-bottom: 35px;
   width: max-content;
   background: whitesmoke;

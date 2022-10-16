@@ -161,15 +161,15 @@ export default class GameRecordView extends HTMLElement {
 
     gameRecordCardDiv.innerHTML = /*html*/ `
       <div id="legend">
-        <span>Elo Dif</span>
-        <span>Elo</span>
-        <span>Com-pensa-ção</span>
+        <span>Elo Dif Preto</span>
+        <span>Elo Preto</span>
+        <span>Compensação</span>
         <span>Data</span>
         <span>Resultado</span>
         <span>Baixar</span>
         <span>Evento</span>
-        <span>Elo</span>
-        <span>Elo Dif</span>
+        <span>Elo Branco</span>
+        <span>Elo Dif Branco</span>
       </div>
 
       <div id="content">

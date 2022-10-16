@@ -195,7 +195,9 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
     return this.playerRef1 && this.playerRef2
       ? /*html*/ `
         <h2>Todas as Partidas entre</h2>
-        <h2>${player1Name} e ${player2Name}</h2>
+        <h2>${player1Name}</h2>
+        <h2>e</h2>
+        <h2>${player2Name}</h2>
       `
       : this.playerRef1
       ? /*html*/ `

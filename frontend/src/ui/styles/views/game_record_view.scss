@@ -61,23 +61,28 @@ game-record-view {
 
   #card {
     @include tu.spanAlignment;
+    
+    margin-left: -40px;
+
+    display: flex;
+    flex-direction: row;
 
     @mixin cardLegendGrid {
       $downloadWidth: 100px;
 
       display: grid;
-      grid-template-columns:
-        tu.$eloDeltaWidth tu.$eloWidth
-        tu.$handicapWidth tu.$dateWidth tu.$resultWidth $downloadWidth tu.$eventWidth
-        tu.$eloWidth tu.$eloDeltaWidth;
-      grid-column-gap: tu.$columnGap;
-      justify-items: center;
+      grid-template-columns: 1fr;
+      grid-row-gap: tu.$columnGap;
     }
 
     #legend {
       @include cardLegendGrid;
       @include tu.legendDecoration;
       @include tu.cardPadding;
+
+      span {
+        justify-content: end;
+      }
     }
 
     #content {
