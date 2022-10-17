@@ -194,7 +194,6 @@ export default class GameRecordView extends HTMLElement {
         <span ${whiteWins}>
           ${UiUtils.signedEloDelta(this.gameRecord!.eloData!.eloDeltaWhite)}
         </span>
-        
       </div>
     `;
 

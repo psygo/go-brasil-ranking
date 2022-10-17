@@ -87,7 +87,7 @@ game-records-table .align-left {
 }
 game-records-table h2 {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   margin-bottom: 10px;
   font-size: 1.8rem;
   max-width: 400px;
@@ -176,6 +176,7 @@ game-records-table #legend {
   padding: 10px 10px;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
   font-weight: bold;
 }
 @media (max-width: 1050px) {
@@ -264,7 +265,7 @@ players-table .align-left {
 }
 players-table h2 {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   margin-bottom: 10px;
   font-size: 1.8rem;
   max-width: 400px;
@@ -353,6 +354,7 @@ players-table #legend {
   padding: 10px 10px;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
   font-weight: bold;
 }
 @media (max-width: 1050px) {
@@ -385,7 +387,7 @@ game-events-table .align-left {
 }
 game-events-table h2 {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   margin-bottom: 10px;
   font-size: 1.8rem;
   max-width: 400px;
@@ -474,6 +476,7 @@ game-events-table #legend {
   padding: 10px 10px;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
   font-weight: bold;
 }
 @media (max-width: 1050px) {
@@ -650,6 +653,7 @@ player-view #player-personal-card #legend {
   grid-row-gap: 10px;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
   font-weight: bold;
   padding: 10px 10px;
 }
@@ -742,6 +746,7 @@ game-record-view #card #legend {
   grid-row-gap: 10px;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
   font-weight: bold;
   padding: 10px 10px;
 }
@@ -784,6 +789,8 @@ game-record-view #card #content img {
 }
 game-record-view #card a#download {
   padding: 8px;
+  width: max-content;
+  margin: 0 auto;
   border: 2px solid #666666;
   border-radius: 4px;
   color: black;
@@ -815,6 +822,7 @@ game-event-view #card #legend {
   justify-items: center;
   align-items: center;
   margin-bottom: 10px;
+  margin-right: 10px;
   font-weight: bold;
   padding: 10px 10px;
 }
