@@ -1,3 +1,5 @@
+import { emdash } from "../infra/globals";
+
 import { DateUtils } from "../infra/date_utils";
 
 import { RouteEnum } from "../routing/router";
@@ -31,12 +33,12 @@ export namespace UiUtils {
             <span>${lastGameDate}</span>
         </route-link>
       `;
-    } else return /*html*/ `<span class="centered">&mdash;</span>`;
+    } else return /*html*/ `<span class="centered">${emdash}</span>`;
   };
 
   export const playerPicture = (picture: string | undefined): HtmlString =>
     !picture
-      ? /*html*/ `<span class="centered" id="picture-placeholder">&mdash;</span>`
+      ? /*html*/ `<span class="centered" id="picture-placeholder">${emdash}</span>`
       : /*html*/ `<img id="picture" src="${picture}"/>`;
 
   export const signedEloDelta = (n: number): string =>

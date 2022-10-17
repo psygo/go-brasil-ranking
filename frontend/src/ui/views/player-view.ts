@@ -2,7 +2,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 import { Chart, registerables } from "chart.js";
 
-import { db } from "../../infra/globals";
+import { db, emdash } from "../../infra/globals";
 import { addFirebaseRef } from "../../infra/utils";
 import { DateUtils } from "../../infra/date_utils";
 
@@ -126,7 +126,7 @@ export default class PlayerView extends HTMLElement {
   private setPlayerCard = (): void => {
     const elo = new Elo(this.player.currentElo!);
 
-    const email = this.player.email ? this.player.email : "&mdash;";
+    const email = this.player.email ? this.player.email : emdash;
 
     let [statesOfOrigin, citiesOfOrigin] = ["", ""];
     for (const c of this.player.nationalities) {
@@ -138,13 +138,13 @@ export default class PlayerView extends HTMLElement {
 
     const countryLivingIn = this.player.livingIn?.name
       ? getFlag(this.player.livingIn!.name)
-      : "&mdash;";
+      : emdash;
     const stateLivingIn = this.player.livingIn?.state
       ? this.player.livingIn!.state
-      : "&mdash;";
+      : emdash;
     const cityLivingIn = this.player.livingIn?.city
       ? this.player.livingIn!.city
-      : "&mdash;";
+      : emdash;
 
     this.innerHTML += /*html*/ `
       <div id="player-personal-card">

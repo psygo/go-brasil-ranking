@@ -1,9 +1,12 @@
 import { EnvState, envState } from "./env";
+
 import Setup from "./setup";
 
 export const queryLimit = 5;
 
 export const dayInMs = 86400000;
+
+export const emdash = "&mdash;";
 
 export const setup = Setup.getInstance();
 

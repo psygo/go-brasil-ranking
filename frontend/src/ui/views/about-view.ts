@@ -1,4 +1,4 @@
-import { repoUrl } from "../../infra/globals";
+import { emdash, repoUrl } from "../../infra/globals";
 
 export default class AboutView extends HTMLElement {
   static readonly tag: string = "about-view";
@@ -52,7 +52,7 @@ export default class AboutView extends HTMLElement {
                   <td>1</td>
                   <td>Nome Completo</td>
                   <td>Sim</td>
-                  <td>&mdash;</td>
+                  <td>${emdash}</td>
                 </tr>
                 <tr>
                   <td>2</td>
@@ -64,7 +64,7 @@ export default class AboutView extends HTMLElement {
                   <td>3</td>
                   <td>Foto</td>
                   <td>Não</td>
-                  <td>&mdash;</td>
+                  <td>${emdash}</td>
                 </tr>
                 <tr>
                   <td>4</td>
@@ -85,7 +85,7 @@ export default class AboutView extends HTMLElement {
                   <td>6</td>
                   <td>3 Partidas Recentes</td>
                   <td>Sim</td>
-                  <td>&mdash;</td>
+                  <td>${emdash}</td>
                 </tr>
               </tbody>
             </table>

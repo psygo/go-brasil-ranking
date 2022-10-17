@@ -7,7 +7,7 @@ import {
   where,
 } from "firebase/firestore";
 
-import { db, queryLimit } from "../../infra/globals";
+import { db, emdash, queryLimit } from "../../infra/globals";
 
 import { RouteEnum } from "../../routing/router";
 
@@ -92,11 +92,11 @@ export default class GameEventsTable extends UiTable<TournamentOrLeague> {
 
       const firstDate =
         gameEvent.dates.length === 0
-          ? "&mdash;"
+          ? emdash
           : DateUtils.formatDate(new Date(gameEvent.dates[0]));
       const lastDate =
         gameEvent.dates.length === 1
-          ? "&mdash;"
+          ? emdash
           : DateUtils.formatDate(
               new Date(gameEvent.dates[gameEvent.dates.length - 1])
             );

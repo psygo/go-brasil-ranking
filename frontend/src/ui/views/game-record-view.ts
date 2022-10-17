@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 
-import { db } from "../../infra/globals";
+import { db, emdash } from "../../infra/globals";
 import { DateUtils } from "../../infra/date_utils";
 import { EnvState, envState } from "../../infra/env";
 import { addFirebaseRef } from "../../infra/utils";
@@ -157,7 +157,7 @@ export default class GameRecordView extends HTMLElement {
 
     const sgfButton = this.gameRecord.sgf
       ? /*html*/ `<a id="download">SGF</a>`
-      : /*html*/ `<span>&mdash;</span>`;
+      : /*html*/ `<span>${emdash}</span>`;
 
     gameRecordCardDiv.innerHTML = /*html*/ `
       <div id="legend">
