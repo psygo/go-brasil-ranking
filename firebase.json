@@ -22,8 +22,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html",
-        "region": "southamerica-east1"
+        "destination": "/index.html"
       }
     ]
   },

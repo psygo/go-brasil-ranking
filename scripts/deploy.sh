@@ -71,7 +71,7 @@ cd ..
 
 firebase deploy \
     --config ./firebase.json \
-    --only hosting
+    --only functions,hosting
 
 ################################################################################
 # 6. Changing the Global Variable Back to Development
