@@ -123,18 +123,28 @@ export default class PlayerView extends HTMLElement {
     this.setPlayerCard();
   };
 
-  private setPlayerCard = (): void => {
-    const elo = new Elo(this.player.currentElo!);
-
-    const email = this.player.email ? this.player.email : emdash;
-
+  private get ofOrigin(): [string, string] {
     let [statesOfOrigin, citiesOfOrigin] = ["", ""];
+
     for (const c of this.player.nationalities) {
       if (c.state)
         statesOfOrigin += statesOfOrigin.length > 0 ? ", " + c.state : c.state;
       if (c.city)
         citiesOfOrigin += citiesOfOrigin.length > 0 ? ", " + c.city : c.city;
     }
+
+    if (statesOfOrigin === "") statesOfOrigin = emdash;
+    if (citiesOfOrigin === "") citiesOfOrigin = emdash;
+
+    return [statesOfOrigin, citiesOfOrigin];
+  }
+
+  private setPlayerCard = (): void => {
+    const elo = new Elo(this.player.currentElo!);
+
+    const email = this.player.email ? this.player.email : emdash;
+
+    let [statesOfOrigin, citiesOfOrigin] = this.ofOrigin;
 
     const countryLivingIn = this.player.livingIn?.name
       ? getFlag(this.player.livingIn!.name)
