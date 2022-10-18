@@ -113,7 +113,7 @@ export default class GameRecordsTable extends UiTable<GameRecord> {
   private declare _lastVisible2: QueryDocumentSnapshot<DocumentData>;
 
   private get lastVisible1(): QueryDocumentSnapshot<DocumentData> | {} {
-    return this._lastVisible1 ? this._lastVisible2 : {};
+    return this._lastVisible1 ? this._lastVisible1 : {};
   }
   private get lastVisible2(): QueryDocumentSnapshot<DocumentData> | {} {
     return this._lastVisible2 ? this._lastVisible2 : {};

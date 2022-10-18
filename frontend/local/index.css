@@ -75,6 +75,9 @@ footer footer-container svg {
   fill: #717171;
 }
 
+game-records-table {
+  margin-top: 30px;
+}
 game-records-table span:not(.align-left) {
   display: flex;
   justify-content: center;
@@ -87,6 +90,7 @@ game-records-table .align-left {
 }
 game-records-table h2 {
   display: flex;
+  justify-content: center;
   margin: 0 auto;
   margin-bottom: 10px;
   font-size: 1.8rem;
@@ -241,6 +245,9 @@ game-records-table route-link.card[player-loses] {
   background-color: #ffe6e6;
 }
 
+players-table {
+  margin-top: 30px;
+}
 players-table route-link.card,
 players-table #legend {
   display: grid;
@@ -265,6 +272,7 @@ players-table .align-left {
 }
 players-table h2 {
   display: flex;
+  justify-content: center;
   margin: 0 auto;
   margin-bottom: 10px;
   font-size: 1.8rem;
@@ -363,6 +371,9 @@ players-table #legend {
   }
 }
 
+game-events-table {
+  margin-top: 30px;
+}
 game-events-table route-link.card,
 game-events-table #legend {
   display: grid;
@@ -387,6 +398,7 @@ game-events-table .align-left {
 }
 game-events-table h2 {
   display: flex;
+  justify-content: center;
   margin: 0 auto;
   margin-bottom: 10px;
   font-size: 1.8rem;

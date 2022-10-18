@@ -12,10 +12,10 @@ import { copaDoBrasil2022 } from "../data/copa_do_brasil_2022_game_records";
 
 export const populateGameRecords = async (): Promise<GameRecord[]> => {
   const records: GameRecord[] = [
+    ...philippeVsYuichiro2022,
     ...dogempGames,
     ...pglatc_2022,
     ...copaDoBrasil2022,
-    ...philippeVsYuichiro2022,
   ];
   records.sort(dateSorter);
 
