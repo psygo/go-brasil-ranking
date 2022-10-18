@@ -3,19 +3,21 @@ import { ExpressApiRoute } from "../infra";
 import { postGameRecord } from "../api/post_game_record_api";
 
 import { GameRecord } from "../../../frontend/src/models/game_record";
+import { dateSorter } from "../../../frontend/src/infra/utils";
 
-import { copaDoBrasil2018 } from "../data/copa_do_brasil_2018_game_records";
 import { dogempGames } from "../data/dogemp_game_records";
 import { pglatc_2022 } from "../data/pglatc_2022_game_records";
+import { philippeVsYuichiro2022 } from "../data/philippe_vs_yuichiro_2022";
 import { copaDoBrasil2022 } from "../data/copa_do_brasil_2022_game_records";
 
 export const populateGameRecords = async (): Promise<GameRecord[]> => {
   const records: GameRecord[] = [
-    ...copaDoBrasil2018,
     ...dogempGames,
     ...pglatc_2022,
     ...copaDoBrasil2022,
+    ...philippeVsYuichiro2022,
   ];
+  records.sort(dateSorter);
 
   let completeGameRecords: GameRecord[] = [];
   const length = records.length;

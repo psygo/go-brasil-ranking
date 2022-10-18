@@ -3,4 +3,4 @@ export enum EnvState {
   prod = "production",
 }
 
-export const envState: EnvState = EnvState.prod;
+export const envState: EnvState = EnvState.dev;
