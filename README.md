@@ -28,3 +28,10 @@ No momento, a maneira mais agradável de se rodar algo localemente é abrir pelo
 | players       | isBrazilian Ascending elo Descending   | Collection  | Enabled |
 | game_records  | gameEventRef Ascending date Descending | Collection  | Enabled |
 | game_records  | blackRef Ascending date Descending     | Collection  | Enabled |
+
+## Screenshots
+
+<img src="assets/Screenshot 1">
+<img src="assets/Screenshot 2">
+<img src="assets/Screenshot 3">
+<img src="assets/Screenshot 4">
